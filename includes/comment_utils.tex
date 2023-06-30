@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comments and Notes:
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% =========================
+% Comments
+% =========================
+% Comments for Sam:
+\definecolor{samcolor}{rgb}{0.0, 0.5, 0.0} % Ao(English)
+\newcommand{\sam}[1]{
+    \textbf{\textcolor{samcolor}{(#1 --Sam)}}
+    \ifstorecomments
+        \write\commentfile{Page \thepage: \textbf{\textcolor{samcolor}{(#1 --Sam)}}}
+        \write\commentfile{}
+    \fi
+}
+\newcommand{\samtodo}[1]{
+    \textbf{\textcolor{plum}{(Sam to-do: #1)}}
+    \ifstorecomments
+        \write\commentfile{Page \thepage: \textbf{\textcolor{plum}{(Sam to-do: #1)}}}
+        \write\commentfile{}
+    \fi
+}
+
+% Comments for other authors
+
+
+% =========================
+% Boxes
+% =========================
+\usepackage{tcolorbox}
+
+\newtcolorbox{sambox}[2][]{
+    colback=samcolor!5!white,
+    colframe=samcolor!75!black,
+    colbacktitle=samcolor!10!white,
+    coltitle=samcolor!70!black,
+    title={#2},fonttitle=\bfseries,#1}
+    
+    
+% =========================
+% Storing Comments/To-Dos
+% =========================
+\newif\ifstorecomments
+\storecommentsfalse
+
+\ifstorecomments
+    % Making a file to store comments
+    \newwrite\commentfile
+    \immediate\openout\commentfile=includes/aux/paper_comments.tex
+
+    \AtEndDocument{
+        % Closing the file
+        \immediate\closeout\commentfile
+    }
+\fi
+
+% -------------------------------------------
+% For use with the following scripts
+% -------------------------------------------
+% bash shell
+\iffalse
+alias full_tex_compile="sed -i '' -e \"s/storecommentsfalse/storecommentstrue/\" ./includes/utils/comments.tex
+    pdflatex $argv &&
+    bibtex $argv &&
+    sed -i '' -e \"s/storecommentstrue/storecommentsfalse/\" ./includes/utils/comments.tex
+    pdflatex $argv
+"
+\fi
+% fish shell:
+\iffalse
+function full_tex_compile
+    sed -i '' -e "s/storecommentsfalse/storecommentstrue/" ./includes/utils/comments.tex
+    pdflatex $argv &&
+    bibtex $argv &&
+    sed -i '' -e "s/storecommentstrue/storecommentsfalse/" ./includes/utils/comments.tex
+    pdflatex $argv
+end
+\fi
