@@ -1,0 +1,831 @@
+\ProvidesPackage{samaf}[2021/04/14] 
+% Package and commands stolen from Andrew Lin and David Newsom
+
+% v0.1
+
+%%%%%%%%%%%%%%%%%%%%%
+% Setup:
+%%%%%%%%%%%%%%%%%%%%%
+%======================
+% Text/Fonts/Formatting:
+%======================
+\usepackage[top=.5in, bottom=.5in, left = 1in, right=1in, headheight=14.5pt, includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+    \renewcommand{\headrulewidth}{.85pt}
+    \renewcommand{\footrulewidth}{.6pt}
+    \pagestyle{fancy}
+    \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+    \fancyhf{}
+
+\usepackage[final]{microtype}
+\usepackage[USenglish]{babel}
+\usepackage[T1]{fontenc} % for accents, etc.
+\usepackage[absolute]{textpos}
+
+\usepackage{epigraph}
+\usepackage{changepage}
+\usepackage{parskip}
+    \setlength{\parindent}{.25in}
+
+\usepackage{relsize}
+\usepackage{dsfont}
+
+% Additional Nice Symbols
+\usepackage{pifont}
+\newcommand{\cmark}{\textcolor{green!60!black}{\ding{51}}}  % checkmark
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}}  % x mark
+\newcommand{\oxmarksmall}{\textcolor{yellow!75!black}{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}}  % yellow warning triangle
+\usepackage{contour}
+\newcommand{\oxmark}{\protect\contourlength{.005pt}\protect\contour{yellow!75!black}{\oxmarksmall}} % Slightly bigger border
+
+\usepackage{newtxtext}
+
+\usepackage{lipsum}
+
+%--------------------------------------
+% Appendix Formatting
+%--------------------------------------
+\makeatletter
+\newcounter{savesection}
+\newcounter{apdxsection}
+\renewcommand\appendix{\par
+  % You can save the section!
+  %\setcounter{savesection}{\value{section}}%
+  %\setcounter{section}{\value{apdxsection}}%
+  % I don't here:
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \gdef\thesection{\@Alph\c@section}}
+\newcommand\unappendix{\par
+  % You can save the section!
+  %\setcounter{apdxsection}{\value{section}}%
+  %\setcounter{section}{\value{savesection}}%
+  % I don't here:
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \gdef\thesection{\@arabic\c@section}}
+\makeatother
+
+\newcommand{\chaosglossary}{
+    \begin{appendix}
+    \input{chaos_glossary}
+    \end{appendix}
+    \bibliography{chaos.bib}
+}
+
+%--------------------------------------
+% Bibliography Formatting
+%--------------------------------------
+% Bibliography,  bibtex style
+%\usepackage[style=alphabetic]{biblatex}
+% example inclusion of bib file:
+%\addbibresource{chaos.bib} % with extension
+
+
+%--------------------------------------
+% Counter formatting
+%--------------------------------------
+\pretolerance=10000
+\counterwithin{figure}{section}
+\renewcommand{\thefigure}{(\arabic{section}\alph{subsection}.\arabic{figure})}
+
+%--------------------------------------
+% Changes size of section headers
+%--------------------------------------
+\usepackage{titlesec}
+\titleformat*{\section}{\LARGE\bfseries\sffamily}
+\titleformat{\subsection}{\Large\bfseries\sffamily}{\thesubsection}{0.4cm}{} 
+
+%--------------------------------------
+% Makes title bold
+%--------------------------------------
+\makeatletter
+\patchcmd{\@maketitle}{\LARGE}{\LARGE\bfseries}{}{}
+\makeatother
+
+%======================
+% Math/Physics/Symbols:
+%======================
+\usepackage{amsmath, amssymb, amsthm} % standard
+\usepackage[svgnames, dvipsnames, usenames,table,xcdraw]{xcolor}
+\usepackage{mhsetup, mathtools}
+\usepackage{physics}
+\usepackage{slashed}
+
+\usepackage{pbsi}
+\usepackage{gensymb}
+
+
+\usepackage{newtxmath}
+    %\renewcommand{\thesubsection}{\alph{subsection}}
+    % I think the mathcal here is a bit weird;
+    % Using default mathcal:
+    \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+% Counter formatting
+\numberwithin{equation}{section}
+
+
+%======================
+% Colors:
+%======================
+\definecolor{darkpastelred}{rgb}{0.76, 0.23, 0.13}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{azure}{rgb}{0.0, 0.5, 1.0}
+\definecolor{darkspringgreen}{rgb}{0.09, 0.45, 0.27}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0} % Ao (English)
+
+% https://tex.stackexchange.com/a/180957
+% color definitions for beamer
+\definecolor{konzeBlue}{RGB}{45,170,250}
+\definecolor{konzeBlueLight}{RGB}{116,199,252}
+\definecolor{mainTextColor}{RGB}{80,80,80}
+\definecolor{titleTextColor}{RGB}{120,120,120}
+
+% Colors for boxes or other commands
+\definecolor{goalcolor}{rgb}{0.2, 0.2, 0.6} % Blue (pigment)
+\definecolor{MY_ORANGE}{rgb}{1,0.55,0.1}
+\definecolor{AO}{rgb}{0.0, 0.5, 0.0} % Ao(English)
+\definecolor{MY_BLUE}{rgb}{0.1216,0.4666,0.7059}
+
+%======================
+% Misc. Utilities:
+%======================
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{csquotes}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{fix-cm}
+\usepackage{ifthen}
+\usepackage{bm}
+\usepackage{ulem}
+    \renewcommand{\ULthickness}{0.6pt}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize]{cleveref} % for cross-referencing theorems, etc.
+\usepackage{verbatim} % for commenting out sections of text
+\usepackage[nodisplayskipstretch, onehalfspacing]{setspace} % 1.5 spacing
+
+\usepackage{multicol}
+\usepackage{array,multirow}
+\usepackage{pdfpages}
+
+% Graphics: graphicx, tikz, pgfplots, etc.
+\usepackage{graphicx} % for putting pictures
+\usepackage{pgf}
+\usepackage{tikz, tikz-cd, pgfplots} % for drawing pictures
+    \usetikzlibrary{decorations.pathreplacing}
+    \usetikzlibrary{angles,quotes}
+    \usetikzlibrary{mindmap,trees}
+% Docmentation:
+% https://latexdraw.com/plot-a-function-and-data-in-latex/
+\pgfplotsset{compat = newest}
+\usepgfplotslibrary{fillbetween}
+% See, for example:
+% https://tex.stackexchange.com/questions/164991/pgfplots-how-to-fill-bounded-area-under-a-curve-using-addplot-and-fill
+\usepackage{tikzscale}
+\usepackage[abs]{overpic}
+
+% colored boxes
+\usepackage[most]{tcolorbox}
+    \tcbuselibrary{theorems}
+    \newtcolorbox{answerbox}{sharp corners=all, colframe=black, colback=black!5!white, boxrule=1.5pt, width = 1\textwidth, valign=center}
+    \newenvironment{answer}{\begin{center}\begin{answerbox}}{\end{answerbox}\end{center}}
+
+% code blocks
+%\usepackage{minted}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Special Sections:
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titletoc}
+
+\iffalse
+\usepackage{tocdata}
+\newcommand{\sectionwithauthor}[2]{
+    \tocdata{toc}{#2}
+    \section{#1}
+    {\large{\textit{#2}}}
+    %{\tiny\\}
+    %\noindent\rule{8cm}{0.4pt}
+}
+\newcommand{\subsectionwithauthor}[2]{%
+    \tocdata{toc}{#2}
+    \subsection{#1}
+    {\large{\textit{#2}}}
+    %{\tiny\\}
+    %\noindent\rule{8cm}{0.4pt}
+}
+\fi
+
+\usepackage{etoc}
+\newcommand{\sectionwithlocaltoc}[1]{%
+    \etocsettocdepth.toc{section}\etocignoretoctocdepth
+    \etocsetnexttocdepth{subsection}
+    \refstepcounter{section}
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}{#1}}
+    \renewcommand{\contentsname}{%
+        \thesection
+        ~~
+        #1
+    }%
+    \localtableofcontents
+}
+
+%==================
+% Mastery Questions
+%==================
+
+\makeatletter
+\newcommand\l@goal[1]{%
+  \addpenalty{\@highpenalty}%
+  \vskip \z@ \@plus \p@ 
+  \begingroup
+  \parindent\z@
+  \rightskip\@pnumwidth
+  \parfillskip-\@pnumwidth 
+  \leavevmode #1\nobreak\hfil\nobreak\null\par 
+  \penalty\@highpenalty
+  \endgroup} 
+\newcommand{\goal}[1]{\addtocontents{toc}{\protect\l@goal{\small #1}}\par}
+\NewEnviron{goal*}{\goal{\BODY}}
+\makeatother
+
+\newcommand\MQ[2]{
+\section{#1}
+\goal{#2}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Commands:
+%%%%%%%%%%%%%%%%%%%%%
+
+%=======================================
+% Reference Commands
+%=======================================
+% Sections
+\DeclareRobustCommand{\Sec}[1]{Sec.~\ref{sec:#1}}
+\DeclareRobustCommand{\Secs}[2]{Secs.~\ref{sec:#1} and \ref{sec:#2}}
+
+% Appendices
+\DeclareRobustCommand{\App}[1]{App.~\ref{app:#1}}
+\DeclareRobustCommand{\Apps}[2]{Apps.~\ref{app:#1} and \ref{app:#2}}
+
+% Tables
+\DeclareRobustCommand{\Tab}[1]{Table~\ref{tab:#1}}
+\DeclareRobustCommand{\Tabs}[2]{Tables~\ref{tab:#1} and \ref{tab:#2}}
+
+% Figures
+\DeclareRobustCommand{\Fig}[1]{Fig.~\ref{fig:#1}}
+\DeclareRobustCommand{\Figs}[2]{Figs.~\ref{fig:#1} and \ref{fig:#2}}
+
+% Equations
+\DeclareRobustCommand{\Eq}[1]{Eq.~(\ref{eq:#1})}
+\DeclareRobustCommand{\Eqs}[2]{Eqs.~(\ref{eq:#1}) and (\ref{eq:#2})}
+\DeclareRobustCommand{\Eqss}[3]{Eqs.~(\ref{eq:#1}), (\ref{eq:#2}), and (\ref{eq:#3})}
+
+% Definitions
+\DeclareRobustCommand{\Def}[1]{Definition~\ref{def:#1}}
+\DeclareRobustCommand{\Defs}[2]{Definitions~\ref{def:#1} and \ref{def:#2}}
+\DeclareRobustCommand{\Defss}[3]{Definitions~\ref{def:#1}, \ref{def:#2}, and \ref{def:#3}}
+
+% Propositions
+\DeclareRobustCommand{\Prop}[1]{Proposition~\ref{prop:#1}}
+\DeclareRobustCommand{\Props}[2]{Propositions~\ref{prop:#1} and \ref{prop:#2}}
+\DeclareRobustCommand{\Propss}[3]{Propositions~\ref{prop:#1}, \ref{prop:#2}, and \ref{prop:#3}}
+
+% Problems
+\DeclareRobustCommand{\Prob}[1]{Problem~\ref{prob:#1}}
+\DeclareRobustCommand{\Probs}[2]{Problems~\ref{prob:#1} and \ref{prob:#2}}
+\DeclareRobustCommand{\Probss}[3]{Problems~\ref{prob:#1}, \ref{prob:#2}, and \ref{prob:#3}}
+% Labels with Links to Solutions
+\DeclareRobustCommand{\labsoln}[1]{
+    \label{prob:#1}
+    \hyperref[soln:#1]{\texttt{(Solution)}}
+}
+% Solutions
+\DeclareRobustCommand{\Soln}[1]{
+    \addcontentsline{toc}{subsection}{Problem~\ref{prob:#1}}
+    \subsubsection*{\hyperref[prob:#1]{Problem~\ref{prob:#1}}}
+    \label{soln:#1}
+}
+
+% Toolboxes
+\DeclareRobustCommand{\Toolbox}[1]{Toolbox~\ref{toolbox:#1}}
+\DeclareRobustCommand{\Toolboxes}[2]{Toolboxes~\ref{toolbox:#1}~and~\ref{toolbox:#1}}
+
+% References
+\DeclareRobustCommand{\Ref}[1]{Ref.~\cite{#1}}
+\DeclareRobustCommand{\Refs}[1]{Refs.~\cite{#1}}
+
+%=======================================
+% Math Commands:
+%=======================================
+
+%--------------------------------------
+% Physics:
+%--------------------------------------
+\newcommand{\sfield}[1]{\mathbf{#1}}
+\newcommand{\Lag}{\mathcal{L}}
+
+%--------------------------------------
+% Math:
+%--------------------------------------
+
+% Basics
+\newcommand{\p}{\partial}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\sinc}{{\rm \, sinc\,}}
+\newcommand{\braaket}[3]{\left\langle #1 \right| #2 \left|#3 \right\rangle}
+\def\nn{\nonumber\\}
+\newcommand{\mpar}[1]{\marginpar{\small \it #1}}
+\newcommand{\cmt}[1]{\textcolor{Orange}{#1}}
+
+% pmtrx (removed vowels): enclose argument in pmatrix, for easy row/col vecs and matrices
+\newcommand{\pmtrx}[1]{
+    \ensuremath{\begin{pmatrix}#1\end{pmatrix}}
+}
+
+\newcommand{\vstag}{{\bm u}}
+
+
+
+% Blackboard bold
+\renewcommand{\AA}{\ensuremath{\mathbb A}}
+\newcommand{\CC}{\ensuremath{\mathbb C}}
+\newcommand{\DD}{\ensuremath{\mathbb D}}
+\newcommand{\EE}{\ensuremath{\mathbb E}}
+\newcommand{\FF}{\ensuremath{\mathbb F}}
+\newcommand{\HH}{\ensuremath{\mathbb H}}
+\newcommand{\KK}{\ensuremath{\mathbb K}}
+\newcommand{\NN}{\ensuremath{\mathbb N}}
+\newcommand{\PP}{\ensuremath{\mathbb P}}
+\newcommand{\QQ}{\ensuremath{\mathbb Q}}
+\newcommand{\RR}{\ensuremath{\mathbb R}}
+\newcommand{\ZZ}{\ensuremath{\mathbb Z}}
+\newcommand{\Zt}{\ensuremath{\mathbb Z_2}}
+\newcommand{\Zn}{\ensuremath{\mathbb Z_N}}
+
+% Mathcal
+\newcommand{\A}{\ensuremath{\mathcal A}}
+\newcommand{\C}{\ensuremath{\mathcal C}}
+\newcommand{\D}{\ensuremath{\mathcal D}}
+\newcommand{\E}{\ensuremath{\mathcal E}}
+\newcommand{\F}{\ensuremath{\mathcal F}}
+%\newcommand{\H}{\ensuremath{\mathcal H}}
+\newcommand{\K}{\ensuremath{\mathcal K}}
+\newcommand{\N}{\ensuremath{\mathcal N}}
+\renewcommand{\P}{\ensuremath{\mathcal P}}
+\newcommand{\Q}{\ensuremath{\mathcal Q}}
+\newcommand{\R}{\ensuremath{\mathcal R}}
+\newcommand{\Z}{\ensuremath{\mathcal Z}}
+
+% various math expressions that shouldn't be italicized 
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator*{\lcm}{lcm}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sing}{Sing}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\chAb}{chAb}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+
+% can't use DeclareMathOperator because already defined
+\renewcommand{\Re}{\operatorname{Re}} 
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\ker}{\operatorname{ker}}
+\renewcommand{\mod}[1]{\ \text{mod}\ #1}
+
+% other convenient abbreviations
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\indep}{\perp\!\!\!\perp}
+
+% New definition of square root:
+% Rename \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% Define the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+
+% Misc. math definitions
+\newcommand{\eqdelta}{\overset{\Delta}{=}}
+\newcommand{\eqquestion}{\overset{?}{=}}
+\newcommand{\eqexclamation}{\overset{?}{=}}
+\newcommand{\reppedby}{\overset{\boldsymbol{\cdot}}{=}}
+\newcommand{\reps}{\underset{\boldsymbol{\cdot}}{=}}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\pnorm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\parsh}[3]{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
+\newcommand{\opn}{\operatorname}
+\newcommand{\qedblack}{
+    \begin{flushright}
+    \(\blacksquare\)
+    \end{flushright}
+}
+% Sum-Integral
+\DeclareMathOperator*{\SumInt}{%
+\mathchoice%
+  {\ooalign{$\displaystyle\sum$\cr\hidewidth$\displaystyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.14\height}{\scalebox{.7}{$\textstyle\sum$}}\cr\hidewidth$\textstyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+}
+
+
+%-----------------
+% Hong Liu's helpful shortcuts:
+%-----------------
+\newcommand\half{{\ensuremath{\frac{1}{2}}}}
+\def\le{\left}
+\def\ri{\right}
+\newcommand\da{{\dagger}}
+
+% Equations
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\subeqs}[2]{
+\begin{subequations}
+    \label{eq:#1}
+    \begin{align}
+    #2
+    \end{align}
+\end{subequations}
+}%
+% Equation Arrays
+\newcommand{\bear}{\begin{eqnarray}}
+\newcommand{\eear}{\end{eqnarray}}
+% Gathered Equations
+\newcommand{\bega}{\begin{equation}\begin{gathered}}
+\newcommand{\eega}{\end{gathered}\end{equation}}
+
+\newcommand{\ba}{\begin{align}}
+\newcommand{\ea}{\end{align}}
+
+%--------------------------------------
+% Misc.:
+%--------------------------------------
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+\newcommand*\xbar[1]{%
+   \,\hbox{%
+     \vbox{%
+       \hrule height 0.5pt % The actual bar
+       \kern1.35pt%         % Distance between bar and symbol
+       \hbox{%
+         \kern-0.2em%      % Shortening on the left side
+         \ensuremath{#1}%
+         \kern-0.2em%      % Shortening on the right side
+       }%
+     }%
+   }\,%
+}
+
+
+%=======================================
+% Theorems and Theorem Environments:
+%=======================================
+% Tools for theorem boxes:
+\usepackage{thmtools}
+\usepackage[framemethod = TikZ]{mdframed}
+\usepackage{silence} % for suppressing warnings 
+\WarningFilter{mdframed}{You got a bad break}
+
+% Counter for theorem boxes:
+\newcounter{thmcounter}[section]
+\newcounter{probcounter}[section]
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\mdfsetup{
+	linewidth = 0.3mm,
+	innertopmargin = 2mm,
+	innerbottommargin = 3.5mm,
+	innerleftmargin = 3mm,
+	innerrightmargin = 3mm
+} % adjusts boundaries of boxes
+
+\newcommand{\thmboxstyle}[4]{
+	\mdfdefinestyle{#2}{
+		linecolor = #3,
+		backgroundcolor = #4,
+		nobreak = true
+	}
+	\declaretheoremstyle[
+		headfont = \sffamily\bfseries\color{#3},
+		mdframed = {style = #2},
+		headpunct = {\\[0.4pt]},
+		postheadspace = {0pt},
+	]{#1}
+}
+
+
+%--------------------------------------
+% tcb Theorem Styles:
+%--------------------------------------
+% Definition
+\newtcbtheorem[auto counter, number within=section]
+{definition}{Definition}{
+    enhanced,
+    breakable,
+    colback=defcolor!5!white,
+    colframe=defcolor!75!black,
+    colbacktitle=defcolor!17!white,
+    coltitle=defcolor!70!black,
+    fonttitle=\bfseries,
+    lower separated=false,
+    boxed title style={colframe=defcolor!75!black},
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title={Definition \thetcbcounter: #1}
+}{def}
+
+% Theorem
+\newtcbtheorem[number within=section, use counter from=definition]
+{theorem}{Theorem}{
+    enhanced,
+    breakable,
+    colback=thmcolor!5!white,
+    colframe=thmcolor!75!black,
+    colbacktitle=thmcolor!17!white,
+    coltitle=thmcolor!70!black,
+    fonttitle=\bfseries,
+    lower separated=false,
+    boxed title style={colframe=thmcolor!75!black},
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title={Theorem \thetcbcounter: #1}
+}{thm}
+
+% Proposition
+\newtcbtheorem[number within=section, use counter from=definition]
+{proposition}{Proposition}{
+    enhanced,
+    breakable,
+    colback=propcolor!5!white,
+    colframe=propcolor!75!black,
+    colbacktitle=propcolor!17!white,
+    coltitle=propcolor!70!black,
+    fonttitle=\bfseries,
+    lower separated=false,
+    boxed title style={colframe=propcolor!75!black},
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title={Proposition \thetcbcounter: #1}
+}{prop}
+
+% Question
+\newtcbtheorem[number within=section, use counter from=definition]
+{question}{Question}{
+    enhanced,
+    breakable,
+    colback=qcolor!5!white,
+    colframe=qcolor!75!black,
+    colbacktitle=qcolor!17!white,
+    coltitle=qcolor!70!black,
+    fonttitle=\bfseries,
+    lower separated=false,
+    boxed title style={colframe=qcolor!75!black},
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title={Question \thetcbcounter: #1}
+}{question}
+
+% Remark
+\newtcbtheorem[number within=section, use counter from=definition]
+{remarkbox}{Remark}{
+    enhanced,
+    breakable,
+    fonttitle=\bfseries,
+    lower separated=false,
+    standard jigsaw,
+    opacityback=0,
+    opacitybacktitle=0,
+    opacityframe=0,
+    coltitle=ao!90!black,
+    title={Remark \thetcbcounter: #1}
+}{rem}
+
+\newcommand{\remark}[2]{
+\begin{remarkbox}{}{#1}
+    \textit{#2}
+\end{remarkbox}
+}%
+
+% Goal
+\newtcolorbox{goalbox}[2][]{
+    colback=goalcolor!5!white,
+    colframe=goalcolor!75!black,
+    colbacktitle=goalcolor!10!white,
+    coltitle=goalcolor!70!black,
+    title={#2},fonttitle=\bfseries,#1}
+
+
+%--------------------------------------
+% Andrew Lin's Theorem Styles:
+%--------------------------------------
+
+% Different colors of boxes
+\thmboxstyle{defbox}{mdredbox}{red}{orange!5}
+\thmboxstyle{thmbox}{mdbluebox}{blue!90!red}{cyan!4}
+\thmboxstyle{exbox}{mdgreenbox}{green!70!black}{teal!4}
+\thmboxstyle{notebox}{mdorangebox}{orange!50!brown}{yellow!5!olive!5}
+\thmboxstyle{lembox}{mdpurplebox}{purple!50!blue}{purple!5!blue!3}
+
+% fix the bug in aliasctr.sty
+\makeatletter
+\patchcmd{\@counteralias}
+ {\@ifdefinable{c@#1}}
+ {\expandafter\@ifdefinable\csname c@#1\endcsname}
+ {}{}
+\makeatother
+
+
+% Main Boxes
+\declaretheorem[style = thmbox, name = Theorem, numberwithin = section]{theoremlin}
+
+\declaretheorem[style = lembox, name = Lemma, sibling = theoremlin]{lemma}
+\declaretheorem[style = thmbox, name = Proposition, sibling = theoremlin]{propositionlin}
+\declaretheorem[style = thmbox, name = Corollary, sibling = theoremlin]{corollary}
+\declaretheorem[style = thmbox, name = Conjecture, sibling = theoremlin]{conjecture}
+
+\declaretheorem[style = thmbox, name = Theorem, numbered = no]{theoremlin*}
+\declaretheorem[style = thmbox, name = Lemma, numbered = no]{lemma*}
+\declaretheorem[style = thmbox, name = Proposition, numbered = no]{propositionlin*}
+\declaretheorem[style = thmbox, name = Corollary, numbered = no]{corollary*}
+\declaretheorem[style = thmbox, name = Conjecture, numbered = no]{conjecture*}
+
+\declaretheorem[style = defbox, name = Definition, sibling = theoremlin]{definitionlin}
+\declaretheorem[style = defbox, name = Definition, numbered = no]{definitionlin*}
+
+\declaretheorem[style = exbox, name = Example, sibling = theoremlin]{example}
+\declaretheorem[style = exbox, name = Example, numbered = no]{example*}
+
+\declaretheorem[style = notebox, name = Fact, sibling = theoremlin]{fact}
+\declaretheorem[style = notebox, name = Fact, numbered = no]{fact*}
+
+\declaretheorem[style = plain, name = Question, sibling = theoremlin]{questionlin}
+\declaretheorem[style = plain, name = Question, numbered = no]{questionlin*}
+
+\declaretheorem[style = plain, name = Claim, sibling = theoremlin]{claim}
+\declaretheorem[style = plain, name = Claim, numbered = no]{claim*}
+
+% Problems
+\declaretheorem[style = notebox, name = Problem, numberwithin = section%, sibling = theoremlin
+			  ]{problem}
+\declaretheorem[style = notebox, name = Problem, numbered = no]{problem*}
+
+\newcommand{\makeprob}[2]{
+    \medskip
+    \begin{problem}
+        #2
+        
+        \ifthenelse{\equal{#1}{}}{}{\labsoln{#1}}
+    \end{problem}
+}
+
+% Problem set boxes
+\declaretheorem[style = notebox, name = Starting Point, numbered = no]{startpoint}
+\declaretheorem[style = exbox, name = Toolbox, numbered = yes]{toolbox}
+\declaretheorem[style = lembox, name = Answer, numbered = no]{answercol}
+
+% Misc. boxes
+\declaretheorem[style=plain, sibling=theoremlin, name=Remark]{remarklin}
+\declaretheorem[style=plain, name=Remark, numbered=no]{remarklin*}
+
+\declaretheorem[style=plain, name=Abstract, numbered=no]{talk_abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Comment/Text Commands:
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Comment}[1]{\textcolor{WildStrawberry}{\textbf{#1}}}
+\newcommand{\sam}[1]{\textcolor{ao}{(\textbf{#1 -Sam})}}
+\newcommand{\vocab}[1]{\textbf{\color{blue!90}\boldmath #1}}
+\newcommand{\fqty}{\mathopen{}\qty}
+
+% physics
+\newcommand{\brahket}[3]{\left\langle #1\middle|#2 \middle|#3 \right\rangle}
+
+% Arrows
+\DeclareRobustCommand{\neswarrow}{%
+  \mathrel{\text{\ooalign{$\swarrow$\cr$\nearrow$}}}%
+}
+\DeclareRobustCommand{\nwsearrow}{%
+  \mathrel{\text{\ooalign{$\searrow$\cr$\nwarrow$}}}%
+}
+
+
+%--------------------------------------
+% Title Page Utilities
+%--------------------------------------
+\usepackage{afterpage}
+\usetikzlibrary{fadings}
+% From https://tex.stackexchange.com/a/554962
+
+\definecolor{defcolor}{rgb}{0.8, 0.0, 0.0} % Boston University Red
+\definecolor{thmcolor}{rgb}{0.0, 0.28, 0.67} % Cobalt
+\definecolor{propcolor}{rgb}{0.69, 0.4, 0.0} % Ginger
+\definecolor{qcolor}{rgb}{0.6, 0.2, 0.8} % Dark Orchid
+
+\newcommand{\coverpage}[1]{
+    \newpage
+    \DeclareFixedFont{\titlefont}{T1}{ppl}{b}{}{0.7in}
+    \DeclareFixedFont{\subtitlefont}{T1}{ppl}{b}{}{0.4in}
+    \newgeometry{left=1in, right=1in,top=1in, bottom=0in}
+    \afterpage{\restoregeometry}
+    
+    \thispagestyle{empty}
+    \noindent{\rule{\linewidth}{2pt}}
+    \begin{flushright}
+    \titlefont{#1}
+    %\\
+    %\subtitlefont Sam A.
+    \end{flushright}
+    \noindent{\rule{\linewidth}{2pt}}
+    \phantomsection
+    \addcontentsline{toc}{part}{#1}
+    
+    % for additional pages after the title, uncomment the following line first:
+    \clearpage
+    \restoregeometry
+    \newpage
+}
+
+
+
+%--------------------------------------
+% To-Do Lists:
+%--------------------------------------
+% See https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes
+\setlength {\marginparwidth}{2cm} % Fixing errors
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\usepackage{xargs} % Use more than one optional parameter in a new commands
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+
+%--------------------------------------
+% Note Commands:
+%--------------------------------------
+% Notes for Sam:
+\newcommand{\addSA}[1]{\textbf{\textcolor{AO}{(#1 --sam)}}}
+\newcommandx{\samnote}[2][1=]{\todo[linecolor=AO,backgroundcolor=AO!25,bordercolor=AO,#1]{\textbf{Sam}: #2}}
+\newtcolorbox{sambox}[2][]{
+    colback=AO!5!white,
+    colframe=AO!75!black,
+    colbacktitle=AO!10!white,
+    coltitle=AO!70!black,
+    title={#2},fonttitle=\bfseries,#1}
+
+
+%--------------------------------------
+% Color Boxes:
+%--------------------------------------
+\newtcolorbox{greenbox}[2][]{
+    colback=AO!5!white,
+    colframe=AO!75!black,
+    colbacktitle=AO!10!white,
+    coltitle=AO!70!black,
+    title={#2},fonttitle=\bfseries,#1}
+
+\newtcolorbox{orangebox}[2][]{
+    colback=MY_ORANGE!5!white,
+    colframe=MY_ORANGE!75!black,
+    colbacktitle=MY_ORANGE!10!white,
+    coltitle=MY_ORANGE!70!black,
+    title={#2},fonttitle=\bfseries,#1}
+
+\newtcolorbox{bluebox}[2][]{
+    colback=MY_BLUE!5!white,
+    colframe=MY_BLUE!75!black,
+    colbacktitle=MY_BLUE!10!white,
+    coltitle=MY_BLUE!70!black,
+    title={#2},fonttitle=\bfseries,#1}
+
+\newcommand{\meta}[1]{
+\begin{sambox}{Meta Comments}{}
+    #1
+\end{sambox}
+}
