@@ -1,5 +1,31 @@
 \chapter{Jet Substructure}
 
+% ==============================================
+\section{The physical picture}
+% ==============================================
+
+% -----------------------------------
+% Figure Comment:
+% -----------------------------------
+\begin{figure}[t!]
+    % Figure graphics
+    \centering
+    \includegraphics[width=\textwidth]{figures/tempfig}
+
+    % Caption
+    \caption{
+        Caption text
+    }
+
+    % Figure Label
+    \label{fig:label}
+\end{figure}
+
+
+
+
+\section{\sam{Existing work:}}
+
 Quantifying the internal structure of hadronic jets plays an important role in translating between experimental results and theoretical predictions.
 %
 The toolkit of jet substructure, including techniques from jet grooming \cite{Krohn:2009th,Ellis:2009me,Larkoski:2014wba,Dasgupta:2013ihk,Dasgupta:2013via,Tseng:2013dva,Dasgupta:2016ktv} and pile-up mitigation \cite{Cacciari:2007fd,Soyez:2012hv,Komiske:2017ubm,Bertolini:2014bba,Cacciari:2008gn,Butterworth:2008iy,Chatrchyan:2012sn,Alon:2011xb,Krohn:2013lba,ATLAS-CONF-2013-083,ATLAS-CONF-2013-085,Chatrchyan:2012tt,CMS-PAS-JME-13-005,Sirunyan:2020foa,ATLAS-CONF-2012-066,Monk:2018clo,Martinez:2018fwc},
@@ -316,14 +342,14 @@ The mark \raisebox{0.15 em}{\danger} indicates that a groomer does not satisfy t
 
 % Event visualization
 % Ungroomed
-  \node at (1.8,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/event_visualizations/vis_raw_1}};
-  \node at (1.8,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/event_visualizations/vis_raw_2}};
+  \node at (1.8,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_raw_1}};
+  \node at (1.8,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_raw_2}};
 % mMDT
-  \node at (6.5,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/event_visualizations/vis_mmdt_1}};
-  \node at (6.5,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/event_visualizations/vis_mmdt_2}};
+  \node at (6.5,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_mmdt_1}};
+  \node at (6.5,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_mmdt_2}};
 % P-RSF_1/2
-  \node at (11.3,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/event_visualizations/vis_rsf_half_1}};
-  \node at (11.3,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/event_visualizations/vis_rsf_half_2}};
+  \node at (11.3,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_rsf_half_1}};
+  \node at (11.3,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_rsf_half_2}};
 
 % Axis info
  \node at (-0.4,  -5.0)() {\Large \(\phi\)};
@@ -570,7 +596,7 @@ Since both soft distortions and fluctuations in additive contamination may lead 
 
 We may use the EMD to define continuity more precisely for maps on energy flows, in the spirit of \href{https://arxiv.org/pdf/2004.04159.pdf#page=5\&zoom=100,0,350}{Definition 1} of \Reff{Komiske:2020qhg}:
 %
-\begin{definition}\label{def:eventcontinuity}
+\definition{eventcontinuity}{
 A map \(M\) from energy flows to energy flows is \textit{continuous at an event \(\mathcal E\)} if, for any \(\varepsilon > 0\), there exists a \(\delta > 0\) such that for all \(\mathcal E'\),
 %
 \begin{equation*}\label{eqn:emdcontinuity}
@@ -580,7 +606,7 @@ A map \(M\) from energy flows to energy flows is \textit{continuous at an event 
 \end{equation*}
 %
 We say that \(M\) is \textbf{continuous} if it is continuous at all events \(\mathcal{E}\).
-\end{definition}
+}
 %
 \noindent Definition~\ref{def:eventcontinuity} encodes the requirement that a continuous grooming algorithm must map jets that are infinitesimally nearby in event space to groomed results that are also infinitesimally close.\footnote{
 %Our Definition~\ref{def:eventcontinuity} is in the spirit of \href{https://arxiv.org/pdf/2004.04159.pdf\#page=5\&zoom=100,114,645}{Definition 1} of \Reff{Komiske:2020qhg}.
@@ -673,7 +699,7 @@ Exact collinear splittings do not change the energy distribution associated with
 ]{
 \begin{tikzpicture}
 \node at (0,0) {
-    \includegraphics[width=0.45\textwidth]{figures/cartoons/space_pu}
+    \includegraphics[width=0.45\textwidth]{figures/piranha/cartoons/space_pu}
 };
 \node at (0,4.25) {Cartoon of a \PIRANHA{} groomer};
 \node at (0,3.75) {acting on the space of energy flows};
@@ -684,7 +710,7 @@ Exact collinear splittings do not change the energy distribution associated with
 ]{
 \begin{tikzpicture}
 \node at (0,0) {
-\includegraphics[width=0.45\textwidth]{figures/event_visualizations/apollonius_diagram_pink}
+\includegraphics[width=0.45\textwidth]{figures/piranha/event_visualizations/apollonius_diagram_pink}
 };
 \node at (0,4.35) {Visualization of P-AS acting on};
 %\node at (0,4.25) {P-AS Acting on an Example Event};
@@ -959,7 +985,7 @@ A visualization of P-RSF acting on a tree of emissions for \(f_{\rm soft} = 1/2\
       \subfloat[]{
       \begin{tikzpicture}
           \node at (0,0) {
-              \includegraphics[width=.4\textwidth]{figures/cartoons/RSF_half_vis.pdf}
+              \includegraphics[width=.4\textwidth]{figures/piranha/cartoons/RSF_half_vis.pdf}
           };
           % \node at (0, 3.3) {Visualization of \normalsize \PRSF{1/2} (Balanced P-RSF)};
           % \node at (0, 2.8) {acting on a toy event};
@@ -971,7 +997,7 @@ A visualization of P-RSF acting on a tree of emissions for \(f_{\rm soft} = 1/2\
       \subfloat[]{
       \begin{tikzpicture}
           \node at (0,0) {
-              \includegraphics[width=.4\textwidth]{figures/cartoons/RSF_1_vis.pdf}
+              \includegraphics[width=.4\textwidth]{figures/piranha/cartoons/RSF_1_vis.pdf}
           };
           % \node at (0, 3.3) {Visualization of \normalsize \PRSF{1} (an example of};
           % \node at (0, 2.8) {Unbalanced P-RSF) acting on a toy event};
@@ -1793,12 +1819,12 @@ we may also say that they suffer from an \textit{angular clustering discontinuit
 \begin{figure}[t!]
       \centering
       \subfloat[]{
-          \includegraphics[width=.4\textwidth]{figures/cartoons/angular_discont_left}
+          \includegraphics[width=.4\textwidth]{figures/piranha/cartoons/angular_discont_left}
           \label{fig:ang_discont_left}
       }
       ~~~~
       \subfloat[]{
-          \includegraphics[width=.4\textwidth]{figures/cartoons/angular_discont_right}
+          \includegraphics[width=.4\textwidth]{figures/piranha/cartoons/angular_discont_right}
           \label{fig:ang_discont_right}
       }
 \caption{
@@ -1853,7 +1879,7 @@ The discontinuities of different clustering algorithms may be more or less suppr
 \subsection{Stronger Notions of Continuity}
 As a final note for this section, we point out that there are analogs of continuity that provide stronger constraints, such as uniform continuity,
 
-\begin{definition}\label{def:eventuniformcontinuity}
+\definition{eventuniformcontinuity}{
 A map \(M\) from energy flows to energy flows is \textit{uniformly continuous} if, for any \(\varepsilon > 0\), there exists a \(\delta > 0\) such that for all \(\mathcal{E}\) and \(\mathcal E'\),
 %
 \begin{equation*}\label{eqn:emduniformcontinuity}
@@ -1863,12 +1889,12 @@ A map \(M\) from energy flows to energy flows is \textit{uniformly continuous} i
 \end{equation*}
 %
 Roughly, we might say that uniform continuity requires that when we pick \(\varepsilon\), \(M\) must be ``continuous with the same \(\delta\) for every event''.
-\end{definition}
+}
 
 \noindent
 and the even stronger condition of H\"older continuity,
 
-\begin{definition}\label{def:eventholdercontinuity}
+\definition{eventholdercontinuity}{
 A map \(M\) from energy flows to energy flows is \textit{H\"older continuous} with exponent \(\alpha \in \mathbb R\) if, for all \(\mathcal{E}\) and \(\mathcal E'\),
 %
 \begin{equation*}\label{eqn:emdholdercontinuity}
@@ -1879,7 +1905,7 @@ A map \(M\) from energy flows to energy flows is \textit{H\"older continuous} wi
 with \(K\in \mathbb R\) a constant.
 %
 The special case \(\alpha = 1\) is called \textit{Lipschitz continuity}.
-\end{definition}
+}
 
 Placing stronger constraints on grooming, such as uniform continuity and H\"older continuity, has the potential to further constrain the effects of soft contamination and fluctuations in additive radiation on groomed results.
 %
@@ -1996,48 +2022,48 @@ These subtleties lead to additional complications in the theoretical calculation
 \centering
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/emd_dist-ph}
+      {figures/piranha/responses/pvh/emd_dist-ph}
       \label{fig:ph_emd_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/deltaemd-ph}
+      {figures/piranha/responses/pvh/deltaemd-ph}
       \label{fig:ph_emd_delta}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/sigmaemd-ph}
+      {figures/piranha/responses/pvh/sigmaemd-ph}
       \label{fig:ph_emd_sigma}
 }
 \\
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/delta_pt_dist-ph}
+      {figures/piranha/responses/pvh/delta_pt_dist-ph}
       \label{fig:ph_pt_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/deltapt-ph}
+      {figures/piranha/responses/pvh/deltapt-ph}
       \label{fig:ph_pt_delta}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/sigmapt-ph}
+      {figures/piranha/responses/pvh/sigmapt-ph}
       \label{fig:ph_pt_sigma}
 }
 \\
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/deltac12_dist-ph}
+      {figures/piranha/responses/pvh/deltac12_dist-ph}
       \label{fig:ph_c12_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/deltac12-ph}
+      {figures/piranha/responses/pvh/deltac12-ph}
       \label{fig:ph_c12_delta}
 }\subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pvh/sigmac12-ph}
+      {figures/piranha/responses/pvh/sigmac12-ph}
       \label{fig:ph_c12_sigma}
 }
 \caption{
@@ -2091,49 +2117,49 @@ We hope that the stability of \PIRANHA{}-groomed jets to the non-perturbative ph
 \begin{figure}[p]
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/emd_dist-avc}
+      {figures/piranha/responses/avc/emd_dist-avc}
       \label{fig:avc_emd_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/deltaemd-avc}
+      {figures/piranha/responses/avc/deltaemd-avc}
       \label{fig:avc_emd_delta}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/sigmaemd-avc}
+      {figures/piranha/responses/avc/sigmaemd-avc}
       \label{fig:avc_emd_sigma}
 }
 \\
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/delta_pt_dist-avc}
+      {figures/piranha/responses/avc/delta_pt_dist-avc}
       \label{fig:avc_pt_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/deltapt-avc}
+      {figures/piranha/responses/avc/deltapt-avc}
       \label{fig:avc_pt_delta}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/sigmapt-avc}
+      {figures/piranha/responses/avc/sigmapt-avc}
       \label{fig:avc_pt_sigma}
 }
 \\
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/deltac12_dist-avc}
+      {figures/piranha/responses/avc/deltac12_dist-avc}
       \label{fig:avc_c12_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/deltac12-avc}
+      {figures/piranha/responses/avc/deltac12-avc}
       \label{fig:avc_c12_delta}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/avc/sigmac12-avc}
+      {figures/piranha/responses/avc/sigmac12-avc}
       \label{fig:avc_c12_sigma}
 }
 \caption{
@@ -2269,17 +2295,17 @@ We begin with a study of QCD jets and, to roughly echo similar studies in the or
 \centerline{
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_emd_npu50}
+      {figures/piranha/responses/pileup/main_emd_npu50}
       \label{fig:pu_emd_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_emd_npu_shifts}
+      {figures/piranha/responses/pileup/main_emd_npu_shifts}
       \label{fig:pu_emd_shift}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_emd_npu_stds}
+      {figures/piranha/responses/pileup/main_emd_npu_stds}
       \label{fig:pu_emd_std}
 }
 } % centerline
@@ -2287,17 +2313,17 @@ We begin with a study of QCD jets and, to roughly echo similar studies in the or
 \centerline{
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_dpt_npu50}
+      {figures/piranha/responses/pileup/main_dpt_npu50}
       \label{fig:pu_pt_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_dpt_npu_shifts}
+      {figures/piranha/responses/pileup/main_dpt_npu_shifts}
       \label{fig:pu_pt_shift}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_dpt_npu_stds}
+      {figures/piranha/responses/pileup/main_dpt_npu_stds}
       \label{fig:pu_pt_std}
 }
 } % centerline
@@ -2305,17 +2331,17 @@ We begin with a study of QCD jets and, to roughly echo similar studies in the or
 \centerline{
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_dc1_npu50}
+      {figures/piranha/responses/pileup/main_dc1_npu50}
       \label{fig:pu_c12_dist}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_dc1_npu_shifts}
+      {figures/piranha/responses/pileup/main_dc1_npu_shifts}
       \label{fig:pu_c12_shift}
 }
 \subfloat[][]{
       \includegraphics[width=.32\textwidth]
-      {figures/responses/pileup/main_dc1_npu_stds}
+      {figures/piranha/responses/pileup/main_dc1_npu_stds}
       \label{fig:pu_c12_std}
 }
 } % centerline
@@ -2423,20 +2449,20 @@ The Wasserstein distance is a metric on the space of distribution, much in the s
 \begin{figure}[p]
 \centering
     \subfloat[][]{
-        \includegraphics[width=.45\textwidth]{figures/responses/ue/c12_ratio_plots/rsf_half_zbase0.0_ratio_maintext}
+        \includegraphics[width=.45\textwidth]{figures/piranha/responses/ue/c12_ratio_plots/rsf_half_zbase0.0_ratio_maintext}
 \label{fig:rss_ue_0}
     }
     \subfloat[][]{
-        \includegraphics[width=.45\textwidth]{figures/responses/ue/c12_ratio_plots/rsf_half_zbase0.025_ratio_maintext}
+        \includegraphics[width=.45\textwidth]{figures/piranha/responses/ue/c12_ratio_plots/rsf_half_zbase0.025_ratio_maintext}
 \label{fig:rss_ue_025}
     }
     \\
     \subfloat[][]{
-        \includegraphics[width=.45\textwidth]{figures/responses/ue/c12_ratio_plots/sd2_zbase0.0_ratio_maintext}
+        \includegraphics[width=.45\textwidth]{figures/piranha/responses/ue/c12_ratio_plots/sd2_zbase0.0_ratio_maintext}
 \label{fig:sd_ue_0}
     }
     \subfloat[][]{
-        \includegraphics[width=.45\textwidth]{figures/responses/ue/c12_ratio_plots/sd2_zbase0.025_ratio_maintext}
+        \includegraphics[width=.45\textwidth]{figures/piranha/responses/ue/c12_ratio_plots/sd2_zbase0.025_ratio_maintext}
 \label{fig:sd_ue_025}
     }
 \caption{
@@ -2462,11 +2488,11 @@ The left column shows the substructure distributions for \(z^{(\rm base)}_{\rm c
 \begin{figure}[]
 \centerline{
     \subfloat[][]{
-        \includegraphics[width=.48\textwidth]{figures/responses/ue/wassersteins/wdists_maintype_correctedFalse}
+        \includegraphics[width=.48\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_maintype_correctedFalse}
 \label{fig:ue_wasser_nocorrection}
     }
     \subfloat[][]{
-        \includegraphics[width=.48\textwidth]{figures/responses/ue/wassersteins/wdists_maintype_correctedTrue}
+        \includegraphics[width=.48\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_maintype_correctedTrue}
 \label{fig:ue_wasser_uecorrection}
     }
 }
@@ -2526,20 +2552,20 @@ We demonstrate that hard-cutoff groomers indeed require less additional \(\delta
 \begin{figure}[p]
 \centering
 \subfloat[][]{
-\includegraphics[width=.45\textwidth]{figures/responses/mass_resolution/w_mass_resolution}
+\includegraphics[width=.45\textwidth]{figures/piranha/responses/mass_resolution/w_mass_resolution}
 \label{fig:w_tagging_dist}
 }
 \subfloat[][]{
-\includegraphics[width=.45\textwidth]{figures/responses/mass_resolution/w_mass_roc}
+\includegraphics[width=.45\textwidth]{figures/piranha/responses/mass_resolution/w_mass_roc}
 \label{fig:w_tagging_roc}
 }
 \\
 \subfloat[][]{
-\includegraphics[width=.45\textwidth]{figures/responses/mass_resolution/top_mass_resolution}
+\includegraphics[width=.45\textwidth]{figures/piranha/responses/mass_resolution/top_mass_resolution}
 \label{fig:top_tagging_dist}
 }
 \subfloat[][]{
-\includegraphics[width=.45\textwidth]{figures/responses/mass_resolution/top_mass_roc}
+\includegraphics[width=.45\textwidth]{figures/piranha/responses/mass_resolution/top_mass_roc}
 \label{fig:top_tagging_roc}
 }
 \caption{
@@ -2808,33 +2834,33 @@ Finally, we similarly explore how different groomers respond to the underlying e
 \begin{figure}[p]
     \centering
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmaemdsdtype-ph}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmaemdsdtype-ph}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmaemdpiratype-ph}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmaemdpiratype-ph}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmaemdrsftype-ph}
-    }
-    \\
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmaptsdtype-ph}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmaptpiratype-ph}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmaptrsftype-ph}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmaemdrsftype-ph}
     }
     \\
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmac12sdtype-ph}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmaptsdtype-ph}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmac12piratype-ph}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmaptpiratype-ph}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/pvh/sigmac12rsftype-ph}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmaptrsftype-ph}
+    }
+    \\
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmac12sdtype-ph}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmac12piratype-ph}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/pvh/sigmac12rsftype-ph}
     }
 \caption{
     Hadronization responses of \PIRANHA{} and traditional groomers for (top row) EMD, (middle row) \(\Delta p_T\), and (bottom row) \(C_1^{(2)}\);
@@ -2852,33 +2878,33 @@ Finally, we similarly explore how different groomers respond to the underlying e
 
 \begin{figure}[p]
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmaemdsdtype-avc}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmaemdsdtype-avc}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmaemdpiratype-avc}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmaemdpiratype-avc}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmaemdrsftype-avc}
-    }
-    \\
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmaptsdtype-avc}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmaptpiratype-avc}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmaptrsftype-avc}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmaemdrsftype-avc}
     }
     \\
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmac12sdtype-avc}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmaptsdtype-avc}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmac12piratype-avc}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmaptpiratype-avc}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/feeding_frenzy/avc/sigmac12rsftype-avc}
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmaptrsftype-avc}
+    }
+    \\
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmac12sdtype-avc}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmac12piratype-avc}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]{figures/piranha/feeding_frenzy/avc/sigmac12rsftype-avc}
     }
 \caption{
     Same as \Fig{pvhfrenzy}, but for jet responses to the exclusion of neutral particles.
@@ -2985,41 +3011,41 @@ We optimize the correction factor for each groomer by considering its action on 
 \begin{figure}[p]
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/sdtype_emd_npu_shifts}
+        {figures/piranha/feeding_frenzy/pu/sdtype_emd_npu_shifts}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/piratype_emd_npu_shifts}
+        {figures/piranha/feeding_frenzy/pu/piratype_emd_npu_shifts}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/rsftype_emd_npu_shifts}
-    }
-    \\
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/sdtype_dpt_npu_shifts}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/piratype_dpt_npu_shifts}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/rsftype_dpt_npu_shifts}
+        {figures/piranha/feeding_frenzy/pu/rsftype_emd_npu_shifts}
     }
     \\
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/sdtype_dc1_npu_shifts}
+        {figures/piranha/feeding_frenzy/pu/sdtype_dpt_npu_shifts}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/piratype_dc1_npu_shifts}
+        {figures/piranha/feeding_frenzy/pu/piratype_dpt_npu_shifts}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/rsftype_dc1_npu_shifts}
+        {figures/piranha/feeding_frenzy/pu/rsftype_dpt_npu_shifts}
+    }
+    \\
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]
+        {figures/piranha/feeding_frenzy/pu/sdtype_dc1_npu_shifts}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]
+        {figures/piranha/feeding_frenzy/pu/piratype_dc1_npu_shifts}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]
+        {figures/piranha/feeding_frenzy/pu/rsftype_dc1_npu_shifts}
     }
 \caption{
     Average pileup-induced shifts in (top row) EMD, (middle row) \(\Delta p_T\), and (bottom row) \(C_1^{(2)}\);
@@ -3036,41 +3062,41 @@ We optimize the correction factor for each groomer by considering its action on 
 \centering
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/sdtype_emd_npu_stds}
+        {figures/piranha/feeding_frenzy/pu/sdtype_emd_npu_stds}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/piratype_emd_npu_stds}
+        {figures/piranha/feeding_frenzy/pu/piratype_emd_npu_stds}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/rsftype_emd_npu_stds}
-    }
-    \\
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/sdtype_dpt_npu_stds}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/piratype_dpt_npu_stds}
-    }
-    \subfloat[]{
-        \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/rsftype_dpt_npu_stds}
+        {figures/piranha/feeding_frenzy/pu/rsftype_emd_npu_stds}
     }
     \\
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/sdtype_dc1_npu_stds}
+        {figures/piranha/feeding_frenzy/pu/sdtype_dpt_npu_stds}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/piratype_dc1_npu_stds}
+        {figures/piranha/feeding_frenzy/pu/piratype_dpt_npu_stds}
     }
     \subfloat[]{
         \includegraphics[width=.32\textwidth]
-        {figures/feeding_frenzy/pu/rsftype_dc1_npu_stds}
+        {figures/piranha/feeding_frenzy/pu/rsftype_dpt_npu_stds}
+    }
+    \\
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]
+        {figures/piranha/feeding_frenzy/pu/sdtype_dc1_npu_stds}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]
+        {figures/piranha/feeding_frenzy/pu/piratype_dc1_npu_stds}
+    }
+    \subfloat[]{
+        \includegraphics[width=.32\textwidth]
+        {figures/piranha/feeding_frenzy/pu/rsftype_dc1_npu_stds}
     }
 \caption{
     Same as \Fig{pufrenzy_ave}, but for the standard deviation of the pileup-induced shifts.
@@ -3100,10 +3126,10 @@ Again, \PRSF{0} is a noticeable exception and is less reliable as a PU mitigator
 
 \begin{figure}[t!]
     \subfloat[]{
-        \includegraphics[width=.5\textwidth]{figures/feeding_frenzy/runtime/runtimes_npu50}
+        \includegraphics[width=.5\textwidth]{figures/piranha/feeding_frenzy/runtime/runtimes_npu50}
     }
     \subfloat[]{
-        \includegraphics[width=.5\textwidth]{figures/feeding_frenzy/runtime/average_runtimes}
+        \includegraphics[width=.5\textwidth]{figures/piranha/feeding_frenzy/runtime/average_runtimes}
     }
     \caption{
     Runtimes for \PIRANHA{} algorithms, and comparison to some traditional grooming and pileup mitigation algorithms.
@@ -3134,39 +3160,39 @@ The combination of high speed and high performance of balanced P-RS provides sim
 \begin{figure}[p]
     \centering
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/wassersteins/wdists_sdtype_correctedFalse}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_sdtype_correctedFalse}
         \label{fig:uefrenzy_wasserstein_sd}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/wassersteins/wdists_piratype_correctedFalse}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_piratype_correctedFalse}
         \label{fig:uefrenzy_wasserstein_pira}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/wassersteins/wdists_rsftype_correctedFalse}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_rsftype_correctedFalse}
     }
     \\
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/wassersteins/wdists_sdtype_correctedTrue}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_sdtype_correctedTrue}
         \label{fig:uefrenzy_correctedwasserstein_sd}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/wassersteins/wdists_piratype_correctedTrue}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_piratype_correctedTrue}
         \label{fig:uefrenzy_correctedwasserstein_pira}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/wassersteins/wdists_rsftype_correctedTrue}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/wassersteins/wdists_rsftype_correctedTrue}
     }
     \\
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/delta_zcuts/zcuts_sdtype}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/delta_zcuts/zcuts_sdtype}
     \label{fig:uefrenzy_deltazcut_sd}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/delta_zcuts/zcuts_piratype}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/delta_zcuts/zcuts_piratype}
     \label{fig:uefrenzy_deltazcut_pira}
     }
     \subfloat[]{
-        \includegraphics[width=.32\textwidth]{figures/responses/ue/delta_zcuts/zcuts_rsftype}
+        \includegraphics[width=.32\textwidth]{figures/piranha/responses/ue/delta_zcuts/zcuts_rsftype}
     }
 \caption{
     Wasserstein distance between jet \(C_1^{(2)}\) distributions (top row) without UE correction and (middle row) with UE correction, and (bottom row) the optimal value of \(\delta \zcut\) for UE correction.
@@ -3525,26 +3551,26 @@ The ungroomed \textit{subsequent} emissions after the \PRSF{1} algorithm termina
 \centering
 % Soft Drop, LL
 \subfloat[]{
-\includegraphics[width=.48\textwidth]{figures/resummed_plots/C12_SD0_LL}
+\includegraphics[width=.48\textwidth]{figures/piranha/resummed_plots/C12_SD0_LL}
 \label{fig:LL_SD0}
 }
 %
 % Soft Drop, MLL
 \subfloat[]{
-\includegraphics[width=.48\textwidth]{figures/resummed_plots/C12_SD0_MLL}
+\includegraphics[width=.48\textwidth]{figures/piranha/resummed_plots/C12_SD0_MLL}
 \label{fig:MLL_SD0}
 }
 \\
 %
 % \PRSF{1}, LL
 \subfloat[]{
-\includegraphics[width=.48\textwidth]{figures/resummed_plots/C12_PRSF1_LL}
+\includegraphics[width=.48\textwidth]{figures/piranha/resummed_plots/C12_PRSF1_LL}
 \label{fig:LL_PRSF1}
 }
 %
 % \PRSF{1}, MLL
 \subfloat[]{
-\includegraphics[width=.48\textwidth]{figures/resummed_plots/C12_PRSF1_MLL}
+\includegraphics[width=.48\textwidth]{figures/piranha/resummed_plots/C12_PRSF1_MLL}
 \label{fig:MLL_PRSF1}
 }
 \caption{

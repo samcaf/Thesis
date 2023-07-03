@@ -81,6 +81,16 @@
 \usepackage{contour}
 \newcommand{\oxmark}{\protect\contourlength{.005pt}\protect\contour{yellow!75!black}{\oxmarksmall}} % Slightly bigger border
 
+% --------------------------
+% Note: \oxmark doesn't work in TeXLive, and therefore not in the updated ArXiv submission system
+% --------------------------
+% Alternative to oxmark
+\newcommand\dangerthin{%
+ \makebox[1.4em][c]{%
+ \makebox[0pt][c]{\raisebox{-0.05em}{\textbf{\tiny\textcolor{yellow!75!black}!}}}%
+ \makebox[0pt][c]{\raisebox{-0.2em}{\color{yellow!75!black}\Large$\mathbf{\bigtriangleup}$}}}}%
+\newcommand\danger{\protect\contourlength{.13pt}\protect\contour{yellow!75!black}{\dangerthin}} % Slightly bigger border
+
 
 % =====================
 % Colors
@@ -111,6 +121,7 @@
 \DeclareRobustCommand{\Secss}[3]{Secs.~\ref{sec:#1}, \ref{sec:#2} and \ref{sec:#3}}
 \DeclareRobustCommand{\App}[1]{App.~\ref{app:#1}}
 \DeclareRobustCommand{\Apps}[2]{Apps.~\ref{app:#1} and~\ref{app:#2}}
+\DeclareRobustCommand{\Appss}[3]{Apps.~\ref{app:#1},~\ref{app:#2},~and~\ref{app:#3}}
 \DeclareRobustCommand{\Tab}[1]{Table~\ref{tab:#1}}
 \DeclareRobustCommand{\Tabs}[2]{Tables~\ref{tab:#1} and \ref{tab:#2}}
 \DeclareRobustCommand{\Fig}[1]{Fig.~\ref{fig:#1}}
@@ -119,8 +130,8 @@
 \DeclareRobustCommand{\Eq}[1]{Eq.~(\ref{eqn:#1})}
 \DeclareRobustCommand{\Eqs}[2]{Eqs.~(\ref{eqn:#1}) and (\ref{eqn:#2})}
 \DeclareRobustCommand{\Eqss}[3]{Eqs.~(\ref{eqn:#1}), (\ref{eqn:#2}), and (\ref{eqn:#3})}
-\DeclareRobustCommand{\Ref}[1]{Ref.~\cite{#1}}
-\DeclareRobustCommand{\Refs}[1]{Refs.~\cite{#1}}
+\DeclareRobustCommand{\Reff}[1]{Ref.~\cite{#1}}
+\DeclareRobustCommand{\Reffs}[1]{Refs.~\cite{#1}}
 
 \DeclareRobustCommand{\Thm}[1]{Theorem~\ref{#1}}
 
@@ -189,7 +200,7 @@
 \newcommand{\R}{\ensuremath{\mathcal R}}
 \newcommand{\Z}{\ensuremath{\mathcal Z}}
 
-% various math expressions that shouldn't be italicized 
+% various math expressions that shouldn't be italicized
 \DeclareMathOperator{\cis}{cis}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
@@ -208,7 +219,7 @@
 \DeclareMathOperator{\Ext}{Ext}
 
 % can't use DeclareMathOperator because already defined
-\renewcommand{\Re}{\operatorname{Re}} 
+\renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
 \renewcommand{\ker}{\operatorname{ker}}
 \renewcommand{\mod}[1]{\ \text{mod}\ #1}
@@ -268,7 +279,7 @@
     \tcbuselibrary{theorems}
     \newtcolorbox{answerbox}{sharp corners=all, colframe=black, colback=black!5!white, boxrule=1.5pt, width = 1\textwidth, valign=center}
     \newenvironment{answer}{\begin{center}\begin{answerbox}}{\end{answerbox}\end{center}}
-    
+
 \definecolor{defcolor}{rgb}{0.8, 0.0, 0.0} % Boston University Red
 \definecolor{thmcolor}{rgb}{0.0, 0.28, 0.67} % Cobalt
 \definecolor{propcolor}{rgb}{0.69, 0.4, 0.0} % Ginger
@@ -278,7 +289,7 @@
 % Tools for theorem boxes:
 \usepackage{thmtools}
 \usepackage[framemethod = TikZ]{mdframed}
-\usepackage{silence} % for suppressing warnings 
+\usepackage{silence} % for suppressing warnings
 \WarningFilter{mdframed}{You got a bad break}
 
 % Counter for theorem boxes:

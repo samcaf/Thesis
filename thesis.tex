@@ -1,16 +1,15 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setup
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,11pt]{book}
 \usepackage[utf8]{inputenc}
 
 \usepackage{includes/jhep/jheppub}
 \bibliographystyle{includes/jhep/JHEP}
 
-\include{includes/preamble}
+\include{includes/paper_preamble}
 \include{includes/comment_utils}
 \include{utils}
-
 
 % =====================================
 % Misc. utils
@@ -39,11 +38,11 @@
 \end{definitionbox}
 }
 \else
-    \newcommand{\definition}[2]{
+    \renewcommand{\definition}[2]{
 \begin{definitiontext}
     \label{def:#1}
     #2
-\end{definitionxtext}
+\end{definitiontext}
 }
 \fi
 
@@ -63,7 +62,7 @@
 % ---------------------------------
 % Title
 % ---------------------------------
-\title{}
+\title{A Brief Introduction to QCD}
 
 % ---------------------------------
 % Authors
@@ -90,14 +89,14 @@ The NSF AI Institute for Artificial Intelligence and Fundamental Interactions
 % ---------------------------------
 % Pre-print numbers
 % ---------------------------------
-% \preprint{MIT--CTP/\sam{???}}
+\preprint{MIT--CTP/\sam{???}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abstract:
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\abstract{\sam{Abstract}}
+% \abstract{\sam{Abstract}}
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,7 +120,7 @@ The NSF AI Institute for Artificial Intelligence and Fundamental Interactions
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction:
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\section{Preface}
 % Outline:
 %   Buildup
 %     Big picture context
@@ -168,19 +167,39 @@ We give concluding thoughts and avenues for future exploration in \Sec{Conclusio
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Sections:
+% Chapters:
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+% ==============================================
+% \input{chapters/}
+% ==============================================
 
 % ==============================================
-\section{An Introduction to Jets}
+\input{chapters/qcd.tex}
 % ==============================================
+
+% ==============================================
+\input{chapters/particles.tex}
+% ==============================================
+
+% ==============================================
+\input{chapters/jet_substructure}
+% ==============================================
+
+% ==============================================
+\input{chapters/event_shapes}
+% ==============================================
+
+% ==============================================
+% \input{chapters/}
+% ==============================================
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Discussion and Conclusions:
 %%%%%%%%%%%%%%%%%%%%%%%%
 % ==============================================
-\section{Discussion and Conclusions}
+\chapter{Conclusions}
 % ==============================================
 \label{sec:Conclusions}
 
@@ -206,6 +225,9 @@ We give concluding thoughts and avenues for future exploration in \Sec{Conclusio
 % Appendix:
 %%%%%%%%%%%%%%%%%%%%%
 
+% ==============================================
+\section{Derivations and Distributions}
+% ==============================================
 
 
 
