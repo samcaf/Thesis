@@ -1,0 +1,420 @@
+\chapter[Inside Particles: Jets and Resummation]{Inside Particles:\\Jets and Resummation}
+\markboth{\bf Chapter \thechapter: Jets and Resummation}{}
+
+% \markboth{\bf Chapter \thechapter: Jets and the Microscopes of Particle Physics}{}
+
+% ==============================================
+\section{The physical picture}
+% ==============================================
+
+% -----------------------------------
+% Picturebook figure
+% -----------------------------------
+\reusefigure[ht]{picturebook_jets}
+
+
+% ---------------------------------------
+\subsection{Jets}
+% ---------------------------------------
+\textbf{What is a \gls{jet}?}
+
+A collective degree of freedom which carries information about a seed parton [sic];
+%
+experimentally robust, theoretically well-defined, and calculable in perturbation theory.
+
+Sources of noise later.
+%
+For now, develop intuition/precision about what jets are.
+
+% https://gsalam.web.cern.ch/gsalam/talks/repo/2008-cms-jets.pdf
+% Jet (definitions) provide central link between expt., “theory” and theory
+% See slide 54+
+% Perhaps worth linking with Sterman-Weinberg jets
+
+% https://conference.ippp.dur.ac.uk/event/311/contributions/1403/attachments/1133/1289/jettheory.pdf
+
+% https://www-sciencedirect-com.libproxy.mit.edu/science/article/pii/S014664101600034X?via%3Dihub
+
+\begin{itemize}
+    \item
+    A common theoretical idea is that a jet is a proxy for a parton that appears in the Lagrangian -- QCD jets are then proxies for the quarks and gluons that appear in the QCD sector of the SM Lagrangian.
+    \sam{Cite Sterman-Weinberg, and others?}
+    %
+    The standard approach to defining jets from this point of view is to use a \vocab{jet algorithm} -- a procedure for grouping particles into jets.
+    \samtodo{cohere, cite}
+
+    \item
+    Another way of thinking is that a jet is simply collinear enhancement of the energy flow in a scattering event.
+    \sam{Cite original Russian papers here?}
+    %
+    From this point of view, we would say that an event with energy flow \(\mc E\) has a jet at the angle \(\hat n\) if
+    \begin{align}
+        \lim_{\hat n' \to n}\mc E(\hat n) \mc E(\hat n') &\to \infty
+    \end{align}
+    \samtodo{not quite -- maybe in some limit because we should account for the fact that there are already delta functions in the energy flow (so maybe we should have an integral) and also that even when integrated this shouldn't be infinite...}
+    %
+    \sam{Maybe we could say something like ``there's a jet in the region \(\mc R\) if \(\int_{\mc R} \dd\Omega \, \mc E(\hat n) \, \mc E(\hat n + \delta \hat n)\) has some properties...}
+\end{itemize}
+%
+These ways of thinking are similar, and we should probably understand how they are the same and how they are different.
+
+\samtodo{Add cartoons for this}
+
+The former idea seems more closely related to renormalization:
+%
+a jet is a coarse-grained degree of freedom roughly associated with a quark and its associated collinear radiation.
+
+The latter idea is more amenable to experimental studies, and is also connected to more rigorous CFT methods.
+
+
+% ---------------------------------------
+\subsection{Renormalization}
+% ---------------------------------------
+
+If you zoom away from the constituents of a system (or towards them), you're likely to be at a renormalization fixed point.
+%
+\sam{from a youtube video on renormalization!}
+%
+\sam{Concept of a snowflake composed of molecules -- an interesting ``fixed point'' with fractal structure... and a snowbank, which is still a fixed point but ``uninteresting''.}
+
+% ---------------------------------------
+\subsection{Resummation}
+% ---------------------------------------
+\textbf{What is resummation?}
+
+\begin{itemize}
+    \item
+        \sam{Generally, a method to turn (potentially divergent) series expansions into compact expressions};
+
+    \item
+        \sam{For us, ...}
+\end{itemize}
+
+\sam{Other types of resummation:}
+
+
+\sam{Want discussion of LL, NLL, etc.}
+
+\sam{Then discussion of MLL}
+
+
+% ==============================================
+\section{Parton Showers: Jets from Successive Splittings}
+% ==============================================
+\label{sec:partonshower}
+
+\sam{LL ``only''? Active research...}
+
+
+% ---------------------------------------
+\subsection{The Partonic Cascade as a Fractal}
+% ---------------------------------------
+
+
+
+% ---------------------------------------
+\subsection{Partonic Fragmentation}
+% ---------------------------------------
+
+
+
+% ---------------------------------------
+\subsection{Scale Evolution from the Shower Perspective}
+% ---------------------------------------
+
+\sam{Scale evolution, more generally DGLAP evolution}
+
+\sam{Derive DGLAP following from fragmentation discussion}
+
+\sam{Sharp connection between parton shower and renormalization?}
+
+% https://browse.arxiv.org/pdf/1407.3272.pdf
+% https://indico.cern.ch/event/594287/contributions/2497385/attachments/1427850/2191539/scet_2017_waalewijn.pdf
+
+\sam{External connections/generalizations (maybe in App.)?}
+\begin{itemize}
+    \item
+        \sam{What derivations are of DGLAP evolution?}
+
+    \item
+        \sam{Original papers? How do they do it?}
+
+    \item
+        \sam{Are there several ways to think about this? Maybe I can explain the punchlines of each way of thinking, present the conclusion of DGLAP/evolution in general, and then present the detailed derivations later?}
+\end{itemize}
+
+
+
+
+% ---------------------------------------
+\subsection{Anomalous Dimensions}
+% ---------------------------------------
+
+\sam{cf previous section}
+
+
+
+% ==============================================
+\section{Subjets Section}
+% ==============================================
+
+\sam{Jets coarse grain degrees of freedom, almost always to obtain an ontologically sound representative of a ``partonic degree of freedom''.}
+
+\sam{We can fine-grain this a bit further by looking at subjets inside a jet... is this useful?}
+
+
+% ==============================================
+\section{Jet Substructure}
+% ==============================================
+
+\textbf{What is jet substructure?}
+
+\sam{Want to describe several relevant definitions.}
+
+\begin{itemize}
+    \item
+        \sam{I want to talk about subjets inside a jet}
+
+    \item
+        \sam{I want to talk about energy flow inside a jet}
+\end{itemize}
+
+
+% ==============================================
+\section{Connecting back out}
+% ==============================================
+
+\sam{Perhaps begin discussing sources of noise or hard-to-understand phenomena occurring inside jets, here and previously?}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{subappendices}
+% ==============================================
+\section{More Derivations of Historical Phenomena???}
+% ==============================================
+
+
+% ==============================================
+\section{Jet Calculus}
+% ==============================================
+
+
+% ==============================================
+\section{Derivation of the DGLAP equations}
+% ==============================================
+
+% ---------------------------------------
+\subsection{Picture and Sketch}
+% ---------------------------------------
+
+% ---------------------------------------
+\subsection{Proof}
+% ---------------------------------------
+
+
+
+% ==============================================
+\section{Distributions from Renormalization}
+% ==============================================
+Splitting functions are weird and come from virtual corrections
+
+\begin{itemize}
+    \item
+        Yorikiyo Nagashima: Elementary Particle Physics
+
+    \item
+        Schwartz
+    \item
+        Structure of the proton
+    \item
+        Foundations of pQCD
+\end{itemize}
+
+% ---------------------------------------
+\subsection{Picture and Sketch}
+% ---------------------------------------
+
+% ---------------------------------------
+\subsection{Proof}
+% ---------------------------------------
+
+
+\begin{itemize}
+    \item
+        Amplitudes to splitting functions
+
+    \item
+        Others?
+
+    \item
+        Virtual quanta (WW and Landau reference?)
+\end{itemize}
+
+% ---------------------------------------
+\subsection{Sum Rules}
+% ---------------------------------------
+
+
+% ==============================================
+\section{More on distributions}
+% ==============================================
+
+% ---------------------------------------
+\subsection{Definitions}
+% ---------------------------------------
+
+
+% ---------------------------------------
+\subsection{Derivations}
+% ---------------------------------------
+
+% ---------------------------------------
+\subsection{Diagrammatica}
+% ---------------------------------------
+
+
+\end{subappendices}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problems}
+
+%gsalam link above
+\makeprob{IRC Safety: Jet Algorithms}{}{
+    Which of the following algorithms for identifying a jet is IRC safe?
+    \begin{itemize}
+        \item
+    \end{itemize}
+}
+
+
+
+\makeprob{Regimes and Accuracy \sam{better name}}{}{
+
+    \begin{enumerate}
+        \item
+            Show that LO \(\implies\) \(Q \gg \LambdaQCD\).
+
+        \item
+            Argue that \(\LambdaQCD\) can be expressed as a non-perturbative scale.
+
+        \item
+            Show that LL \(\implies\) scale for the observable...
+
+    \end{enumerate}
+}
+
+
+
+\makeprob{No Emission Probability}{}{
+    \sam{Problem regarding probability of no emission}
+
+
+    \begin{enumerate}[label=\roman*)]
+        \item
+            Between two angles
+
+        \item
+            Between two mass scales
+
+         \item
+             Between an angle and a mass scale
+    \end{enumerate}
+}
+
+
+
+
+\makeprob{Fragmentation in a Parton Shower}{}{
+    \sam{Problem regarding parton shower evolution}
+
+    \sam{Comparison}
+}
+
+\makeprob{Energy Loss of Jet}{}{
+    \sam{Problem regarding energy loss of a jet?}
+    \sam{Generic splitting function? Try different splitting functions with different physical motivations to check intuition?}
+
+    \sam{Uhhh... perhaps too far}
+}
+
+\makeprob{Fragmentation of Partons into Partons}{}{
+    % Based on \url{https://www.sciencedirect.com/science/article/pii/0550321378900159}
+
+    In this problem, we use the following notation:
+    \begin{itemize}
+        \item
+            Let mid-Roman letters (\(i,\,j,\,k\)) denote flavors of partons;
+
+        \item
+            Let \(\mc P_{j\leftarrow i}(z) \dd z\) denote the probability of finding a parton of flavor \(j\) with momentum fraction between \(z\) and \(z + \dd z\) of the initiating parton \(i\);
+
+        \item
+            Let \(a_s\,\,p_{k_1\,k_2 \leftarrow i}(z) \dd z\) denote the probability that a parton of flavor \(i\) splits exactly into two partons with flavors \(k_1\) (with energy fraction between \(z\) and \(z + \dd z\)) and \(k_2\).
+            %
+            Furthermore, let us abuse notation and define \(\sum_{k'} p_{j\,k' \leftarrow i}(z) \eqdelta p_{j\leftarrow i}(z)\).
+    \end{itemize}
+    \sam{Move into notation section}
+
+    We will also make the assumption that \(\alpha_s\), and hence \(a_s\), is independent of the energy scale associated with the splitting.
+
+
+    \begin{enumerate}[label=\roman*)]
+        \item
+            Argue on physical grounds that
+            \begin{align}
+                \label{eqn:feynman_field_fragmentation_formula}
+                \mc P_{j\leftarrow i}(z)
+                &=
+                c \delta(1-z) \delta_{ij}
+                +
+                a_s \, p_{j \leftarrow i}(z)
+                +
+                a_s \int_z^1 \frac{\dd y'}{y'} \, \sum_{k_1',\,k_2'} \,
+                    \mc P_{j\leftarrow k'}(z/y')
+                    \,
+                    p_{k' \leftarrow i}(y')
+                ,
+            \end{align}
+            and write the associated formula in Mellin space.
+            % \begin{align}
+            %     \label{eqn:feynman_field_fragmentation_formula_mellin}
+            %     \hat {\mc P}_{j\leftarrow i}(n)
+            %     &=
+            %     a_s
+            %     \le(
+            %         \hat {p}_{j\leftarrow i}(n)
+            %         +
+            %         \hat {\mc P}_{j\leftarrow k'}(n)
+            %         \,\,
+            %         \hat {p}_{k' \leftarrow i}(n)
+            %     \ri)
+            %     ,
+            % \end{align}
+            % where we have left the sum on \(k'\) implicit.
+
+            \sam{Need no emission probability}
+
+        \item
+            \samtodo{Invert matrix, find moment, invert Mellin}
+    \end{enumerate}
+}
+
+\makeprob{Fragmentation of Partons into Hadrons}{}{
+}
+
+
+\makeprob{Sum Rules after Renormalization}{}{
+    \sam{Problem regarding sum rules after renormalization}
+}
+
+\makeprob{Fragmentation of heavy partons}{}{
+    \sam{
+    %\href{https://pdg.lbl.gov/2019/reviews/rpp2019-rev-frag-functions.pdf}
+    {PDG} says heavy hadrons more hard... could be fun to solve with those initial conditions and compare to data}
+}
+
+\end{problems}

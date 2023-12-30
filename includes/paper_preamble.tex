@@ -1,23 +1,101 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main Utilities:
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Preamble for physcs-paper-related packages and commands
+% Preamble for physics-paper-related packages and commands
 
 % ========================
 % Main packages
 % ========================
+\usepackage[utf8]{inputenc}
+
 \usepackage{mathtools,amssymb,amsmath,amsthm,mathrsfs}
 \usepackage{physics}
+\usepackage{enumitem}
+\usepackage{etoolbox}
 
-% ========================
-% Misc.
-% ========================
-\usepackage{hhline}
+% =====================================
+% Hyperlinks
+% =====================================
+\usepackage{hyperref}
 
-\pdfoutput=1
-% Prevent footnotes from breaking into two pages
-\interfootnotelinepenalty=10000
+% ---------------------------------
+% hyperref fixes
+% ---------------------------------
+% Sometimes hyperref will lead to problems, and these are some fixes:
 
+% - - - - - - - - - - - - - - - - -
+% Conflicts with \MakeUppercase
+% https://tex.stackexchange.com/a/598876
+% - - - - - - - - - - - - - - - - -
+\def\MakeUppercaseUnsupportedInPdfStrings{\scshape}
+
+% - - - - - - - - - - - - - - - - -
+% Conflicts with... label?
+% https://tex.stackexchange.com/a/130323
+% - - - - - - - - - - - - - - - - -
+\newcounter{numrel}% Counter for numering relations
+\newcounter{Hnumrel}% Keep hyperref happy and don't duplicate anchors
+\renewcommand{\thenumrel}{\roman{numrel}}% Counter numrel uses lowercase roman numerals
+
+\makeatletter
+\newcommand{\numrel}[2]{% Relation numbering
+  \refstepcounter{numrel}% Increment numrel counter and create correct reference hook
+  \stepcounter{Hnumrel}%
+  \ifmeasuring@\else\ltx@label{#2}\fi % Label numrel counter (issue only once)
+  \overset{\text{(\thenumrel)}}{#1}% Print counter + relation
+}
+\makeatother
+\AfterEndEnvironment{align*}{\setcounter{numrel}{0}}% Resets numrel at the end of align*
+% - - - - - - - - - - - - - - - - -
+
+
+% ---------------------------------
+% hyperref dummy functions
+% ---------------------------------
+% Adding dummy versions of hyperref tools to avoid errors if hyperref is _not_ used
+\providecommand\phantomsection{}
+\providecommand\theHfigure{}
+
+
+% =====================================
+% Glossary
+% =====================================
+% See https://en.wikibooks.org/wiki/LaTeX/Glossary
+% Note: glossaries must be loaded after hyperref
+
+% DEBUG: Not sure which options to use for glossaries (esp if I want an index)
+% \usepackage[acronym,automake=immediate,nonumberlist,toc,xindy]{glossaries}
+% \usepackage[acronym,nomain,toc,automake]{glossaries-extra}
+% \usepackage[acronym,automake,toc,xindy]{glossaries-extra}
+% \usepackage[acronym,automake,toc]{glossaries-extra}
+
+\usepackage[
+ % automake,% create glossaries automatically
+ acronym,% create 'abbreviations' glossary
+ index,% create 'index' glossary
+ nostyles,%don't load predefined styles
+ % postdot,% insert dot after descriptions
+ % record,% using bib2gls
+ stylemods={tree,bookindex},% load the 'tree' and 'bookindex' style packages
+ style={tree},% set the default style to 'tree'
+ toc% add glossaries to table of contents
+]{glossaries-extra}
+
+
+% ---------------------------------
+% Preparing for use with Index
+% ---------------------------------
+\GlsXtrLoadResources[
+ src={terms},% data in terms.bib
+ label-prefix={idx.},% prefix for primary entry labels
+ dual-prefix={},% prefix for dual entry labels
+ type=index,% put primary entries in 'index' glossary
+ combine-dual-locations={primary}% merge locations and assign to primary list
+]
+
+% provide commands that work like \gls etc for the @index entries
+% (that don't have a dual counterpart)
+\glsxtrnewglslike{idx.}{\idx}{\idxpl}{\Idx}{\Idxpl}
 
 % ========================
 % Figures
@@ -95,6 +173,11 @@
 % =====================
 % Colors
 % =====================
+% Pastel primaries
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{cornflowerblue}{rgb}{.53, .80, .93}  % slightly different from online val, to match matplotlib
+\definecolor{awesome}{rgb}{1.0, 0.13, 0.32}
+
 \definecolor{darkpastelred}{rgb}{0.76, 0.23, 0.13}
 \definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
 \definecolor{azure}{rgb}{0.0, 0.5, 1.0}
@@ -102,7 +185,6 @@
 \definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
 \definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
 \definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
-\definecolor{cornflowerblue}{rgb}{.53, .80, .93}  % slightly different from online val, to match matplotlib
 \definecolor{royalblue}{RGB}{99,149,236}  % slightly different from online val, to match matplotlib
 \definecolor{dodgerblue}{rgb}{0.12, 0.56, 1.0}
 \definecolor{forestgreen(traditional)}{rgb}{0.0, 0.27, 0.13}
@@ -139,15 +221,16 @@
 \DeclareRobustCommand{\Def}[1]{Definition~\ref{def:#1}}
 
 
-
-
 %=======================================
 % Math Commands:
 %=======================================
+\usepackage{slashed}
+
 %--------------------------------------
 % Physics:
 %--------------------------------------
-\newcommand{\superfield}[1]{\mathbf{#1}}
+\newcommand{\superfield}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\dfour}[1]{\ensuremath{\delta^{(4)}\le(#1\ri)}}
 
 %--------------------------------------
 % Math:
@@ -274,6 +357,8 @@
 %=======================================
 % Theorems and Theorem Environments:
 %=======================================
+\newcommand{\vocab}[1]{\textcolor{blue!50!black}{\textbf{#1}}}
+
 % colored boxes
 \usepackage[most]{tcolorbox}
     \tcbuselibrary{theorems}
@@ -416,3 +501,13 @@
     colbacktitle=goalcolor!10!white,
     coltitle=goalcolor!70!black,
     title={#2},fonttitle=\bfseries,#1}
+
+
+% ========================
+% Misc.
+% ========================
+\usepackage{hhline}
+
+\pdfoutput=1
+% Prevent footnotes from breaking into two pages
+\interfootnotelinepenalty=10000

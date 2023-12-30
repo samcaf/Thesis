@@ -1,0 +1,293 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for thesis
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ==============================================
+% Title Page
+% ==============================================
+\usepackage{geometry}
+\usepackage{afterpage}
+\usepackage{pagecolor}
+\usetikzlibrary{calc}
+
+% TOC
+\usepackage{fancyhdr}
+
+
+% =====================================
+% Chapters
+% =====================================
+
+\usepackage{epigraph}
+
+\usepackage{titletoc}
+
+\definecolor{gainsboro}{rgb}{0.86, 0.86, 0.86}
+\definecolor{lavender_floral}{rgb}{0.71, 0.49, 0.86}
+\definecolor{gray_asparagus}{rgb}{0.27, 0.35, 0.27}
+
+\titlecontents*{chapter}
+  [0pt]% <left>
+  {}
+  {\bf \chaptername\ \thecontentslabel:\quad}
+  {}
+  {\bfseries\hfill\contentspage}
+
+\usepackage[calcwidth]{titlesec}
+\usepackage{microtype}
+\usepackage{tikz}
+
+
+\colorlet{chapbgcolor}{gray_asparagus!50} % shaded background color for chapters
+\colorlet{chapnumcolor}{black!55!gray_asparagus}% color for numbers in chapters
+
+% from https://tex.stackexchange.com/a/233830/121799
+\newcommand{\chaptitle}[1]{%
+\begin{tikzpicture}
+    % Box
+    \fill[chapbgcolor!70,rounded corners=5pt] (-.1,2.5) rectangle (1.1\linewidth,0);
+    % Text
+    \node[align=right,anchor=east,inner sep=6pt,font=\huge\bfseries\sffamily] at (1.05\linewidth,1.25) {#1};
+    % Number
+    \node[font=\fontsize{60}{62}\usefont{OT1}{ptm}{m}{n}
+        \selectfont\itshape\bfseries,text=chapnumcolor] at
+    % (\linewidth,2.5)  % default
+    (.065\linewidth, 1.25)
+    {\thechapter};
+\end{tikzpicture}
+}
+
+\newcommand{\chaptitlenonumber}[1]{%
+\begin{tikzpicture}
+    \fill[chapbgcolor!70,rounded corners=5pt] (0,2.5) rectangle (1.0\linewidth,0);
+    \node[align=left,anchor=west,inner sep=6pt,font=\Huge\bfseries\sffamily] at (.15\linewidth,1.25) {#1};
+\end{tikzpicture}
+}
+
+% No newpage between chapters
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+
+% =====================================
+% Other QCD
+% =====================================
+\newcommand{\alphas}{\ensuremath{\alpha_{\mathrm{s}}}\xspace}
+\newcommand{\as}{\ensuremath{a_{\mathrm{s}}}\xspace}
+\newcommand{\LambdaQCD}{\ensuremath{\Lambda_{\mathrm{QCD}}}\xspace}
+
+% =====================================
+% Chapter Appendices
+% =====================================
+\usepackage{appendix}
+\usepackage{chngcntr}
+
+% Tools for adding to TOC
+\newcommand{\addnewlinetotoc}{
+    \addtocontents{toc}{%
+        % With hyperref, contentsline has 4 arguments:
+        \protect\contentsline{section}{\\}{}{}
+        % Without, it has 3, but I think using empty braces 4th should not affect anything even if we don't use hyperref
+    }
+}
+
+% Sub-Appendix Header
+\AtBeginEnvironment{subappendices}{%
+    % Chapter titles without numbers
+    \titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
+    \titlespacing*{\chapter} {0pt}{110pt}{20pt}
+    % Chapter title
+    \clearpage
+    \chapter*{Appendices for Chapter \thechapter}
+    % phantomsection for use with hyperref, comment otherwise
+    \phantomsection
+    %
+    \addcontentsline{toc}{chapter}
+        {\bf\\Appendices for Chapter \thechapter}
+    \counterwithin{figure}{section}
+    \counterwithin{table}{section}
+    % Chapter titles with numbers
+    \titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitle}
+    \titlespacing*{\chapter} {0pt}{110pt}{20pt}
+}
+
+
+% =====================================
+% Figures
+% =====================================
+% ---------------------------------
+% Re-using "Picture Book" figures
+% ---------------------------------
+% See https://tex.stackexchange.com/a/225075
+\NewEnviron{sourcefigure}[1][htbp]{%
+    {\let\caption\relax\let\ref\relax
+     \renewcommand{\label}[1]{%
+         \gdef\sfname{sf:##1}%
+     }%
+     \setbox1=\hbox{\BODY}%
+    }% Capture \label
+    \global\expandafter\let\csname\sfname\endcsname\BODY% Capture entire figure
+    \begin{figure}[#1]
+        \BODY{}
+    \end{figure}
+}
+
+\newcommand{\reusefigure}[2][htbp]{%
+    {\addtocounter{figure}{-1}%
+     \renewcommand{\theHfigure}{dupe-fig}  % For use with hyperref
+     % \renewcommand{\thefigure}{\ref{fig:#2}}% Figure counter is \ref
+     \renewcommand{\thefigure}{\ref{fig:#2} (repeated)}% Figure counter + "(repeated)"
+     \renewcommand{\addcontentsline}[3]{}% Avoid placing figure in LoF
+     \renewcommand{\label}[1]{}% Make \label inactive
+     \begin{figure}[#1]
+        \csname sf:fig:#2\endcsname
+    \end{figure}%
+    }
+}
+
+
+% =====================================
+% Problems
+% =====================================
+\thmboxstyle{notebox}{mdorangebox}{orange!50!brown}{yellow!5!olive!5}
+
+\newtheoremstyle{probstyle}%
+{}{}%
+{\upshape}{}%
+{}{}%
+{ }%
+{\textcolor{orange!50!brown}{\textbf{\thmname{#1}\thmnumber{ #2:}}}}
+
+\declaretheorem[style=probstyle,
+                mdframed={linecolor=orange!50!brown,
+                          backgroundcolor=yellow!5!olive!5,
+                      },
+                name=Problem,
+                numberwithin=chapter]{problem}
+
+\declaretheorem[style=probstyle,
+                mdframed={linecolor=orange!50!brown,
+                          backgroundcolor=yellow!5!olive!5,
+                      },
+                name=Bonus Problem]{bonusproblem}
+
+\newcommand{\makeprob}[3]{
+    \medskip
+    \begin{problem}
+        \textcolor{orange!50!brown}{\textbf{#1}}
+        \\
+        #3
+        \ifstrempty{#2}%
+            {}
+            {\labsoln{#2}}
+    \end{problem}
+}
+
+\newcommand{\makebonusprob}[3]{
+    \medskip
+    \begin{bonusproblem}
+        \textcolor{orange!50!brown}{\textbf{#1}}
+        \\
+        #3
+        \ifstrempty{#2}%
+            {}
+            {\labsoln{#2}}
+    \end{bonusproblem}
+}
+
+% Labels with Links to Solutions
+\DeclareRobustCommand{\labsoln}[1]{%
+    \label{prob:#1}%
+    \hyperref[soln:#1]{\texttt{(Solution)}}
+}
+
+% Solutions themselves
+\DeclareRobustCommand{\Soln}[1]{%
+    % phantomsection for use with hyperref, comment otherwise
+    \phantomsection
+    %
+    \addcontentsline{toc}{subsection}{Problem~\ref{prob:#1}}
+    \subsubsection*{\hyperref[prob:#1]{Problem~\ref{prob:#1}}}
+    \label{soln:#1}
+}
+
+
+\DeclareRobustCommand{\BonusSoln}[1]{%
+    % phantomsection for use with hyperref, comment otherwise
+    \phantomsection
+    %
+    \addcontentsline{toc}{subsection}{Bonus Problem~\ref{prob:#1}}
+    \subsubsection*{\hyperref[prob:#1]{Bonus Problem~\ref{prob:#1}}}
+    \label{soln:#1}
+}
+
+
+
+\newenvironment{problems}{}{}
+\AtBeginEnvironment{problems}{%
+    % Chapter titles without numbers
+    \titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
+    \titlespacing*{\chapter} {0pt}{110pt}{20pt}
+    % Chapter title
+    \clearpage
+    \chapter*{Problems for Chapter \thechapter}
+    % phantomsection for use with hyperref, comment otherwise
+    \phantomsection
+    %
+    \addcontentsline{toc}{chapter}
+        {\bf\\Problems for Chapter \thechapter}
+    \counterwithin{figure}{section}
+    \counterwithin{table}{section}
+    % Chapter titles with numbers
+    \titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitle}
+    \titlespacing*{\chapter} {0pt}{110pt}{20pt}
+}
+\AtEndEnvironment{problems}{%
+    \addnewlinetotoc
+    \clearpage
+}
+
+
+\newcommand{\mellinconvolution}{\ensuremath{\star_{\mathcal M}}}
+
+
+
+% =====================
+% Specific Commands for PIRANHA
+% =====================
+\usepackage{hhline}
+\newcommand{\zcut}{\ensuremath{z_{\rm cut}}}
+\newcommand{\zcrit}{\ensuremath{z_{\rm crit}}}
+\newcommand{\thetacrit}{\ensuremath{\theta_{\rm crit}}}
+\newcommand{\zpre}{\ensuremath{z_{\rm pre}}}
+
+\newcommand{\rhoC}{\ensuremath{\rho\,\mathcal{C}}}
+\newcommand{\rhoU}{\ensuremath{\rho\,\mathcal{U}}}
+
+\newcommand{\PIRANHA}{\textsc{Piranha}}
+
+\newcommand{\PRSF}[1]{P-RSF\(_{f = #1}\)}
+\newcommand{\SD}[1]{SD\(_{\beta = #1}\)}
+
+% -----------------------------
+% Custom colors
+% -----------------------------
+% Toy event visualization
+\definecolor{Epluscolor}{rgb}{0.0, 0.62, 0.38}
+% Pistachio
+
+\definecolor{Eminuscolor}{rgb}{0.76, 0.23, 0.13}
+% darkpastelred
+
+\definecolor{E1color}{rgb}{0.76, 0.13, 0.28}
+
+\definecolor{E2color}{rgb}{0.2, 0.2, 0.6}
+
+% Groomers
+\definecolor{softdrop}{rgb}{0.36, 0.54, 0.66}
+\definecolor{rss}{rgb}{1.0, 0.49, 0.0}

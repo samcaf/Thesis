@@ -1,0 +1,191 @@
+% ==============================================
+\section*{Chapter 2}
+% ==============================================
+
+% ==============================================
+\section*{Chapter 3}
+% ==============================================
+
+\sam{FIGURE OUT LINKS}
+
+
+% ==============================================
+\section*{Bonus Problems}
+% ==============================================
+
+% ---------------------------------------
+\BonusSoln{mellinconvolution}
+% ---------------------------------------
+\sam{FIX BOUNDS}
+
+We want to show that
+\begin{align*}
+    \mc M[f \mellinconvolution g](s) = \mc M[f](s) \mc M[g](s)
+    ,
+\end{align*}
+where
+\(
+    \mathcal{M}[f](s) = \int_0^\infty \dd x\, x^{s-1} f(x)
+    ,
+\)
+and
+\(
+    (f(x) \mellinconvolution g(x))(x)
+    =
+    \int_x^1 \frac{\dd y}{y}\, f(y) g(x/y)
+    .
+\)
+
+
+To solve the problem, it is helpful to re-organize the integral associated with the Mellin transform of the convolution of \(f(x)\) and \(g(x)\):
+\begin{align*}
+    \int_0^\infty \dd x\, x^{s-1}
+    \int_0^\infty \,\frac{\dd y}{y}\,
+    f(y) g(x/y)
+    =
+    \int_0^\infty \,\frac{\dd y}{y}
+    f(y)
+    \int_0^\infty \dd x\,
+    x^{s-1} g(x/y)
+    =
+    \int_0^1 \dd y \, y^{s-1} f(y)
+    \int_0^1 \dd z\, z^{s-1} g(z)
+    =
+    f(s) g(s)
+    .
+\end{align*}
+In the first equality, we have exchanged the two integrals. % and noted that \(x \in (0,1),\, y \in (x,1)\) cuts out the same region of the plane as \(y \in (0, 1),\,x \in (0,y)\). % From when the bounds were from zero to one
+%
+In the second equality, we have changed variables from \(x\) to \(z = x/y\) and used \(\dd x\, x^n = y^{n+1}\, \dd z\, z^n\).
+
+\qed{}
+
+\sam{Add discussion of what happens when bounds are from 0 to 1}
+
+
+% ---------------------------------------
+\BonusSoln{mellinconvolution2}
+% ---------------------------------------
+We want to show that
+\begin{align*}
+    \mc M[f \circ_{\mc M} g](s) = \mc M[f](s) \mc M[g](s)
+    ,
+\end{align*}
+where
+\(
+    \mathcal{M}[f](s) = \int_0^\infty \,\dd x\, x^{s-1} f(x)
+    ,
+\)
+and
+\(
+    (f(x) \circ_{\mc M} g(x))(x)
+    =
+    \int_0^\infty\,\dd\xi f(x\,\xi) g(\xi)
+    .
+\)
+
+
+To solve the problem, it is helpful to re-organize the integral associated with the Mellin transform of the convolution of \(f(x)\) and \(g(x)\):
+\begin{align*}
+    \int_0^\infty \dd x\, x^{s-1}
+    \int_0^\infty \, \dd \xi
+    f(\xi x) g(\xi)
+    =
+    \int_0^\infty \, \dd \xi
+    \int_0^\infty \dd (\xi x)\, (\xi x)^{s-1}
+    \frac{1}{\xi^s}
+    f(\xi x) g(\xi)
+    =
+    \int_0^\infty \, \dd \xi
+    \xi^{-s}
+    g(\xi)
+    \int_0^\infty \dd z\, z^{s-1}
+    f(z)
+    =
+    f(s) g(1-s)
+    .
+\end{align*}
+In the first equality, we have exchanged the two integrals and changed variables from \(x\) to \(\xi x = z\), and in the final equality we have used \(-s = (1-s) - 1\) to note that the first integral is equal to \(g(1-s)\).
+
+\qed{}
+
+% ---------------------------------------
+\BonusSoln{abstractmellin}
+% ---------------------------------------
+
+\begin{align}
+%\label{eq:}
+    x^b f(x)
+    &\to
+    \\
+    \frac{\dd}{\dd x} f(x)
+    &\to
+    \\
+    \int_0^x f(t) \dd t
+    &\to
+    \\
+    f(x^a)
+    &\to
+    \frac{1}{a} \hat f(s/a)
+\end{align}
+
+\sam{intuition ffor each}
+
+
+
+
+
+% ---------------------------------------
+\BonusSoln{concretemellin}
+% ---------------------------------------
+
+
+\begin{align}
+%\label{eq:}
+    x^n
+    &\to
+    \\
+    \frac{1}{1+x}
+    &\to
+    \beta(s, 1-s)
+    =
+    \Gamma(s) \Gamma(1-s)
+    \\
+    e^{-x}
+    &\to
+    \Gamma(s)
+    \\
+    e^{-a x}
+    &\to
+    \Gamma(s) a^{-s}
+    \\
+    \sin(k x)
+    &\to
+    \Gamma(s) \sin\left(\frac{\pi s}{2}\right) k^{-s}
+    \\
+    \cos(k x)
+    &\to
+    \Gamma(s) \cos\left(\frac{\pi s}{2}\right) k^{-s}
+    \\
+    e^{-x^2}
+    &\to
+    \frac{1}{2}\Gamma\le(\frac{s}{2}\ri)
+    \\
+    \frac{1}{e^{x} - 1}
+    &\to
+    \Gamma(s)\zeta(s)
+    \\
+    \frac{1}{e^{x} + 1}
+    &\to
+    \le(1 - 2^{1-s}\ri)\Gamma(s)\zeta(s)
+\end{align}
+
+
+% ==============================================
+\section*{Chapter 4}
+% ==============================================
+
+
+% ==============================================
+\section*{Chapter 5}
+% ==============================================

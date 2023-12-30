@@ -1,8 +1,51 @@
-\chapter{Particles Inside Particles:\\Jets and Jet Substructure}
+\chapter[Particles]{Particles}
+\markboth{\bf Chapter \thechapter: Particles}{}
+
+
+%{Particles:\\Protons and Pions, Quarks and Gluons}
+\sam{Weird title: I don't ever talk about protons and pions right?}
+
+\sam{Mention here or in intro that this is a sector of the Standard model}
+
+\sam{Talk about who can skip this section, and what's in the appendices}
+
+\sam{Define energy flow?}
+
+The simplest form of information we have access to in particle collision experiments is the distribution of energy of the radiation which explodes outward from the collision;
+%
+we call this distribution of energy the energy flow of the collision.
+%
+In a particle collision with \(N\) outgoing particles with energies \(E_i\) and angles \(\hat n_i\), \(i \in \{1,\,\ldots,\,N\}\), the energy flow is simply
+%
+\begin{equation}
+  \label{eq:energy_flow}
+  \mc E(\hat n) = \sum_{i=1}^N E_i \delta(\hat n - \hat n_i)
+\end{equation}
+
+
 
 % ==============================================
 \section{The physical picture}
 % ==============================================
+
+% -----------------------------------
+% Picturebook figure
+% -----------------------------------
+\reusefigure[ht]{picturebook_particles}
+
+
+% ==============================================
+\section{A Brief History of Particles: Collisions as a Microscope}
+% ==============================================
+
+\sam{What is the goal of this section?}
+
+By a loose of ``particle physicist'', we might say that the first particle physicists were the first curious animals on earth to be amazed by the fact that by slamming two rocks together, they could see the ingredients of which the rocks were composed.
+%
+I conjecture that this was probably around 300 million years ago, during the Triassic period, when the first dinosaurs and proto-mammals were roaming the earth.
+%
+For a conjectural drawing, see \Fig{reptile_collisions}.
+
 
 % -----------------------------------
 % Figure Comment:
@@ -14,75 +57,1236 @@
 
     % Caption
     \caption{
-        Caption text
+        A conjectural drawing of the first particle physicists, perhaps large proto-mammals, who were excited to discover that they could slam rocks together to study the crystalline structures within.
     }
 
     % Figure Label
     \label{fig:label}
 \end{figure}
+% -----------------------------------
 
+We have come a long way since then.
+
+
+% ---------------------------------------
+\subsection{Classical Scattering}
+% ---------------------------------------
+    \sam{Elastic vs. inelastic scattering}
+    %
+    \sam{Inelastic means that we put enough energy in to break the rock apart.
+        %
+    More generally, we put in enough energy to overcome some barrier and create qualitatively new pieces.}
+
+
+    \begin{definition}{Elastic scattering}{}
+        Elastic scattering is a process in which the total kinetic energy of the colliding particles is conserved.
+        %
+        In other words, the particles bounce off of each other, and no energy is lost in the process.
+    \end{definition}
+
+    \begin{definition}{Inelastic scattering}{}
+        Inelastic scattering is a process in which the total kinetic energy of the colliding particles is not conserved.
+        %
+        In other words, the particles bounce off of each other, and some energy is lost in the process.
+        %
+        \sam{Why}
+    \end{definition}
+
+    \sam{When did we first start thinking about inelastic scattering?
+    %
+    Newton?
+    %
+    Before?}
+
+    \sam{Also, scattering of charged particles}
+
+    \sam{What came next? Rutherford?}
+
+    \sam{Quantum mechanics, waves, etc.}
+
+    \sam{QFT, Feynman diagrams, etc.}
+
+    \sam{QCD, asymptotic freedom, etc.}
+    One of the most important recent discoveries in scattering theory is the discovery of \vocab{deep inelastic scattering}:
+    %
+    the discovery that when we slam an electron and a proton together at enormous energies, we actually see a regime of inelastic scattering.
+
+    \sam{Mention that scattering can be used elsewhere! CMT, astronomy, etc.}
+
+
+% ---------------------------------------
+\subsection{Quantum Scattering}
+% ---------------------------------------
+
+
+% ---------------------------------------
+\subsection{Deep Inelastic Scattering}
+% ---------------------------------------
+In hitting a rock with another rock, we break the rock apart into smaller pieces with an electromagnetic interaction.
+%
+Deep inelastic scattering is somewhat similar, and is a nice conceptual starting point for our journey into actual particle physics, and the physics of quarks and gluons.
+
+% -----------------------------------
+% Figure Comment:
+% -----------------------------------
+\begin{figure}[t!]
+    % Figure graphics
+    \centering
+    \includegraphics[width=\textwidth]{figures/tempfig}
+
+    % Caption
+    \caption{
+        A comparison of the first particle physics experiments, as in \Fig{reptile_collisions}, and the more recent experiments of deep inelastic scattering.
+    }
+
+    % Figure Label
+    \label{fig:label}
+\end{figure}
+% -----------------------------------
+
+
+
+% ---------------------------------------
+\subsection{Confinement}
+% ---------------------------------------
+\sam{Probably not worth a whole subsection here, but I want to explain how confinement leads us to expect that results involving quarks and gluons might not be trustworthy on their own -- then I can introduce jets}
+
+
+\begin{itemize}
+    \item
+        \sam{Pre-confinement}
+    \item
+        Color confinement vs. charge confinement
+\end{itemize}
+
+\sam{Frank Wilczek mentioned that confinement and asymptotic freedom are kind of like ``energy-time uncertainty'' complements}
+
+
+% ==============================================
+\section{Quantum Field Theory and Quantum Chromodynamics}
+% ==============================================
+QCD Lagrangian and Feynman rules.
+%
+Title is tentative.
+
+\sam{Baryon number is a symmetry (footnote with SM statement)}
+
+
+% ---------------------------------------
+\subsection{Why QCD?}
+% ---------------------------------------
+\begin{itemize}
+    \item
+        Quantum Field Theory
+
+    \item
+        Explains spectrum of observed particles and jets
+
+    \item
+        Matches data... cross sections, structure functions
+\end{itemize}
+
+
+% ---------------------------------------
+\subsection{What QCD?}
+% ---------------------------------------
+The QCD Lagrangian and Feynman Rules
+
+
+% ---------------------------------------
+\subsection{How QCD?}
+% ---------------------------------------
+\begin{itemize}
+    \item
+        Perturbative QCD: Quarks and Gluons
+
+    \item
+        Therefore, parton model
+
+    \item
+        Non-Perturbative QCD: Protons and Pions
+\end{itemize}
+
+% =====================================
+\begin{sambox}{To Explain:}{}
+    % ---------------------------------
+    \begin{itemize}
+        \item
+            Cross sections, probability
+            (See Larkoski)
+    \end{itemize}
+    % ---------------------------------
+\end{sambox}
+% =====================================
+
+
+% ---------------------------------------
+\subsection{Partons and Particles}
+% ---------------------------------------
+
+% ---------------------------------------
+\subsection{Going Quantum: \texorpdfstring{\(\hbar\)}{hbar}, Loops, and Distributions}
+% ---------------------------------------
+% =====================================
+\begin{sambox}{To Explain:}{}
+    % ---------------------------------
+    \begin{itemize}
+        \item
+            What's a loop
+
+        \item
+            IRC safety and unsafety (Foundations of Pert. QCD)
+
+        \item
+            Distributions
+    \end{itemize}
+    % ---------------------------------
+\end{sambox}
+% =====================================
+
+
+
+% ==============================================
+\section{The Canonical Example: \texordpfstring{\(e^+ e^- \to \text{hadrons}\)}{e+e- -> hadrons}}
+% ==============================================
+\sam{Want a way to start introducing the concepts that will be useful later -- cross sections, electron-positron to hadrons cross section expressed as a sum of terms (of different number of outgoing particles), etc.}
+
+\sam{Explanation of why ee to hadrons is the right thing to start with}
+
+% =====================================
+\begin{sambox}{To Include:}{}
+    % ---------------------------------
+    \begin{itemize}
+        \item
+            Amplitude at LO
+
+        \item
+            Splitting and collinear limit
+            (Larkoski)
+            %
+            \sam{ref to app with more generality}
+    \end{itemize}
+    % ---------------------------------
+\end{sambox}
+% =====================================
+
+% -----------------------------------
+% Cross Section Figure
+% -----------------------------------
+\begin{figure}[t!]
+    % Figure graphics
+    \centering
+    \includegraphics[width=\textwidth]{figures/tempfig}
+
+    % Caption
+    \caption{
+        \sam{Cross section figure}
+    }
+
+    % Figure Label
+    \label{fig:cross_section}
+\end{figure}
+% -----------------------------------
+
+
+% -----------------------------------
+% Decay Figure
+% -----------------------------------
+\begin{figure}[t!]
+    % Figure graphics
+    \centering
+    \includegraphics[width=\textwidth]{figures/tempfig}
+
+    % Caption
+    \caption{
+        \sam{Decay figure}
+    }
+
+    % Figure Label
+    \label{fig:decay}
+\end{figure}
 % -----------------------------------
 
 % ---------------------------------------
-\subsection{Splitting Functions}
+\subsection{The Amplitude at Leading Order}
 % ---------------------------------------
 
 % ---------------------------------------
-\subsection{Renormalization}
+\subsection{The Collinear Limit and Splitting Functions}
 % ---------------------------------------
 
-% ==============================================
-\section{Confinement Project?}
-% ==============================================
+\sam{From probability/decay to splitting functions}
 
+\sam{Preparing to go to parton shower, resummation}
 
-% ==============================================
-\section{Jets and Renormalization}
-% ==============================================
+\sam{Sketch of DGLAP -- ordering tbd}
+
+% ---------------------------------------
+\subsection{Loops, Virtual Corrections, and Distributions}
+% ---------------------------------------
+\sam{This is where quantum mechanics really kicks in}
+
+\sam{I want \(\hbar\) dicussion here!}
+
+\sam{Plus functions and so on}
+
+\sam{Connection to divergences, requirement for calculations to be IR and collinear safe}
 
 
 % ==============================================
 \section{Connecting back out}
 % ==============================================
 
-% ==============================================
-\section*{Chapter Appendix: More on distributions}
-% ==============================================
-
-% ---------------------------------------
-\subsection{Definitions}
-% ---------------------------------------
-
-% ---------------------------------------
-\subsection{Derivations}
-% ---------------------------------------
-
-% ---------------------------------------
-\subsection{Diagrammatica}
-% ---------------------------------------
 
 
-% ==============================================
-\section*{Chapter Appendix: Derivation of the splitting functions}
-% ==============================================
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{subappendices}
 
-% ---------------------------------------
-\subsection{Picture and Sketch}
-% ---------------------------------------
 
-% ---------------------------------------
-\subsection{Proof}
-% ---------------------------------------
+% =====================================
+\section{Leading Order Results for \texorpdfstring{\(e^+\,e^-\)}{electron-positron} to hadrons}
+% =====================================
+
+\begin{sambox}{Goals}{}
+    Want derivation of
+    \begin{itemize}
+        \item
+            LO / NLO matrix elements;
+
+        \item
+            Differential cross section;
+
+        \item
+            Full cross section;
+    \end{itemize}
+\end{sambox}
 
 
 % ==============================================
-\section*{Chapter Appendix: Derivation of the DGLAP equations}
+\section{The Universality of Splitting Functions}
 % ==============================================
 
-% ---------------------------------------
-\subsection{Picture and Sketch}
-% ---------------------------------------
+\begin{sambox}{More general splitting function points}{}
+    \begin{itemize}
+        \item
+            QED, Weizs\:acker-Williams, method of equivalent quanta
+
+        \item
+            This is kind of the soul of things -- I think I want to give it a more prominent role
+
+        \item
+            Ratio of probabilities/cross sections
+
+        \item
+            \sam{Splitting function figure}
+
+        \item
+            Process independence
+
+        \item
+            Concessions -- where is this valid, and where is it invalid?
+    \end{itemize}
+\end{sambox}
+
+The splitting function encodes the probability that a parton of type \(a\) will split into two partons of types \(b\) and \(c\).
+%
+For that reason, a common derivation is in terms of the factorization of an amplitude of a process involving \(a\) and a process without \(a\) but with, say, \(b\) \sam{unclear}
+
+
+\begin{itemize}
+    \item
+    Inclusive perturbative (partonic) cross sections;
+
+    \item
+    Lightlike partons, nearly on shell;
+
+    \item
+    Factorization of amplitudes
+    \begin{align}
+        \mathcal{M}(a + d \to c + X)
+        =
+        \mathcal{M}(a \to b + c)
+        \frac{1}{\hat{t}}
+        \mathcal{M}(b + d \to X)
+        \label{eq:factorized_matrix_element}
+        .
+    \end{align}
+
+    \item
+    Factorization of cross sections:
+    \begin{align}
+        \dd \sigma(a + d \to c + X)
+        \eqdelta
+        \frac{\alphas}{2\pi}
+        \,
+        P_{a\to bc}(z, m_b^2)
+        \,
+        \dd\le(\log m_b^2 \ri)
+        \dd z
+        \,\,
+        \dd \sigma_N(b + d \to X)
+        \label{eq:factorized_cross_section}
+        .
+    \end{align}
+\end{itemize}
+
+% -----------------------------------
+% Figure Comment:
+% -----------------------------------
+\begin{figure}[h!]
+    % Multiple subfigure graphics using subfloat
+    \centering
+    \subfloat[]{
+        % Subfigure graphic
+        % \includegraphics[width=.48\textwidth]{figures/tempfig}
+        % Subfigure label
+        \label{fig:splitfn_full_amplitude}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        % \includegraphics[width=.48\textwidth]{figures/tempfig}
+        % Subfigure label
+        \label{fig:splitfn_sub_amplitude}
+    }
+
+    % Caption
+    \caption{
+        \sam{A representation of the processes involved in calculating a splitting function}
+    }
+
+    % Figure Label
+    \label{fig:label}
+\end{figure}
+% -----------------------------------
+
+\sam{Some of the relevant ingredients}
+\begin{itemize}
+    \item
+        \begin{align}
+            \mc M_{a D \to F c}
+            =
+            g^2
+            \frac{
+                V_{a \to b c} V_{b D \to F}
+            }
+            {
+                \le(2 E_b\ri)
+                \,
+                \le(E_b + E_c - E_a\ri)
+            }
+            .
+        \end{align}
+        \sam{AP equation 43, not sure where the denominator factors come from so will want to figure that out}
+
+    \item
+        \begin{align}
+            \mc M_{b D \to F}
+            =
+            g V_{b D \to F}
+        \end{align}
+        \sam{AP equation 44}
+
+    \item
+        \begin{align}
+        %\label{eq:}
+            \dd \sigma_a
+            &=
+            % Need cross section formulae
+            \frac{g^4}{8\,E_a\,E_D}
+            \frac{
+                \le| V_{a \to b c} \ri|^2
+                \le| V_{b D \to F} \ri|^2
+            }
+            {
+                \le(2 E_b\ri)^2
+                \,
+                \le(E_b + E_c - E_a\ri)^2
+            }
+            \\
+            \notag&\quad
+            \le(2 \pi\ri)^4
+            \,
+            \delta^{(4)}\le(k_D + k_a - k_F - k_c\ri)
+            \,
+            \frac{\dd^3 k_c}{\le(2\pi\ri)^3 2 E_c}
+            \,
+            \prod_{f \in F}
+            \frac{\dd^3 p_f}{\le(2\pi\ri)^3 2 E_f}
+        \end{align}
+
+    \item
+        \begin{align}
+        %\label{eq:}
+            \dd \sigma_b
+            &=
+            \frac{g^2}{8\,E_b\,E_D}
+            \le| V_{b D \to F} \ri|^2
+            \le(2 \pi\ri)^4
+            \,
+            \delta^{(4)}\le(k_D + k_b - k_F\ri)
+            \,
+            \prod_{f \in F}
+            \frac{\dd^3 p_f}{\le(2\pi\ri)^3 2 E_f}
+        \end{align}
+
+    \item
+        \begin{align}
+            \dd \sigma_a
+            =
+            \dd \mc P_{ba}(z)
+            \,
+            \dd \sigma_b
+        \end{align}
+
+    \item
+        \begin{align}
+            \dd \mc P_{ba}
+            =
+            \frac{E_b}{E_a}
+            \frac{
+                g^2 \, \le| V_{a \to b c} \ri|^2
+            }
+            {
+                \le(2 E_b\ri)^2
+                \,
+                \le(E_b + E_c - E_a\ri)^2
+            }
+            \frac{\dd^3 k_c}{\le(2\pi\ri)^3 2 E_c}
+        \end{align}
+        \sam{Check -- my notation is different}
+        \sam{Requires enforcing \(k_b = k_a - k_c\)}
+        \sam{Seems at odds with the momenta in the next point}
+
+    \item
+        \begin{subequations}
+        %\label{eq:}
+        \begin{align}
+            p_a &= \le(p, 0, 0, p\ri)
+            \\
+            p_b &= \le(z p + \frac{p_\perp^2}{2\,z\,p}, \vec{p}_\perp, z p\ri)
+            \\
+            p_c &= \le((1-z)p + \frac{p_\perp^2}{2\,(1-z)\,p}, -\vec{p}_\perp, (1-z) p\ri)
+        \end{align}
+        \end{subequations}
+        \sam{zero mass -- what about momentum conservation?}
+
+    \item
+        \begin{align}
+            \le(2 E_b\ri)^2
+            \,
+            \le(E_b + E_c - E_a\ri)^2
+            =
+            \frac{\le(p_\perp^2\ri)^2}{(1-z)^2}
+        \end{align}
+
+    \item
+        \begin{align}
+            \frac{\dd^3 k_c}{\le(2\pi\ri)^3 2 E_c}
+            =
+            \frac{\dd z \, \dd^2 p_\perp}{16\pi^2\,(1-z)}
+        \end{align}
+
+    \item
+        \begin{align}
+            \dd \mc P_{ba}
+            &=
+            \frac{E_b}{E_a}
+            \frac{
+                g^2 \, \le| V_{a \to b c} \ri|^2
+            }
+            {
+                \le(2 E_b\ri)^2
+                \,
+                \le(E_b + E_c - E_a\ri)^2
+            }
+            \\
+            &=
+            \frac{\alpha}{2\pi}
+            \frac{z(1-z)}{2}
+            \dd\log p_\perp^2
+            \dd z
+            \,
+            \sum_\text{spins}
+            \frac{\le| V_{a \to b c} \ri|^2}{p_\perp^2}
+        \end{align}
+
+\end{itemize}
+
+\begin{sambox}{After AP derivation}{}
+    \begin{itemize}
+        \item
+            \(\theta\) from \(p_\perp\)
+    \end{itemize}
+\end{sambox}
+
+
+Using the standard formula for the cross section of a process in terms of the matrix element,
+\begin{align}
+    \dd\sigma(a + d \to c + X)
+    =
+    \frac{1}{F_{ad}}
+    {(2\pi)}^4 \dfour{p_a + p_d - p_c - p_X}
+    \le\langle
+        \le| \mathcal{M}(a + d \to c + X) \ri|^2
+    \ri \rangle
+    \dd\Phi_X
+    \dd\Phi_c
+    ,
+\end{align}
+with \(F_{ij} \eqdelta 4{\le[{\le( p_i \cdot p_j \ri)}^2 - p_i^2 p_j^2 \ri]}^{1/2}\)\footnote{
+    \(F_{ij}\) denotes an ``incident flux'': \sam{explain}. \(F_{ij} = 4 p_i \cdot p_j\) for massless particles.
+}, we may write a factorized cross section using \Eq{factorized_cross_section}:
+\begin{align}
+    \dd\sigma(a + d \to c + X)
+    &=
+    \frac{1}{F_{ad}}
+    \le \langle
+        \le| \mathcal{M}(a \to b + c) \ri|^2
+    \ri \rangle
+    \frac{1}{\hat{t}^2}
+    \,
+    \dd\Phi_c
+    \\&
+    \notag
+    \qquad
+    \times
+    {(2\pi)}^4 \dfour{p_b + p_d - p_X}
+    \,
+    \le \langle
+        \le| \mathcal{M}(b + d \to X) \ri|^2
+    \ri\rangle
+    \,
+    \dd\Phi_X
+    \\
+    &=
+    \frac{F_{bd}}{F_{ad}}
+    \le \langle
+        \le| \mathcal{M}(a \to b + c) \ri|^2
+    \ri \rangle
+    \,
+    \frac{1}{\hat{t}^2}
+    \,
+    \dd\Phi_c
+    \,\,
+    \dd\sigma(b + d \to X)
+    \label{eq:factorized_cross_section_2}
+    ,
+\end{align}
+\sam{seems like non-trivial assumption to get factorization of spin-averaged cross sections... see muon derivation}
+where in the first line we have used \(p_b \eqdelta p_a - p_c\), and in the second we have simply re-used the definition for \(\dd\sigma\) in the context of \(b + d \to X\).
+%
+We note also that
+\begin{align}
+    \dd\Phi_c = \frac{\dd^{d-1} p_c}{2 E_c {(2\pi)}^{d-1}}
+    .
+\end{align}
+
+So far, everything has been exact.
+
+\subsection{Common Assumptions}
+
+Assumptions going into splitting functions
+\begin{itemize}
+    \item
+     \begin{subequations}
+         \label{eq:split-momentum}
+     \begin{align}
+         p_a &= \le(E_a, 0, p^z_a\ri)
+         \approx \le(E_a, 0, E_a\ri)
+         ,
+         \\
+         p_b &= \le(zE_a - \frac{p_T^2}{2 (1-z) E_a}, p_T, z E_a\ri)
+         ,
+         \\
+         p_c &= \le((1-z)E_a + \frac{p_T^2}{2 (1-z) E_a}, -p_T, (1-z) E_a\ri)
+         .
+     \end{align}
+     \end{subequations}
+\end{itemize}
+\sam{Why one massless vs. the other?}
+
+\Eq{split-momentum} leads to the masses
+\begin{align}
+    % Don't believe in non-conservation of momentum
+    % p_b + p_c - p_a &= \frac{p_T^2}{2 z(1-z) E_a}\le(1, 0, 0\ri)
+    p_a^2 = m_a^2 &= 0
+    ,
+    \\
+    p_b^2
+    =
+    m_b^2
+    &=
+    -p_T^2\frac{z}{1-z}
+    +
+    \frac{p_T^4}{4 z^2 E_a^2}
+    -
+    p_T^2
+    \\
+    \notag
+    &=
+    - p_T^2 \frac{1}{1-z}
+    +
+    \frac{p_T^4}{4 z^2 E_a^2}
+    \\
+    \notag
+    &=
+    -p_T^2 \frac{1}{1-z}
+    +
+    \mc O\le(\frac{p_T^4}{E_a^2}\ri)
+    ,
+    \\
+    p_c^2 =
+    m_c^2
+    &=
+    \frac{p_T^4}{4 (1-z)^2 E_a^2}
+    \\
+    \notag
+    &=
+    \mc O\le(\frac{p_T^4}{E_a^2}\ri)
+    ,
+\end{align}
+and the Lorentz-invariant products
+\begin{align}
+    p_a \cdot p_b
+    &=
+    \frac{1}{2}\le(p_a^2 + p_b^2 - p_c^2\ri)
+    \\
+    \notag
+    &=
+    -\frac{p_T^2}{2(1-z)}
+    +
+    \frac{1}{8}
+    \frac{p_T^4}{E_a^2}
+    \le(\frac{1}{z^2} - \frac{1}{(1-z)^2}\ri)
+    \\
+    \notag
+    &=
+    -\frac{p_T^2}{2(1-z)}
+    +
+    \frac{1}{8}
+    \frac{p_T^4}{E_a^2}
+    \frac{1 - 2 z}{z^2 {(1-z)}^2}
+    \\
+    \notag
+    &=
+    -\frac{p_T^2}{2(1-z)}
+    +
+    \mc O\le(\frac{p_T^4}{E_a^2}\ri)
+    \\
+    \notag
+    &
+    \approx
+    \frac{1}{2} m_b^2
+    ,
+    \\
+    p_a \cdot p_c
+    &=
+    \frac{1}{2}\le(p_b^2 - p_c^2 - p_a^2\ri)
+    \\
+    \notag
+    &=
+    p_a \cdot p_b
+    \qquad\qquad\qquad
+    \text{when \(m_a = 0\)}
+    ,
+    \\
+    p_b \cdot p_c
+    &=
+    \frac{1}{2}\le(p_a^2 - p_b^2 - p_c^2\ri)
+    \\
+    \notag
+    &=
+    \frac{p_T^2}{2(1-z)}
+    -
+    \frac{1}{8}
+    \frac{p_T^4}{E_a^2}
+    \le(\frac{1}{z^2} + \frac{1}{(1-z)^2}\ri)
+    \\
+    \notag
+    &=
+    \frac{p_T^2}{2(1-z)}
+    -
+    \frac{1}{8}
+    \frac{p_T^4}{E_a^2}
+    \frac{z^2 + (1-z)^2}{z^2 {(1-z)}^2}
+    \\
+    \notag
+    &=
+    \frac{p_T^2}{2(1-z)}
+    +
+    \mc O\le(\frac{p_T^4}{E_a^2}\ri)
+    \\
+    \notag
+    &\approx
+    -\frac{1}{2} m_b^2
+    .
+\end{align}
+
+Eventually, I might also want to use \(\theta = \theta_{bc}\), defined by
+\begin{align}
+    \frac{
+        \mathbf{p}_a \cdot \mathbf{p}_b
+    }{
+        ||\mathbf{p}_a||\,\,||\mathbf{p}_b||
+    }
+    \eqdelta
+    \cos(\theta)
+    ,
+\end{align}
+Which gives \sam{???}
+\begin{align}
+    p_T  &= z(1-z) E_a \theta
+    .
+\end{align}
+
+\sam{Proofs! This is weird and I don't know where the \(p_T\) equality comes from.}
+
+In this language, we may write
+\begin{align}
+    \frac{F_{bd}}{F_{ad}} &= \frac{E_b}{E_a} = z
+    ,
+    \\
+    \dd\Phi_c &=
+    \frac{\dd z \, p_T \dd^{d-3}\mathbf{p_T} \, \dd\phi}
+    {2 {(2\pi)}^{d-1} (1-z)}
+    + \mc O\le(\frac{p_T^2}{E_a^2}\ri)
+    \\
+    &\approx
+    \frac{\dd z\, \dd p_T^2 \, \dd \phi}
+    {4 {(2\pi)}^{d-1} (1-z)}
+    p_T^{d-4} \dd\Omega_{d-4}
+    \\
+    &=
+    \frac{\dd z\, \dd m_b^2 \, \dd \phi}{4 {(2\pi)}^{d-1}}
+    {(m_b^2)}^{(d-4)/2} {(1-z)}^{(d-4)/2} \dd\Omega_{d-4}
+    .
+\end{align}
+
+If we integrate out the \(\dd\Omega_{d-4}\) using
+\begin{align}
+    \int\dd\Omega_{d-4}
+    =
+    \frac{2\pi^{(d-3)/2}}
+    {\Gamma\le(\frac{d-3}{2}\ri)}
+    =
+    \frac{2\sqrt{\pi}}{2^{(d-4)/2}}
+    \frac{{(2\pi)}^{(d-4)/2}}{\Gamma\le(\frac{d-3}{2}\ri)}
+    ,
+\end{align}
+\Eq{factorized_cross_section_2} becomes
+\begin{align}
+    \dd\sigma(a + d \to c + X)
+    &=
+    \le[
+        \frac{1}{2}
+        \frac{1}{{(2\pi)}^{d-4}}
+        z
+        \le| \mathcal{M}(a \to b + c) \ri|^2
+        \frac{1}{m_b^2}
+        {(m_b^2)}^{(d-4)/2} {(1-z)}^{(d-4)/2}
+        \int\frac{\dd \phi}{2\pi}
+        \int\dd\Omega_{d-4}
+    \ri]
+    \,\dd z\,
+    \frac{\dd m_b^2}{m_b^2}
+    \\
+    \notag{}
+    &\qquad\times
+    \frac{1}{8\pi^2}
+    \dd\sigma(b + d \to X)
+    \\
+    &=
+    \le[
+        \frac{\sqrt{\pi}}
+        {\Gamma\le(\frac{d-3}{2}\ri)}
+        \frac{1}{{(4\pi)}^{(d-4)/2}}
+        {(m_b^2)}^{(d-4)/2}
+        {(1-z)}^{(d-4)/2}
+        \,
+        \frac{z}{m_b^2}
+        \,
+        \le| \frac{1}{g_s} \mathcal{M}(a \to b + c) \ri|^2
+    \ri]
+    \,\dd z\,
+    \frac{\dd m_b^2}{m_b^2}
+    \\
+    \notag{}
+    &\qquad\times
+    \frac{g_s^2}{8\pi^2}
+    \dd\sigma(b + d \to X)
+    .
+\end{align}
+
+Since \(\mathcal{M}(a \to b + c)\) involves a factor of \(g_s\), we may use \(g_s^2 = 4\pi \alpha_s\) and compare to \Eq{factorized_cross_section} to find
+\begin{equation}
+    P_{a\to bc}(z, m_b^2)
+    =
+    \frac{\sqrt{\pi}}
+    {\Gamma\le(\frac{d-3}{2}\ri)}
+    \frac{1}{{(4\pi)}^{(d-4)/2}}
+    {(m_b^2)}^{(d-4)/2}
+    {(1-z)}^{(d-4)/2}
+    \,
+    \frac{z}{m_b^2}
+    \,
+    \le| \frac{1}{g_s} \mathcal{M}(a \to b + c) \ri|^2
+    .
+    \label{eq:splitting_function}
+\end{equation}
+
+\sam{More rigorous: polarization-stripped amplitudes, and the above stuff are actually averaged}
+
+\sam{Would like to show that the assumptions go into the \textit{phase space}, and that the amplitude only changes by a factor of \(\mu^\epsilon\) or something.}
+
+
+For \(q \to q g\), we have
+\begin{align}
+    \le| \frac{1}{g_s} \mathcal{M}(q \to q + g) \ri|^2
+    &=
+    2 C_F \le[
+        \frac{1 + z^2}{z(1 - z)} m_b^2
+        +
+        (d-4)
+        \le(...\ri)
+    \ri]
+\end{align}
+
+
+\subsection{Virtual Corrections as Regularization}
+
+\begin{itemize}
+    \item
+    When \(a = b\), (and \(c\) is a gauge boson?) divergences as \(z \to 1\);
+
+    \item
+    Discussion of the way virtual contributions help;
+
+   \item
+    Discussion of momentum sum rules;
+
+    \item
+    Relationship between momentum sum rules, divergences, and virtual contributions;
+
+    \item
+    Plus-distribution regularization as an enforcement of momentum sum rules.
+
+    \item
+    Closed form for full/true splitting function in terms of integral of bulk/singular splitting function;
+
+    \item
+    (*) Proof of momentum sum rules (and equivalence to virtual contributions).
+
+    \item
+    (**) Example of an explicit calculation of a virtual correction and comparison to momentum sum rule.
+\end{itemize}
+
+
+
 
 % ---------------------------------------
-\subsection{Proof}
+\subsection{Sum Rules}
 % ---------------------------------------
+
+
+% ---------------------------------------
+\subsection{Time-like vs. Space-like Splitting Functions}
+% ---------------------------------------
+
+% -----------------------------------
+% Time-like splitting functions:
+% -----------------------------------
+\begin{definitionbox}{
+% Definition Header:
+    Time-like splitting function
+}{timelike_splitting}
+    % Definition Body:
+    A \vocab{time-like splitting function} is \sam{def...}
+\end{definitionbox}
+
+
+
+% -----------------------------------
+% Space-like splitting functions:
+% -----------------------------------
+\begin{definitionbox}{
+% Definition Header:
+    Space-like splitting function
+}{timelike_splitting}
+    % Definition Body:
+    A \vocab{space-like splitting function} is \sam{def...}
+\end{definitionbox}
+
+
+
+% ==============================================
+\section{Splitting Function Examples}
+% ==============================================
+Next, \textbf{derivations related to splitting functions}
+
+\sam{Move to problems (write solutions)}
+
+% ---------------------------------------
+\subsection{
+\texorpdfstring{\(q \to q g\)}
+{Quark to Quark plus Gluon}
+}
+\sam{Fix up the texorpdfstring command here}
+% ---------------------------------------
+\sam{Revisit}
+
+\begin{align}
+    \le\langle
+        \le|\frac{1}{g_s} \mc M \ri|^2
+    \ri\rangle
+    &=
+    \frac{1}{2 \times N_c}
+    \sum \le|
+        \bar{u}_s(p_a) \gamma^\mu u_{s'}(p_b)
+        \epsilon_\mu(p_c)
+        {(t^a)}_{i_a i_b}
+    \ri|^2
+    \\
+    &=
+    \frac{1}{2 \times N_c}
+    N_C C_F
+    \Tr\le[
+        \slashed{p}_a \gamma^\mu \slashed{p}_b \gamma^\nu
+    \ri]
+    \le(
+        g_{\mu\nu} - \frac{p_{c\mu} p_{c\nu}}{p_c^2}
+    \ri)
+    \\
+    &=
+    \frac{C_F}{2}
+    \le[
+        (d-2) \Tr \slashed{p}_a \slashed{p}_b
+        -
+        \frac{4}{p_c^2}
+        \le(
+            2 (p_a \cdot p_c) (p_b \cdot p_c)
+            -
+            p_c^2 (p_a \cdot p_b)
+        \ri)
+    \ri]
+    \\
+    &=
+    2 C_F \le[
+        (d-2) p_a \cdot p_b
+        -
+        2 \frac{(p_a \cdot p_c) (p_b \cdot p_c)}{p_c^2}
+        + p_a \cdot p_b
+    \ri]
+    \\
+    &=
+    2 C_F \le[
+        -
+        2 \frac{(p_a \cdot p_c) (p_b \cdot p_c)}{p_c^2}
+        +
+        3 p_a \cdot p_b
+        +
+        (d-4) p_a \cdot p_b
+    \ri]
+    .
+\end{align}
+In the final line, we have simply separated the contribution proportional to \((d-4) = -2 \epsilon\).
+
+So far, everything has been exact (for a massive final state gluon). Now, let us plug in the Lorenz-invariant products of momenta in terms of \(z\) and \(m_b^2\). We have
+\begin{align}
+    \le\langle
+        \le|\frac{1}{g_s} \mc M \ri|^2
+    \ri\rangle
+    &=
+    2 C_F
+    \le[
+        m_b^2
+        \le(\frac{3}{2} + \frac{d-4}{2}\ri)
+        \le(
+            1
+            +
+            \frac{m_b^2}{4 E_a^2}
+            \frac{1 - 2 z}{z^2}
+        \ri)
+        -
+        2
+        \frac{4 E_a^2}{m_b^4}
+        \frac{m_b^4}{4}
+        \le(
+            1
+            +
+            \frac{m_b^2}{4 E_a^2}
+            \frac{1 - 2 z}{z^2}
+        \ri)
+        \le(
+            1
+            -
+            \frac{m_b^2}{4 E_a^2}
+            \frac{z^2 + {(1-z)}^2}{z^2}
+        \ri)
+    \ri]
+    \\
+    &=
+    \notag
+    C_F m_b^2
+    \le[
+        \le(3 + (d-4)\ri)
+        \le(
+            1
+            +
+            \frac{m_b^2}{4 E_a^2}
+            \frac{1 - 2 z}{z^2}
+        \ri)
+        -
+        4
+        \frac{E_a^2}{m_b^2}
+        \le(
+            1
+            +
+            \frac{m_b^2}{4 E_a^2}
+            \frac{1 - 2 z}{z^2}
+        \ri)
+        \le(
+            1
+            -
+            \frac{m_b^2}{4 E_a^2}
+            \frac{z^2 + {(1-z)}^2}{z^2}
+        \ri)
+    \ri]
+    .
+\end{align}
+
+Finally, let us drop terms of \(\mc O(p_T^4/E_a^2)\) to find
+\begin{align}
+    \le\langle
+        \le|\frac{1}{g_s} \mc M \ri|^2
+    \ri\rangle
+    &\approx
+    \frac{1}{2}
+    C_F m_c^2
+    \le(
+        2
+        +
+        (d-4)
+    \ri)
+    .
+\end{align}
+using \href{http://scipp.ucsc.edu/~haber/ph218/dimreg.pdf}{Howard Haber's notes on formulae in dimensional regularization}.
+
+
+
+% ==============================================
+\section{Factorization}
+% ==============================================
+\epigraph{
+    % The factorization we discuss gives a precise meaning to the idea of the impulse  approximation in the parton picture.
+    %
+    % The central assertion of the impulse approximation is that high-energy collisions of composite hadrons are characterized by two time scales.
+    %
+    A short time scale, of the order of the inverse of the large momenta in the process, characterizes the hard collisions of the constituents.
+    %
+    A long time scale, of the order of the typical hadron radius, characterizes the binding and recombination of the constituents.
+    %
+    The short time scale physics depends on the process, but is calculable.
+    %
+    The long time scale physics contains all the complexity of the bound state problem, but it is independent of the process.}
+    {\Reff{}}
+
+
+% ==============================================
+\section{Fragmentation and Hadronization}
+% ==============================================
+
+
+% ==============================================
+\section{More on IRC Safety?}
+% ==============================================
+
+
+% ==============================================
+\section{Why Twist-2?}
+% ==============================================
+
+\end{subappendices}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problems}
+
+\makeprob{Elastic and Inelastic Scattering}{}{
+    \sam{Examples of elastic vs. inelastic scattering, and proof that each is elastic or inelastic.}
+    %
+    \sam{Want several degrees of complexity, so maybe several problems (CM \(\to\) EM \(\to\) QM \(\to\) QFT)}
+}
+
+
+\makeprob{Non-Perturbative Effects \sam{problem name}}{}{
+    Find \(\LambdaQCD\) in terms of \(\alpha_s(\mu)\);
+    %
+    show that it is non-perturbative, and describe what this means mathematically.
+}
+
+
+\makeprob{Re-deriving Splitting Functions}{}{
+    \sam{Re-derive splitting functions}
+}
+
+
+\makeprob{Splitting Functions in Dimensional Regularisation}{}{
+    \sam{Splitting functions in dimensional regularisation}
+    %
+    \sam{Show that epsilon pole is kind of like a piece on top of a distribution, and so subtraction of the epsilon pole yields a distributional result.}
+}
+
+
+\makeprob{Massless Splitting Functions in \(\phi^3\) Theory}{}{
+    \sam{Splitting functions in \(\phi^3\) theory}
+}
+
+
+\makeprob{Massless Splitting Functions in QED}{}{
+    \sam{Splitting functions in QED}
+}
+
+
+\makeprob{Massless Splitting Functions in QCD}{}{
+    \sam{Splitting functions in QCD}
+}
+
+\makeprob{Timelike vs. Spacelike Splitting Functions}{}{
+    \sam{What's a good problem here?}
+}
+
+\makeprob{Massive Splitting Functions in \(\phi^3\) Theory}{}{
+    \sam{Splitting functions in \(\phi^3\) theory}
+}
+
+
+\makeprob{Massive Splitting Functions in QED}{}{
+    \sam{Splitting functions in QED}
+}
+
+
+\makeprob{Massive Splitting Functions in QCD}{}{
+    \sam{Splitting functions in QCD}
+}
+
+
+\sam{Want problems involving dimensional analysis and estimates}
+
+\makeprob{Jets in \(\phi^3\) theory}{}{
+    \sam{Begin talking about \(\phi^3\) theory -- problems for deriving the Feynman rules, simple cross sections}
+
+    \sam{Not quite at jets, let's rethink this}
+}
+
+
+% https://www.physics.rutgers.edu/het/video/larkoski14a.pdf
+% Original Sterman-Weinberg?
+\makeprob{IRC Safety}{}{
+    Show that IRC safety is sufficient for calculability (footnote on Sudakov safety).
+}
+
+\end{problems}

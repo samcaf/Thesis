@@ -1,26 +1,41 @@
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =====================================
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setup
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =====================================
 \documentclass[letterpaper,11pt]{book}
-\usepackage[utf8]{inputenc}
-
-\usepackage{includes/jhep/jheppub}
-\bibliographystyle{includes/jhep/JHEP}
 
 \include{includes/paper_preamble}
 \include{includes/comment_utils}
-\include{utils}
+\include{includes/thesis_utils}
+
+\bibliographystyle{includes/jhep/JHEP}
+
+\include{includes/glossary}
+\makeglossaries{}
+ \let\oldGls\gls
+ \renewcommand{\gls}[1]{%
+    \ifglsused{#1}{ %
+        \oldGls{#1}%
+    }{%
+        \oldGls{#1}%
+        \index{\glsentryfirst{#1}}%
+    }%
+ }
+
+\usepackage[xindy]{imakeidx}
+\makeindex
 
 % =====================================
 % Misc. utils
 % =====================================
 % ---------------------------------
 % Dark Mode
-% ---------------------------------
-\newif\ifdarkmode
-\darkmodefalse
+% --------------------------------
+\newif\ifdarkmode{}
+\darkmodefalse{}
 
-\ifdarkmode
+\ifdarkmode{}
     \pagecolor[rgb]{0,0,0} %black
     \color[rgb]{0.5,0.5,0.5} %grey
 \fi
@@ -28,10 +43,10 @@
 % ---------------------------------
 % Colorful Definitions
 % ---------------------------------
-\newif\ifcolorful
-\colorfultrue
+\newif\ifcolorful{}
+\colorfultrue{}
 
-\ifcolorful
+\ifcolorful{}
     \newcommand{\definition}[2]{
 \begin{definitionbox}{}{#1}
     #2
@@ -46,195 +61,266 @@
 }
 \fi
 
+
 % ---------------------------------
 % Final Checks
 % ---------------------------------
-\newif\iflistcomments
-\listcommentsfalse
-
-\newif\ifshowfinalchecks
-\showfinalchecksfalse
+\newif\ifshowfinalchecks{}
+\showfinalchecksfalse{}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Document Information:
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ---------------------------------
-% Title
-% ---------------------------------
-\title{A Brief Introduction to QCD}
-
-% ---------------------------------
-% Authors
-% ---------------------------------
-\author[a,b]{Samuel Alipour-fard}
-
-% ---------------------------------
-% Affiliations
-% ---------------------------------
-\affiliation[a]{
-Center for Theoretical Physics, Massachusetts Institute of Technology,
-\\
-77 Massachusetts Avenue, Cambridge, MA 02139, U.S.A.
-}
-\affiliation[b]{
-The NSF AI Institute for Artificial Intelligence and Fundamental Interactions
-}
-
-% ---------------------------------
-% Emails
-% ---------------------------------
-\emailAdd{samuelaf@mit.edu}
-
-% ---------------------------------
-% Pre-print numbers
-% ---------------------------------
-\preprint{MIT--CTP/\sam{???}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Abstract:
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \abstract{\sam{Abstract}}
-
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =====================================
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\maketitle
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =====================================
 
-\iflistcomments
-    \include{includes/aux/comments}
-\fi
 
-\ifshowfinalchecks
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Front Matter
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter{}
+
+% Chapter titles without numbers
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
+\titlespacing*{\chapter} {0pt}{110pt}{20pt}
+
+\input{title/title}
+
+\ifshowfinalchecks{}
     \include{includes/aux/final_checks}
 \fi
 
 
-%%%%%%%%%%%%%%%%%%%%%
-% Main Paper:
-%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Introduction:
+% Front Matter:
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Preface}
-% Outline:
-%   Buildup
-%     Big picture context
-%     Narrow down towards the part of the field where this is relevant
-%   Introduce project:
-%     In this paper we...
-%    Any additional details for basic picture
-%   Elaboration
-%     Utility or necessity of the project
-%   Outline of paper
+
+% ---------------------------------
+% Dedication
+% ---------------------------------
+
+{\clearpage           % we want a new page
+   \thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top
+   \itshape             % the text is in italics
+   \begin{center}
+       To the student
+   \end{center}
+}
+{\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+}
 
 
-%=======================
-% Buildup
-%=======================
-% Big picture context
+% ---------------------------------
+% Other front matter
+% ---------------------------------
 
-% Narrow down towards the part of the field where this is relevant
+\input{includes/frontmatter/acknowledgements}
+
+\newpage
+
+\input{includes/frontmatter/preface}
+
+\newpage
+
+\input{includes/frontmatter/prerequisites}
+
+\newpage
+
+\input{includes/frontmatter/notation}
+
+\clearpage
+
+% ---------------------------------
+% Table of Contents
+% ---------------------------------
+\tableofcontents{
+    \fancyhead[LO]{\slshape\contentsname}
+    \fancyhead[RE]{\slshape\contentsname}
+}
+
+\clearpage{}
+
+% ---------------------------------
+% List of Figures
+% ---------------------------------
+\listoffigures{\fancyhead[LE]{\slshape\listfigurename}}
+% \clearpage
+% \listoftables{\fancyhead[LE]{\slshape\listtablename}}
 
 
-%=======================
-% Introducing project:
-%=======================
-% In this paper we...
-
-% Any additional details for basic picture
-
-%=======================
-% Elaboration
-%=======================
-% Utility or necessity of the project
-
-
-%=======================
-% Outline of the paper
-%=======================
-The rest of the paper proceeds as follows:
-%
-\sam{Sections}
-%
-We give concluding thoughts and avenues for future exploration in \Sec{Conclusions}.
-%
-\sam{Mention of Appendices}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapters:
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ==============================================
-% \input{chapters/}
-% ==============================================
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter{}
+
+% Chapter titles with numbers
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitle}
+\titlespacing*{\chapter} {0pt}{110pt}{20pt}
 
 % ==============================================
 \input{chapters/qcd.tex}
 % ==============================================
+% The first chapter has no appendices (appendices add new line to toc automatically..?)
+% so we add a new toc line manually here
+\addnewlinetotoc{}
+\clearpage{}
 
 % ==============================================
 \input{chapters/particles.tex}
 % ==============================================
 
 % ==============================================
-\input{chapters/jet_substructure}
+\input{chapters/jets.tex}
 % ==============================================
 
 % ==============================================
-\input{chapters/event_shapes}
+\input{chapters/substructure.tex}
 % ==============================================
 
 % ==============================================
-% \input{chapters/}
+\input{chapters/event_shapes.tex}
 % ==============================================
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%
+% =====================================
 % Discussion and Conclusions:
-%%%%%%%%%%%%%%%%%%%%%%%%
-% ==============================================
-\chapter{Conclusions}
-% ==============================================
-\label{sec:Conclusions}
-
-% ============================
-% In this work, we
-% ============================
-
-% ============================
-% Future Directions
-% ============================
-
-
-\acknowledgments
-
-
-%%%%%%%%%%%%%%%%%%%%%
-% Appendices:
-%%%%%%%%%%%%%%%%%%%%%
-\appendix
-
-
-%%%%%%%%%%%%%%%%%%%%%
-% Appendix:
-%%%%%%%%%%%%%%%%%%%%%
+% =====================================
+% Avoiding unwanted blank pages between chapters
+\begingroup{}
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 
 % ==============================================
-\section{Derivations and Distributions}
+\input{chapters/conclusion.tex}
 % ==============================================
+% No appendices, so again we add a new toc line manually
+\addnewlinetotoc{}
+\newpage{}
+\endgroup{}
 
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%
+\input{chapters/appendices.tex}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Back Matter
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\backmatter{}
+
+% Chapter titles without numbers
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
+\titlespacing*{\chapter} {0pt}{110pt}{20pt}
+
+\chapter[\bf Bonus Problems]{Bonus Problems}
+\markboth{\bf Bonus Problems}{}
+% =====================================
+\input{chapters/bonus_problems.tex}
+% =====================================
+\addnewlinetotoc{}
+\newpage{}
+
+
+\chapter[\bf Solutions to Problems]{Solutions to Problems}
+\markboth{\bf Solutions to Problems}{}
+% =====================================
+\input{chapters/solutions.tex}
+% =====================================
+
+\clearpage
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography:
-%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Chapter titles without numbers
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
+\titlespacing*{\chapter} {0pt}{110pt}{20pt}
+
+% New header
+% \renewcommand\bibname{\bf Bibliography}
+% DEBUG : is bibliography capitalized in the header?
+
 \bibliography{thesis_bib}
 
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossary
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Adding all terms to glossary
+% (``unused'' means that entries added in this way will not have an associated page number)
+\glsaddallunused{}
+
+% Alternative with page number, I can't see ever wanting this though
+% \glsaddall{}
+
+
+% - - - - - - - - - - - - - - - - -
+% Acronyms
+% - - - - - - - - - - - - - - - - -
+% Fixing appearance in TOC
+\addnewlinetotoc{}
+
+\printglossary[type=\acronymtype]
+
+
+% - - - - - - - - - - - - - - - - -
+% Glossary
+% - - - - - - - - - - - - - - - - -
+% Fixing appearance in TOC
+\addnewlinetotoc{}
+
+% Removing unwanted newpage
+\clearpage
+\begingroup\let\newpage\relax
+\printglossary
+\endgroup
+
+
+% - - - - - - - - - - - - - - - - -
+% Index
+% - - - - - - - - - - - - - - - - -
+% DEBUG: Do I even want an index?
+
+% Fixing appearance in TOC
+\addnewlinetotoc{}
+
+% Removing unwanted newpage
+\clearpage
+\begingroup\let\newpage\relax
+% \printunsrtglossary[type=index,style=bookindex] % index
+\printindex
+\endgroup
+
+% DEBUG: not sure which command to use to generate index
+% \printglossary[type=index,style=bookindex] % index
+% \printindex
+
+
+% TODOs (acronym/glossary/index):
+% TODO: See wiki: Dual entries with reference to a glossary entry from an acronym
+% TODO: Figure out how to add items to index as well
+% See: https://tex.stackexchange.com/a/267345
+% TODO: Link EEC and EWOC to Event Shape
+
+
+% =====================================
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =====================================

@@ -1,0 +1,445 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis Glossary
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \providecommand{\myglsindextext}[1]{\glsentrydesc{#1} (\glsentrytext{#1})}
+% \providecommand{\myglsindex}[1]{\index{\myglsindextext{#1}}}
+% \providecommand{\mygls}[1]{\gls{#1}\myglsindex{#1}}
+% \providecommand{\myglspl}[1]{\glspl{#1}\myglsindex{#1}}
+% \providecommand{\myGls}[1]{\Gls{#1}\myglsindex{#1}}
+% \providecommand{\myGlspl}[1]{\Glspl{#1}\myglsindex{#1}}
+
+% =====================================
+% Acronyms
+% =====================================
+% TODO: Figure out how to add descriptions and put into glossary
+
+\newacronym{apollonius}{P-AS}{Apollonius Subtraction}
+
+\newacronym{ca}{C/A}{Cambridge/Aachen}
+
+% CAESAR and description
+
+% DGLAP
+
+\newacronym{eec}{EEC}{Energy-Energy Correlator}
+
+\newacronym{emd}{EMD}{Energy Movers' Distance}
+
+\newacronym{ewoc}{EWOC}{Energy Weighted Observable Correlator}
+
+\newacronym{ivs}{IVS}{Iterated Voronoi Subtraction}
+
+\newacronym{ircsafety}{IRC Safety}{Infra-Red and Collinear Safety}
+
+\newacronym{mmdt}{mMDT}{modified Mass Drop Tagger}
+
+\newacronym{piranha}{PIRANHA}{\textbf{P}ileup and \textbf{I}nfrared \textbf{R}adiation \textbf{A}n\textbf{N}i\textbf{H}il\textbf{A}tion}
+
+\newacronym{qcd}{QCD}{Quantum Chromodynamics}
+
+\newacronym{qft}{QFT}{Quantum Field Theory}
+
+% TODO: add fsoft?
+\newacronym{rs}{P-RS}{Recursive Subtraction}
+
+\newacronym{rsf}{P-RSF}{Recursive Subtraction with a Fraction}
+
+\newacronym{sd}{SD}{Soft Drop De-Clustering Algorithm}
+
+\newacronym{scet}{SCET}{Soft-Collinear Effective Theory}
+
+% pT
+
+% C12
+
+
+% =====================================
+% Symbols
+% =====================================
+\newglossaryentry{as}
+{
+  name={\ensuremath{a_s}},
+  description={
+  Another version of the strong coupling constant, \ensuremath{a_s = }\gls{alphas}\ensuremath{/4\pi}, which is often used to remove some common factors of \(4\pi\) arising in QCD calculations
+},
+}
+
+\newglossaryentry{alphas}
+{
+  name={\ensuremath{\alpha_s}},
+  description={
+      The dimensionless strong coupling constant, which is a measure of the strength of the strong force.
+      %
+      In terms of the parameter \(g_s\) in the QCD Lagrangian, it is \(\alpha_s = \frac{g_s^2}{4\pi}\).
+      %
+      The effective value of the coupling in an interaction depends on the energy scales in the interaction, as governed by the QCD \gls{betafunction}
+},
+}
+
+\newglossaryentry{betafunction}
+{
+    name={\ensuremath{\beta}},
+    description={
+    }
+}
+
+\newglossaryentry{betafunctioncoefficient}
+{
+    % DEBUG: subscript on beta function coeff?
+    name={\ensuremath{\beta_k}},
+    description={
+    }
+}
+
+\newglossaryentry{betasd}
+{
+    name={\ensuremath{\beta_\text{SD}}},
+    description={
+        The soft drop angular exponent:
+        %
+        a free parameter of the \gls{sd} algorithm which which controls its angular dependence.
+    }
+}
+
+\newglossaryentry{fsoft}
+{
+    name={\ensuremath{f_{\text{soft}}}},
+    description={
+        The fraction of the jet energy that is removed by \gls{rsf}.
+        %
+        % The \gls{rsf} algorithm is described in \Section~\ref{sec:rsf}.
+    }
+}
+
+% =====================================
+% Glossary of Terms
+% =====================================
+
+% TODO: Add all glossary terms
+\newglossaryentry{additivecontamination}
+{
+    name=additive contamination,
+    description={
+    }
+}
+
+% additive observables
+
+\newglossaryentry{angularclusteringdiscont}
+{
+    name=angular clustering discontinuity,
+    description={
+    }
+    % Link to clustering discont??
+}
+
+\newglossaryentry{angularcontinuity}
+{
+    name=angular continuity,
+    description={
+    }
+}
+
+\newglossaryentry{angularity}
+{
+    name=angularity,
+    description={
+    }
+}
+
+\newglossaryentry{angularordering}
+{
+    name=angular ordering,
+    description={
+    }
+    % Link to clustering history?
+    % Link to Cambridge/Aachen?
+}
+
+% anti-kt
+
+\newglossaryentry{binaryjettree}
+{
+    name=binary jet tree,
+    description={
+    }
+    % Link to clustering history
+}
+
+\newglossaryentry{clusteringhistory}
+{
+    name=clustering history,
+    description={
+    }
+    % Link to de-clustering algorithm
+}
+
+\newglossaryentry{clusteringdiscont}
+{
+    name=clustering discontinuity,
+    description={
+    }
+    % Link to de-clustering algorithm
+    % Link to clustering history
+    % link to angulary clustering discontinuity
+}
+
+\newglossaryentry{collinearsing}
+{
+    name=collinear singularity,
+    description={
+    }
+}
+
+% TODO: make cs acronym
+\newglossaryentry{cs}
+{
+    name=Constituent Subtraction,
+    description={
+    }
+    % Link to pileup mitigation
+}
+
+\newglossaryentry{continuousgrooming}
+{
+    name=continuous grooming,
+    description={
+    }
+}
+
+% critical emission (link to subsequent and pre-critical)
+
+\newglossaryentry{declusteringalg}
+{
+    name=de-clustering algorithm,
+    description={
+    }
+}
+
+% Distribution
+% disambiguate
+
+\newglossaryentry{eventshape}
+{
+  name=event shape,
+  description={}
+}
+
+\newglossaryentry{energyflow}
+{
+  name=energy flow,
+  description={}
+}
+
+\newglossaryentry{fastjet}
+{
+    name=\texttt{FastJet},
+    description={
+    }
+}
+
+\newglossaryentry{fragmentation}
+{
+  name=fragmentation,
+  description={}
+}
+
+\newglossaryentry{fragfn}
+{
+  name=fragmentation function,
+  description={}
+}
+
+%GECF
+
+%GMBE
+
+% groomed energy fraction
+
+\newglossaryentry{frozencoup}
+{
+  name=frozen coupling,
+  description={}
+}
+
+\newglossaryentry{hadronization}
+{
+  name=hadronization,
+  description={}
+}
+
+\newglossaryentry{hardcutoffgrooming}
+{
+  name=hard cutoff grooming,
+  description={}
+}
+
+% inverse transform method
+
+\newglossaryentry{jet}
+{
+  name=jet,
+  description={}
+}
+
+\newglossaryentry{jetcalculus}
+{
+  name=jet calculus,
+  description={}
+}
+
+\newglossaryentry{jetclustering}
+{
+  name=jet clustering,
+  description={}
+}
+
+\newglossaryentry{jetgrooming}
+{
+  name=jet grooming,
+  description={}
+}
+
+
+\newglossaryentry{jetsubstructure}
+{
+  name=jet substructure,
+  description={}
+}
+
+% kt algorithm
+
+% TODO: Make MPI acroynm
+\newglossaryentry{mpi}
+{
+  name=multiple parton interactions,
+  description={}
+}
+
+% non-global observable, non-global log
+
+% LO, LL, NLO, NLL, etc.
+% MLL
+
+% TODO: pdf acronym as well
+\newglossaryentry{pdf}
+{
+  name=parton distribution function,
+  description={}
+}
+
+\newglossaryentry{partonshower}
+{
+  name=parton shower,
+  description={}
+}
+
+\newglossaryentry{pileup}
+{
+  name=pileup,
+  description={}
+}
+
+\newglossaryentry{pileupmitigation}
+{
+  name=pileup mitigation,
+  description={}
+}
+
+\newglossaryentry{pusubevent}
+{
+  name=pileup subtracted event,
+  description={}
+}
+
+\newglossaryentry{plusdistreg}
+{
+  name=plus-distribution regularization,
+  description={}
+  % Link to plus-function
+}
+
+\newglossaryentry{pythia}
+{
+  name=\texttt{Pythia},
+  description={\sam{version info}}
+}
+
+\newglossaryentry{radiator}
+{
+  name=radiator,
+  description={}
+}
+
+\newglossaryentry{resummation}
+{
+  name=resummation,
+  description={}
+}
+
+\newglossaryentry{softdistortion}
+{
+  name=soft distortion,
+  description={}
+}
+
+\newglossaryentry{splittingfn}
+{
+  name=splitting function,
+  description={}
+  % Link to DGLAP
+}
+
+\newglossaryentry{softcontinuity}
+{
+  name=soft continuity,
+  description={}
+}
+
+\newglossaryentry{softsing}
+{
+  name=soft singularity,
+  description={}
+}
+
+% sudakov factor/exponent
+
+\newglossaryentry{sumrule}
+{
+  name=sum rule,
+  description={}
+}
+
+\newglossaryentry{track}
+{
+  name=track,
+  description={}
+}
+
+\newglossaryentry{trackfn}
+{
+  name=track function,
+  description={}
+}
+
+% TODO: Make UE acronym
+\newglossaryentry{ue}
+{
+  name=underlying event,
+  description={}
+}
+
+% UE-corrected distribution
+% Link to UE
+
+% veto algorithm
+% link to sudakov factor/exponent
+
+% veto region
+% link to radiator
+
+\newglossaryentry{zcut}
+{
+  name=\ensuremath{z_{\text{cut}}},
+  description={}
+}
