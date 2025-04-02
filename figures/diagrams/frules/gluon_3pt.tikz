@@ -1,0 +1,57 @@
+\begin{align}
+\raisebox{-40pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (u) at (0,1.5);
+        \vertex (l) at (-1.30,-0.75);
+        \vertex (r) at (1.30,-0.75);
+        \vertex (cen) at (0,0);
+        % edge labels
+        \vertex [below left=-0.8pt and 0.0ptof l] (tl) {$a, \mu$};
+        \vertex [above left=-0.8pt and 0.0ptof u] (tu) {$b, \nu$};
+        \vertex [above right=0.0pt and 0.0pt of r] (tr) {$c,\rho$};
+        % diagram
+        \diagram* {
+            (l)
+            -- [gluon, momentum=\(p\)]
+            (cen)
+            ,
+            (u)
+            -- [gluon, momentum=\(q\)]
+            (cen)
+            ,
+            (r)
+            -- [gluon, momentum=\(r\)]
+            (cen)
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+:=
+\quad
+-g f^{abc} \le[
+    \begin{array}{rrr}
+    (q-r)_\mu
+    &
+    g_{\nu\rho}
+    &
+    \\
+    +&&
+    \\
+    (r-p)_\nu
+    &
+    g_{\rho\mu}
+    &
+    \\
+    +&&
+    \\
+    (p-q)_\rho
+    &
+    g_{\mu\nu}
+    &
+    \end{array}
+\ri]
+\,.
+\end{align}

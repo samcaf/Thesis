@@ -8,6 +8,8 @@
 \usepackage{geometry}
 \usepackage{afterpage}
 \usepackage{pagecolor}
+
+\usepackage{tikz}
 \usetikzlibrary{calc}
 
 % TOC
@@ -35,7 +37,6 @@
 
 \usepackage[calcwidth]{titlesec}
 \usepackage{microtype}
-\usepackage{tikz}
 
 
 \colorlet{chapbgcolor}{gray_asparagus!50} % shaded background color for chapters
@@ -76,6 +77,10 @@
 \newcommand{\alphas}{\ensuremath{\alpha_{\mathrm{s}}}\xspace}
 \newcommand{\as}{\ensuremath{a_{\mathrm{s}}}\xspace}
 \newcommand{\LambdaQCD}{\ensuremath{\Lambda_{\mathrm{QCD}}}\xspace}
+
+\newcommand{\ascf}{\ensuremath{a_s \, C_F}}
+\newcommand{\epsir}{\ensuremath{\epsilon_\text{IR}}}
+\newcommand{\epsuv}{\ensuremath{\epsilon_\text{UV}}}
 
 % =====================================
 % Chapter Appendices
@@ -168,11 +173,40 @@
                 name=Problem,
                 numberwithin=chapter]{problem}
 
-\declaretheorem[style=probstyle,
-                mdframed={linecolor=orange!50!brown,
-                          backgroundcolor=yellow!5!olive!5,
+
+\declaretheorem[style=probstyle, numbered=yes,
+                sibling=equation,
+                mdframed={linecolor=plum,
+                          backgroundcolor=plum!5!white,
                       },
-                name=Bonus Problem]{bonusproblem}
+                postheadhook={\addtocounter{equation}{-1} \begin{subequations}},
+                prefoothook={\end{subequations}},
+                name=Exercise]{exercise}
+
+
+\declaretheorem[style=probstyle, numbered=no,
+                sibling=equation,
+                mdframed={linecolor=plum,
+                          backgroundcolor=plum!5!white,
+                      },
+                postheadhook={~\\},
+                name=Exercise]{exercise*}
+
+
+\declaretheorem[style=probstyle, numbered=yes,
+                sibling=equation,
+                mdframed={linecolor=ao,
+                          backgroundcolor=ao!5!white,
+                      },
+                postheadhook={\addtocounter{equation}{-1} \begin{subequations}},
+                prefoothook={\end{subequations}},
+                name=Example]{example}
+
+% \declaretheorem[style=probstyle,
+%                 mdframed={linecolor=orange!50!brown,
+%                           backgroundcolor=yellow!5!olive!5,
+%                       },
+%                 name=Bonus Problem]{bonusproblem}
 
 \newcommand{\makeprob}[3]{
     \medskip
@@ -184,6 +218,8 @@
             {}
             {\labsoln{#2}}
     \end{problem}
+    \addcontentsline{prob}{problem}
+        {\protect\numberline{\thechapter.\theproblem}#1}\par%
 }
 
 \newcommand{\makebonusprob}[3]{
@@ -205,24 +241,25 @@
 }
 
 % Solutions themselves
-\DeclareRobustCommand{\Soln}[1]{%
+\DeclareRobustCommand{\Soln}[2]{%
     % phantomsection for use with hyperref, comment otherwise
     \phantomsection
     %
-    \addcontentsline{toc}{subsection}{Problem~\ref{prob:#1}}
-    \subsubsection*{\hyperref[prob:#1]{Problem~\ref{prob:#1}}}
-    \label{soln:#1}
-}
-
-
-\DeclareRobustCommand{\BonusSoln}[1]{%
-    % phantomsection for use with hyperref, comment otherwise
-    \phantomsection
+    % \addcontentsline{toc}{subsection}{Problem~\ref{prob:#2}: #1}
     %
-    \addcontentsline{toc}{subsection}{Bonus Problem~\ref{prob:#1}}
-    \subsubsection*{\hyperref[prob:#1]{Bonus Problem~\ref{prob:#1}}}
-    \label{soln:#1}
+    \subsubsection*{\hyperref[prob:#2]{Problem~\ref{prob:#2}}: #1}
+    \label{soln:#2}
 }
+
+
+%\DeclareRobustCommand{\BonusSoln}[1]{%
+%    % phantomsection for use with hyperref, comment otherwise
+%    \phantomsection
+%    %
+%    \addcontentsline{toc}{subsection}{Bonus Problem~\ref{prob:#1}}
+%    \subsubsection*{\hyperref[prob:#1]{Bonus Problem~\ref{prob:#1}}}
+%    \label{soln:#1}
+%}
 
 
 
@@ -252,9 +289,40 @@
     \clearpage
 }
 
+\newenvironment{appproblems}{}{}
+\AtBeginEnvironment{appproblems}{%
+    % Chapter titles without numbers
+    \titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
+    \titlespacing*{\chapter} {0pt}{110pt}{20pt}
+    % Chapter title
+    \clearpage
+    \chapter*{Problems for Appendix \thechapter}
+    % phantomsection for use with hyperref, comment otherwise
+    \phantomsection
+    %
+    \addcontentsline{toc}{chapter}
+        {\bf\\Problems for Appendix \thechapter}
+    \counterwithin{figure}{section}
+    \counterwithin{table}{section}
+    % Chapter titles with numbers
+    \titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitle}
+    \titlespacing*{\chapter} {0pt}{110pt}{20pt}
+}
+\AtEndEnvironment{appproblems}{%
+    \addnewlinetotoc
+    \clearpage
+}
+
 
 \newcommand{\mellinconvolution}{\ensuremath{\star_{\mathcal M}}}
 
+
+% =====================
+% Specific Commands for PIRANHA
+% =====================
+\newcommand{\splitxsec}[2]{\ensuremath{\dd \overset{\sim}{\sigma}_{#2\leftarrow #1}}}
 
 
 % =====================
@@ -269,10 +337,11 @@
 \newcommand{\rhoC}{\ensuremath{\rho\,\mathcal{C}}}
 \newcommand{\rhoU}{\ensuremath{\rho\,\mathcal{U}}}
 
-\newcommand{\PIRANHA}{\textsc{Piranha}}
+\newcommand{\PIRANHA}{\glslink{piranha}{\textsc{Piranha}}}
 
 \newcommand{\PRSF}[1]{P-RSF\(_{f = #1}\)}
 \newcommand{\SD}[1]{SD\(_{\beta = #1}\)}
+\newcommand{\betasd}{\ensuremath{\beta_\text{SD}}}
 
 % -----------------------------
 % Custom colors
@@ -291,3 +360,108 @@
 % Groomers
 \definecolor{softdrop}{rgb}{0.36, 0.54, 0.66}
 \definecolor{rss}{rgb}{1.0, 0.49, 0.0}
+
+
+% =====================
+% Specific Commands for eec-angles
+% =====================
+\newcommand{\izero}{\ensuremath{s}}
+
+\usepackage{booktabs}
+\usepackage{array} % For defining column widths
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+
+% =====================
+% Specific Commands for EWOCs
+% =====================
+% Software
+\newcommand{\pythia}{\texttt{Pythia 8.309}}
+\newcommand{\vincia}{\texttt{Vincia}}
+\newcommand{\dire}{\texttt{DIRE}}
+
+% Notation
+\newcommand{\lqcd}{\ensuremath{\Lambda_{\text{QCD}}}}
+\newcommand{\rsub}{\ensuremath{r_\text{sub}}}
+\newcommand{\Rjet}{\ensuremath{R_\text{jet}}}
+
+% Colors
+\definecolor{firebrick}{rgb}{0.7, 0.13, 0.13}
+\definecolor{magenta}{HTML}{FF00AB}
+\definecolor{forestgreen}{HTML}{00B500}
+\definecolor{russett}{HTML}{805B56}
+
+
+\definecolor{inclusivecolor}{rgb}{0.03, 0.27, 0.49}
+
+
+
+
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+
+% --------------------
+% Tikz utilities
+% --------------------
+\newif\ifexternalize
+\externalizefalse
+
+\ifexternalize
+\usetikzlibrary{external}
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=figures/tikz/]
+\fi
+
+% Line decorations
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.text}
+
+\tikzset{
+    gluon/.style={decorate,decoration={coil,amplitude=2pt, segment length=2pt,  pre length=0cm, post length=0cm}},
+    photon/.style={decorate, decoration={snake, segment length=4pt, amplitude=1.8pt,  pre length=0cm, post length=0cm}}
+}
+
+% Calorimeter cells
+\tikzstyle{calo}=[draw=blue!60!green!50!black,fill=blue!60!green!90!black!70,
+                  line width=0.6,rounded corners=0.2]
+\tikzstyle{ecal}=[calo,draw=red!90!green!60!black,fill=red!85!green!90!black!80]
+\tikzstyle{split_cal}=[calo,draw=russett!98!green!60!black,fill=russett]
+\tikzstyle{MET}=[->,red,line width=1.2,dashed]
+
+% Multicolored lines
+\pgfkeys{/pgf/decoration/.cd,
+         start color/.store in=\startcolor,
+         start color=black,
+         end color/.store in=\endcolor,
+         end color=black,
+         varying line width steps/.initial=100
+}
+\pgfdeclaredecoration{width and color change}{initial}{
+ \state{initial}[width=0pt, next state=line, persistent precomputation={%
+   \pgfmathparse{\pgfdecoratedpathlength/\pgfkeysvalueof{/pgf/decoration/varying line width steps}}%
+   \let\increment=\pgfmathresult%
+   \def\x{0}%
+ }]{}
+ \state{line}[width=\increment pt,   persistent postcomputation={%
+   \pgfmathsetmacro{\x}{\x+\increment}
+   },next state=line]{%
+   \pgfmathparse{varyinglw(\x/\pgfdecoratedpathlength)}
+   \pgfsetlinewidth{\pgfmathresult pt}%
+   \pgfpathmoveto{\pgfpointorigin}%
+   \pgfmathsetmacro{\steplength}{1.4*\increment}
+   \pgfpathlineto{\pgfqpoint{\steplength pt}{0pt}}%
+   \pgfmathsetmacro{\y}{varyingcolor(100*(\x/\pgfdecoratedpathlength))}
+   \pgfsetstrokecolor{\endcolor!\y!\startcolor}%
+   \pgfusepath{stroke}%
+ }
+ \state{final}{%
+   \pgfmathparse{varyinglw(1)}
+   \pgfsetlinewidth{\pgfmathresult pt}%
+   \pgfpathmoveto{\pgfpointorigin}%
+   \pgfmathsetmacro{\y}{varyingcolor(100*(\x/\pgfdecoratedpathlength))}
+   \color{\endcolor!\y!\startcolor}%
+   \pgfusepath{stroke}%
+ }
+}

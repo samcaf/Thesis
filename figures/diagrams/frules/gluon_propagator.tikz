@@ -1,0 +1,33 @@
+\begin{align}
+\raisebox{0pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (i) at (-1.5,0.0);
+        \vertex (f) at (1.5,0.0);
+        % edge labels
+        \vertex [above left=-0.8pt and 0.0ptof i] (ti) {$a, \mu$};
+        \vertex [above right=0.0pt and 0.0pt of f] (tf) {$b,\nu$};
+        % diagram
+        \diagram* {
+            (i)
+            -- [gluon, momentum=\(p\)]
+            (f)
+            ,
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+:=
+\quad
+&
+i\, \delta^{ab} \frac{-g_{\mu\nu} + (1-\xi) p_\mu p_\nu / p^2}{p^2 + i 0^+}
+\\
+\notag
+\quad
+\xrightarrow[\text{Feynman gauge}]{}
+\quad
+&
+\delta^{ab} \frac{-i g_{\mu\nu}}{p^2 + i 0^+}
+\end{align}

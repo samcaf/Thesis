@@ -1,0 +1,191 @@
+\begin{tikzpicture}[baseline=-3.5ex]
+% Event Labels
+  \node at (-1.7,  .6)()
+        {\huge \(\mathcal{E}^+\)};
+  \node at (-1.7,  -1.25)()
+        {\huge\(\mathcal{E}^-\)};
+
+% Header wrapper
+\draw [fill=black, opacity=0.05]
+       (-0.7,2.4) -- (13.6,2.4) -- (13.6,1.65) -- (-0.7,1.65) -- cycle;
+
+%%%%%%%%%%%%%%
+% Ungroomed
+%%%%%%%%%%%%%%
+  \node at (1.5,  2)() {\textbf{Ungroomed}};
+
+% E+
+  % points
+  \coordinate (A)  at (1.4, 1.4);
+  \coordinate (O)  at (0, 0);
+  \coordinate (B)  at (3, 0);
+  % legs
+  \draw[-Stealth,line width=.55mm] (O) -> (A);
+  \draw[-Stealth,line width=.7mm] (O) -> (B);
+
+% E-
+  % points
+  \coordinate (A)  at (.8, -1.2);
+  \coordinate (O)  at (0, -2);
+  \coordinate (B)  at (3, -2);
+  % legs
+  \draw[-Stealth,line width=.55mm] (O) -> (A);
+  \draw[-Stealth,line width=.7mm] (O) -> (B);
+
+% lines
+
+% zcut lines
+\coordinate (I)  at (0.7, 1.0);
+\coordinate (F)  at (3.15, 1.0);
+\draw[dash pattern=on 2pt off 3pt, line width=.4mm, color=aurometalsaurus] (I) -> (F);
+\node at (3.5,  1.0)()
+        {\(\zcut\)};
+
+\coordinate (I)  at (0.7, -1.0);
+\coordinate (F)  at (3.15, -1.0);
+\draw[dash pattern=on 2pt off 3pt, line width=.4mm, color=aurometalsaurus] (I) -> (F);
+\node at (3.5,  -1.0)()
+        {\(\zcut\)};
+
+% Descriptors
+\node [rotate=45] at (0.0,  0.5)()
+        {\(z^+ > \zcut\)};
+\node [rotate=45] at (0.0,  -1.5)()
+        {\(z^- < \zcut\)};
+
+
+%%%%%%%%%%%%%%
+% Soft Drop Grooming
+%%%%%%%%%%%%%%
+\node at (6.5,  2)() {\textcolor{dodgerblue!75!black}{\textbf{Soft Drop}, \(\beta_{\rm SD} = 0\)}};
+
+% E+
+  % points
+  \coordinate (A)  at (6.4, 1.4);
+  \coordinate (O)  at (5.0, 0);
+  \coordinate (B)  at (8.0, 0);
+  % legs
+  \draw[-Stealth,line width=.55mm, color=royalblue] (O) -> (A);
+  \draw[-Stealth,line width=.7mm, color=royalblue] (O) -> (B);
+
+% E-
+  % points
+  \coordinate (Ap)  at (5.8, -1.2);
+  \coordinate (O)  at (5.0, -2);
+  \coordinate (B)  at (8.0, -2);
+  % legs
+  \draw[-Stealth, line width=.55mm, color=black!25!white] (O) -> (Ap);
+  \draw[-Stealth,line width=.7mm, color=royalblue] (O) -> (B);
+
+% lines
+% zcut lines
+\coordinate (I)  at (5.7, 1.0);
+\coordinate (F)  at (8.15, 1.0);
+\draw[dash pattern=on 2pt off 3pt, line width=.4mm, color=aurometalsaurus] (I) -> (F);
+
+\coordinate (I)  at (5.7, -1.0);
+\coordinate (F)  at (8.15, -1.0);
+\draw[dash pattern=on 2pt off 3pt, line width=.4mm, color=aurometalsaurus] (I) -> (F);
+
+%%%%%%%%%%%%%%
+% PIRANHA Grooming \PRSF{1/2}
+%%%%%%%%%%%%%%
+  \node at (10.9,  2)() {\textcolor{ochre!75!black}{\textbf{P-RSF} (arb.\,\(f_{\rm soft}\))}};
+
+% E+
+  % points
+  \coordinate (A)  at (10.4, 0.9);
+  \coordinate (Ap)  at (10.9, 1.4);
+  \coordinate (O)  at (9.5, 0);
+  \coordinate (B)  at (11.7, 0);
+  \coordinate (Bp)  at (12.5, 0);
+  % legs
+  \draw[-Stealth,line width=.55mm, color=black!25!white] (O) -> (Ap);
+  \draw[-Stealth,line width=.55mm, color=darkgoldenrod] (O) -> (A);
+  \draw[-Stealth,line width=.7mm, color=black!25!white] (O) -> (Bp);
+  \draw[-Stealth,line width=.7mm, color=darkgoldenrod] (O) -> (B);
+
+% E-
+  % points
+  \coordinate (A)  at (9.9, -1.6);
+  \coordinate (Ap)  at (10.3, -1.2);
+  \coordinate (O)  at (9.5, -2);
+  \coordinate (B)  at (11.7, -2);
+  \coordinate (Bp)  at (12.5, -2);
+  % legs
+  \draw[-Stealth,line width=.55mm, color=black!25!white] (O) -> (Ap);
+  \draw[-Stealth,line width=.55mm, color=darkgoldenrod] (O) -> (A);
+  \draw[-Stealth,line width=.7mm, color=black!25!white] (O) -> (Bp);
+  \draw[-Stealth,line width=.7mm, color=darkgoldenrod] (O) -> (B);
+
+% lines
+% zcut lines
+\coordinate (I)  at (10.2, 1.0);
+\coordinate (F)  at (12.65, 1.0);
+\draw[dash pattern=on 2pt off 3pt, line width=.4mm, color=aurometalsaurus] (I) -> (F);
+
+\coordinate (I)  at (10.2, -1.0);
+\coordinate (F)  at (12.65, -1.0);
+\draw[dash pattern=on 2pt off 3pt, line width=.4mm, color=aurometalsaurus] (I) -> (F);
+
+%%%%%%%%%%%%%%
+% QCD
+%%%%%%%%%%%%%%
+% Double line
+\coordinate (I)  at (-2.5, -2.8);
+\coordinate (F)  at (13.3, -2.8);
+\draw[line width=.3mm] (I) -> (F);
+
+\coordinate (I)  at (-2.5, -2.9);
+\coordinate (F)  at (13.3, -2.9);
+\draw[line width=.3mm] (I) -> (F);
+
+% Labels
+  \node at (-1.7,  -4.6)()
+        {\textbf{\LARGE QCD}};
+  \node at (-2.55, -5.8)(){\Large (};
+  \node at (-1.7,  -5.6)()
+        {\texttt{Pythia}};
+  \node at (-1.7,  -6.0)()
+        {\texttt{8.244}};
+ \node at (-0.85, -5.8)(){\Large )};
+  \node at (-1.7,  -8.4)()
+         {\textbf{\LARGE QCD}};
+ \node at (-1.7,  -9.0)()
+         {\textbf{\Large +}};
+ \node at (-1.7,  -9.6)()
+        {\textbf{\LARGE Noise}};
+
+% Event visualization
+% Ungroomed
+  \node at (1.8,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_raw_1}};
+  \node at (1.8,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_raw_2}};
+% mMDT
+  \node at (6.5,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_mmdt_1}};
+  \node at (6.5,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_mmdt_2}};
+% P-RSF_1/2
+  \node at (11.3,  -5.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_rsf_half_1}};
+  \node at (11.3,  -9.0)() {\includegraphics[width=.25\textwidth]{figures/piranha/event_visualizations/vis_rsf_half_2}};
+
+% Axis info
+ \node at (-0.4,  -5.0)() {\Large \(\phi\)};
+ \node at (-0.4,  -9.0)() {\Large \(\phi\)};
+ \node at (1.8,  -11.2)() {\Large \(y\)};
+ \node at (6.5,  -11.2)() {\Large \(y\)};
+ \node at (11.3,  -11.2)() {\Large \(y\)};
+
+ % phi labels
+ \node at (-0.25,  -10.77)() {\footnotesize -1};
+ \node at (-0.25,  -7.3)() {\footnotesize 1};
+ \node at (-0.25,  -6.77)() {\footnotesize -1};
+ \node at (-0.25,  -3.3)() {\footnotesize 1};
+ % y labels
+ \node at (-0.05,  -11.1)() {\footnotesize -1};
+ \node at (3.65,  -11.1)() {\footnotesize 1};
+ \node at (4.65,  -11.1)() {\footnotesize -1};
+ \node at (8.35,  -11.1)() {\footnotesize 1};
+ \node at (9.45,  -11.1)() {\footnotesize -1};
+ \node at (13.15,  -11.1)() {\footnotesize 1};
+
+ %\node at (1.8,  -5.0)() {-1.0};
+\end{tikzpicture}

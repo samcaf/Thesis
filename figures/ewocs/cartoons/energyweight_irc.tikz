@@ -1,0 +1,81 @@
+% EVENT DISPLAY with CALO DEPOSITS
+\begin{tikzpicture}[scale=0.7,rotate=-90,
+    declare function={varyinglw(\x)=0.6pt*(1+\x);varyingcolor(\x)=\x;}
+  ]
+  % ---------------------------------
+  % ---------------------------------
+  % HCAL DEPOSIT
+  % ---------------------------------
+  \begin{scope}
+    \clip (-0.5,1.05) rectangle (0.5,4.7);
+    % - - - - - - - - - - - - - - - - -
+    % Hard Particles
+    % - - - - - - - - - - - - - - - - -
+    \draw[split_cal] (0,0) -- (86.5:4.5) arc(86.5:93.5:4.5) -- cycle;
+    \draw[split_cal] (86.5:2.0) -- (86.5:4.5) arc(86.5:93.5:4.5) -- (93.5:2.0) arc(93.5:86.5:2.0) -- cycle;
+  \end{scope}
+
+  % ---------------------------------
+  % INNER DETECTOR
+  % ---------------------------------
+  \begin{scope}
+    \clip (-0.5,1.0) rectangle (0.5,3.0);
+    \draw[ultra thick,fill=white] (0,0) circle(2.8);
+  \end{scope}
+
+  % ---------------------------------
+  % PARTICLES
+  % ---------------------------------
+  \draw[russett,ultra thick,fill=none]
+    (90:0.9) to (90:1.2);
+
+  % Curve linking the particles
+  \begin{scope}
+  \draw [line cap=round,
+         looseness=1.0,
+         decorate,
+         decoration={width and color change,
+                     start color=magenta,
+                     end color=forestgreen}]
+     (-0.09, 1.398)
+     to[out=0]
+     (0.0, 1.170)
+     to[in=270]
+     (0.122, 1.405);
+  \end{scope}
+
+  % Collinear splitting
+  \draw[magenta,semithick,gluon,fill=none]
+    (93:1.4) to (92:2.7);
+
+  \draw[forestgreen,very thick,fill=none]
+    (85:1.4) to (87:2.7);
+
+  % ---------------------------------
+  % TEXT
+  % ---------------------------------
+  \begin{scope}
+    \draw
+      \iffalse
+      % Perhaps for talks
+      (1.2,2.70) node[scale=0.35] {
+          (for \(n\neq 1\))
+      }
+      \fi
+      (0.75,1.40) node[scale=0.5] {
+        \textcolor{magenta!80!black}{\(z_1^n\)}
+      }
+      (0.75,1.80) node[scale=0.5] {
+          \(+\)
+      }
+      (0.75,2.20) node[scale=0.5] {
+        \textcolor{forestgreen!70!black}{\(z_2^n\)}
+      }
+      (0.75,2.80) node[scale=0.5] {
+        \(\neq\)
+      }
+      (0.75,3.80) node[scale=0.5] {
+        \textcolor{russett!95!black}{\(\le(z_1 + z_2\ri)^n\)}
+      };
+  \end{scope}
+\end{tikzpicture}

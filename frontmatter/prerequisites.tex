@@ -1,0 +1,71 @@
+\section*{Prerequisites}
+% \markboth{Prerequisites}{Prerequisites}
+
+\epigraph{``You earn your right to speculate depending on how much work you do.''}{Barton Zweibach}
+
+In order to understand the technical details of the material in this thesis, I expect that the following prerequisites are necessary (if you can understand them without these prerequisites, great work!):
+\begin{itemize}
+    \item
+        A course in quantum field theory, or at least an understanding of quantum mechanics and the basics of particle physics.
+
+    \item
+
+\end{itemize}
+
+In addition, I expect that you should probably be able to understand the following pieces of physics:
+\begin{itemize}
+    \item
+        The strong coupling \(\alpha_s(\mu)\) obeys the \vocab{renormalization group equation}
+        \begin{equation}
+        \mu \frac{d}{d\mu} \alpha_s(\mu) = \beta(\alpha_s(\mu))
+        =
+        - \sum_{n=0}^\infty \beta_n
+        {\left(\frac{\alpha_s(\mu)}{4\pi}\right)}^{n+2},
+        \end{equation}
+        \sam{check} with the first \vocab{beta function coefficient}
+        \begin{equation}
+            \beta_0
+            =
+            \frac{1}{4\pi}\le(
+                \frac{11}{3} C_A - \frac{4}{3} T_F n_f
+            \ri)
+            ,
+        \end{equation}
+        taking an important role at one-loop and in the studies in this thesis.
+
+    \item
+        The running of the strong coupling leads to a special scale by \vocab{dimensional transmutation}:
+        %
+        given the coupling at some scale \(\mu\), the form of the beta function indicates that the coupling becomes infinite at a scale we call \(\LambdaQCD\).
+        %
+        Ignoring the effects of the beta-function coefficients other than \(\beta_0\), we have
+        \begin{equation}
+            \LambdaQCD = \mu \exp\left(-\frac{1}{2\beta_0 \alpha_s(\mu)}\right).
+        \end{equation}
+        \sam{This was just written by copilot -- double check in terms of these definitions.}
+\end{itemize}
+
+
+
+In addition, since we are lucky enough to live in the age of free internet resources, I will mention the following incredible texts:
+
+\textbf{Basics of Quantum Field Theory:}
+\begin{itemize}
+    \item
+        \underline{Book name}, by \sam{author}
+
+        This book \sam{does ...}
+
+        Available at \sam{place/url}
+\end{itemize}
+
+
+\textbf{Specific References for QCD:}
+\begin{itemize}
+    \item
+        \underline{Applications of Perturbative QCD}, by Richard D. Field;
+
+        This book \sam{does ...}
+
+        Of course, it would be a shame to access this book quickly, easily, and for free using \url{libgen.is}, so I will mention that it is also available (at time of writing) at \href{https://www.desy.de/~jung/qcd_and_mc_2009-2010/R.Field-Applications-of-pQCD.pdf}{this desy.de link}.
+\end{itemize}

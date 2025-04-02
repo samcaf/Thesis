@@ -1,0 +1,125 @@
+\begin{tikzpicture}
+% Defining colors 
+\definecolor{cornflowerblue}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{cadmiumorange}{rgb}{0.93, 0.53, 0.18}
+\definecolor{darkgoldenrod}{rgb}{0.72, 0.53, 0.04}
+\definecolor{pastelorange}{rgb}{1.0, 0.7, 0.28}
+
+\definecolor{rosevale}{rgb}{0.67, 0.31, 0.32}
+\definecolor{palebrown}{rgb}{0.6, 0.46, 0.33}
+\definecolor{goldenpoppy}{rgb}{0.99, 0.76, 0.0}
+\definecolor{gold(metallic)}{rgb}{0.83, 0.69, 0.22}
+
+\definecolor{heliotrope}{rgb}{0.87, 0.45, 1.0}
+\definecolor{mediumorchid}{rgb}{0.73, 0.33, 0.83}
+
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0}
+\definecolor{lightseagreen}{rgb}{0.13, 0.7, 0.67}
+\definecolor{jade}{rgb}{0.0, 0.66, 0.42}
+
+% Defining colors associated with different nodes
+\colorlet{colsp}{ao}
+\colorlet{coli1}{cornflowerblue}
+\colorlet{coli2}{coralred}
+
+% All grey
+% \colorlet{colsp}{gray}
+% \colorlet{coli1}{gray}
+% \colorlet{coli2}{gray}
+% \colorlet{coli3}{gray}
+% \colorlet{coliN}{gray}
+
+
+% Nonperturbative Regions
+\begin{scope}
+    % Clip
+    \clip(-1,-1.5) rectangle (5,2);
+    \clip (0, 0) circle (5);
+
+    % Circles around s and i1
+    \fill[heliotrope, opacity=0.4] (5, 0) circle (0.8);
+    \fill[heliotrope, opacity=0.4] (0, 0) circle (0.8);
+
+    % Lambda_QCD indication
+    \coordinate (O1) at (0, 0);
+    \coordinate (E1) at (-35:0.8);
+    \draw[|<->|,blue!50!red, very thick] (O1)--(E1)
+    node[pos=0.8, right, yshift=-10pt, xshift=7pt, font=\Large]
+    {\textcolor{blue!50!red}{$\frac{\Lambda_\text{QCD}}{p_T^\text{jet}}$}};
+\end{scope}
+\begin{scope}[xshift=5cm]
+    \coordinate (O1) at (0, 0);
+    \coordinate (E1) at (-140:0.8);
+    \draw[|<->|,blue!50!red, very thick] (O1)--(E1)
+    node[pos=0.8, right, yshift=-10pt, xshift=-38pt, font=\Large]
+    {\textcolor{blue!50!red}{$\frac{\Lambda_\text{QCD}}{p_T^\text{jet}}$}};
+\end{scope}
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Particle 1
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\draw[color=coli1, line width=0.5mm] 
+    (0, 0) -- (0:5) coordinate (i1)
+    node[pos=0.5, above, sloped, text=black,
+         font=\Large]
+        {\textcolor{coli1!50!black}{$\boldsymbol{R_1}$}};
+    
+% i1 node
+\filldraw[color=coli1!50!black] 
+    (i1) circle (3pt) 
+    node[below right, font=\large]
+    {\textcolor{coli1!50!black}{$i_1$}};
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Particle 2
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\draw[color=coli2, line width=0.5mm]
+    (0, 0) -- (50:4.2) coordinate (i2)
+    node[pos=0.6, left, text=black, xshift=-4pt, font=\Large]
+    {\textcolor{coli2!50!black}{$\boldsymbol{R_2}$}};
+
+% phi_2 arc
+\draw[-stealth, color=coli2, dashed, line width=0.4mm] 
+    (0:4.2) 
+    arc [start angle=0, end angle=48.5, radius=4.2]
+    node[pos=0.5, right, text=black, font=\large]
+    {\textcolor{coli2!50!black}{$\phi_2$}};
+
+% i2 node
+\filldraw[coli2!50!black] 
+    (i2) circle (3pt)
+    node[below, yshift=-5pt, font=\large]
+    {\textcolor{coli2!50!black}{$i_2$}};
+
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Draw the central point s
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\filldraw[color=colsp!50!black]
+    (0, 0) circle (3pt) 
+    node[left, yshift=3pt, xshift=-5pt, font=\Large]
+    {\textcolor{colsp!50!black}{$s$}};
+
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Non-perturbative phase space
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\begin{scope}
+    \clip (5, 0) circle (0.8);
+    \draw[color=jade, 
+    dash pattern=on 9pt off 3pt,
+    line width=0.9mm, opacity=0.8] 
+    (-30:4.65) 
+    arc [start angle=-30, end angle=30, radius=4.65];
+\end{scope}
+
+\begin{scope}
+    \draw[color=darkgoldenrod!95!black,
+    dash pattern=on 10pt off 3pt,
+    line width=0.9mm, opacity=0.8] (0, 0) circle (0.8);
+\end{scope}
+
+\end{tikzpicture}

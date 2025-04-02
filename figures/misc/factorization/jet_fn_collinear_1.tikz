@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+\begin{scope}[scale=0.5]
+    % Jet visualization
+    % Variables
+    \def\x{2.00}
+    \def\y{3.335}
+    \def\R{\x+0.005}
+    \def\yc{\y+0.04}
+    \def\e{0.5}
+    % Jet
+    \begin{scope}[scale=1.5,rotate=-90]
+        \clip (0.0,0.0) ++(0:0.2) arc (0:180:0.2) -- (-3,4.0) -- (3,4.0) -- cycle;
+        \shade[right color=white,left color=orange,opacity=0.2]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=orange,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+    \end{scope}
+
+    \begin{feynman}
+        \vertex (li);
+        \vertex [blob, scale=0.45, right=1.6 cm of li] (a) {};
+        \vertex [above right=.39cm and 0.83 cm of a] (f1) {};
+        \vertex [below right=.37cm and 0.83 cm of a] (f2) {};
+        \diagram* {
+            (li) -- (a),
+            (a) -- (f1),
+            (a) -- (f2),
+        };
+    \end{feynman}
+
+    % Subjet visualization
+    \begin{scope}[xshift=32.5pt,yshift=-3.1pt]
+        % First
+        \def\x{1.5}
+        \def\y{4.0}
+        \def\R{\x+.005}
+        \def\yc{\y+0.04}
+        \def\e{0.4}
+        \begin{scope}[xshift=2.4cm,yshift=.12cm]
+        \begin{scope}[scale=0.4,rotate=-5]
+        \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,5) -- (3,5) -- cycle;
+        \shade[right color=white,left color=inclusivecolor!70!black,opacity=0.7]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=inclusivecolor!70!black,opacity=0.15]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+    \end{scope}
+\end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,51 @@
+\begin{align}
+\raisebox{-40pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (ul) at (-1.0,1.0);
+        \vertex (ll) at (-1.0,-1.0);
+        \vertex (ur) at (1.0,1.0);
+        \vertex (lr) at (1.0,-1.0);
+        \vertex (cen) at (0,0);
+        % edge labels
+        \vertex [above left=-0.8pt and 0.0ptof ul] (tu) {$a, \mu$};
+        \vertex [above left=-0.8pt and 0.0ptof ll] (tl) {$b, \nu$};
+        \vertex [above right=0.0pt and 0.0pt of ur] (tr) {$c,\rho$};
+        \vertex [above right=0.0pt and 0.0pt of lr] (tr) {$d,\sigma$};
+        % diagram
+        \diagram*{
+            (ul)
+            -- [gluon]
+            (cen)
+            ,
+            (ur)
+            -- [gluon]
+            (cen)
+            ,
+            (ll)
+            -- [gluon]
+            (cen)
+            ,
+            (lr)
+            -- [gluon]
+            (cen)
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+:=
+\quad
+&
+\le[
+\begin{array}{rrr}
+    -i g^2 & f^{\bar{e}ac} f^{\bar{e}bd} &\le(g_{\mu\nu} g_{\rho\sigma} - g_{\mu\sigma} g_{\nu\rho}\ri)
+    \\
+    -i g^2 & f^{\bar{e}ad} f^{\bar{e}bc} &\le(g_{\mu\nu} g_{\rho\sigma} - g_{\mu\rho} g_{\nu\sigma}\ri)
+    \\
+    -i g^2 & f^{\bar{e}ab} f^{\bar{e}cd} &\le(g_{\mu\rho} g_{\nu\sigma} - g_{\mu\sigma} g_{\nu\rho}\ri)
+\end{array}
+\ri]
+\,.
+\end{align}

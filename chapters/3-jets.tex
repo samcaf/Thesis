@@ -1,0 +1,3268 @@
+\chapter[Inside Particles: Jets and Resummation]{Inside Particles:\\Jets and Resummation}
+\markboth{\small \textsc{Chapter \thechapter}: \bf Inside Particles: Jets and Resummation}{}
+\label{chap:jets}
+
+\epigraph{Never trust an parton: they make up everything. Even themselves!}{Joke of the author}
+
+
+We've determined that particles are a slippery sort:
+%
+if we try to look at them closely, they split!
+%
+In fact, based on our rough calculations, it looks like they split in seemingly impossible ways.
+%
+Negative probabilities, infinities, and headaches abound.
+
+In this chapter, we get a better handle on things by giving up on thinking about individual particles.
+%
+We instead make progress by thinking about many particles at once!
+%
+These groups of particles are called \emph{jets},\footnote{\sam{roughly}} and we will address them theoretically with a common strategy in quantum mechanics:
+%
+summing up all of the different possibilities.
+%
+We consider all the ways a particle could split, how each of its children could split, and so on, and add together the probabilities of each to obtain a consistent estimate of the behavior of jets.
+%
+This chapter initiates the study of jets and jet substructure, which we define shortly, and introduces some of the key conceptual and computational tools used in the work presented in this thesis.
+
+
+
+% ==============================================
+\section{The physical picture}
+% ==============================================
+
+This section will be devoted to developing a simplistic but effective description of the structures that emerge as high-energy particles continue to split.
+%
+These structures form collections of particles that we call jets.
+
+We will be using the building blocks of particles and splitting, where we have already seen the use of \glslink{regularization}{\underline{regularization}} -- the removal of infinities to produce a physically sensible result.
+%
+We will use \glslink{resummation}{\underline{resummation}} -- the use of series techniques and calculus to turn infinite series into analytic or numerical expressions -- to add up the results of an infinite number of parton-level splittings and uncover the secrets of jet substructure.
+%
+We will see \underline{renormalization} -- roughly, ``zooming in'' -- emerge as a useful lens as particles seem to split more and more as we zoom further and further in on jets.
+
+
+
+% -----------------------------------
+% Picturebook figure
+% -----------------------------------
+\reusefigure[ht]{picturebook_jets}
+
+
+% ---------------------------------------
+\subsection{Jets}
+% ---------------------------------------
+\label{sec:jet-intro}
+
+\epigraph{The typical high-energy event should consist in the production of a pair of virtual partons, each of which develops into a jet of physical hadrons.}{N. Cabibbo, G. Parisi, and M. Testa, \textit{Hadron Production in \(e^+ e^-\) Collisions} \cite{}, 1970}
+% https://link.springer.com/article/10.1007/BF02755392
+
+\epigraph{Continuing in this way, it should be possible to test the detailed predictions of QCD for production of any numbers of quarks and gluons, but always reinterpreting
+these particles in terms of jets.}{G. Sterman and S. Weinberg, \textit{Jets from Quantum Chromodynamics} \cite{}, 1977}
+
+
+We have seen that particle splittings are universal in the collinear limit, and that \sam{particles split more and more as we zoom in more and more on the narrow core surrounding a parton}.
+%
+The particles emerging from these splittings can be grouped together into universal objects that we call jets.
+%
+As discussed in \Sec{confinement} of the previous chapter, we strongly believe that quarks and gluons are \textit{confined}, and cannot be directly observed.
+%
+Therefore, jets are a key feature of high-energy particle collisions that we must use to infer the presence of quarks and gluons.
+
+
+%%
+%Each splitting is governed by a Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) splitting function \cite{Gribov:1972ri,Dokshitzer:1977sg,Altarelli:1977zs}, \(P_{\{j\} \leftarrow i}\), which desribes the pseudo-probability that a parton of type \(i\) (i.e. \(i \in \{\text{quark, anti-quark, gluon}\}\) in QCD) splits into a set of partonic children with types \(\{j\}\).
+%%
+%The splitting functions govern the behavior of amplitudes in the collinear limit -- when a subset of outgoing partons have nearly collinear momenta -- and are therefore important tools for resummation in the physics of QCD jets, which tend to be fairly narrow.
+
+
+\begin{definitionbox}{Tree of Partonic Splittings (The Partonic Cascade)}{tree}
+    In \gls{pqcd}, a jet is formed when an initiating parton emerging out of a hard interaction recursively splits, or \vocab{showers}, into partons of lower energy.
+    %
+    The resulting \glslink{tree}{\vocab{tree of partonic splittings}} is a theoretical construct of \gls{pqcd} which contains the full history and information of all of the splittings of a single parent parton, including all information involving the kinematics and partonic flavor of each intermediate parton.
+    %
+    The tree of partonic splittings is also called the \vocab{partonic cascade}.
+    %
+    See \Fig{}.
+\end{definitionbox}
+
+\begin{figure}[]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{
+        \sam{Cartoon depicting partonic cascade}
+    }
+    \label{fig:partonic-cascade}
+\end{figure}
+
+
+
+In order to provide useful information about our microscopic universe, jets must be defined in a way which is experimentally robust, theoretically well-defined, and produces results which can be compared to calculations in perturbation theory.
+%
+The study of the \textit{substructure} of jets, through jet shapes, angular distributions, and energy profiles, can then be used to provide additional insights into the properties of the partons involved in high-energy collider processes.
+%
+Furthermore, understanding jet formation and fragmentation is essential for measurements of key processes, such as Higgs boson production, top quark pair production, and searches for new physics beyond the Standard Model.
+
+
+% These partons are produced in hard scatterings and subsequently fragment into multiple hadrons, which are detected as a group of particles in the detector. The process of jet formation can be described by parton showers, where the primary parton radiates secondary partons, leading to further fragmentation. The jet itself is characterized by its energy, momentum, and the pattern of particles in the detector that form the jet.
+
+%Jets are typically identified and reconstructed from the final-state particles detected in the collider experiments using various algorithms, such as the anti-$k_T$ algorithm.
+%
+%Jets are important observables for studying the dynamics of strong interactions, and their properties are used to measure the characteristics of the underlying parton, including its energy, flavor, and angular distribution.
+
+% ---------------------------------------
+% Jet
+% ---------------------------------------
+\begin{definitionbox}{Jet}{jet}
+    % https://gsalam.web.cern.ch/gsalam/talks/repo/2008-cms-jets.pdf
+    % Jet (definitions) provide central link between expt., “theory” and theory
+    % See slide 54+
+    % Perhaps worth linking with Sterman-Weinberg jets
+
+    % https://conference.ippp.dur.ac.uk/event/311/contributions/1403/attachments/1133/1289/jettheory.pdf
+
+    % https://www-sciencedirect-com.libproxy.mit.edu/science/article/pii/S014664101600034X?via%3Dihub
+
+    A \vocab{\gls{jet}} is a subset of the final-state particles in a high energy particle collision.
+    %
+    Intuitively, jets are collimated streams of particles that approximate the results of the fragmentation of a high energy partons.
+    %
+    Formally they are the output of a \vocab{jet definition} -- a concrete, algorithmic procedure which takes in a set of final state particles in a collision event and returns a set of jets.
+
+    Jet definitions require
+    \begin{itemize}
+        \item
+            a \glslink{jet-algorithm}{\vocab{jet algorithm}}:
+            %
+            an algorithm which determines which subset of final state particles are grouped into a jet, and
+
+        \item
+            a \glslink{recomb-scheme}{\vocab{recombination scheme}}, which determines the intrinsic properties associated with the jet such as its energy and momentum.
+    \end{itemize}
+
+    The final state particles contained within a jet are called the \vocab{constituents} of the jet.
+\end{definitionbox}
+
+
+In this thesis, we use the \gls{akt} \cite{}, \gls{ca} \cite{}, and \gls{kt} \cite{} jet algorithms, which are all \vocab{iterative \gls{reclustering} algorithms}, or \vocab{sequential recombination algorithms}:
+%
+they act on sets of outgoing momenta by recursively combining pairs of particles together until the algorithm reaches a termination condition.
+%
+When the algorithm terminates, it yields a set of jets associated with the input particle collision event.
+
+The jet algorithms we use in this work (and nearly all jet algorithms) depend on a \vocab{jet radius} \Rjet, which determines the angular separation of particles within a jet.
+%
+Roughly, \(\Rjet\) is the radius of a circle in angular coordinates which determines a cone in which the jet constituents must lie;
+%
+if two particles are separated by an angle greater than \(2 \Rjet\), they will (usually) be associated with different jets.
+
+
+\remark{}{
+    The use of narrow jets, with \(\Rjet \ll 1\), justifies the use of the collinear limit, which will ease the calculation of observables which capture the substructure of jets.%
+In particular, the physics of narrow jets can be accurately characterized by using the splitting probabilities we discussed in \Sec{collinear-limit}.
+    %
+    Furthermore, the use of \textit{central} jets, with rapidity \(y \sim 0\), will allow us to trade transverse momenta (which are more easily measured in hadronic collisions) for energy fractions (which appear in the theoretical description of jets through \glspl{splittingfn}).
+}
+
+
+
+\remark{}{
+The default \textit{recombination scheme} for most jet studies is the \glslink{e-scheme}{\vocab{E-scheme}}, in which the momentum of a jet is simply the sum of the momenta of its consituents.
+%
+In \Chap{ewocs}, we also use \glslink{wta-scheme}{\vocab{Winner-Take-All (WTA) Schemes}}, which we define in more detail in \App{jet-definitions}.
+%
+The E scheme is conceptually simpler, while WTA schemes lead to jet properties (such as the direction of the jet momentum) which are more robust to the presence of low-energy pollution in particle collisions.
+%
+For now, however, we will pursue conceptual developments and relatively simple calculations, where concerns regarding specific jet algorithms and recombination schemes will be unimportant.
+}
+
+%We have stated that useful jet definitions must be theoretically well-defined and robust to experimental noise.
+%%
+%For now, we state without proof that anti-\(k_t\) jets produced with a WTA algorithm are well-defined and robust.
+%%
+%We will elaborate further in \Sec{}, where we discuss sources of experimental noise -- such as the effects of experimental detectors -- and theoretical concerns -- such as IRC safety.
+
+
+Now that we have defined jets, we want to find a way to leverage them to determine the fundamental properties of our universe.
+%
+In this thesis, we take the approach of studying the \textit{substructure} of jets.
+%
+The study of jet substructure has contributed to the deep connection between experimental and theoretical particle physics, with notable successes including precise determinations of the strong coupling constant \(\alpha_s\) and the on-going search for the precise value of the top quark mass \(m_t\) \cite{} \sam{non-EEC, then EEC}, whose value dictates the stability of the \glslink{sm}{Standard Model} vacuum and therefore the fate of the universe as we know it.
+
+\begin{definitionbox}{Jet Substructure}{jet-substructure}
+    \vocab{\Gls{jet-substructure}} refers to the internal features of jets, usually captured by correlations among particles within the jet;
+    %
+    jet substructure observables include the angular distribution of radiation within jets, the mass of jets, and even the multiplicity of particles within jets.
+    %
+    Jet substructure variables provide important insights into the picture of jet formation as the fragmentation and subsequent hadronization of high-energy \gls{qcd} partons.
+\end{definitionbox}
+
+Before developing a deeper quantitative understanding of jet substructure, however, let us continue developing our conceptual understanding.
+
+
+
+\remark{}{
+    The algorithmic formulation of \glspl{jet} was created in order to study jets as proxies of the quarks and gluons of QCD;
+    \sam{Cite Sterman-Weinberg, and others?}
+    %
+    in the algorithmic formulation, a jet is a coarse-grained degree of freedom roughly associated with a quark and its associated collinear radiation.
+    %
+    We note briefly, however, a complementary point of view that jets may also be thought of as a collinear enhancement of the \gls{energy-flow} (as in \Eq{energy-flow}) in a scattering event \cite{}.
+    \sam{Cite original Russian papers here?}
+    %
+    The latter idea is more connected to rigorous CFT methods \cite{} and may also be more intuitively connected to experimental results -- the energy flow \(\mathcal{E}(\hat{n})\) is roughly the energy passing through a detector at the angle \(\hat{n}\).
+}
+
+
+
+% ---------------------------------------
+\subsection{Renormalization and Resummation}
+% ---------------------------------------
+\label{sec:renormalization}
+
+\epigraph{``It all works because Avogadro's number is closer to infinity than to 10.''}{Ralph Baierlein}
+
+\epigraph{``Divergent series are the invention of the devil, and it is shameful to base on them any demonstration whatsoever''}{Niels Hendrik Abel, 1828}
+
+\begin{figure}[]
+    \centering
+    % \vstretch{0.3}{% TODO: remove vstretch for renorm illustration
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    % \\
+    % \includegraphics[width=0.8\textwidth]{example-image-b}
+    % \\
+    % \includegraphics[width=0.8\textwidth]{example-image-c}
+    % }
+    \caption[Illustration of renormalization in three contexts (magnetic domains, snowflakes, and jets) which exemplify how zooming into or out of the constituents of a system tends to take the system nearer to a renormalization-group fixed point.]{
+        Illustration of renormalization through zooming out of microscopic systems in three contexts:
+        %
+        (a) iron atoms group to form single and multiple magnetic domains and, eventually, a disordered metallic system;
+        \sam{magnet (atom \(\to\) domain \(\to\) domains \(\to\) disorder}
+        (b) water molecules form intricate ice structures and snowflake and, eventually, a snow bank;
+        %
+        \sam{snow (molecule \(\to\) beginning of branch of snowflake \(\to\) snowflake \(\to\) snowbank}
+        (c) quarks behave freely at infinite energy, but interact weakly and even form a partonic cascade at collider energies, which themselves are formed by a disordered system of lower-energy hadrons.
+        %
+        In each case, we encounter a generic phenomenon:
+        %
+        zooming into or out of the constituents of a system tends to push resulting system closer to a renormalization-group fixed point.
+    }
+    \label{fig:renormalization}
+\end{figure}
+
+
+It is difficult to provide a concrete definition of renormalization without a specific context in mind.
+%
+Nonetheless, without exaggeration, it is one of the most sweeping, illuminating, and breathtakingly beautiful frameworks that have emerged from humanity's study of the universe.
+
+If you zoom away from the constituents of a system (or towards them), you're likely to be at a renormalization fixed point.
+
+\begin{definitionbox}{Renormalization}{renormalization}
+    \vspace{3pt}
+    \glslink{renormalization}{\vocab{Renormalization}} is, roughly, the study of how the properties of a system as one changes scale, or ``zooms in'', in particular, well-defined ways.
+\end{definitionbox}
+
+\remark{}{
+    A more precise definition of renormalization depends on context.
+    %
+    Renormalization is most often used when a physical system is understood or described in terms of collective, non-fundamental degrees of freedom.
+    %
+    Renormalization then furnishes a set of techniques for determining how the properties of these collective degrees of freedom (e.g. couplings in an effective Lagrangian) change, as the size of the collective degrees of freedom themselves are changed.
+    %
+    In this chapter, we instead take the approach of asking how the properties of jets change as we change the size of the \textit{\glspl{subjet}} we use to probe jet substructure.
+    %
+    This approach is more physical, and less formal or universally useful, than the approach to renormalization exposited in, e.g. textbooks on quantum field theory or statistical mechanics.
+    %
+    Nonetheless, we use this approach to recover one of the most stunning successes of renormalization theory in \gls{pqcd} -- the \glslink{dglapeqn}{Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) equation} -- which describes both perturbative and non-perturbative aspects of the structure of partons.
+}
+
+
+One of the first uses of renormalization was in the study of the presence and size of magnetic domains within magnetic materials, such as naturally-occurring iron.
+%
+Renormalization tells us how water molecules form snowflakes, and snowflakes form snow banks.
+%
+It is the theory of how structure and order forms from simplicity, and how disorder and chaos form from structure.
+
+
+We will use the framework of renormalization in a very specific context:
+%
+what happens when we zoom in on jets.
+%
+The inner structure of jets is quite similar to the example of the snowflake -- much more than you might guess.
+%
+As in the case of snow, as we zoom out, simple fundamental building blocks (water molecules/high-energy partons) turn to fractals (snowflakes/the tree of partonic splittings) and then again to simple, but macroscopic objects (the snow bank/jets themselves).
+%
+See \Fig{renormalization}, which explores renormalization in the context of magnetism, snowflakes, and jets, and exemplifies how zooming into a system tends to reveal simple constituents, while zooming out of a system tends to reveal complex structures or disorder.
+
+
+In the later parts of this chapter, we will use some simple arguments to determine how the measured properties of jets change as we improve the angular resolution of the detectors we use to measure jet constituents.
+%
+Concretely, we can study what happens when we look at \textit{subjets} within a jet.
+%
+\begin{definitionbox}{Subjet}{subjet}
+    \glslink{subjet}{\vocab{Subjets}} are jets within jets:
+    %
+    they are the result of applying a jet algorithm/jet definition, with a subjet radius \(\rsub < \Rjet\), to the constituents of an existing jet.
+\end{definitionbox}
+
+
+\remark{}{
+    The use of subjets within jets already hints at a fractal-like, self-similar structure of the partonic cascade.
+    %
+    An extremely concrete description of jets as fractals can be obtained using the technology of the \gls{emd};
+    %
+    see \Sec{} and \Reff{}.
+}
+
+
+
+If \gls{renormalization} is the physics, then \vocab{\gls{resummation}} is the math.
+%
+\sam{I do resummation seemingly without renormalization in \Sec{ll-substructure-diagrams} -- telegraph more in this section and make this more clear in the more precise discussion later}
+%
+Theoretically, we have seen that jets can be imagined as the result of an arbitrary number of partonic splittings -- as few as zero and as many as infinity -- generated off of a parent quark, gluon, or other parton.
+%
+Resummation is generally the study of how to produce finite results from infinite series of this type -- especially when additional regularization is needed to produce a finite result.
+%
+Come to us in our hour of hope, it is exactly the mathematical framework we need.
+
+\begin{definitionbox}{Resummation}{resummation}
+    \glslink{resummation}{\vocab{Resummation}} is any method uused to turn (potentially divergent) series expansion into compact and often analytic mathematical expressions without any summation.
+    %
+    For our purposes, resummation will refer to the process of systematically reintroducing terms that have been previously expanded or neglected in perturbative expansions, in order to account for important contributions at higher orders or at specific scales.
+
+%     \vspace{7pt}
+%     \hrule
+%     \vspace{7pt}
+
+%     In quantum field theory and high-energy physics, \vocab{resummation} is used to improve perturbative expansions by resumming certain classes of diagrams or series of terms that would otherwise be neglected in the standard perturbative approach. Often, this procedure is applied to logarithmic or large-angle divergences that arise in certain physical processes, particularly in scattering and jet formation. Resummation techniques are particularly important in cases where higher-order terms in the perturbative expansion are large or grow with the energy scale, and their inclusion leads to more accurate predictions.
+
+%     The need for resummation arises when conventional perturbation theory fails to converge or produces unreasonably large corrections. By resumming the series, the perturbative expansion becomes more controlled, and the predictions for physical observables, such as cross sections, become more reliable. Some commonly used resummation techniques include the exponentiation of leading logarithmic terms, the use of effective field theories to capture large momentum transfer effects, and the application of the Borel transform to reorganize divergent series.
+\end{definitionbox}
+
+
+Resummation is the technical segue we need to go from the conceptual developments of jets and renormalization to a quantitative study of jet substructure:
+%
+it is \textit{compulsory} to remove the infinite number of infinities -- each infinity emerging from a partonic splitting, as we saw in \Sec{} in our theoretical collision laboratory of \(e^+ e^-\to\,\)hadrons -- and it comes not a moment too soon.
+%
+\sam{mention logarithmic infinities?}
+%
+% Resummation is often used to deal with large logarithmic terms that arise in high-energy processes, such as in soft and collinear radiation. These terms can grow large at high energies or small momentum transfers, leading to large corrections in perturbative calculations. By resumming these logarithmic contributions, one can achieve a more controlled and accurate result. For example, in deep inelastic scattering, the leading-order cross section is often dominated by large logarithms of the form \( \ln(Q^2/m^2) \), where \( Q \) is the energy scale of the process, and \( m \) is the mass of the particle. Resummation techniques exponentiate these large terms to improve the accuracy of predictions.
+%
+% The two main types of divergences that motivate resummation in high-energy physics are collinear and soft divergences. Collinear divergences occur when emitted particles move along the same direction as the incoming particle, leading to enhanced radiation. Soft divergences, on the other hand, arise when particles emit soft (low-energy) radiation. Both types of divergences are often handled using resummation techniques, as they can contribute significantly to the final result in high-energy collisions, such as in jet production or hadronic interactions. In these cases, resummation provides a systematic way to deal with large-angle and low-energy radiation contributions.
+
+Soon, we show that resummation of the infinity of partonic splittings, combined with the principle of \vocab{angular ordering} that we describe shortly, reduces the seemingly massive complexity of the tree of partonic emissions into compact formulae.
+%
+In fact, we characterize the fractal-like, psychadelic inner life of jets with simple exponential functions!
+%
+We say that the associated resummed quantities \vocab{exponentiate}.
+%
+A simple application of renormalization will then reveal what is called the \vocab{DGLAP Equation} -- a simple, physically intuitive result of scaling which reveals the deep heart of jet physics.
+
+
+\remark{}{
+    In many cases, resummation is closely linked to the use of effective field theories, which we do not pursue further in this thesis.
+    %
+    In the context of jet production, the \gls{scet} is an exceptionally successful and powerful tool for the resummation of large logarithms that arise from collinear and soft emissions.
+    %
+    SCET allows for the separation of the hard, collinear, and soft degrees of freedom of QCD, and resummation techniques can be applied to effectively capture the physics of the soft and collinear regions while retaining the predictive power of perturbative QCD.
+    %
+    This approach leads to more accurate predictions for perturbative jet cross sections and even non-perturbative effects at high energies.
+}
+
+
+\remark{}{
+    The mathematical theory of resummation goes far beyond the paltry introduction of this chapter.
+    %
+    Borel resummation \cite{} is particularly important for understanding the full formal structure of quantum field theory (appearing, for example, in the theory of renormalons and the non-perturbative structure).
+    %
+    Abel resummation, named after the mathematician whose quote appears at the beginning of this section, is another common resummation method for divergent series in mathematics.
+    %
+    For a more mathematical and complete presentation, I can recommend the classic mathematical textbook \sam{\underline{add}} by Hardy \cite{} and the classic physics articles of \Reffs{}{};
+    %
+    unfortunately, a full list of the many wonderful resources for resummation beyond these, is far beyond my scope or ability \cite{}.
+    %
+    \sam{complete}
+}
+% Hardy, Renormalons, Alien Calculus
+% https://public.websites.umich.edu/~jpboyd/boydactaapplicreview.pdf
+% https://arxiv.org/pdf/hep-ph/0510142
+
+
+
+
+\sam{Want discussion of LL, NLL, etc.}
+
+\sam{Then discussion of MLL}
+
+\begin{definitionbox}{N\(^k\)LL Accuracy}{nkll}
+    \glslink{accuracy}{N\(^k\)LL}
+
+    The main focus of this thesis will be LL results in jet substructure.
+\end{definitionbox}
+
+
+% ==============================================
+\section{The Partonic Cascade: A Universal Model of Jet Formation}
+% ==============================================
+\label{sec:partonshower}
+
+
+Finally, we are ready to describe the properties of the entire tree of partonic splittings.
+%
+As promised, we will address this partonic cascade by sewing together the results of consecutive partonic splittings, leading us to several deep and quite simple conclusions about the fractal nature of jets.
+%
+The simple description we provide in this chapter strictly holds only to LL accuracy, but nonetheless facilitates a quantitative study of jet substructure.
+%
+First, however, we will need one more fixed-order result that dramatically simplifies the all-orders physics of jet formation:
+%
+\underline{the principle of angular ordering}.
+
+
+
+% ---------------------------------------
+\subsection{Everything On-Shell: Strong Ordering of Successive Splittings}
+% ---------------------------------------
+\label{sec:angular-ordering}
+
+\epigraph{The picture then is one where matrix elements are likely to provide the better description of the main character of events, i.e. the topology of well separated jets, while parton showers should be better at describing the internal structure of these jets.}{J. Andr\'e and T. Sj\"ostrand, \textit{A matching of matrix elements and parton showers} \cite{}}
+    % https://arxiv.org/pdf/hep-ph/9708390
+
+% https://www.hep.phy.cam.ac.uk/theory/webber/QCDlect3.pdf#page=31
+% https://indico.cern.ch/event/492098/contributions/1169736/attachments/1356309/2050123/QCD2.pdf#page=21
+
+% IRC Safety figs:
+% https://indico.cern.ch/event/492098/contributions/1169736/attachments/1356309/2050123/QCD2.pdf#page=47
+
+
+% Nice introduction in original paper!!!!
+% https://www.sciencedirect.com/science/article/pii/0550321389905750
+% Combine with QCD and Collider Physics (more opaque)
+% Need to get eikonal factor... Schwartz?
+
+In the previous chapter, we saw the splitting function emerge in the collinear limit as a universal tool for describing the splitting of an off-shell internal line of a Feynman diagram into a pair of on-shell final state particles.
+%
+Ideally, we would like to use these same ingredients -- the off-shell to on-shell splitting functions -- as building blocks to construct the entire parton cascade.
+%
+However, when we want to imagine a jet as successive splittings, do not have the luxury of considering only off-shell-to-on-shell splittings:
+%
+the successive splittings of the jet include splittings whose \textit{children are also off-shell}.
+
+In this section, we overcome this apparent difficulty to produce a consistent and elegant characterization of the partonic cascade using only the simple (off-shell-to-on-shell) splitting functions of the previous chapter.
+%
+In particular, we show that \textit{angular ordering} -- a quantum interference phenomenon in perturbative QCD which dictates that final-state on-shell splittings are significantly more narrow in angle than the splittings of internal lines -- allows us to treat the more complicated splittings of internal lines as if their children are on-shell.
+%
+We then show that angular ordering itself is consistent with the simple description of the partonic cascade in terms of on-shell splittings.
+
+\textit{An elegant and consistent description of the partonic cascade can be produced in terms of the simple splitting functions of the previous chapter and the prescription of angular ordering.}
+
+
+\sam{Nearly on shell, drop the extra factors}
+
+\begin{itemize}
+    \item
+Strong energy ordering of the first emission by the eikonal limit (soft theorems)
+
+    \item
+Strong angular ordering of the first emission by coherence
+
+    \item
+Therefore, the next emission is nearly on-shell;
+%
+any corrections are of the form of powers of \(\theta_0/\theta_1\), which are miniscule by angular ordering
+
+    \item
+Drop these terms. Recursion and strong ordering
+\end{itemize}
+
+
+
+\cite{osti_4367332} % Chudakov
+
+\cite{Mueller:1981ex} % First, fixed-order and conjectured logarithmically
+
+\cite{Dokshitzer:1982fh,Webber:1983if,Marchesini:1983bm} % Elaboration and implementation
+
+\cite{Ciafaloni:1984zr} % Fadeev-Kulish
+
+\cite{Ellis:1996mzs} % QCD and Collider Physics
+
+\sam{Angular-ordering can be deduced, at least approximately, from the fixed-order structure of pQCD amplitudes.}
+%
+Before justifying this, however, let us
+\begin{definitionbox}{Angular Ordering}{angular-ordering}
+    \glslink{angular-ordering}{\vocab{Angular ordering}} is a principle of pQCD which, in the context of the partonic cascade, states that each virtual parton splits into two children, and subsequent splittings occur at exponentially smaller angles, as presented schematically in \Fig{shower:cartoon:fragmentation} and its caption.
+    %
+    \sam{emissions get narrower and narrower as one moves down the tree of partonic splittings -- i.e. as one gets further and further from the original parent parton}.
+\end{definitionbox}
+
+\begin{figure}[]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{
+        \sam{Cartoon depicting angular ordering}
+    }
+    \label{fig:angular-ordering}
+\end{figure}
+
+
+
+\remark{}{
+    The definition above is the functional one for our purpose.
+    %
+    However, there is a more intuitive explanation of angular ordering, as we will see.
+    %
+    Roughly, angular ordering states that, that \sam{in order to probe more and more deeply into the structure of the jet, one needs radiation of higher and higher energy moving transversely to the jet}.
+    %
+    In this sense, it seems closely related to the principles we have already discussed:
+    %
+    probing the structure of a geode requires hitting it hard;
+    %
+    probing the structure of a proton requires hitting it \textit{very} hard;
+    %
+    the branching history of the partonic cascade can only be resolved by sufficiently high energy partons.
+    %
+    This phenomenon is called \vocab{coherent parton branching}~\cite{Collins:2011zzd}.
+}
+
+
+
+
+\begin{itemize}
+    \item
+To deduce the principle of angular ordering, we will look at the amplitude \sam{obtained by... sewing together splitting functions? otherwise? Steal derivation}
+
+    \item
+We see that the azimuthal-average of the amplitude vanishes if \(\theta_2 > \theta_1\), so that the second branch of the tree of splittings occurs at a more narrow angle than the first.
+%
+This principle holds as long as we do not care about detailed azimuthal information.
+%
+\sam{Will this be relevant for me?}
+
+    \item
+\sam{A bit more guidance, then an example to link the intuition of high transverse energy needed to resolve the interior}
+\end{itemize}
+
+\remark{}{
+    \sam{Pythia manual mentions drawbacks of simple showers}
+    % https://arxiv.org/pdf/2203.11601
+    % citing
+    % https://arxiv.org/pdf/1805.09327
+    % https://arxiv.org/pdf/2011.10054
+}
+
+
+\begin{example}
+    \sam{Chudakov effect in QED}
+\end{example}
+
+\begin{exercise}
+    \sam{Angular ordering in QCD}
+\end{exercise}
+
+
+
+
+
+\begin{example}
+    \sam{Discussion of secondary/internal propagator, and how it is nearly on-shell up to factors which vanish by angular ordering}
+\end{example}
+
+
+
+
+% ---------------------------------------
+\subsection{Re-Clustering Bridges Experiment and Theory}
+% ---------------------------------------
+\epigraph{
+    ``He [sic] who seeks for methods without having a definite problem in mind seeks in the most part in vain.''
+}{David Hilbert}
+
+
+\label{sec:reclustering}
+
+Jets are hugely successful, experimentally-addressable proxies for high-energy partons.
+%
+Now we have a more complicated structure that we want to describe:
+%
+the tree of splittings created by the partonic cascade.
+%
+The partonic cascade begins with an initiating parton;
+%
+its branches are formed recursively via the angular-ordered splittings discussed in \Sec{angular-ordering}, until a set of final state particles are obtained.
+
+In order to experimentally reconstruct inner structure of a jet commensurate with the partonic cascade, we must work backwards.
+%
+We begin with a set of final state particles, or branches, which we assume by \gls{lphd} are commensurate with the final state partons generated by a parton shower.
+%
+We then recursively \textit{merge} branches until obtaining a single branch associated with the entire jet, and thus the initiating parton -- a procedure called \vocab{iterative \gls{reclustering}}.
+
+
+
+Furthermore, the \gls{reclustering} procedure must be anti-angular-ordered:
+%
+since angular ordering dictates that wider emissions occur first during jet formation, we must merge \textit{narrower} branches first when working backwards.
+%
+At the end of the angular-ordered \gls{reclustering} procedure, we will be left with a jet together with a set of angular-ordered splittings which terminate with the original final state particles of the jet.
+
+
+To re-iterate, \textit{angular-ordered, iterative \gls{reclustering}} can be achieved by the following algorithm:
+\begin{enumerate}
+    \item
+    Begin with a jet, whose final state particles we will refer to as \emph{branches}.
+
+    \item
+    Loop over pairs of branches in the jet to find the minimum pair-wise angle;
+
+    \item
+    Take the two branches whose pair-wise angle is smallest and \emph{merge} them into a new branch (also recording its children --the branches which were merged for the creation of the new branch);
+
+    \item
+    Repat steps 2. and 3. to continue merging branches of the jet until a single branch remains.
+\end{enumerate}
+%
+This algorithm for angular-ordered, iterative \gls{reclustering} is visualized in \Fig{reclustering}.
+%
+We will often call the result of angular-ordered iterative \gls{reclustering} a \vocab{jet tree}, meaning a binary tree with angular-ordered branches whose final states are the hadronic final states of a jet.
+
+\begin{figure}[]
+    \centering
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        \label{fig:reclustering}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        \label{fig:declustering}
+    }
+    \caption{
+        \sam{Cartoon depicting reclustering and declustering}
+    }
+    \label{fig:reclustering}
+\end{figure}
+
+
+
+
+
+Invoking the principle of \gls{lphd}, the angular-ordered binary tree produced by \textit{iteratively \gls{reclustering} a set of final state hadrons provides a proxy for the history of partonic splittings of a parton initiating a jet.}
+%
+Perturbative theoretical computations can be directly compared to experimentally-addressable observables which leverage \gls{reclustering}.
+%
+In particular, since each partonic emission in a jet is accompanied by a factor of the strong coupling \(\alpha_s\) in calculations of differential cross sections, observables computed on angular-ordered jet trees are particularly amenable to resummed perturbative analyses.
+%
+Re-clustering is therefore an elegant and convenient tool for bridging experimental and theoretical jet physics and elucidating the secrets of jet substructure.
+
+\remark{}{
+    The standard jet algorithm for angular-ordered \gls{reclustering} is the \gls{ca} algorithm.
+    %
+    \sam{Finish discussion}
+}
+
+
+\begin{definitionbox}{De-Clustering}{de-clustering}
+    \vocab{De-clustering} refers to the procedure, starting with a binary-\glslink{reclustering}{re-clustered} jet tree (almost always \glslink{angular-ordering}{angular-ordered}), of splitting the base of full jet tree into two sub-jets, then recursively splitting each sub-jet into two subjets -- as dictated by the reclustering -- continuing until only the final-state particles remain.
+
+    Any algorithm which leverages \gls{declustering} is called a \vocab{de-clustering algorithm}.
+\end{definitionbox}
+
+
+
+\remark{}{
+    In the concrete applications of \gls{declustering} algorithms in this work -- the \gls{soft-drop} and \gls{rsf} algorithms investigated in the next chapter -- we consider jets are first clustered using the anti-\(k_t\) algorithm~\cite{Cacciari:2008gp} and then \textit{re-clustered} using the pair-wise angular-ordered Cambridge-Aachen (C/A) clustering algorithm~\cite{Dokshitzer:1997in}.
+    %
+    C/A recursively clusters the jet constituents that are closest in angle, so that as we \glslink{declustering}{de-cluster} each branch of the C/A tree we recover narrower and narrower emissions.
+    %
+    Since the branching structure of an angular-ordered tree of emissions is comparable to the history of emissions within the parton model, a phenomenon known as coherent parton branching~\cite{Collins:2011zzd}, angular-ordered grooming procedures have a closer connection to the physics of perturbative QCD.
+    %
+    As discussed in \Sec{}, starting with the anti-\(k_t\) algorithm both mitigates fluctuations due to contamination in jet areas \cite{Cacciari:2008gp} and reduces the effects of clustering logarithms in analytic calculations \cite{Larkoski:2014wba}.
+}
+
+
+\remark{}{
+    \sam{WTA/massless reclustered subjets seem similar to the idea that everything is on-shell in the partonic cascade}
+}
+
+
+% ---------------------------------------
+\subsection{Substructure Diagrams and Additive Observables}
+% ---------------------------------------
+\label{sec:ll-substructure-diagrams}
+
+\sam{Does this need re-framing?}
+
+We will begin by discussing the resummation of particularly simple observables that nonetheless leverage the recursive structure of the partonic cascade.
+%
+In particular, we will discuss \emph{\glspl{additive-observable}}:%
+\footnote{
+    Additivity is a simple, sufficient condition which guarantees the validity of the resummation of \glspl{substructure-diagram} discussed here.
+    %
+    However, the requirement of additivity can be weakened without changing the conclusions of this section;
+    %
+    a weaker but still sufficient condition, named \textit{recursive infra-red and collinear (rIRC) safety}, was introduced by \Reff{Banfi:2004yd}.
+    %
+    The definition of rIRC safety is given in Eqs.\ (3.4) and (3.5) of \Reff{Banfi:2004yd}, and an example of additivity is furnished by the thrust observable, discussed in Section 3.2 of \Reff{Banfi:2004yd}.
+}
+
+\begin{definitionbox}{Additive Observable}{additive-observable}
+    For the purposes of this thesis, an \vocab{\gls{additive-observable}} is a collider observable which can be written as a sum over positive, monotonic contributions from final state particles, such that the contribution of any final state particle vanishes if the energy fraction \(z_i\) vanishes or if the angle \(\theta_i\) relative to the jet vanishes:
+    \begin{align}
+        X(p_1,\,\cdots,\,p_n)
+        &=
+        \sum_{i=1}^n X(p_i)
+        =
+        \sum_{i=1}^n X(z_i, \theta_i)
+        \,,
+    \end{align}
+    with \(X(z, \theta)\) monotonic in both \(z\) and \(\theta\), and
+    \begin{align}
+        \lim_{z \to 0} X(z, \theta)
+        =
+        \lim_{\theta \to 0} X(z, \theta)
+        =
+        0
+        \,,
+    \end{align}
+    and we have again abused notation to denote that the value of \(X\) evaluated on a single particle depends on the energy fraction and angle of that particle.
+\end{definitionbox}
+
+    Angularity, \(e_\varsigma = \sum_i z_i \theta_i^\varsigma\), is an additive observable.
+    %
+    Observables such as the jet mass and jet GECFs can be approximated as additive observables at \glslink{accuracy}{LL} because of the presence of soft and collinear singularities.
+    %
+    In particular, the singular nature of the splitting probabilities of \Eq{} \sam{complete} in the limits \(z,\,\theta \to 0\) indicates that the phase space of partonic emissions is dominated by emissions with small energy fraction \(z\) and angle \(\theta\), so that \(z(1-z) \approx z\).%
+    %
+    The problems posed by these singularities are addressed systematically by resummation, and we exposit a simple resummation method in this section.
+
+
+    Additive or approximately additive observables can therefore be approximated as sums of contributions from \emph{primary branches within the jet tree}.
+    %
+    \sam{Define primary branches earlier}
+    %
+    For example, the angularity \(e_\varsigma\) takes the approximate form
+    \begin{align}
+        e_\varsigma
+        =
+        \sum_{\text{particles } i}
+            z_i \theta_i^\varsigma
+        \quad
+        \approx
+        \sum_{\substack{\text{primary}\\\text{branches } i}}
+            z_i \theta_i^\varsigma
+        \,,
+    \end{align}
+    due to the soft and collinear enhancement of the phase space of these emissions.
+    %
+    \sam{need more justification}
+    %
+    It is for this reason that additive observables leverage and can illuminate the validity of the partonic cascade of pQCD.
+
+\remark{}{
+    By focusing on the singular pieces of the splitting function in \Eq{dglap_approx}, we implicitly focus on the probability that a \textit{gluon} is emitted from the mother parton.
+    %
+    For example, a quark may emit a gluon, so that the resulting final state consists of both a gluon and a quark, while a gluon may split into two gluons.
+    %
+    In the language of splitting functions, a gluon may in principle split into two quarks;
+    %
+    however, the associated splitting function does not have any singularities as \(z \to 0\) and is therefore sub-leading to the singular behavior reflected in \Eq{dglap_approx}.
+}
+
+
+\begin{proposition}{LL Distributions for Additive Observables}{ll-additive}
+    We may describe the \glslink{accuracy}{LL} cumulative probability distribution \(\Sigma^{\rm(LL)}_X(x)\) of an additive observable \(X\) as the probability that \textit{no emission} contributes a value greater than \(x\) to \(X\), up to sub-leading behavior in \(\alpha_s\) and logarithms or powers of the observable.
+    \begin{align}
+        \label{eq:ll-additive}
+        \Sigma^{\text{(LL)}}_X(x) \approx \mathbb{P}(X_i < x \text{ for all } i)
+        \,.
+    \end{align}
+
+    It is the right-hand side of the equation above that we will be able to address simply with \glspl{substructure-diagram}.
+\end{proposition}
+
+
+\begin{proof}
+
+First, we recall that the \emph{\gls{vetoreg}} for a collider observable \(X\) and a value \(x\) is a region of the \((z, \theta)\) phase space for which \(X(z,\theta) > x\).
+%
+Since we have defined additive observables to be the sum of \textit{positive} contributions, this means that if any partonic emission lies in the veto region, then \(X > x\).
+%
+Therefore, when calculating the cumulative probability distribution for the observable \(X\), \(\Sigma_X(x)\), additive observables cannot lie in the veto region.
+
+The calculation of distributions for additive observable is dramatically simplified at \glslink{accuracy}{LL}, where the assumption of angular ordering holds, by the soft and collinear singularities of pQCD.
+%
+The strong angular ordering of \Sec{angular-ordering} implies that the primary branches of a jet \sam{not defined} satisfy \(\theta_1 \gg \theta_2 \gg \cdots \gg \theta_n\), so that additive observables \(X\) tend to be dominated by the contribution of a single emission -- generally the widest emission -- whose contribution to \(X\) is exponentially higher than the values contributed by other branches of the partonic cascade.
+
+In more mathematical language, let us consider an additive observable with contributions \(X(z_i, \theta_i) = X_i > 0\) from emissions \(i\).
+%
+At \glslink{accuracy}{LL}, we have asserted that there is a dominant contribution \(X = \max_i x_i\) such that \(X = \sum_i X_i \approx \max_i X_i\).
+%
+We may therefore approximate the cumulative probability distribution for \(X\), \(\Sigma_X(x) := \mathbb{P}(X = \sum_i X_i < x)\), by the probability that the value of \(X_i\) for any emission is less than the dominant value, which in turn is less than \(x\):%
+\footnote{
+    More generally, we can write \textit{without approximation} that \(\Theta(x - \sum_i X_i) \leq \prod_i \Theta(x - X_i)\), where equality emerges when we have at most a single non-zero \(x_j = X\).
+    %
+    Using that the cumulative distribution for \(X\) is the expectation value of the left-hand side, we may take the expectation value of both sides to obtain \(\Sigma_X(x) \leq \mathbb{P}(X_i < x \text{ for all } i)\), which provides a helpful upper bound for the full cumulative distribution of an additive observable.
+}
+\begin{align}
+    \Sigma_X(x) \approx \mathbb{P}(X_i < x \text{ for all } i)
+    \,.
+\end{align}
+%
+This approximation holds up to corrections due to multiple emissions, which we address in \Prob{multiple-emissions}, that are sub-leading in \(\alpha_s\) and logarithms of the observable.
+%
+We should also note that typically, calculations applying the \glslink{accuracy}{LL} approximation will also drop terms that are suppressed by powers of \(X\) since these are sub-dominant to the leading logarithmic terms in observable distributions.
+\end{proof}
+
+
+\begin{example}
+As an example, the approximate mass of a jet due to a single emission is given by \(m^2 = Q^2 z\theta^2\), where \(Q\) is the total energy of the jet.
+%
+Therefore, mass is an approximately additive observable, and the jet mass distribution is given at LL by
+%
+\begin{equation}
+\label{eq:LL_mass}
+\begin{aligned}
+    \Sigma^{\rm(LL)}_{m^2}(m^2)
+    &=
+    \sum_{n = 0}^{\infty}\frac{1}{n!}
+    \left(
+    \frac{\alpha_s}{\pi}
+    \int_0^R \frac{\dd\theta}{\theta}
+    \int_0^{\frac{1}{2}} \dd z\,[\bar{p}_i(z)]_+^{[1/2]}
+    \Theta\left(
+    \frac{m^2}{Q^2} - z\theta^2
+    \right)
+    \right)^n
+    \\
+    &=
+    \exp\left[
+    -\frac{\alpha_s}{\pi}
+    \int_0^R \frac{\dd\theta}{\theta}
+    \int_0^{\frac{1}{2}} \dd z\,\bar{p}_i(z)
+    \Theta\left(
+    z \theta^2 - \frac{m^2}{Q^2}
+    \right)
+    \right]
+    .
+\end{aligned}
+\end{equation}
+
+\sam{Have I explained things enough? \(n!\)?}
+
+
+Let us pursue this derivation graphically by using \glspl{substructure-diagram}.
+%
+By following the integral expressions of \Eq{LL_mass}, the LL cumulative distribution for the mass-squared of a jet is
+\begin{equation}
+\begin{aligned}
+    \Sigma^{\rm(LL)}_{m^2}(m^2)
+    &=
+    \sum_{n = 0}^{\infty}\frac{1}{n!}
+    \left(
+    \begin{tikzpicture}[
+    baseline={([yshift=-.8ex]current bounding box.center)},
+    vertex/.style={anchor=base,
+    circle,fill=black!25,minimum size=18pt,inner sep=2pt},
+    scale=.3]
+    \begin{axis}
+    [xmin=0, xmax=5,
+    ymin=0, ymax=5,
+    axis line style = very thick,
+    axis y line*=left,
+    axis x line*=bottom,
+    axis lines = middle,
+    ticks=none]
+    	\addplot[name path=f, domain=0:5,
+        style=very thick, blue]
+        {4.5-1.5*x};
+        \path[name path=axis]
+        (axis cs:0,5) -- (axis cs:5,5);
+        \addplot [
+            thick,
+            color=blue,
+            fill=blue,
+            fill opacity=0.3
+        ]
+        fill between[
+            of=f and axis
+        ];
+        \node [rotate=-55] at (axis cs:  3.2,  2.8)
+        {${\scriptstyle \frac{m^2}{Q^2} > z\theta^2}$};
+    \end{axis}
+    \end{tikzpicture}
+    \right)^n
+    =
+    \exp\left[
+    ~-~
+    \begin{tikzpicture}[
+    baseline={([yshift=-.8ex]current bounding box.center)},
+    vertex/.style={anchor=base,
+    circle,fill=black!25,minimum size=18pt,inner sep=2pt},
+    scale=.3]
+    \begin{axis}
+    [xmin=0, xmax=5,
+    ymin=0, ymax=5,
+    axis line style = very thick,
+    axis y line*=left,
+    axis x line*=bottom,
+    axis lines = middle,
+    ticks=none]
+    	\addplot[name path=f, domain=0:5,
+        style=very thick, blue]
+        {4.5-1.5*x};
+        \path[name path=axis]
+        (axis cs:0,0) -- (axis cs:1,0);
+        \addplot [
+            thick,
+            color=blue,
+            fill=blue,
+            fill opacity=0.3
+        ]
+        fill between[
+            of=f and axis
+        ];
+        \node [rotate=-50] at (axis cs:  1.25,  1.25)
+        {${\scriptstyle \frac{m^2}{Q^2} < z\theta^2}$};
+    \end{axis}
+    \end{tikzpicture}
+    ~~
+    \right]
+    %\approx
+    %\exp\left[~-\frac{C_R\alpha_s}{2 %\pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
+    ,
+\end{aligned}
+\end{equation}
+where the first equality gives the probability that no emission in the jet is associated with an approximate mass-squared \(z\theta^2\) larger than \(m^2\) -- the argument of the cumulative distribution -- and the second equality follows from using the \gls{plus-fn} identity of \Eq{plus-fn-diagram-identities}.
+%
+In the final equality, we see that the LL cumulative distribution is one over the exponent of the \gls{radiator} (the area of the \gls{vetoreg}).
+
+Plugging in the important piece for the splitting function at leading logarithmic accuracy, \(p(z) \sim 2 C_R / z\) for a jet formed by particles with \(SU(3)\) color representation \(R\), and putting back in factors of \(Q\), we find
+\begin{align}
+    \Sigma^{\rm(LL)}_{m^2}(m^2)
+    =
+    \exp\left[~-\frac{C_R\alpha_{\rm S}}{2 \pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
+    \,,
+\end{align}
+%
+\sam{mention radiator again}
+%
+with an associated probability distribution
+\begin{align}
+    \rho^{\rm(LL)}_{m^2}(m^2)
+    =
+    \frac{C_R \alpha_s}{\pi}
+    \frac{1}{m^2}
+    \log\le(\frac{Q^2}{m^2}\ri)
+    \,
+    \exp\left[~-\frac{C_R\alpha_{\rm S}}{2 \pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
+    \,.
+\end{align}
+\end{example}
+
+\begin{exercise}
+    When expanded to \(\mathcal{O}(\alpha_s)\), there is a small discrepancy between the LL result for the cumulative mass-squared distribution above and the NLO result presented in \Sec{fixed-order-substructure}.
+
+    What is the source of this discrepancy?
+    %
+    Argue that it has no effect away from \(m^2 = 0\), and gives a contribution at \(m^2 = 0\) is associated with the probability of no splittings occurring in the jet.
+\end{exercise}
+
+
+\begin{exercise}
+    The slopes of the diagonal line in the substructure diagram in the calculation of the jet mass distribution are \(-2\) since, for constant \(m^2\), \(z \sim 1/\theta^2\) and \(\log(1/z) = \text{const} - 2 \log(1/\theta)\).
+    %
+    What are the slopes of the diagonal lines involved in the computation of jet \glspl{angularity}?
+
+    Represent the LL distribution of jet angularities with a \gls{substructure-diagram}, and show that it takes the approximate analytic form
+    \begin{align}
+        \Sigma^{(\text{LL})}(e_\varsigma)
+        \approx
+        \exp\le[
+            -\frac{C_R\alpha_{\rm S}}{\varsigma \pi}\log^2(e_\varsigma)
+        \ri]
+        \,.
+    \end{align}
+\end{exercise}
+
+We can improve the accuracy of the results obtained above with our \glspl{substructure-diagram} with two simple tricks:
+%
+adding running coupling effects, and adding effects from multiple emissions.
+%
+Calculations accounting for effects from the running of the QCD coupling and multiple emissions within a jet are called \glslink{accuracy}{modified leading logarithmic (MLL)} calculations.
+%
+MLL calculations of additive jet substructure observables capture nearly all of the effects of a NLL calculation.
+
+Missing, however, are \vocab{non-global logarithms} -- contributions to jet substructure from partonic radiation in which a branch of the partonic tree of emissions occurs at a wider angle than would be captured by the jet, but one of whose children re-enters the jet cone.\cite{}
+%
+See \Fig{}.
+
+Luckily, because the radiation which contributes to non-global logarithms arises from radiation which was at first outside of the jet, it is associated with \textit{wide angles}.
+%
+As discussed in \sam{??} \Sec{}, wide angle radiation tends to be low-energy.
+
+Therefore, if we can find a way to exclude low-energy radiation from the interior of a jet, there is some hope that we may avoid non-global logarithms altogether, such that running coupling effects together with multiple emissions are sufficient to provide NLL results!
+%
+Indeed, this occurs for \sam{Soft Drop with \(\beta_\text{sd}= 0\)}, a technique for removing soft radiation from a jet which we explore in the next chapter.
+
+
+\remark{}{
+    To include running coupling effects and work towards an MLL description of additive jet observables, we notice that the splittings of perturbative QCD should be governed by an \textit{effective coupling} \(\alpha_s(\kappa)\), where \(\kappa = \kappa(z,\theta)\) is a scale associated with the splitting.
+    %
+    The result would involve integrals containing terms of the form \(\int \dd z \dd \theta \alpha_s(\kappa) \, p(z) / \theta\).
+    %
+    The precise value we should choose for \(\kappa\) in order to account for higher-order effects is not obvious, but \Reff{} showed that \(\kappa\) should be given by the transverse momentum of the splitting in order to minimize the effects of large logarithms in perturbative calculations:
+    \begin{align}
+        \kappa \approx Q z(1-z)\sin\theta \approx Q z \theta
+        \,.
+    \end{align}
+    %
+    In particular, QCD correlations and cross sections that use \(\alpha_s\) evaluated at a scale \(\kappa\) generically include logarithms of the form \(\log(p_{\perp} / \kappa)\).
+    %
+    To make these logarithms small, one may choose \(\kappa \sim p_\perp\), which then requires that we evaluate the strong coupling at the scale \(p_\perp\) as well.
+    %
+    This prescription provides a straightforward procedure for understanding higher-order effects with \glspl{substructure-diagram}, and can be extended to higher perturbative accuracy with the Catani-Marchesini-Webber (CMW) prescription \cite{Catani:1990rr}, which achieves two-loop accuracy for the running of \(\alpha_s\), and to qualitatively include non-perturbative effects by \textit{freezing} the coupling, as discussed in \App{soft-distortions}.
+    %
+    As a reminder, the one-loop running of \(\alpha_s\) is captured by
+    \begin{align}
+        \alpha^{\rm 1-loop}_s(\kappa)
+        =
+        \frac{\alpha_s(Q)}{1 + 2\alpha_s(Q) \beta_0 \log(\frac{\kappa}{Q})}
+        ,
+    \end{align}
+    where \(\beta_0 = (\frac{11}{3}C_A - \frac{4}{3} T_f n_f)/4\pi\) is a coefficient appearing in the QCD beta function: \(\beta(\alpha_s) = -2\beta_0 \alpha_s^2 + \mathcal{O}(\alpha_s^3)\).
+}
+
+
+To include more detail about the effects of multiple emissions, and achieve a full MLL description of additive jet obervables, we will need to use the full expression \(X = \sum_i X_i\) rather than the LL approximation \(X \approx \max_i X_i\) used above.
+%
+Concretely, this means that the effects of multiple emissions for an additive observable can be computed via the infinite-product integral
+\begin{align}
+    \label{eq:multiple-emissions}
+    \Sigma_X(x)
+    &=
+    \sum_{n = 0}^{\infty}
+    \frac{1}{n!}
+    \prod_{k = 1}^n
+    \left(
+        \int_0^R \frac{\dd\theta_k}{\theta_k}
+        \int_0^{\frac{1}{2}} \dd z_k
+        \,\,
+        \frac{\alpha_s}{\pi}
+        \,\,
+        [\bar{p}_i(z_k)]_+^{[1/2]}
+    \right)^n
+    \Theta\left(
+        \frac{m^2}{Q^2} - \sum_k X(z_k, \theta_k)
+    \right)
+    \,.
+\end{align}
+%
+At face value, this seems much more difficult to evaluate than the LL integral for the radiator of \(X\).
+%
+It is not at all obvious whether the contributions of multiple emissions exposed by \Eq{multiple-emissions} will even lead to an exponential form for the cumulative distribution of \(X\) \sam{unify notation for observable}
+--
+indeed, \textit{they don't}.
+
+It may seem miraculous, then, that a detailed analysis of \Eq{} involving Laplace transforms shows that the effects of multiple emissions can \textit{still} be captured only with the radiator for \(X\) -- the integral over the veto region which appears in the \glslink{accuracy}{LL} results above.
+%
+In particular, the most important effects due to a more detailed analysis of multiple emission contributions to additive observables can be captured by the cumulative distribution
+\begin{align}
+    \Sigma_X(x)
+    &=
+    \frac{\exp\le(-R_X(x) - \gamma_E R'_X(x)\ri)}{\Gamma\le(1 + R'_X(x)\ri)}
+    \,,
+\end{align}
+where \(\gamma_E=0.577\dots\) is the Euler-Mascheroni constant, \(\Gamma\) is the familiar Euler Gamma function, and \(R'_X(x) := -\dd R_X(x) / \dd \log(x)\).
+%
+The proof of this formula is the business of \Prob{multiple-emissions}.
+%
+\sam{Check}
+
+
+
+\begin{exercise}
+    Argue that the total energy fraction of all particles in a jet with energy \(z < \zcut\) and \(\theta > \thetacrit\),
+    \begin{align}
+        \zpre
+        \quad
+        :=
+        \sum_{\substack{
+                \text{particles }i\text{ with}
+                \\
+                \theta_i > \thetacrit,
+                \,\,\,
+                z_i < \zcut
+        }} z_i
+    \end{align}
+    is an additive collider observable, and that its cumulative distribution at LL is
+    %
+    % it is the sum of monotonic, positive contributions of different emissions which vanishes when either \(z_i\) vanishes or \(\theta_i\) vanishes.
+    %
+    % Therefore, it can be captured with \glspl{substructure-diagram}, and its cumulative distribution at LL is
+    \begin{equation}
+    \begin{aligned}
+        % \rho(z_{\rm pre}, \thetacrit)
+        % &=
+        % \left(\frac{2 C_R \alpha_{\rm S}}{\pi}\right)^2
+        % \frac{1}{\theta}
+        % \log(\thetacrit)
+        % [p(z_{\rm pre})]_+
+        % \int_{z > z_{\rm pre}} z~\dd\log(z) [p(z)]_+
+        % \\
+        % &\ \ \ \ \ \ \ \ \ \ \
+        % \times
+        \Sigma(\zpre | \thetacrit)
+        &=
+        \exp\left[
+        ~-~
+        \begin{tikzpicture}
+        [baseline={([yshift=-.8ex]current bounding box.center)},
+        vertex/.style={anchor=base,
+        circle,fill=black!25,minimum size=18pt,inner sep=2pt},
+        scale=.3]
+        \begin{axis}
+        [xmin=0, xmax=5,
+        ymin=0, ymax=5,
+        axis line style = very thick,
+        axis y line*=left,
+        axis x line*=bottom,
+        axis lines = middle,
+        ticks=none]
+            \addplot[name path=f,domain=0:2.3,
+            style=very thick,blue]
+            {2.5};
+            \addplot[very thick, samples=50, smooth,domain=0:6,blue, name path=three] coordinates {(2.3,-1)(2.3,2.5)};
+            \path[name path=axis]
+            (axis cs:0,0) -- (axis cs:2.3,0);
+
+            \addplot[name path=pre,domain=0:2.3,
+                    style=very thick,magenta]
+                    {2.6};
+            \addplot[name path=pre2,domain=0:2.3,
+                    style=very thick,magenta]
+                    {4.};
+            \addplot[very thick, samples=50, smooth,domain=0:6,magenta, name path=three] coordinates {(2.3,2.525)(2.3,4)};
+            \path[name path=axispre]
+            (axis cs:0,4) -- (axis cs:2.3,4);
+            \addplot [
+                thick,
+                color=blue,
+                fill=blue,
+                fill opacity=0.3
+            ]
+            fill between[
+                of=f and axis
+            ];
+            \addplot [
+                thick,
+                color=magenta,
+                fill=magenta,
+                fill opacity=0.3
+            ]
+            fill between[
+                of=pre and axispre
+            ];
+        \end{axis}
+        \end{tikzpicture}
+        ~~
+        \right]
+        \,,
+    \end{aligned}
+    \end{equation}
+    where the blue and pink colorations have no distinct meaning other than ease of comparison to the previous exercise:
+    %
+    the blue box and the pink box together combine to give the overall veto region for \(\zpre\).
+    %
+    The blue box indicates the portion of the veto region with \(\theta > \thetacrit\) and \(z > \zcut\), while the pink box indicates the portion with \(\theta > \thetacrit\) and \(\zcut > z > \zpre\).
+
+    \sam{Is this right?}
+\end{exercise}
+
+
+
+\sam{Thinking I should just move this later...}
+
+\remark{}{
+    Conditional distributions of jet parameters can also be important tools in physical applications. In general, the best way to calculate conditional distributions is not to calculate a single Sudakov exponent associated with the related parameters. Instead, it is best to compute the Sudakov exponent associated with the joint cumulative probability of all the involved parameters, find the associated probability distributions, and then divide by the probability distributions you are taking as conditional:
+    \begin{align}
+        \rho(a | b, c, ...) = \frac{\rho(a, b, c, ...)}{\rho(a, b ...)}
+        .
+    \end{align}
+    %
+    Computations of conditional distributions can be important in analytic studies of jet grooming, and we see an example in \Chap{grooming}.
+}
+
+
+We have begun to utilize the fractal structure of jets to understand the behavior of jet substructure.
+%
+By focusing on additive observables, we were able to use the singular features of splittings functions to nonetheless obtain reasonable physical results.
+%
+Importantly, we were able to leverage the soft singularities and strong angular-ordering of the partonic cascade to achieve two related simplifications, as in \Fig{cascade-simplifications}:
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{}
+    \label{fig:cascade-simplifications}
+\end{figure}
+
+\begin{itemize}
+     \item
+        each emission off of the hard branch gave the same type of contribution, \(X(z,\,\theta)\), to the observable, regardless of order.
+        %
+        A more realistic calculation would remember that the energy fraction of the \(n^\text{th}\) soft emission off of the hard branch really had an energy fraction
+        \begin{align}
+            \frac{E_{n,\,\text{soft}}}{E_\text{tot}}
+            =
+            \prod_{i = 1}^{n=1}
+            (1-z_i)
+            z_n
+            \,\,
+            \xrightarrow[\text{limit}]{\text{soft}}
+            \,\,
+            z_n
+            \,,
+        \end{align}
+        for \(n > 1\), where the \(z_i\) are the energy fractions of the \(i^\text{th}\) softer branch relative only to the \(i^\text{th}\) splitting, \(z_i = E_{i,\text{soft}}/E_{i,\text{tot}}\), while \(E_n/E_\text{tot}\) is the energy fraction of the \(n^\text{th}\) softer branch relative to the full jet energy.
+        %
+        In the soft limit, each \(z_i\) is near zero, so that \(1-z_i \approx 1\), and \(E_{n,\text{soft}}/E_\text{tot} \approx z_n\), so that the contribution from the \(n^\text{th}\) soft branch is \(X(\prod_{i}^{n-1} (1-z_i) z_n, \theta_n) \approx X(z_n, \theta_n)\);
+
+
+     \item
+         we were able to consider single emissions off of the hard branch of a jet, without considering any splittings of the softer branches.
+         %
+         For example, consider the first soft branch, characterized by \(z_1\) and \(\theta_1\), and a splitting of the first soft branch, characterized by \(z_2\) and \(\theta_2\).
+         %
+         The second splitting leads to partons with energy fractions \(z_1 z_2 \approx 0\) and \(z_1 (1-z_2) \approx z_1\), where the approximations hold in the soft limit.
+         %
+         The softer resulting parton, with energy fraction \(z_1 z_2\), will therefore not contribute to an additive observable \(X(z,\theta)\) (which is monotonic in \(z\) and vanishes when \(z = 0\)).
+         %
+         Furthermore, the harder resulting parton (with energy fraction \(\approx z_1\)) will have an angle relative to the jet axis of \(\theta \in (\theta_1 - \theta_2/2, \theta_1 + \theta_2/2)\);
+         %
+         however, since \(\theta_2 \ll \theta_1\), it was reasonable to approximate this angle as \(\theta \approx \theta_1\).
+
+         \textbf{The splittings of the softer branches of the partonic cascade do not meaningfully affect the value of an additive observable}, in \gls{pqcd}, and we did not need to consider such splittings.
+\end{itemize}
+
+\begin{exercise}
+    Set a timer for 15 minutes and go do something else.
+    %
+    When the timer goes off, try to argue (either with your own arguments or by remembering the arguments above) that sharing of momentum between the softer and harder emissions, and the splittings of the softer branches of the partonic cascade, are unimportant for the computations of additive observables that we considered in this section.
+
+    Mass-squared is not strictly an additive observable in the sense defined in this thesis.
+    %
+    Do the same arguments still apply, or do soft splittings and momentum sharing have a strong effect on the mass of a jet even in the soft and strong-angular-ordered limits?
+\end{exercise}
+
+
+However, the same simplicity and power of additive observables that facilitated our understanding of jet substructure has also restricted our ability to directly probe the structure of the partonic cascade.
+%
+Our analysis of additive observables was at least in part insensitive to the sharing of momentum between emissions (as in the first bullet above) and to the splittings of softer branches of the partonic cascade (as in the second bullet above).
+
+
+Additive observables will remain as important tools, to be sure;
+%
+they are simple, powerful tools for exploring the phenomenological and formal aspects of jet substructure.
+%
+But they are not the full story.
+%
+And we are ready to go beyond.
+
+
+
+
+% ---------------------------------------
+\subsection{Partonic Viscera: the Anatomy of Energy Flow}
+% ---------------------------------------
+\label{sec:p2p-fragmentation}
+
+\epigraph{We must, indeed, all hang together or, most assuredly, we shall all hang separately.}{Benjamin Franklin}
+
+
+Now, we are ready to delve deeper into the of the observable effects of the partonic cascade.
+%
+We throw off the subtle shackles imposed by additive observables and develop a more formal, albeit more complicated, understanding of the partonic cascade which includes splitting effects that were unimportant for additive substructure observables.
+%
+The toolkit we develop in this section is therefore more expressive than the toolkit of additive observables, and provides a more direct probe of the full tree of partonic emissions.
+
+
+In particular, this section exposits the basics of \textit{jet calculus} \cite{} which, for the purposes of this thesis, is a framework for the computation of inter-particle correlations and their Mellin moments.%
+\footnote{
+    Another tool of jet calculus which does not appear in this thesis are \textit{generating functionals} for the partonic cascade;
+    %
+    the generating functionals are elegant tools which characterize the structure of the partonic cascade at LL \cite{} and can be extended to higher orders of accuracy \cite{}.
+}
+%
+The toolkit of jet calculus will be helpful when we explore energy weighted correlations in \Chap{ewocs}.
+
+
+
+To understand the structure of the partonic cascade, we need a concrete problem to solve, and ideally one that will become useful later in more specific questions and applications.
+%
+When we start performing resummed calculations, we will be especially interested in computing the probability density for the partonic cascade initiated by a parton of type \(i\) to contain a parton of type \(j\) with specific properties, such as a particular energy fraction \(z_i = E_j/E_i\).
+%
+In this case, we will say that the parton \(i\) \glslink{parton-to-parton}{\vocab{fragments}} into parton \(j\).
+%
+However, we have seen that partons themselves are tricky objects -- what does it mean for a partonic cascade to contain a parton which itself will undergo a series of splittings?
+
+
+To turn this into a more well-founded theoretical question, it is helpful to recall the principles of renormalization, and that partons are probed by jets -- objects with an angular resolution.
+%
+From a physical perspective, we can reframe our question in the form:\footnote{
+    Unfortunately, our question is not quite well-founded in the framework of full QCD.
+    %
+    In particular, in full QCD, partons cannot exist on their own;
+    %
+    for example, a quark must be accompanied by an associated gluon field to produce a gauge invariant state.
+    %
+    Even worse, confinement tells us that single quarks or gluons cannot exist because they must be bound into color singlets.
+    %
+    Nonetheless, we will be able to answer the questions below in the rough framework of the parton model, and these objects are nonetheless interesting objects of study
+}
+\begin{question*}{}{}
+    Let us say that when performing a (thought experiment) measurement at an angular resolution \(\Rjet\) -- i.e. we are unable to resolve partonic splittings below the scale \(\Rjet\) -- we ``see'' a parton of type \(i\).
+    %
+    If we improve our angular resolution to \(\rsub < \Rjet\) -- still unable to resolve partonic splittings below the scale \(\rsub\) -- we can imagine that we would see more partons.
+    %
+    At this new angular scale, what is the probability of seeing a parton of type \(j\) with an energy fraction \(z_j\) relative to the energy associated with the original parton?
+\end{question*}
+%
+\noindent
+or, in slightly different words,
+%
+\begin{question*}{}{}
+    What is the probability that a jet initiated by a parton of type \(i\), with jet radius \(\Rjet\), contains a subjet initiated by a parton of type \(j\), with subjet radius \(\rsub < \Rjet\), with energy fraction \(z_j = E_j / E_i\)?
+\end{question*}
+
+We say that the parton \(i\) (at the angular resolution \Rjet) \vocab{fragments} into a parton \(j\) (at the angular resolution \rsub) with a probability density given by the \glslink{parton-to-parton}{\vocab{parton-to-parton fragmentation function}}
+\begin{align}
+    \label{eq:fragmentation_function}
+    F_{f \leftarrow i}
+    \le(z_f; \, \rsub \leftarrow \Rjet\ri)
+    \,
+    =
+    \,
+    \frac{\dd\mathbb{P}(i\text{-initiated jet contains }f)}{\dd  \,\,z_f}
+    \,.
+\end{align}
+
+
+
+
+% -----------------------------------
+% Parton Shower Figure:
+% -----------------------------------
+\begin{figure}[t!]
+    \centering
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        \label{fig:shower:cartoon:fragmentation1}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        \label{fig:shower:cartoon:fragmentation2}
+    }
+
+    % Caption
+    \caption[Visualization of parton-to-parton fragmentation for a parton of type \(i\) decaying into a jet containing a parton of type \(f\).]
+    {
+        Visualization of parton-to-parton fragmentation for a parton of type \(i\) decaying into a jet containing a parton of type \(f\), both
+        %
+        \hyperref[fig:shower:cartoon:fragmentation1]{(a)}
+        %
+        without approximations, as an inclusive probability to produce a parton of type \(f\) in the radiation emitted from parton \(i\), and
+        %
+        \hyperref[fig:shower:cartoon:fragmentation2]{(b)}
+        %
+        in the context of a leading-logarithmic, angular-ordered parton shower, matching the notation of \Eq{shower_fragmentation}.
+        %
+        The partons labelled by \(j\) follow the splittings that lead to parton \(f\), and we must track their respective momentum fractions to obtain the momentum fraction of parton \(f\)
+        %
+        The partons labelled by \(k\), on the other hand, are treated fully inclusively, and we may safely ignore their possible subsequent fragmentation.
+    }
+
+    \label{fig:shower:cartoon:fragmentation}
+\end{figure}
+% -----------------------------------
+
+
+The \gls{parton-to-parton} is most easily characterized in terms of its \vocab{Mellin moments}, which directly captures the scaling behavior of a function -- or the behavior of a function as one zooms in.%
+\footnote{
+    Concretely, homogenous monomials, such as \(x^\ell\), have extremely simple scaling behavior:
+    %
+    as one scales \(x\) by a factor of \(a\), one obtains a deceptively simple relation \((a x)^\ell = a^\ell x^\ell\);
+    %
+    if \(a < 1\), we have ``zoomed in'' to the behavior of the function near \(x = 0\).
+    %
+    We say that these simple monomials are \textit{eigenfunctions of the scaling} (or dilatation) \textit{operator}.
+    %
+    The scaling behavior of a more complicated function \(f(x)\) -- e.g. a concrete relationship between \(f(ax)\) and \(f(x)\) -- can then be captured explicitly if it is known how \(f(x)\) can be composed in terms of the simple building blocks \(x^\ell\).
+    %
+    Luckily, \textit{the Mellin moments of a function \(f(x)\) precisely captures how \(f(x)\) is composed of the simple building blocks \(x^\ell\), and therefore provides a complete and simple characterization of its scaling behavior.}
+}
+%
+Mellin moments are wonderful tools for capturing fractal structures in a wide variety of applications, and for the mathematically prodigious, it may be no surprise that they appear here.
+
+
+We provide a more complete exposition of Mellin moments in \App{mellin};
+%
+For our purposes, it is enough to know that the \(m^\text{th}\) Mellin moment of a function \(f\) is defined via
+\begin{align}
+    \hat{f}(m) := \int_0^1 \dd x \,\, x^{m-1} f(x)
+    \,,
+\end{align}
+and that a function may be reconstructed in terms of its Mellin moments.
+
+We now show that the assumption that our parton shower is angular ordered leads to a particularly simple form for the Mellin moments of the parton-to-parton fragmentation function \(F_{j \leftarrow i}(z)\) at LL:
+
+\begin{proposition}{Parton-to-Parton Fragentation at LL}{}
+\begin{subequations}
+\begin{align}
+    \label{eq:mellin_transform_defn}
+    \hat{F}_{j \leftarrow i}(m;\,\rsub \leftarrow \Rjet)
+    &:=
+    \int_0^1 \dd x_j \, x_j^{m-1}
+    \,
+    F_{j \leftarrow i}(x_j;\,\rsub \leftarrow \Rjet)
+    \\
+    \label{eq:ll_fragmentation_function}
+    &=
+    \le(\frac{\alpha_s\le(Q\,\rsub\ri)}{\alpha_s\le(Q\,\Rjet\ri)}\ri)
+    ^
+    {\frac{\hat{p}(m)}{2\pi\beta_0}}
+    _{j\leftarrow i}
+    .
+\end{align}
+\end{subequations}
+where \(Q\) is the energy carried by the initiating parton \(i\) and the subscript \(j \leftarrow i\) indicates the indices of a matrix exponential in the final line.
+\end{proposition}
+
+
+\sam{TODO: check signs, example for intuition}
+
+
+\remark{}{
+In \Eq{mellin_transform_defn}, \(\hat{p}(m)\) is a Mellin transform/Mellin moment of the \emph{inclusive} splitting function matrix:
+\begin{align}
+    \label{eq:inclusive_splitting_defn}
+    p_{j \leftarrow i}(x_j)
+    &=
+    \sum_{k}P_{jk\leftarrow i}(x_j)
+    =
+    \sum_{k}P_{kj \leftarrow i}(x_k = 1 - x_j)
+    ,
+    \\
+    \label{eq:mellin_moment_defn}
+    \hat{p}_{j \leftarrow i}(m)
+    &=
+    \int_0^1 \dd x_j \, x_j^{m-1}\, p_{j \leftarrow i}(x_j)
+    .
+\end{align}
+%
+Physically, inclusive splitting functions sum over all possibilities for one of the partonic children of a splitting.
+%
+Mathematically, they are useful because the \(\hat{p}_{j\leftarrow i}(m)\) may be considered as matrices in partonic flavor with matrix indices \(j,\,i\), enabling the use of matrix notation and the Einstein summation convention.
+}
+
+
+\begin{proof}
+Recalling that the jet is formed by partonic splittings which become (at LL) successively narrower, we write:
+\begin{align}
+    F_{f \leftarrow i}(x_f; \rsub \leftarrow \Rjet)
+    &=
+    \delta(1-x_f) \, \delta_{fi}
+    \,\,\,
+    +
+    \,\,\,
+    \sum_{n = 1}^\infty
+    \le( 4 a_s \ri)^n
+    \int^{\Rjet}_{\rsub} \frac{\dd\theta_1}{\theta_1}
+    \,\,
+    \int^{\theta_1}_{\rsub} \frac{\dd\theta_2}{\theta_2}
+    \,\,\,
+    \cdots
+    \,\,
+    \int^{\theta_{n-1}}_{\rsub}
+    \,\,
+    \frac{\dd\theta_n}{\theta_n}
+    \notag
+    \\
+    &\qquad\qquad\qquad\qquad\qquad
+    \label{eq:shower_fragmentation}
+    \times
+    \int_0^1 \dd x_1
+    \,
+    \le(\sum_{k_1}\,P_{j_1 k_1 \leftarrow i}(x_1)\ri)
+    \\
+    \notag
+    &\qquad\qquad\qquad\qquad\qquad\qquad
+    \times
+    \,\,
+    \cdots
+    \,\,
+    \int_0^1 \dd x_n
+    \le(\sum_{k_n}\,P_{f\,k_n \leftarrow j_{n-1}}(x_n)\ri)
+    \\
+    \notag
+    &\qquad\qquad\qquad\qquad\qquad
+    \times
+    \delta\le(x_f - \prod_{j=1}^n x_j\ri)
+     ,
+\end{align}
+visualized diagrammatically in \Fig{shower:cartoon:fragmentation}.
+%
+The first term on the right-hand-side of \Eq{shower_fragmentation} represents the possibility of no splitting, where parton \(f\) is \emph{equal} to parton \(i\).
+%
+The terms within the sum on \(n\) each represent the possibility of \(n\) splittings in the parton shower along the path traced from parton \(i\) to parton \(f\).
+%
+For each term in the sum over \(n\), each of the \(n\) splittings has a probability density in its angle and energy fraction determined by \Eq{splitting_probability}, and the angular ordering \(\theta_1 > \theta_2 > \cdots > \theta_n\) is enforced by the bounds of integration on each of the angular integrals.
+%
+The delta function, \(\delta\le(x_f - \prod_{j = 1}^n x_j\ri)\) indicates that the final energy fraction of parton \(f\) is equal to the product of the energy fractions along the path from \(i\) to \(f\).
+
+
+To evaluate \Eq{shower_fragmentation}, we perform the angular integrals over the \(\{\theta_k\}_{k = 1}^n\), use the inclusive splitting functions of \Eq{inclusive_splitting_defn}.
+%
+We then take Mellin moments of \(F_{f\leftarrow i}(x_f)\) in order to integrate over the delta function \(\delta \le(x_f - \prod_{k=1}^n x_k\ri)\) and enforce the relation \(x_f^{m-1} = \prod_{k=1}^n x_k^{m-1}\).
+%
+After the dust settles, we obtain the following expression for the Mellin moments of the parton-to-parton fragmentation function:
+\begin{subequations}
+\label{eq:ll_fragmentation_repeat}
+\begin{align}
+    \hat{F}_{f \leftarrow i}(m;\,\rsub \leftarrow \Rjet)
+    &=
+    \sum_{n=0}^\infty
+    \le(-4\as\ri)^n
+    \frac{\log^n\le(\rsub/R\ri)}{n!}
+    \le(
+        \int_0^1 \dd z\,
+        z^{m-1} p(z)
+    \ri)^n_{f\leftarrow i}
+    \\
+    &\approx
+    \exp\le[
+        \frac{\hat{p}(m)}{2\pi\beta_0}
+        \log\le(
+        \frac{
+            \alpha_s\le(Q\,\rsub\ri)
+        }{
+            \alpha_s\le(Q\,\Rjet\ri)
+        }\ri)
+    \ri]_{f \leftarrow i}
+    ,
+\end{align}
+\end{subequations}
+where we have used the one-loop expression for \(\alpha_s(\mu)\) in \Eq{alphas_1loop} to make the replacement \(
+    \log\le(\rsub/R\ri)
+    =
+    \log\big(
+        \alpha_s\le(Q\,\rsub\ri)
+        \,/\,
+        \alpha_s\le(Q\,\Rjet\ri)
+    \big)
+    \,/\,
+    8\pi\beta_0\as
+    \,
+    +
+    \,
+    \mathcal{O}(\alpha_s^2)
+\), recovering the result claimed in \Eq{ll_fragmentation_function} up to higher order corrections.
+%
+\sam{Minus sign?}
+\end{proof}
+
+
+\begin{exercise}
+    % https://www.hep.phy.cam.ac.uk/theory/webber/QCDlect3.pdf#page=19
+    Argue that the physics of very soft splittings -- the \(z \to 0\) limit -- is captured by the limit \(m \to 1\), where \(m\) indicates the value of the Mellin moment.
+    %
+    Based on physical expectations, do you expect any splitting functions and \(m=1\) moments to diverge?
+    %
+    Does your intuition match results?
+\end{exercise}
+
+% \begin{exercise}
+%     \sam{BFKL... turn to problem}
+    % https://www.hep.phy.cam.ac.uk/theory/webber/QCDlect3.pdf#page=22
+% \end{exercise}
+
+
+
+Applying the principles of renormalization to \Eqs{ll_fragmentation_function}{ll_fragmentation_repeat}, we can ask how the process of partonic fragmentation changes as we change the angular resolution of our ``measurements'' (i.e. the jet radius \Rjet{} and the subjet radius \rsub{}).
+%
+In particular, we have
+\begin{subequations}
+\begin{align}
+    \label{eq:fragmentation_dglap_upper}
+    \frac{\dd}{\dd\log\le(Q\,\Rjet\ri)} \hat{F}(m;\,\rsub\leftarrow \Rjet)
+    &=
+    \frac{\alpha_s(Q\,\Rjet)}{\pi}
+    \,\,
+    \hat{p}(m)
+    \,
+    \hat{F}(m;\,\rsub\leftarrow \Rjet)
+    \\
+    \label{eq:fragmentation_dglap_lower}
+    \frac{\dd}{\dd\log\le(Q\,\rsub\ri)} \hat{F}(m;\,\rsub\leftarrow \Rjet)
+    &=
+    -\frac{\alpha_s(Q\,\rsub)}{\pi}
+    \,\,
+    \hat{p}(m)
+    \,
+    \hat{F}(m;\,\rsub\leftarrow \Rjet)
+    ,
+\end{align}
+\end{subequations}
+where we used \Eq{beta_fn_defn}, and have suppressed the indices of \(\hat{p}\) and \(\hat{F}\) for brevity.
+%
+Amazingly, we have recovered the celebrated \gls{dglapeqn} \cite{Gribov:1972ri,Dokshitzer:1977sg,Altarelli:1977zs}, which state that generic distribution functions of partons inside composite objects obey the integro-differential equation
+\begin{align}
+    \,,
+\end{align}
+in a slightly different form.
+\sam{complete}
+
+
+
+
+\begin{exercise}
+    Use the \vocab{Mellin convolution theorem} -- discussed further in \App{mellin} -- to prove that the \gls{dglapeqn} follows from \Eq{fragmentation_dglap_lower}.
+
+
+    The Mellin convolution theorem states that
+    % \begin{theorembox}{Mellin Convolution}{}
+    % \sam{Expose}
+    \begin{subequations}
+    \begin{align}
+        \widehat{f\mellinconvolution g}(m) = \hat{f}(m)\,\hat{g}(m)
+        \,,
+    \end{align}
+    where \(\mellinconvolution\) indicates the \vocab{Mellin convolution}
+    \begin{align}
+        (f\mellinconvolution g)(x)
+        =
+        \int \dd y
+        \,.
+    \end{align}
+    \sam{Complete}
+    \end{subequations}
+    % \end{theorembox}
+\end{exercise}
+
+\remark{}{
+    Finally, let us note that in Mellin space, the parton-to-parton fragmentation function \(F_{f \leftarrow i}\) can be easily combined with non-perturbative fragmentation functions, such as parton-to-hadron fragmentation functions (usually just called fragmentation functions) \cite{Field:1976ve,Field:1977fa,Andersson:1980vj,Altarelli:1981ax,Andersson:1983jt,Hirai:2007cx,deFlorian:2014xna,Metz:2016swz,Bertone:2017tyb,Bertone:2018ecm,Roberts:2021nhw,Chen:2023kqw,vonKuk:2023jfd,Xing:2023pms} and track functions \cite{Chang:2013rca,Chang:2013iba,Chen:2020vvp,Li:2021zcf,SchrijndervanVelzen:2022ftm,Jaarsma:2022kdd,Lee:2023xzv,Lee:2023tkr,Jaarsma:2023ell,Barata:2024nqo}.
+    %
+    In particular, let us use \(F^\text{(non-pert.)}_{a \leftarrow f}(z\,|\,\rsub)\) to denote the probability that a final-state parton \(f\) at the angular resolution \(\rsub\) produces a non-perturbative object \(a\), such as a hadron or a track, with an energy fraction \(z = E_a / E_f\).
+    %
+    The probability that a jet initiated by parton \(i\) contains the object \(a\) with an energy fraction \(x_a = E_a / E_i\) of the full jet energy is then
+    \begin{align}
+        F^\text{(non-pert.)}_{a \leftarrow i}\le(x_a\,|\,\Rjet\ri)
+        =
+        \sum_f \int_{x_a}^1 \dd x_f\,
+        F^\text{(non-pert.)}_{a \leftarrow f}\le(x_a / x_f\,|\,\rsub\ri)
+        F_{f\leftarrow i}\le(x_f; \, \rsub \leftarrow \Rjet\ri)
+        .
+    \end{align}
+    By the Mellin convolution theorem, the moments of \(F^\text{(non-pert.)}_{a \leftarrow i}(x_a\,|\,\Rjet)\) then take a particularly simple form:
+    \begin{align}
+        \hat{F}^\text{(non-pert.)}_{a\leftarrow i}\le(m \, | \, \Rjet\ri)
+        =
+        \sum_f
+        \hat{F}^\text{(non-pert.)}_{a\leftarrow f}\le(m \, | \, \rsub\ri)
+        \hat{F}_{f \leftarrow i}(m;\,\rsub \leftarrow \Rjet)
+        .
+    \end{align}
+}
+
+While the parton-to-parton fragmentation function itself is difficult to evaluate directly,%
+\footnote{
+    Knowing the \(z\)-space form of the \gls{parton-to-parton} requires solving the \gls{dglapeqn}, for which, to my knowledge, there exist only numerical solutions.
+}
+its Mellin moments are simple to compute.
+%
+It elucidates more clearly the fractal-like structure of the partonic cascade, which can be leveraged to provide an elegant characterization of jet shape observables.
+%
+Furthermore, we will be able to use our studies of \gls{parton-to-parton} together with splitting functions to compute multi-particle correlations, in our computations of \glslink{ewoc}{energy-weighted observable correlations} in \Chap{ewocs}.
+
+
+
+%In order to describe how the Mellin moments of QCD splitting functions govern the physics of EWOCs and the EEC, we first provide a cursory review of partonic splitting and fragmentation functions.
+%%
+%Partonic splitting governs the universal features of the collinear limit of parton-level amplitudes, and dictates the fixed-order aspects of jet formation.
+%
+
+%Parton-to-parton fragmentation resums the results of an arbitrary number of partonic splittings, and dictates the perturbative all-orders structure of jet formation.
+%%
+%Our review borrows heavily from physical intuition provided by jet calculus \cite{Konishi:1978dg,Konishi:1978yx,Konishi:1978ks} and parton shower perspectives on jet formation and partonic fragmentation (see, for example, \Reff{Neill:2018wtk}).
+
+
+%
+%The initial scale of the fragmentation is set by the jet radius, which is why we write \(\mu_i = Q\,\Rjet{}\), while the final scale is set by the angular resolution we impose, \(\mu_f = Q\,\rsub\).
+%
+%\sam{Fix}
+%
+%We present this over-precise notation now in order to later generalize to observable-limited fragmentation, in \App{EWOCs:LL:limited_fragmentation}, which will be relevant for EWOC computations.
+
+
+%When using the NLO splitting functions of \Sec{}, a parton can only split into two children.%
+%\footnote{
+%    Beginning at next-to-next-to-leading order (NNLO), a single parton may split into more than two children.
+%    %
+%    NNLO splitting functions provide important contributions to jet physics beyond LL accuracy, but will not appear in the applications presented in this thesis.
+%}
+%%
+%we will use \(P_{jk \leftarrow i}(z)\) to denote splitting functions for which parton \(i\) splits into partons \(j\) and \(k\), where parton \(j\) carries an energy fraction \(z = E_j / E_i\) of parton \(i\) and parton \(k\) carries an energy fraction \(1-z\).
+%%
+%\sam{move to ch2}
+%%
+%The pseudo-probability density for the splitting \(i \to jk\) at NLO is then given by
+%\begin{align}
+%    \label{eq:splitting_probability}
+%    \dd\mathbb{P}\le(x_j, \theta_{jk}\ri)
+%    =
+%    4 \as
+%    \,
+%    P_{jk \leftarrow i}(x_j)
+%    \,
+%    \frac{1}{\theta_{jk}}
+%    \,\,
+%    \dd x_j
+%    \,
+%    \dd\theta_{jk}
+%    .
+%\end{align}
+%%
+%In \(d = 4 - 2\varepsilon\) dimensions, the non-zero NLO splitting functions of QCD take the form
+%\begin{subequations}
+%\label{eq:qcd_splitting_functions}
+%\begin{align}
+%    P_{qg\leftarrow q}(z)
+%    &=
+%    C_F \le(
+%        \frac{1 + z^2}{1-z} - \epsilon \le(1-z\ri)
+%    \ri)
+%    \\
+%    P_{gg \leftarrow g}(z)
+%    &=
+%    2C_A\le(
+%        \frac{1-z}{z}
+%        +
+%        \frac{z}{1-z}
+%        +
+%        z(1-z)
+%    \ri)
+%    +
+%    \sam{delta fn}
+%    \\
+%    P_{q \overline{q} \leftarrow g}(z)
+%    &=
+%    T_F \, n_f
+%    \le(
+%        1 - \frac{2z(1-z)}{1-\epsilon}
+%    \ri)
+%    \\
+%    \sam{check and use plus-functions}
+%    \notag
+%    ,
+%\end{align}
+%\end{subequations}
+%\sam{factor of two in Pgg? If it belongs there I should footnote and explain}
+%where \(C_F\) and \(C_A\) are the group theory factors defined in \Eq{group_theory}, \(n_f\) is the number of massless quark flavors, and we have omitted the redundant non-zero splitting functions.%
+%\footnote{
+%    i.e. the splitting functions related to those of \Eq{qcd_splitting_functions} by symmetry, such as
+%    \(P_{qg\leftarrow q}(z) = P_{gq\leftarrow q}(1-z)\).
+%}
+%%
+
+
+
+
+\iffalse
+\subsection{Temporary Section: Two Emissions}
+For the case of two emissions, with the diagrams
+
+{
+    \tikzfeynmanset{every edge/.style={green!50!black}}
+    \begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a);
+        \vertex [right=of a] (b);
+        \vertex [above right=1cm and 1.5 cm of b] (c);
+        \vertex [above right=.5 and 1 cm of c] (c1);
+        \vertex [below right=.5 and 1 cm of c] (c2);
+        \vertex [below right=1 and 2.5 cm of b] (d);
+        \diagram* {
+            (a) -- [fermion] (b) --
+            [fermion, edge label=\(x_1\)] (c) --
+            [fermion, edge label=\(x_2\)] (c1),
+            (c2) -- [gluon] (c),
+            (b) -- [gluon] (d),
+        };
+    \end{feynman}
+    \end{tikzpicture}
+}
+{
+    \tikzfeynmanset{every edge/.style={red}}
+    \begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a);
+        \vertex [right=of a] (b);
+        \vertex [above right=1cm and 1.5 cm of b] (c);
+        \vertex [above right=.5 and 1 cm of c] (c1);
+        \vertex [below right=.5 and 1 cm of c] (c2);
+        \vertex [below right=1 and 2.5 cm of b] (d);
+        \diagram* {
+            (a) -- [fermion] (b) --
+            [gluon, edge label=\(x_1\)] (c) --
+            [gluon, edge label=\(x_2\)] (c1),
+            (c2) -- [gluon] (c),
+            (b) -- [fermion] (d),
+        };
+    \end{feynman}
+    \end{tikzpicture}
+}
+{
+    \tikzfeynmanset{every edge/.style={blue}}
+    \begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a);
+        \vertex [right=of a] (b);
+        \vertex [above right=1cm and 1.5 cm of b] (c);
+        \vertex [above right=.5 and 1 cm of c] (c1);
+        \vertex [below right=.5 and 1 cm of c] (c2);
+        \vertex [below right=1 and 2.5 cm of b] (d);
+        \diagram* {
+            (a) -- [fermion] (b) --
+            [gluon, edge label=\(x_1\)] (c) --
+            [fermion, edge label=\(x_2\)] (c1),
+            (c2) -- [fermion] (c),
+            (b) -- [fermion] (d),
+        };
+    \end{feynman}
+    \end{tikzpicture}
+}
+
+we have the following contribution to cumulative EWOCs:
+
+\begin{subequations}
+\begin{align}
+    \frac{1}{\sigma}\Sigma(\chi)
+    \supset
+    \as^2
+    &
+    \int_r^R \frac{\dd\theta_1}{\theta_1}
+    \,\,
+    \int_r^{\theta_1} \frac{\dd\theta_2}{\theta_2}
+    \\
+    &\int_0^1 \dd x_1 \,\,
+    \,\,
+    \int_0^1 \dd x_2 \, \le(
+        \textcolor{green!50!black}{
+        p_{qg\leftarrow q}(x_2)
+        }
+        \,
+        p_{qg\leftarrow q}(x_1)
+        +
+        \textcolor{red}{
+        p_{gg\leftarrow g}(x_2)
+        }
+        \,
+        p_{gq\leftarrow q}(x_1)
+        +
+        \textcolor{blue}{
+        p_{qq\leftarrow g}(x_2)
+        }
+        \,
+        p_{gq\leftarrow q}(x_1)
+    \ri)
+    \\
+    &\times
+    \Theta_{\mc O}
+    ,
+\end{align}
+\end{subequations}
+where \(\Theta_{\mc O}\) captures the energy-weighting and observable dependence of the EWOC.
+
+For the EEC, in the approximation that \(\theta_2 \ll \theta_1\),
+\begin{align}
+    \Theta_{\rm EEC}
+    &\approx
+    \Big(
+        x_1^2\,x_2(1-x_2)
+        \,\times\,
+        \Theta\le(
+            \chi
+            >
+            \theta_2^2/4
+        \ri)
+        \\
+        &\qquad\notag
+        +
+        \le(1-x_1\ri)\,x_1 x_2
+        \,\times\,
+        \Theta\le(
+            \chi
+            >
+            \theta_1^2/4
+        \ri)
+        \\
+        &\qquad\notag
+        \textbf{}+
+        \le(1-x_1\ri)\,x_1\le(1-x_2\ri)
+        \,\times\,
+        \Theta\le(
+            \chi
+            >
+            \theta_1^2/4
+        \ri)
+    \Big)
+\end{align}
+while for the mass-squared EWOC,
+\begin{align}
+    \Theta_{m^2}
+    &\approx
+    \Big(
+        x_1^2\,x_2(1-x_2)
+        \,\times\,
+        \Theta\le(
+            \chi/Q^2
+            >
+            x_1^2\,x_2(1-x_2)
+            \,
+            \theta_2^2
+        \ri)
+        \\
+        &\qquad\notag
+        +
+        \le(1-x_1\ri)\,x_1 x_2
+        \,\times\,
+        \Theta\le(
+            \chi/Q^2
+            >
+            \le(1-x_1\ri)\,x_1 x_2
+            \,
+            \theta_1^2
+        \ri)
+        \\
+        &\qquad\notag
+        +
+        \le(1-x_1\ri)\,x_1\le(1-x_2\ri)
+        \,\times\,
+        \Theta\le(
+            \chi/Q^2
+            >
+            \le(1-x_1\ri)\,x_1\le(1-x_2\ri)
+            \,
+            \theta_1^2
+        \ri)
+    \Big)
+    .
+\end{align}
+
+\iffalse
+\sam{Mention jet calculus \cite{Konishi:1978dg,Konishi:1978yx,Konishi:1978ks} and relation -- Jet calculus is a framework for calculating jet observables in perturbative QCD \cite{Caneschi:1978se,Jones:1979xj,Konishi:1979zp,Konishi:1979cb,Kirschner:1979im,Willen:1979ae,Kirschner:1979zh,Giovannini:1979ui,Kirschner:1979fm,Sukhatme:1980vs,Puhala:1980ms,Kalinowski:1980ju,Marchesini:1980cr,Kalinowski:1980wea,Jones:1981yr,Migneron:1981fw,Konishi:1981ea,Shelest:1982dg,Bertolini:1982em,Jones:1982bi,Jones:1982uf,Jones:1982ik,Jones:1983aa,Gunion:1984xw,Jones:1984zr,Szymanowski:1985vf,Gunion:1985pg,Gunion:1985sh,Jones:1985vb,Lassila:1986ay,Malaza:1986mi,Martin:1986uq,Camici:1998bg,Dremin:2002tw,Tanaka:2003ck,Dremin:2003dy,Ceccopieri:2007th,Trentadue:2007zza,Tanaka:2008kp,Tanaka:2011ig,Banfi:2021xzn,vanBeekveld:2023lsa}.}
+\fi
+
+\fi
+
+% https://browse.arxiv.org/pdf/1407.3272.pdf
+% https://indico.cern.ch/event/594287/contributions/2497385/attachments/1427850/2191539/scet_2017_waalewijn.pdf
+
+
+\iffalse
+\begin{itemize}
+    \item
+More detailed structure of partonic emission tree:
+%
+start with fragmentation, split, more fragmentation, split, etc.
+%
+Pairwise observables captured by a single splitting.
+%
+Won't worry about three-point correlations and beyond, which necessitate two splittings, or, at NNLO, a single \(1 \to 3\) splitting, following again by fragmentation.
+
+    \item
+Therefore, useful for capturing pairwise correlations for which different pairs of particles contribute differently (rather than, as in the case of \glspl{substructure-diagram}, additive contributions)
+%
+Such observables can be computed by \vocab{jet calculus}, which convolves contributions from multiple particles.
+%
+
+    \item
+Discussion of subjet radius as a regulator... we don't know what happens below around 1 fermi, so we should choose a subjet radius \textit{at least} that big...
+%
+This wasn't a problem for additive observables -- they were pretty insensitive to this...
+%
+Actually, though, no regulator needed in certain cases (angular observables), which we will see in \Sec{}.
+%
+Note that moment of the parton-to-parton fragmentation function almost appears...
+%
+and indeed appears for angular correlations.
+
+    \item
+However, in a moment, we will discuss how jets are usually accompanied by a large amount of low-energy pollution with undesirable effects.
+%
+Increase energy weighting to see that moment changes!
+%
+Wow wow!
+
+    \item
+Introduce energy weighting as a technique to obtain moments...
+%
+Discussion of moments and their sensitivity to hadronization.
+%
+
+    \item
+This is closely related to energy-weighted correlations, so we will discuss this further later, in \Chap{ewocs}
+\end{itemize}
+
+
+Multiplicity... similar to the techniques of jet calculus, but I first saw it in...
+%https://arxiv.org/pdf/1704.06266
+\fi
+
+
+% ==============================================
+\section{Reality Strikes: Low-Energy Pollution}
+% ==============================================
+\label{sec:low-energy-pollution}
+
+Unfortunately, reality is never quite so simple as our simplest models.
+%
+The physics of jets is no exception.
+%
+Due to the complicated environment presented by a true particle collision, complications arise when we try to extract substructure information from true jets.
+%
+In particular, asymptotic freedom decrees that the physics of partons and the partonic cascade -- and therefore jets and jet substructure -- is encrypted within high-energy degrees of freedom.
+%
+However, our attempts to isolate high energy degrees of freedom can be obfuscated by the presence of problematic low-energy radiation which we call \vocab{low-energy pollution}.
+
+We separate low-energy pollution into two distinct categories:
+%
+\textit{soft distortions} and \textit{additive contamination}.
+%
+There are important sources of both soft distortions and additive contamination due to both theoretical and experimental effects.
+
+In the analogy of a proton-proton collision as the slamming together of two geodes to uncover the beautiful crystalline structures hidden within, soft distortions are like the cracks in the crystals that occur when the geodes are shattered, or when the crystals slam into the wall of the cave.
+%
+The soft distortions make it more difficult to see the original (e.g. parton-level) properties of the crystals we want to study.
+%
+Additive contamination is more like the dense fog of rock dust that emerges when the rocks break apart, clouding our vision, filling our lungs, and preventing us from easily seeing the crystals themselves -- cracked or distorted though they are.
+%
+More precisely,
+
+\begin{definitionbox}{Soft Distortions}{soft-distortion}
+    \glslink{soft-distortion}{\vocab{Soft Distortions}} are low-energy effects that influence the radiation coming directly from hard jet production.
+
+    Soft distortions lead to changes in the observed energy and momentum distribution within a jet, especially in low-energy regions of phase space, and thus complicate the interpretation of hard-scattering events in experiments.
+\end{definitionbox}
+
+
+\remark{}{
+    The canonical theoretical source of soft distortions is \vocab{hadronization}.
+    %
+    In our universe, we are ``lucky'' to have \gls{lphd}:
+    %
+    the dynamics of high-energy jet production are well described by beginning with results from perturbative QCD and subsequently implementing low-energy adjustments of perturbative predictions with one of many successful \textit{hadronization models}.
+    %
+    The most important hadronization model for the work presented in this thesis will be the \vocab{Lund String Model} (see e.g. \Reff{} \sam{pythia}).
+    %
+    See \App{soft-distortions} for more discussion
+}
+
+\remark{}{
+    The canonical experiment sources of soft distortions are \vocab{effects from experimental detectors}, or simply \vocab{detector effects}.
+    %
+    The most important detector effects for the purpose of this thesis are the experimental uncertainties in the momenta of jet constituents.
+    %
+    Detector effects can manifest as experimental uncertainties of particle momenta, particle misidentification, and energy loss of particles the hard collision with the particles comprising an experimental detector.
+    %
+    Notably, the current generation of experimental detectors used at the LHC have an unprecedented angular resolution -- especially for charged particles.
+    %
+    Therefore, in this thesis, detector effects are mostly understood as the smearing of the energies of particles -- especially electrically-neutral particles.
+    %
+    See \App{soft-distortions} for more discussion
+}
+
+
+
+\begin{definitionbox}{Additive Contamination}{additive-contamination}
+    \glslink{additive-contamination}{\vocab{Additive Contamination}} denotes a backdrop of low-energy radiation that pollutes a jet that is not directly connected to the particles emerging from hard jet production.
+
+    Additive contamination, especially due to pileup, has the potential add significant amounts of energy and momenta to a jet through a huge number of very small contributions from low-energy particles.
+\end{definitionbox}
+
+
+
+\remark{}{
+    The canonical theoretical source of additive contamination in particle collisions, and in proton-proton collisions in particular, is the \gls{ue}.
+    %
+    UE is not perfectly understood, but is well-described theoretically through the framework of \vocab{multiple parton interactions} (\vocab{MPI}):
+    %
+    additional interactions involving \textit{secondary} partons which compose the proton but did not directly contribute to the main hard interaction of a particle collision.
+    %
+    See \App{additive-contamination} for more discussion
+}
+
+
+\remark{}{
+    The canonical experimental source of additive contamination is \gls{pileup}:
+    %
+    radiation which emerges from the interactions of adjacent particles in the beam of many colliding protons, i.e. from collisions that occur soon before or after the collision of interest which led to the jets we would like to study.
+    %
+    See \App{additive-contamination} for more discussion
+}
+
+
+Low-energy pollution is a problem.
+%
+However, there are solutions.
+%
+The remaining chapters of this thesis are devoted to understanding two of these solutions, which address many sources of low-energy pollution at once:
+\begin{itemize}
+    \item
+        \vocab{\gls{jet-grooming}}, the subject of \Chap{grooming}, whose goal is to directly remove low-energy pollution from an event, and
+
+    \item
+        the study of \vocab{\gls{energy-weighted-correlations}}, the subject of \Chap{ewocs}, whose goal is to mitigate the impact of low-energy pollution by treating soft radiation as ``less important''.
+\end{itemize}
+
+
+
+% ==============================================
+\section{Connecting back out}
+% ==============================================
+
+
+% \begin{remarkbox}{Role of Jet Substructure in QCD Studies}{}
+%     Jet substructure is crucial for understanding the dynamics of QCD interactions, especially in the context of high-energy collisions where jets are produced. Substructure observables provide sensitivity to underlying processes such as parton showers, color flow, and hadronization, which are often hidden in global jet observables like jet transverse momentum and multiplicity. By analyzing jet substructure, physicists can gain insights into the detailed behavior of parton showers, the formation of jets, and the role of QCD in particle collisions.
+% \end{remarkbox}
+
+% \begin{remarkbox}{Jet Substructure for Parton Identification}{}
+%     One of the main applications of jet substructure is the identification of the partonic origin of jets. For example:
+%     - **Quark jets** tend to be narrower, with a smaller angular spread and less fragmentation compared to gluon jets.
+%     - **Gluon jets** typically have a broader structure and more subjets due to the larger number of color charge configurations available for gluons.
+
+%     By studying the jet substructure, such as the N-subjettiness or energy correlation functions, researchers can distinguish between jets originating from quarks or gluons. This distinction is important for a wide range of analyses, including searches for new physics and measurements of the strong force.
+% \end{remarkbox}
+
+% \begin{remarkbox}{Impact of Pileup on Jet Substructure}{}
+%     Pileup radiation can significantly distort the jet substructure, especially in high-luminosity environments. Soft radiation from pileup can alter the distribution of energy within a jet, making it difficult to correctly identify the underlying hard scattering process. To mitigate this, various pileup subtraction and jet grooming techniques are used to clean up the jets and recover the true substructure. Methods such as trimming, pruning, and pileup subtraction are designed to remove low-energy, wide-angle radiation that is typically associated with pileup, leaving only the true hard-scattering signal and improving the accuracy of substructure measurements.
+% \end{remarkbox}
+
+\begin{itemize}
+    \item
+        We've learned certain things about the study of jet substructure... \sam{list}
+
+    \item
+        We've also learned a bit about what problems we need to address for realistic studies of jet substructure... \sam{address: directly worked towards the calculation of observables, mentioned briefly the problem of removal of low-energy pollution}
+\end{itemize}
+
+
+\begin{itemize}
+    \item
+        Many ways to study the substructure of a jet:
+        %
+        measure observables which are associated with high energy dof: jet mass, (ECFs, event shapes), N-subjettiness, correlations of energy within the jet and behavior of its subjets (esp see next chapter)
+
+    \item
+    Each of these convey some information about the flow of energy within a jet (EEC especially, see next chapter) and the branching/splitting structure of the associated jet tree (and the characteristics of the branching structure of QCD itself), and have interesting properties in the presence of contaminating radiation which can be understood with simulations and sometimes even analytically.
+    %
+    This is all desirable
+
+    % Jet substructure consists of observables that capture the detailed internal geometry of jets, typically focusing on how energy is distributed among the particles within a jet. Examples of jet substructure variables include:
+    % - **Jet Mass**: The invariant mass of all particles within the jet.
+    % - **N-subjettiness**: A set of observables that quantify how a jet can be decomposed into multiple smaller subjets, indicating the presence of multiple partons in the jet.
+    % - **Energy Correlation Functions (ECFs)**: These functions measure correlations between the energies of particles within the jet and are useful for distinguishing quarks from gluons.
+
+
+    \item
+    Simplest way, however, is to simply remove the low-energy degrees of freedom, with the added benefits of instantly removing low-energy contamination and even aiding analytic calculations -- which may otherwise have involved complicated regions of phase space, mass effects, etc.
+\end{itemize}
+
+
+
+\sam{Perhaps begin discussing sources of noise or hard-to-understand phenomena occurring inside jets, here and previously?}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{subappendices}
+
+% ==============================================
+\section{Jet Definitions}
+% ==============================================
+
+Jet algorithms are the first bridge between the theory of scattering in pQCD and the manifestation of the dynamics of the strong force in particle physics experiments.
+%
+As we have discussed, jet algorithms are important because they provide a concrete procedure for guessing which collection of final state particles in a particle collision can be associated with a particular parton in the framework of pQCD.
+
+In this appendix, we will briefly discuss several important jet algorithms and their desirable features, focusing on the algorithms which make an appearance in this thesis.
+%
+In \Sec{jet-intro}, we discussed that we use the \gls{akt} \cite{}, \gls{ca} \cite{}, and \gls{kt} \cite{} algorithms:
+%
+\vocab{iterative \gls{reclustering} algorithms} which produce jets by recursively combining pairs of final state particles.
+%
+These three algorithms can be succinctly captured by the \textit{generalized \(k_t\) algorithms}:
+%
+\sam{many citations to give here}
+\cite{}
+
+\begin{definitionbox}
+        {Generalized \(k_t\) Algorithm}
+        {generalized-kt}
+    The \vocab{\gls{generalized-kt}} is an iterative \gls{reclustering} algorithm for producing final state jets.
+    %
+    It depends on a radius \Rjet{} and a free parameter \(p\), and uses \emph{distance measures},
+    \begin{align}
+        \label{eq:gen-kt-measure}
+        d_{ij}
+        =
+        \min\le(\xi_i^{2p},\, \xi_j^{2p}\ri)
+        \frac{\theta_{ij}^2}{\Rjet^2}
+        \,,
+        \quad
+        d_{ii}
+        =
+        \xi_i^{2p}
+        \,,
+    \end{align}
+    to determine when particles are combined or labelled as final-state jets.
+    %
+    \(\xi_i\) describes the energy or transverse momentum carried by particle \(i\), while \(\theta_{ij}\) indicates a measure of the angular separation of \(i\) and \(j\).%
+    \footnote{
+        The use of transverse momentum fractions \(z_i = p_{T,\,i}\) and the rapidity-azimuth distance \(\theta_{ij}^2 = (y_i-y_j)^2 + (\phi_i-\phi_j)^2\) are the standard choice when studying proton-proton collisions.
+        %
+        For \(e^+ e^-\) collisions, it is instead standard to use the energy fraction \(z_i = E_i\) and the real-space opening angle \(\theta_{ij} = \cos^{-1}\le(\hat{p}_i \cdot \hat{p}_j\ri)\).
+        %
+        Strictly speaking, the generalized-\(k_t\) algorithm in \(e^+ e^-\) collisions replaces the \(\theta_{ij}^2/\Rjet^2\) of \Eq{gen-kt-measure} by \(\le(1-\cos\theta_{ij}\ri)/\le(1-\cos\Rjet\ri)\), but the given definition holds for narrow jets.
+    }
+
+    The generalized-\(k_T\) algorithm acts on a set of final-state particles via the following recursive algorithm:
+    \begin{enumerate}
+        \item
+            The \(d_{ij}\) are calculated for all pairs of final state particles.
+            %
+            The minimum value of \(d_{ij}\) is found, corresponding to the pair \((i_\text{min}, j_\text{min})\);
+
+        \item
+            If \(i_\text{min} \neq j_\text{min}\), the particles labelled by \(i_\text{min}\) and \(j_\text{min}\) are \textit{recombined} (in a manner dictated by the \gls{recomb-scheme} -- see below for examples).
+            %
+            Otherwise, \(i_\text{min} = j_\text{min}\), and the particle labelled by \(i_\text{min}\) is called a \textit{final-state \gls{jet}} and removed from the event.
+
+        \item
+            If any particles remain in the event, the algorithm continues recursively by returning to Step 1 with the new set of final state particles.
+            %
+            Otherwise, the algorithm terminates, yielding a set of final-state jets.
+    \end{enumerate}
+\end{definitionbox}
+
+We use three important implementations of the generalized \(k_t\) algorithm:
+\begin{itemize}
+    \item
+        \vocab{The \glslink{akt}{anti-\(k_t\) (AKT)} algorithm \((p=-1)\):}
+
+        The \gls{akt} algorithm produces jets with nearly circular boundaries in the rapidity-azimuth plane.
+        %
+        Because this circular shape is very stable to the presence of additive contamination, i.e. due to soft radiation inherent in \gls{pileup} events and \gls{ue} contamination, it is particularly well-suited for high-energy hadron collisions.
+        %
+        The \gls{akt} algorithm is therefore the most popular jet algorithm for general-purpose jet reconstruction in proton-proton collisions at the LHC.
+
+    \item
+        \vocab{The \glslink{ca}{Cambridge-Aachen (C/A)} algorithm \((p=0)\):}
+
+        The \gls{ca} algorithm clusters jets solely based on angular distances, with narrowly-separated particles clustered first.
+        %
+        As discussed in \Sec{reclustering}, it is therefore an extremely useful tool for \gls{reclustering}, and provides a meaningful proxy for the angular-ordered structure of the parton cascade.
+        %
+        However, it produces irregularly-shaped jets which are more sensitive to additive contamination than \gls{akt} jets.
+        %
+        Therefore, we only use the \gls{ca} algorithm to \glslink{reclustering}{\textit{re-cluster}} jets in this thesis.
+
+
+    \item
+        \vocab{The \gls{kt} algorithm \((p=1)\):}
+
+        The \gls{kt} algorithm clusters soft particles first, and produces the best proxies for single partons:
+        %
+        it is more likely than \gls{akt} or \gls{ca} to cluster the hard, narrow core and the soft-wide angle radiation produced by a single quark or gluon into the same jet \cite{}.
+        %
+        However, this also leads to irregular shapes and pileup sensitivity, and we therefore only use the \gls{kt} algorithm to cluster \textit{\glspl{subjet}} in this work.
+\end{itemize}
+
+
+
+\remark{}{
+    Iterative \gls{reclustering} algorithms are not the first jet algorithms that were introduced to describe the physics of QCD, nor are they the conceptually simplest.
+    %
+    The first jet algorithm, the \vocab{Sterman-Weinberg jet algorithm} designed for jets produced in \(e^+ e^-\) collisions, is a \vocab{cone algorithm}:
+    %
+    a jet algorithm which uses solid-angle cones of a fixed shape to produce a set of final-state jets.
+    %
+    However, the tree-like structure of iterative reclustering algorithms is reminiscent of the partonic cascade and, as discussed above, they offer a variety of theoretical and phenomenological strengths.
+}
+
+\remark{}{
+    Another early jet algorithm, the \vocab{Jade algorithm}, is an iterative \gls{reclustering} algorithm with a \textit{mass-based} distance measure, \(d_{ij}\propto m_{ij} = (p_i + p_j)^2\).
+    %
+    It is possible that jets which are re-clustered with pairwise-observable-based algorithms like the Jade algorithm may be useful for facilitating the calculation of pairwise \glslink{ewoc}{energy weighed observable correlations}, discussed in \Sec{ewoc} of \Chap{ewocs}.
+}
+
+
+
+Next, we discuss the \textit{\glspl{recomb-scheme}} used in this thesis in slightly more detail.%
+\footnote{
+    A more detailed description of other recombination schemes may also be found in \Reff{Cacciari:2011ma}.
+}
+%
+The default \gls{recomb-scheme} for most studies is the \glslink{e-scheme}{\vocab{E-scheme}}, in which the momentum of a jet is simply the sum of the momenta of its consituents.
+%
+However, other useful recombination schemes include the \glslink{wta-scheme}{\vocab{Winner-Take-All (WTA) Schemes}}:
+%
+whenever two particles are recombined in an iterative \gls{reclustering} algorithm, the result is given the combined energy or transverse momentum of both particles, but is given the direction of the ``harder'' particle.
+%
+\begin{subequations}
+Denoting the combined particle as ``\(r\)'', \glslink{wta-scheme}{\vocab{WTA \(p_T\) Scheme}} adds the transverse momenta of the recombined particles,
+\begin{align}
+    p_{Tr} = p_{T1} + p_{T2},
+    \qquad
+    \hat{n}_r =
+    \begin{cases}
+        \hat{n}_1 & \text{if $p_{T1} > p_{T2}$}, \\
+        \hat{n}_2 & \text{if $p_{T2} > p_{T1}$}.
+    \end{cases}
+    \,,
+\end{align}
+and is therefore more practical for use in proton-proton collisions, where there is better resolution of the \(p_T\) of final state particles.
+%
+Similarly, the \glslink{wta-scheme}{\vocab{WTA E Scheme}} adds the transverse momenta of the recombined particles,
+\begin{align}
+    E_{r} = E_{1} + E_{2},
+    \qquad
+    \hat{n}_r =
+    \begin{cases}
+        \hat{n}_1 & \text{if $E_{1} > E_{2}$}, \\
+        \hat{n}_2 & \text{if $E_{2} > E_{1}$}.
+    \end{cases}
+    \,,
+\end{align}
+and is more practical for use in \(e^+ e^-\) collisions.
+\end{subequations}
+
+\remark{}{
+    Since WTA schemes depend on the direction of the more energetic of two particles during \glslink{reclustering}{recombination}, they lead to results which are less sensitive to the presence of low-energy pollution.
+    %
+    For example, the WTA jet axis (the direction of the momentum of a WTA jet), is completely unchanged if a very soft particle is added to a collision event, while the \(E\)-scheme jet axis changes by an amount proportional to the energy of the additional particle.
+    %
+    We will use the additional robustness of the WTA scheme to robustly explore jet substructure in \Sec{ewoc} of \Chap{ewocs}.
+}
+
+% ===========================================================
+\section{A Review of the Mellin Transform}
+% ===========================================================
+
+The Mellin transform was an important tool for us in capturing the behavior of the partonic cascade and associated correlations in \Secs{partonshower}{eec}.
+%
+In particular, the Mellin transform is used to study the scaling properties of functions.
+%
+In \Sec{jets}, we touched upon this briefly in a footnote.
+%
+We said:
+
+\vspace{7pt}
+\hrule
+\vspace{7pt}
+
+homogenous monomials, such as \(x^{-\ell}\), have extremely simple scaling behavior:
+%
+as one scales \(x\) by a factor of \(a\), one obtains a deceptively simple relation \((a x)^{-\ell} = a^{-\ell} x^{-\ell}\);
+%
+if \(a < 1\), we have ``zoomed in'' to the behavior of the function near \(x = 0\).
+%
+We say that these simple monomials are \textit{eigenfunctions of the scaling} (or dilatation) \textit{operator}.
+%
+The scaling behavior of a more complicated function \(f(x)\) -- e.g. a concrete relationship between \(f(ax)\) and \(f(x)\) -- can then be captured explicitly if it is known how \(f(x)\) can be composed in terms of the simple building blocks \(x^{-\ell}\).
+%
+Luckily, \textit{the Mellin moments of a function \(f(x)\) precisely captures how \(f(x)\) is composed of the simple building blocks \(x^{-\ell}\), and therefore provides a complete and simple characterization of its scaling behavior.}
+
+\vspace{7pt}
+\hrule
+\vspace{7pt}
+
+
+We now present this intuition with more concrete examples and arguments.
+
+\begin{exercise}
+    Show \(\mathcal{M}[f(x^{-1})](\ell) = \mathcal{M}[f(x)](-\ell)\) and \(\mathcal{M}[f(a x)](\ell) = a^{-\ell} \mathcal{M}[f(x)](\ell)\), and connect these results to the relationship between the Mellin transform and the scaling behavior of functions discussed above.
+    %
+    Hopefully this exercise also impresses upon you the invariant properties of the Mellin measure that we are about to formalize below.
+\end{exercise}
+
+
+This intuition can be made even more precise by the use of the \vocab{Mellin inversion theorem}, which gives appropriate conditions under which the Mellin transform may be inverted,
+\begin{proposition}{Mellin Inversion}{}
+    If \(f(x)\) has a Mellin transform \(\phi(s)\) which is analytic in a strip \(a < \Re(s) < b\) of the complex-\(s\) plane and tends to zero uniformly as \(\Im s \to \pm \infty\) for any \(a < \Re(s) = c < b\), then we can recover \(f(x)\) from \(\phi(s)\) by
+    \begin{align}
+        f(x) = \mathcal{M}^{-1}[\phi(s)](x)
+        =
+        \frac{1}{2\pi i}
+        \int_{c-i\infty}^{c+i \infty}
+        \dd s
+        \,
+        x^{-s} \phi(s)
+        \,.
+    \end{align}
+\end{proposition}
+%
+The Mellin inversion formula can then be used to prove the \vocab{Ramanujan master theorem}, which makes the intuition of the Mellin transform capturing the scaling behavior of functions very sharp:
+\begin{proposition}{Ramanujan's Master Theorem}{}
+    If a \(f(x)\) can be expressed in as a convergent sum of the form
+    \begin{align}
+        f(x) = \sum_{k = 0}^\infty (-1)^k a(k) \frac{x^k}{k!}
+        \,,
+    \end{align}
+    in a large neighborhood of \(x = 0\), and \(a(k)\) is itself a well-behaved holomorphic function in the region \(\Re(k) \geq 0\), then the Mellin transform of \(f(x)\) is
+    \begin{align}
+        \mathcal{M}[f](s)
+        =
+        \Gamma(s) a(-s)
+        \,.
+    \end{align}
+
+    In words, \textit{the Mellin transform of \(f(x)\) evaluated at \(s\) interpolates information about the pieces of \(f\) which behave like \(x^{-s}\)}.
+
+    \vspace{7pt}
+    \hrule
+    \vspace{7pt}
+
+    The terms ``large neighborhood'' and ``well-behaved'' require further definition outside of our scope, but a more precise definition can be found, for example, in \Reff{RamanujanMasterTheorem}.
+\end{proposition}
+
+
+
+
+
+\begin{exercise}
+    \textbf{Warmup by Analogy: the Fourier Transform}
+
+    In the Fourier transform, a central role is played by the \emph{translations}
+    \begin{align}
+        x \mapsto x + a
+        .
+    \end{align}
+    The Fourier transform of a function \(f(x)\) divides the function \(f(x)\) into ``plane-wave'' components which are eigenstates of translation.
+
+    The Fourier transform of a function \(f(x)\) is defined as
+    \begin{align}
+        \mc F[f(x)](k)
+        \eqdelta
+        \tilde f(k)
+        &:=
+        \int_{-\infty}^{\infty} \dd x \, e^{-ikx} f(x)
+        .
+    \end{align}
+
+    \begin{enumerate}[label=\roman*)]
+        \item
+            What is the differential operator \(\mc T\) which implements an infinitesimal translation in \(x\)?
+            %
+            In particular, we are looking for \(\mc T\) such that:
+            \begin{align}
+                f(x) + \delta x \, \mc T f(x) = f(x+\delta x)
+                .
+            \end{align}
+
+        \item
+            Argue that the Fourier transform of \(f(x)\) can be divided into three conceptually distinct pieces:
+            \begin{itemize}
+                \item
+                    Integration against a translation-invariant measure;
+
+                \item
+                    An eigenstate of the translation operator;
+
+                \item
+                    The function \(f(x)\) itself.
+            \end{itemize}
+
+        \item
+            Using the invariance of the integration measure under translations, show that the Fourier tranform of \(f(x)\) after translation by \(a\) is simply related to the Fourier transform of \(f(x)\):
+            \begin{align}
+                \mc F[f(x+a)](k) = e^{ika} \tilde f(k)
+                .
+            \end{align}
+
+        \item
+            Show that the Fourier transform of \(\mc T f(x)\) is simply related to the Fourier transform of \(f(x)\).
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \textbf{Finally: the Mellin Transform}
+
+    The Mellin transform is similar to the Fourier transform, except that it is now \emph{dilations} which play a central role:
+    \begin{align}
+        x \mapsto \lambda x
+        .
+    \end{align}
+    The Mellin transform of a function \(f(x)\) divides the function \(f(x)\) into analogous components which are eigenstates of dilation.
+
+    \begin{enumerate}[label=\roman*)]
+        \item
+            What is the differential operator \(\mc D\) which implements an infinitesimal \vocab{dilation} in \(x\)?
+            %
+            In particular, we are looking for \(\mc D\) such that:
+            \begin{align}
+                f(x) + \delta \lambda \, \mc D f(x)
+                =
+                f\le(\le(1 + \delta \lambda\ri)x\ri)
+                .
+            \end{align}
+
+        \item
+            Argue that the Mellin transform of \(f(x)\) can be divided into three conceptually distinct pieces:
+            \begin{itemize}
+                \item
+                    Integration against a dilation-invariant measure;
+
+                \item
+                    An eigenstate of the dilation operator;
+
+                \item
+                    The function \(f(x)\) itself.
+            \end{itemize}
+
+        \item
+            Using the invariance of the integration measure under dilations, show that the Mellin tranform of \(f(x)\) after dilation by \(\lambda\) is simply related to the Mellin transform of \(f(x)\):
+            \begin{align}
+                \mc M[f(\lambda x)](s) = \lambda^{-s} \hat f(s)
+                .
+            \end{align}
+
+        \item
+            Without performing a calculation, how do you expect the Mellin transform of \(\mathcal{D} f(x))\) to be related to the Mellin transform of \(f(x)\)?
+            %
+            Why?
+            %
+            Now, calculate \(\mathcal{M}\le[\mathcal{D} f(x)\ri]\) and compare it the result to your intuitive expectation.
+    \end{enumerate}
+\end{exercise}
+
+
+
+An important mathematical piece in our analysis of the splitting of trees and the sharing of momentum in the partonic cascade was the \textit{Mellin convolution}.
+%
+The Mellin convolution is defined by the following formal relation:
+\begin{align}
+    \label{eq:convolution-property}
+    \mathcal{M}[f \mellinconvolution g](s)
+    =
+    \mathcal{M}[f](s) \, \mathcal{M}[g](s)
+    \,.
+\end{align}
+In other words, a \vocab{Mellin convolution} of two functions \(f\) and \(g\) is a bi-linear map of the functions whose Mellin transform is the product of the individual Mellin transforms of \(f\) and \(g\).
+%
+Since it is a bi-linear map of the two functions, it seems natural to express it as an integral.
+%
+In particular,
+\begin{proposition}{Mellin Convolution}{mellin-convolution-app}
+    The \vocab{Mellin convolution}
+    \begin{align}
+        (f \mellinconvolution g)(x)
+        =
+        \int_0^\infty \frac{\dd y}{y}\, f(y) g(x/y)
+        \,,
+    \end{align}
+    satisfies the natural convolution property of \Eq{convolution-property}.
+\end{proposition}
+%
+We see this convolution in our exploration of the scaling behavior of parton showers in \Sec{partonshower} (and thus in the behavior of the resummed \gls{eec} in \Sec{eec}), and even in our exploration of parton-to-hadron fragmentation in \Prob{p2h-fragmentation}.
+%
+The proof of this result is left to \Prob{mellinconvolution}
+
+
+
+
+% ==============================================
+\section{Common models of low-energy pollution}
+% ==============================================
+\label{app:pollution-models}
+
+In this appendix, we exposit slightly further on the models used for low-energy pollution, separating our discussion into \glspl{soft-distortion} (\gls{hadronization} and \gls{deteffects}) and \gls{additive-contamination} (\gls{ue} and \gls{pileup}).
+
+% ------------------------------------
+\subsection{Soft Distortions}
+% ------------------------------------
+\label{app:soft-distortions}
+
+Hadronization is a theoretical procedure by which we convert parton-level results into hadron-level results -- results involving \textit{real} final-state particles rather than confined quarks and gluons.
+
+\begin{definitionbox}{Hadronization}{hadronization}
+    \vocab{\Gls{hadronization}} refers, qualitatively, to the process by which quarks and gluons -- which are unobservable due to confinement -- combine to form hadrons.
+    %
+    More concretely, ``hadronization'' is any theoretical prescription for taking a parton-level prediction, involving quarks and gluons, and converting it into a physical prediction for real-world experiments, which can involve only color neutral final states.
+\end{definitionbox}
+
+
+When performing calculations in \gls{pqcd} involving final-state quarks and gluons, the simplest prescription for comparison to experimental results is to simply assume that the results of the \gls{pqcd} computation are correct, and directly comparable to experimental results.
+%
+This approach, which is technically a simple hadronization model, is qualitatively justified by the principles of \gls{phd} and \gls{lphd}, and is the approach taken in all of the analytic computations of jet substructure in this thesis.
+%
+However, to obtain quantitative theoretical predictions for realistic collider observables -- such as the distribution of the number of outgoing charged pions -- more detailed models of hadronization will be required.
+
+
+
+\begin{figure}[]
+    \centering
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.33\textwidth]{example-image-a}
+        \label{fig:independent-fragmentation}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.33\textwidth]{example-image-b}
+        \label{fig:string-models}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.33\textwidth]{example-image-c}
+        \label{fig:cluster-models}
+    }
+    \caption[Cartoons of common hadronization models.]{
+        Cartoons of hadronization as modelled by (a) independent fragmentation, (b) string models, and (c) cluster models.
+        %
+        \sam{todo}
+    }
+    \label{fig:cms-cartoon}
+\end{figure}
+
+
+
+
+There are three common categories of hadronization models
+\begin{itemize}
+    \item
+        \vocab{Independent Fragmentation Models:}
+
+        A pioneering hadronization model which played an important role in early studies of jet phenomenology and, for many collider studies, remains a viable tool to this day.
+        %
+        Also based on the principle of \glslink{lphd}{LPHD}, independent fragmentation models assume that partons \textit{fragment} into hadrons with a \vocab{\gls{parton-to-hadron}} qualitatively similar to the \gls{parton-to-parton} of \Sec{p2p-fragmentation} \cite{}.
+        % https://arxiv.org/pdf/2309.03346
+        % and textbook
+        %
+        The \gls{parton-to-hadron} \(d_{h/j}\) is defined as the number density of final-state hadrons of type \(h\) produced by a parton of type \(j\).
+        %
+        Like parton distribution functions or splitting functions, \glspl{parton-to-hadron} are portable objects which are nearly universal and may be used in a wide variety of applications;
+        %
+        they may be defined in terms of operators or extracted phenomenologically.
+        %
+        However, their theoretical interpretation is somewhat murky -- a single parton has color charge and cannot truly be considered on its own, leading to associated difficulties when using rigorous lattice QFT methods to determine the behavior of fragmentation functions.
+        %
+        Furthermore, independent fragmentation models are not well suited for capturing detailed multi-particle correlations between final-state hadrons \cite{}.
+
+
+    \item
+        \vocab{String Models:}
+
+        String models, the most popular and flexible models of hadronization today, suggest that the energy between quark and anti-quark pairs are contained within narrow tubes, called strings, which then break to form mesons and baryons.
+        %
+        The presence of \gls{qcd} strings is supported quantitatively by studies in lattice quantum field theory \cite{}, which are able to probe the properties and dynamics of the \gls{qcd} string directly.
+        %
+        The Lund string model is the most popular implementation, and is used by \texttt{Pythia} \cite{} and therefore all of the phenomenological studies presented in this thesis;
+        %
+        the Lund string model implemented by \texttt{Pythia} combines the dynamics of \gls{qcd} strings and fragmentation models motivated by quantum tunneling effects (the Schwinger pair production of quarks within the strong gluon field of the \gls{qcd} string) into an extremely flexible and flexible model of hadronization.
+        %
+        String models of \gls{qcd} were also the birthplace of the field of fundamental string theory.
+        %
+        It may be no surprise, then, that while string models of hadronization are extremely successful numerical tools, it is unfortunately difficult to obtain analytic results involving hadronization models of \gls{qcd} strings.
+
+    \item
+        \vocab{Cluster Models:}
+
+        Cluster models of hadronization are a historical competitors of string models of hadronization \cite{} which are now \textit{combined} with string models in state-of-the-art hadronization models such as \texttt{Pythia} \cite{}.
+        %
+        Cluster models of hadronization propose that quarks and gluons form color-neutral clusters that dynamically form outgoing hadronic states.
+        %
+        Cluster models of hadronization are directly related to \gls{lphd} through the empirically observed property of \gls{preconfinement} mentioned in Remark~\ref{rem:preconfinement}:
+        %
+        the mass distribution of color-neutral clusters of partons produced by parton shower algorithms are strongly peaked near the confinement scale/the non-perturbative scale of the shower cutoff \cite{}.
+        %
+        Cluster models of hadronization can also be inferred from the properties of large-\(N_c\) \gls{qcd} \cite{}.
+        % https://arxiv.org/pdf/1411.4085#page=33
+\end{itemize}
+
+One convenient, analytically tractable, independent-fragmentation-like model for non-perturbative effects on jet substructure based on the principle of \glslink{lphd}{LPHD}, is the \vocab{frozen coupling} model, which \textit{freezes} the \gls{qcd} coupling constant below a non-perturbative scale \(\mu_{\rm freeze}\):
+\begin{align}
+    \alpha^{\rm 1-loop,\,frozen}_s(\kappa; \mu_{\rm freeze})
+    =
+    \alpha^{\rm 1-loop}_s(\kappa)
+    \Theta(\kappa > \mu_{\rm freeze})
+    +
+    \alpha^{\rm 1-loop}_s(\mu_{\rm freeze})
+    \Theta(\mu_{\rm freeze} > \kappa)
+    .
+    \label{eq:frozen-coupling}
+\end{align}
+%
+\Eq{frozen-coupling} is a simplified analog of several motivated approaches to modeling the infra-red structure of QCD for which \(\alpha_s\) also approximately freezes below a non-perturbative scale.
+%
+We take the approach of freezing the strong coupling below the scale \(\mu_{\rm freeze}\) = 1 GeV to estimate the effects of hadronization on jet grooming in our numerical calculations of \Sec{pira-resummed}, and we note that changing our choice of \(\mu_{\rm freeze}\) leads only to small effects in substructure distributions.
+
+
+\remark{}{
+    The freezing of the effective value of \(\alpha_s\) in the low-energy regime can be argued in several complementary contexts.
+    %
+    The freezing of \(\alpha_s\) is discussed by \Reff{Mattingly:1992ud} in the context of optimized perturbation theory \cite{Stevenson:1981vj}, whose goal is to perform perturbative calculations that are minimally sensitive to changes in renormalization scheme, by \Reffs{Stevenson:1994jd,Caveny:1997yr} in the context of expanding perturbative results around the Caswell-Banks-Zaks fixed point \(N_f = N_f^* \lesssim 11 N_c / 2\) of the QCD beta function \cite{Caswell:1974gg,Banks:1981nn}, and by \Reff{Brodsky:2010ur} in the context of holographic QCD.
+    %
+    The freezing of \(\alpha_s\) may be also seen qualitatively by comparing experimental data to field theoretic calculations \cite{Deur:2008rf,Deur:2009tj,Binosi:2016nme}, and is a special case of the more general program of using effective couplings to describe non-perturbative infra-red effects \cite{Dokshitzer:1995qm,Dokshitzer:1995zt,Dokshitzer:1997ew,Dokshitzer:1997iz,Korchemsky:1999kt}.
+    %
+    See \Reff{Deur:2016tte} for a recent review of models of the low-energy behavior of QCD with and without a frozen coupling.
+}
+
+
+
+
+\Gls{deteffects} furnish another important topic in the subject of low-energy pollution;
+%
+detector effects are usually modelled internally by particle physics experiments, and thus we unfortunately only brush over \gls{deteffects} in this (mostly theoretical) thesis.
+%
+Nonetheless, the accurate modelling of detector effects and the uncertainties they introduce is essential for realistic interpretations of experimental measurements.
+
+
+\begin{definitionbox}{Detector Effects}{deteffects}
+    \vocab{\Gls{deteffects}} are distortions and uncertainties in experimental data introduced by the limited resolution of experimental detectors and the interactions of experimental detectors with final-state particles.
+\end{definitionbox}
+
+
+\begin{figure}[]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/misc/cms_diagram.png}
+    \caption[Cartoon of the structure of the CMS detector.]{
+    A diagram of the Compact Muon Solenoid (CMS) detector of the Large Hadron Collider (LHC), taken from the \href{https://cms.cern/detector}{CMS website}.
+    }
+    \label{fig:cms}
+\end{figure}
+
+\Gls{deteffects} are non-idealities in the detection process, where the true trajectories, energies, and identities of particles are modified due to the characteristics of the detectors.
+%
+These effects can lead to:
+\begin{itemize}
+    \item
+    Imperfect \vocab{resolution}:
+    %
+    Inaccuracies in reconstructing the exact energy and momentum of particles or jets, leading to the smearing of energy measurements.
+
+    \item
+    Imperfect \vocab{efficiency}:
+    %
+    Inaccuracies in inferring the existence of particles from electrical signals of the experimental apparatus.
+\end{itemize}
+
+\Gls{deteffects} are typically modeled and corrected (if necesary) using a dedicated experimental Monte Carlo software, called \textsc{Geant} (for GEometry ANd Tracking), which performs detailed simulations of the detector and its response to various particle interactions.
+%
+Usually, \gls{deteffects} are understood by taking final-state particles generated by collisions simulated in \gls{pythia} simulation, including \gls{hadronization} as well as \gls{pileup} and \gls{ue} (discussed next).
+
+
+\remark{}{
+        At the Compact Muon Solenoid (CMS), depicted in \Fig{cms}, measurable electrical signals are generated as charged particles hit the layters of the silicon \textit{tracking system}, or as particles deposit energy in stacks of material called \textit{calorimeters} which stop particles passing through them (except for muons, measured separately by muon chambers).
+        %
+        The motion of charged particles can be reconstructed very precisely from the location of the hits in the tracking system.
+        %
+        The motion of neutral particles is probed only by the calorimeters, which extract less precise measurements of energy and momentum.
+        %
+        As a result, \textbf{uncertainties in the momenta of neutral particles are significantly larger than those of charged particles}.
+}
+
+
+
+In this thesis, we take a less precise perspective.
+%
+We do not perform any simulations of experimental detectors with \textsc{Geant}, and we do not perform any unfolding.
+%
+We model detector effects via
+\begin{itemize}
+    \item
+        exclusion of neutral particles, in \Chap{grooming}, with the motivation that experiments involving charged particles, or \textit{tracks}, are associated with significantly lower experimental uncertainties;
+
+    \item
+    an more realistic emulation of experimental detector effects, in \Chap{ewocs}, via Gaussian smearing of particle momenta by 3\% for photons, 5\% for neutral particles, and 1\% for charged particles (the values used in \texttt{CMS-SMP-22-01} \cite{CMS:2024mlf}).
+\end{itemize}
+
+
+\remark{}{
+    When necessary, detector effects on the distribution of a particular collider observable can be accounted for by \vocab{unfolding}.
+    %
+    Unfolding works computing histograms for the collider observable on an ensemble of collision events before and after the modelling of detector effects.
+    %
+    For example, let us consider the histogram of a collider observable distribution, with bins indexed by \(i\), with \vocab{generator level} heights \(h^{\rm (gen)}_i\) for the observable distribution when evaluated on an ensemble simulated events generated with \gls{pythia}, and \vocab{detector level} heights \(h^{\rm (dtr)}_i\) when evaluated on the same ensemble of samples \emph{after} they have been fed through \textsc{Geant}.
+    %
+    After computing the histogram on both sets of events, we can write a matrix equation of the form
+    \begin{align}
+        \le\langle h^{\rm (dtr)}_i\ri\rangle
+        =
+        \mathcal{D}_{ij}
+        \le\langle h^{\rm (gen)}_j\ri\rangle
+        \,.
+    \end{align}
+    \(\mathcal{D}\) -- which stands for ``detector effects'' -- captures the average response of the histogram bins to detector effects as modelled by \textsc{Geant}.
+    %
+    A more precise, event-by-event analogue of this relation between generator- and detector-level results, also including the effects of undesired backgrounds, is
+    \begin{align}
+        h^{\rm dtr}_i
+        -
+        {\rm b^{(dtr)}}_i
+        =
+        \mathcal{D}_{ij} \le(
+            h^{\rm gen}_j
+            -
+            {\rm b^{(gen)}}_j
+        \ri)
+        +
+        \mathcal{N}_i
+        \,,
+    \end{align}
+    where \({\rm b^{(gen)}}_i\) and \({\rm b^{(dtr)}}_i\) -- for ``background'' -- indicate systematic, background contributions to bin \(i\) of the generator-level and detector-level histograms, respectively, and \(\mathcal{N}_i\) -- for ``noise'' -- is a random variable representing the effects of statistical noise.
+    %
+    In most practical applications, the noise is assumed to satisfy \(\le\langle \mathcal{N}_i \ri\rangle = 0\) and have a Poissonian covariance.
+    %
+    The goal of \vocab{unfolding} is the extraction of particle-level data, \({\rm gen}_i\) (and associated statistical uncertainties), from measured detector-level data, \({\rm gen}_i\), by accurately modelling \(\mathcal{D}\), \({\rm b}\), and \(\mathcal{N}\) from numerical simulations (i.e. of detector effects in \textsc{Geant}).
+}
+
+
+% ------------------------------------
+\subsection{Additive Contamination}
+% ------------------------------------
+\label{app:additive-contamination}
+
+
+The \glslink{ue}{underlying event (UE)} is a theoretical source of additive contamination in hadronic collisions whose behavior must be modelled for accurate predictions of jet substructure.
+%
+The first-principles framework of \gls{ue} is an area of active research, but in this thesis we use the well-understood and highly successful framework of \textit{\glslink{mpi}{multiple parton interactions (MPI)}} in \gls{pythia}.
+
+\begin{definitionbox}{Underlying Event}{ue}
+    \vocab{\glslink{ue}{The underlying event (UE)}} is radiation produced in a high-energy hadron collision that is not directly related to the hard scattering process that produces the primary partons or jets.
+    %
+    The dominant model of \gls{ue} is the \vocab{\gls{mpi}} model of \gls{pythia}.
+
+    In the context of hadronic collisions in \gls{pythia}, \glslink{mpi}{multiple parton interactions} occur when, rather than the collision involving only one parton from each hadron, the more detailed inner structure of the hadrons involving multiple partons is taken into account.
+    %
+    \gls{mpi} refers to the additional scatterings of these multiple partons (in principle described by generalized \(n\)-parton distribution functions, though the rarity of these additional scatterings means that only 2-parton distribution functions are needed in practice) \cite{}.
+\end{definitionbox}
+
+\begin{figure}[]
+    \centering
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        \label{fig:ue}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        \label{fig:pu}
+    }
+    \caption{
+        \sam{Cartoon depicting \sam{UE and PU}}
+    }
+    \label{fig:additive-contamination-models}
+\end{figure}
+
+
+\remark{mpi}{
+    The \gls{mpi} model of \gls{pythia} also combines the multiple-parton-scattering model described above with insights from a theoretical description of all-orders effects in scattering (called Regge-Gribov theory, after its creators \cite{}) in which ``cut pomerons'', beyond the scope of this thesis, contribute to hadronic cross sections through the production of a large number of low-energy gluons.
+    %
+    An understanding of the ideas of Regge-Gribov theory in effective field theory is an area of ongoing research which, to my knowledge, is spearheaded by the framework of Glauber \gls{scet}.
+}
+
+
+\remark{}{
+    The number of multiple-parton interaction vertices in \gls{pythia} is taken to be Poisson-distributed.
+    %
+    Furthermore, the radiation produced by multiple-parton scatterings is, when averaged, roughly uniform in the rapidity-azimuth plane.
+    %
+    These simple features allow for the development of tractable phenomenological models for certain features of \gls{ue}.
+    %
+    A particularly elegant characterization is given by \Reff{}.
+    %
+    Among other characterizations of the expected phenomenological behavior of \gls{ue}, they are able to explicitly derive an estimate of the distribution of transverse momenta due to \gls{ue} in a given area of the rapidity-azimuth plane, assuming a Poisson-distributed number of outgoing particles from \gls{ue} and an exponential distribution for their transverse momenta.
+    %
+    Under these assumptions, they find (in \href{https://arxiv.org/pdf/0912.4926\#page=7}{Section 3.1}, see also \href{https://arxiv.org/pdf/0912.4926\#page=35}{Appendix A} and \href{https://arxiv.org/pdf/0912.4926\#page=7}{footnote 2}) the surprisingly compact result
+    \begin{align}
+        \frac{\dd P}{\dd p_T^{\rm(UE)}}(A)
+        =
+        e^{-\nu A}
+        \le(
+            \delta\le(p_T^{\rm(UE)}\ri)
+            +
+            e^{-p_T^{\rm(UE)}/\mu}
+            \sqrt{\frac{A \, \nu}{p_T^{\rm(UE)}\, \mu}}
+            I_1\le(2\sqrt{\frac{A\,\nu\, p_T^{\rm(UE)}}{\mu}}\ri)
+        \ri)
+        \,,
+    \end{align}
+    where $I_1$ is a modified Bessel function (of the first kind), \(\nu\) is the parameter which governs the average of the Poisson-distributed number of particles per unit area (\(\nu \sim 5\) is the realistic value they give for \gls{ue} at the LHC), and \(\mu\) is a parameter governing the average of the exponentially-distributed transverse momentum of each individual particle (they give \(\mu \sim\) 0.4 GeV, which they find corresponds to an average \(p_T\)-per-area of about 2 GeV).
+    %
+    Unfortunately, this elegant result does not make further appearances in this thesis.
+}
+
+In this work, we look at examples in which we characterize the effects of the underlying event on the distribution of collider observables.
+%
+A more rigorous analyst would also quantify the \textit{uncertainties} in distributions \textit{due to the modelling of the underlying event}.
+%
+Analyses of uncertainties due to \gls{ue} modelling -- as performed in experimental analyses -- involves at least the two following steps:
+\begin{itemize}
+    \item
+        \textbf{Reweighting:} (also important for \gls{pileup})
+
+        We have theoretical expectations for the distribution number of multiple-parton interactions, \(N_\text{UE}\), associated with collision events at a certain scale, but we want to quantify our uncertainty about the precise form of the \(N_\text{UE}\) distribution.
+        %
+        This is achieved by \textit{re-weighting} events -- i.e. re-weighting their contributions to histograms -- based on the effective value of \(N_\text{UE}\).
+        %
+        We give a simplistic description of re-weighting, in which we assume we have access directly to \(N_\text{UE}\), in Example \ref{ex:reweighting-ue} below.
+        %
+        In practice, however, re-weighting is performed by re-weighting events by a function of collision parameters that are closely related to \gls{ue}, rather than \(N_\text{UE}\) itself.
+        %
+        In particular, when simulating \gls{ue} with \gls{pythia}, one can keep track of scales used by the shower algorithm to generate initial-state radiation (ISR) and final-state radiation (FSR) for each collision.
+        %
+        These are are also correlated with the number \(N_\text{UE}\) of multiple-parton interactions.
+        %
+        By re-weighting events based on the ISR and FSR scales of the shower, one can effectively change the distribution of \(N_\text{UE}\) associated with the generated events.
+
+
+    \item
+        \textbf{Changing tunes:}
+
+        To characterize uncertainties in other parameters of the \gls{ue} model (usually reserved only for precision measurements), one chooses several, previously tuned/validated values of particular \gls{pythia} parameters controlling \gls{ue} behavior -- called the \vocab{\gls{pythia} tune} -- and examine the differences in the distributions obtained with different tunes.
+\end{itemize}
+
+\remark{}{
+    In this work, we perform no re-weighting, and only present results obtained with the default Monash tune of \gls{pythia} \cite{}.
+    %
+    The \gls{pythia} tune often preferred in experimental analyses is the CP5 tune introduced by the CMS experiment \cite{}.
+    % https://arxiv.org/pdf/2205.02905
+}
+
+
+\begin{example}
+    \label{ex:reweighting-ue}
+    While in practice one re-weights based on the ISR and FSR scales recorded by \gls{pythia}, let us imagine a simpler situation in which we can directly keep track of the number of underlying event collisions \(N_\text{UE}\).
+    %
+    We imagine that \(N_\text{UE}\) is Poisson distributed with some mean \(\nu\);
+    %
+    however, uncertainties in \(\nu\) lead to uncertainties in distributions obtained with \gls{pythia}.
+    %
+    If we want to understand the effect of uncertainties in \(\nu\) on a histogram describing the distribution of a collider variable \(X\), we can \textit{re-compute} the distribution of \(X\), but with \vocab{re-weighted} contributions from from events with different values of \(N_\text{UE}\):
+    %
+    each event fills a histogram bin with a weight \(w(N_\text{UE})\), rather than one as in the original histogram for \(X\).
+    %
+    The weight is chosen such that the \textit{effective} number of of multiple-parton interactions is Poisson distributed with a \textit{new} mean \(\nu' \neq \nu\), e.g.
+    \begin{align}
+        \label{eq:re-weighting-ue}
+        \nu'
+        =
+        \le\langle N_\text{UE}\ri\rangle_\text{re-weighted}
+        =
+        \frac{
+            \sum_{\text{events } i}
+            N_i w(N_i)
+        }{
+            \sum_{\text{events } i}
+            w(N_i)
+        }
+        \neq
+        \nu
+        \,,
+    \end{align}
+    where \(N_i\) is the number of multiple-parton interactions in event \(i\).
+\end{example}
+
+\begin{exercise}
+    Design a re-weighting scheme:
+
+    Given a distribution Poisson($\nu$) with mean \(\nu\), find a weight function \(w_{\nu \to \nu'}(N)\) such that a set of data \(\{N_i\}\) drawn from Poisson($\nu$), re-weighted by \(w_{\nu \to \nu'}(N)\), behaves as if it were drawn from the distinct Poisson distribution Poisson($\nu'$).
+
+    \vspace{7pt}
+
+    \texttt{(Hint:)}
+    %
+    Your result should be a simple ratio.
+\end{exercise}
+
+
+\begin{figure}[]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{\sam{Re-weighting}}
+    \label{fig:reweighting}
+\end{figure}
+
+
+An important experimental source of additive contamination in particle collisions is \glslink{pileup}{pileup (PU)}.
+%
+Pileup occurs when radiation from an unrelated collision is detector together with the jets, or other high-energy information, from a collision of interest.
+
+Unfortunately, pileup is unavoidable if we want to learn about the universe.
+%
+When colliding protons at the LHC, for example, the vast majority of collisions yield ``uninteresting'' results -- that is, results which do not produce the high-energy jets or other high-energy phenomena for which we need collision experiments.
+%
+In order to see and test interesting physical results, we therefore need to collide a huge number of protons.
+%
+By applying very strong and precise electromagnetic fields, we are able to line up a huge number of protons into a \textit{bunch};
+%
+particle physics experiments then accelerate two bunches of protons towards each other so that we can observe the results of many collisions.
+
+When two bunches cross, we are more likely to see an interesting particle collision occur -- for example, one with high energy jets.
+%
+However, the interactions of other protons in each bunch produces produce additional final-state particles included in our experimental results.
+
+
+\begin{definitionbox}{Pileup}{pileup}
+    \vocab{\glslink{pileup}{Pileup (PU)}} refers to the additional interactions in a hadron collision due to multiple collisions occurring nearly simultaneously within the same bunch crossing.
+    %
+    These additional collisions are not directly related to the hard scattering process of interest but nonetheless interfere with measurements of the primary hard-scattering event, especially in high-luminosity environments.
+\end{definitionbox}
+
+
+\remark{}{
+    Since the pileup collisions are approximately un-correlated, the number of pileup events \(N_\text{PU}\) polluting a collision of interest is approximately Poisson distributed.
+    %
+    There are several methods to experimentally determine the distribution of the number of pileup vertices.
+    %
+    One is by using known properties of the cross-section associated with \gls{pileup} interactions, \(\sigma_\text{PU}\), and the luminosity of the experiment, \(\mathcal{L}\), to write \(\le\langle N_\text{PU}\ri\rangle = \sigma_\text{PU} \mathcal{L}\).
+    %
+    Another is by measuring the distribution of \vocab{primary vertices} measured in a particle collision.
+    %
+    Primary vertices are points from which sets of final-state particles seem to emerge, based on more detailed experimental reconstruction, so \(N_\text{PU} = N_\text{primary} - 1\).%
+    \footnote{
+        Primary vertices lie only along the axis of the colliding proton beams -- the \(z\) axis -- and are separated in the \(z\) direction.
+        %
+        \emph{Secondary vertices} -- vertices associated with the decay of a particle emerging from a primary vertex -- would instead be located away from the beam (i.e. with \(x, y \neq 0\)).
+    }
+    %
+    Yet another is by measuring the distribution of transverse momentum per unit rapidity-azimuth area and relating this to the number of pileup events;
+    %
+    since the transverse momentum produced a pileup event is, on average, uniform in the rapidity-azimuth plane \cite{}, we expect \(p_T / A \propto N_\text{PU}\) for any given event.
+}
+
+
+\glslink{pileup}{Pileup} events are modelled in both theoretical and experimental contexts by generating \vocab{minimum bias events} -- roughly, events which pass a bare minimum of experimental cuts -- using \gls{pythia}.
+%
+The number \(N_\text{PU}\) of pileup collisions to be added to the simulated collision of interest is drawn from the appropriate distribution, such as the experimentally measured distribution of \(N_\text{primary} - 1\), or a Poisson distribution with the experimentally realistic mean \(\le\langle N_\text{PU}\ri\rangle \sim 20 - 30\) \cite{Soyez:2018opl}.
+%
+Then, this number of simulated minimum bias events are generated (or loaded from an existing database), and their final-state particles are added to the set of final state-particles of the simulated collision of interest;
+%
+the resulting set of final-state particles forms the simulated event together with its simulated pollution.
+
+\remark{}{
+    Just as in the case of \gls{ue}, uncertainties in the average number of pileup events, or the pileup distribution more generally, are captured in more detailed analyses by re-weighting (though we do not pursue that level of rigor in this thesis).
+    %
+    Re-weighting to estimate the effects of varying the \gls{pileup} distribution, however, is simpler in practice than re-weighting for \gls{ue};
+    %
+    since we may directly keep track of the number of minimum bias events we add to every collision, we may re-weight events directly by a function only of \(N_\text{PU}\) (rather than by a function of indirect probes of \(N_\text{PU}\), as in the case of ISR and FSR scales providing indirect probes of \(N_\text{UE}\)).
+}
+
+Pileup can significantly affect jet measurements and leads to difficulties in extracting information about jet substructure.
+%
+\glslink{pileup}{pileup} and the principles of \glslink{pu-mitigation}{pileup mitigation} will play an important role in our pursuit of jet substructure observables which are insensitive to the effects of low-energy pollution.
+
+\begin{definitionbox}{Pileup Mitigation}{pu-mitigation}
+    \vocab{\Gls{pu-mitigation}} refers to any strategy for reducing the impact of \glslink{pileup}{pileup} events on hadronic collisions in high-luminosity environments, usually by separating the jets generated by a primary hard scattering from unwanted pileup contributions.
+\end{definitionbox}
+
+In the next chapter, we will make the unusual choice to merge the terms \gls{pu-mitigation} and \gls{jet-grooming}.
+%
+As we discuss in the next chapter, jet grooming is any method which modifies the constituents of a jet in order to reduce the effects of low-energy pollution.
+%
+Therefore, we describe \gls{pu-mitigation} as a type of \gls{jet-grooming} which aims specifically to remove \gls{additive-contamination}.
+
+
+\end{subappendices}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problems}
+
+
+
+\makeprob{Regimes and Accuracy \sam{better name}}{accuracy}{
+
+    \begin{enumerate}
+        \item
+            Show that LO \(\implies\) \(Q \gg \LambdaQCD\).
+
+        \item
+            Argue that \(\LambdaQCD\) can be expressed as a non-perturbative scale.
+
+        \item
+            Show that LL \(\implies\) scale for the observable...
+
+    \end{enumerate}
+}
+
+
+\makeprob{No Emission Probability}{no-emission}{
+    \sam{Problem regarding probability of no emission}
+
+
+    \begin{enumerate}[label=\roman*)]
+        \item
+            Between two angles
+
+        \item
+            Between two mass scales
+
+         \item
+             Between an angle and a mass scale
+    \end{enumerate}
+}
+
+
+
+\makeprob{Fragmentation in a Parton Shower}{p2p-fragmentation}{
+    \sam{Problem regarding parton shower evolution}
+
+    \sam{Comparison}
+    % Based on \url{https://www.sciencedirect.com/science/article/pii/0550321378900159}
+
+    In this problem, we use the following notation:
+    \begin{itemize}
+        \item
+            Let mid-Roman letters (\(i,\,j,\,k\)) denote flavors of partons;
+
+        \item
+            Let \(\mc P_{j\leftarrow i}(z) \dd z\) denote the probability of finding a parton of flavor \(j\) with momentum fraction between \(z\) and \(z + \dd z\) of the initiating parton \(i\);
+
+        \item
+            Let \(a_s\,\,p_{k_1\,k_2 \leftarrow i}(z) \dd z\) denote the probability that a parton of flavor \(i\) splits exactly into two partons with flavors \(k_1\) (with energy fraction between \(z\) and \(z + \dd z\)) and \(k_2\).
+            %
+            Furthermore, let us abuse notation and define \(\sum_{k'} p_{j\,k' \leftarrow i}(z) =: p_{j\leftarrow i}(z)\).
+    \end{itemize}
+    \sam{Move into notation section}
+
+    We will also make the assumption that \(\alpha_s\), and hence \(a_s\), is independent of the energy scale associated with the splitting.
+
+
+    \begin{enumerate}[label=\roman*)]
+        \item
+            Argue on physical grounds that
+            \begin{align}
+                \label{eq:feynman_field_fragmentation_formula}
+                \mc P_{j\leftarrow i}(z)
+                &=
+                c \delta(1-z) \delta_{ij}
+                +
+                a_s \, p_{j \leftarrow i}(z)
+                +
+                a_s \int_z^1 \frac{\dd y'}{y'} \, \sum_{k_1',\,k_2'} \,
+                    \mc P_{j\leftarrow k'}(z/y')
+                    \,
+                    p_{k' \leftarrow i}(y')
+                ,
+            \end{align}
+            and write the associated formula in Mellin space.
+            % \begin{align}
+            %     \label{eq:feynman_field_fragmentation_formula_mellin}
+            %     \hat {\mc P}_{j\leftarrow i}(n)
+            %     &=
+            %     a_s
+            %     \le(
+            %         \hat {p}_{j\leftarrow i}(n)
+            %         +
+            %         \hat {\mc P}_{j\leftarrow k'}(n)
+            %         \,\,
+            %         \hat {p}_{k' \leftarrow i}(n)
+            %     \ri)
+            %     ,
+            % \end{align}
+            % where we have left the sum on \(k'\) implicit.
+
+            \sam{Need no emission probability}
+
+        \item
+            \samtodo{Invert matrix, find moment, invert Mellin}
+    \end{enumerate}
+}
+
+
+\makeprob{Parton-to-Hadron Fragmentation}{p2h-fragmentation}{
+    \sam{Use FF}
+}
+
+
+\makeprob{\(\star\star\) Multiple Emissions \(\star\star\)}{multiple-emissions}{
+    \sam{warmup for later multiple emissions for substructure}
+
+    \sam{give equation}
+}
+
+
+\makeprob{Substructure with Multiple Emissions}{ungroomed-me}{
+    \sam{calculate}
+
+    \sam{How big is the correction?}
+}
+
+
+\makeprob{\(\star\) Multiplicity of Subjets \(\star\)}{subjet-multiplicity}{
+    Find the multiplicity distribution for constant-cutoff-groomed jets using the principles of the partonic cascade.
+    %
+    You may wish to refer to the solution of \Prob{subjet-multiplicity}.
+}
+
+
+\makeprob{\(\star\) A Numerical Parton Shower \(\star\)}{parton-shower}{
+    \begin{enumerate}[label=\alph*)]
+        \item
+            \sam{Veto algorithm?}
+
+        \item
+            \sam{Code flow}
+
+        \item
+            \sam{Write or compare to mine}
+
+        \item
+            \sam{Link to manual for mine}
+    \end{enumerate}
+}
+
+
+\vspace{10pt}
+\hrule
+\vspace{10pt}
+
+
+\section*{Problems on the Mellin Transform}
+
+
+\makeprob{Mellin Convolution Theorem}{mellinconvolution}{ Prove the Mellin Convolution Theorem of Proposition~\ref{prop:mellin-convolution-app}.  }
+
+
+\makeprob{Mellin Convolution Theorem II}{mellinconvolution2}{
+    There is another, related convolution in the context of Mellin transforms.
+    %
+    Consider the new convolution
+    \begin{align}
+        (f \circ_{\mc M} g)(x)
+        =
+        \int_0^\infty\,\dd\xi f(x\,\xi) g(\xi)
+        \,.
+    \end{align}
+    Show that the Mellin transform of this convolution is
+    \begin{align}
+        \mathcal{M}[f \circ_{\mc M} g](s)
+        \,
+        =
+        \,
+        \mathcal{M}[f](s) \, \mathcal{M}[g](1-s)
+        =:
+        \hat{f}(s) \, \hat{g}(1-s)
+        \,.
+    \end{align}
+}
+
+
+\end{problems}

@@ -1,0 +1,67 @@
+f% EVENT DISPLAY with CALO DEPOSITS
+\begin{tikzpicture}[scale=0.7,rotate=-20]
+  % ---------------------------------
+  % HCAL DEPOSITS
+  % ---------------------------------
+  % 100, 80, 125, 55
+  % 70 110
+  \begin{scope}
+    \clip (-2.1,1.0) rectangle (2.1,5.0);
+    % - - - - - - - - - - - - - - - - -
+    % Hard Particles
+    % - - - - - - - - - - - - - - - - -
+    % First hard particle
+    \draw[ecal] (0,0) -- (68:3.2) arc(68:72:3.2) -- cycle;
+    \draw[ecal] (68:2.0) -- (68:3.2) arc(68:72:3.2) -- (72:2.0) arc(72:68:2.0) -- cycle;
+    % Second hard particle
+    \draw[ecal] (0,0) -- (108:3.2) arc(108:112:3.2) -- cycle;
+    \draw[ecal] (108:2.0) -- (108:3.2) arc(108:112:3.2) -- (112:2.0) arc(112:108:2.0) -- cycle;
+    % - - - - - - - - - - - - - - - - -
+    % Soft Particles
+    % - - - - - - - - - - - - - - - - -
+    % Softest 2
+    \draw[calo] (0,0) -- (98:2.65) arc(98:102:2.65) -- cycle;
+    \draw[calo] (98:2.0) -- (98:2.65) arc(98:102:2.65) -- (102:2.0) arc(102:98:2.0) -- cycle;
+    \draw[calo] (0,0) -- (78:2.65) arc(78:82:2.65) -- cycle;
+    \draw[calo] (78:2.0) -- (78:2.65) arc(78:82:2.65) -- (82:2.0) arc(82:78:2.0) -- cycle;
+    % Second softest 2
+    \draw[calo] (0,0) -- (123:2.4) arc(123:127:2.4) -- cycle;
+    \draw[calo] (123:2.0) -- (123:2.4) arc(123:127:2.4) -- (127:2.0) arc(127:123:2.0) -- cycle;
+    \draw[calo] (0,0) -- (53:2.4) arc(53:57:2.4) -- cycle;
+    \draw[calo] (53:2.0) -- (53:2.4) arc(53:57:2.4) -- (57:2.0) arc(57:53:2.0) -- cycle;
+  \end{scope}
+
+  % ---------------------------------
+  % INNER DETECTOR
+  % ---------------------------------
+  \begin{scope}
+    \clip (-2.1,1.0) rectangle (2.1,2.1);
+    \draw[ultra thick,fill=white] (0,0) circle(2.0); % fill to hide calo deposits inside
+  \end{scope}
+
+  % ---------------------------------
+  % PARTICLES
+  % ---------------------------------
+  % W
+  % \begin{scope}
+  %   \clip (-2.1,0.0) rectangle (2.1,2.1);
+  %   \draw[blue!60!green!50!black,photon,very thick,fill=none]
+  %   (0,-2.75) -- (0,0.75);
+  % \end{scope}
+  \draw[blue!70!green!70!black,photon,very thick,fill=none]
+    (0,0) -- (0,0.75);
+
+  % Decay products
+  \draw[red!65!black,ultra thick,fill=none]
+    (0,0.75) to (70:2.0)
+    (0,0.75) to (110:2.0);
+
+  % Gluons
+  \draw[black,thick,gluon,fill=none]
+    % Outer gluons
+    (55:2.0) to (79:1.0)
+    (100:1.0) to (125:1.9)
+    % Inner gluons
+    (80:2.0) to (79:1.35)
+    (102:1.35) to (100:2.0);
+\end{tikzpicture}

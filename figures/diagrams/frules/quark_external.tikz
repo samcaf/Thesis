@@ -1,0 +1,61 @@
+\begin{align}
+\raisebox{-8pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (i) at (-1.5,0.0);
+        \vertex (f) at (1.5,0.0);
+        % edge labels
+        \vertex [above left=-0.8pt and 0.0ptof i] (ti) {$i$};
+        \vertex [above right=-10.0pt and 10.0pt of f] (tf) {$j, s$};
+        % diagram
+        \diagram* {
+            (i)
+            -- [fermion, momentum=\(p\),-{Bar[line width=1.5pt, width=15pt]}]
+            (f)
+            ,
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+&:=
+\quad
+\delta\indices{^j_i}
+\,
+\bar{u}_s(p)
+\\
+\raisebox{-8pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (i) at (-1.5,0.0);
+        \vertex (f) at (1.5,0.0);
+        % edge labels
+        \vertex [above left=-0.8pt and 0.0ptof i] (ti) {$i$};
+        \vertex [above right=-10.0pt and 10.0pt of f] (tf) {$j, s$};
+        % diagram
+        \diagram* {
+            (f)
+            -- [fermion]
+            (i)
+            ,
+            (i)
+            -- [momentum=\(p\),-{Bar[line width=1.5pt, width=15pt]}]
+            (f)
+            ,
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+&:=
+\quad
+\delta\indices{^i_j}
+\,
+v_s(p)
+\,,
+\end{align}
+for outgoing, final state quarks and anti-quarks, respectively.
+%
+For initial-state quarks, \(\bar{u}_s(p)\) is replaced by \(u_s(p)\), while for initial-state anti-quarks, \(v_s(p)\) is replaced by \(\bar{v}_s(p)\).

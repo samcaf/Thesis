@@ -1,0 +1,31 @@
+%   Reduce the margin of the summary:
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+%   Generate the environment for the abstract:
+\newcommand\summaryname{Abstract}
+\newenvironment{Abstract}%
+{%
+    % \small%
+    \begin{center}%
+        \bfseries{\summaryname}%
+    \end{center}%
+}
+
+\begin{Abstract}
+\begin{changemargin}{1cm}{1cm}
+This thesis presents the author's work in developing probes of the inner structure of jets in high-energy particle collisions.
+%
+We begin by introducing QCD and the scattering of partons (quarks and gluons), discussing jets as theoretical and experimental proxies for partonic physics, and presenting the partonic cascade model of jet formation and jet substructure.
+%
+Noting the ubiquitous presence of low-energy pollution in particle collision events, in the forms of hadronization, detector effects, the underlying event (UE), and pileup (PU), we then move towards the modern research area of developing pollution-insensitive probes of the jet substructure.
+%
+Pollution-insensitive features of jet substructure are usually accessed either through jet grooming or energy-weighted correlation functions.
+%
+We present the basics of the modern theory of jet grooming as well as the work of the author in developing the \textsc{Piranha} paradigm for \textit{continuous} jet grooming, introduced by the author in \Reff{}, and explore the formal and phenomenological benefits of continuous grooming techniques as pollution-insensitive probes of jet substructure.
+%
+We also introduce the basics of the simplest energy-weighted correlation function -- the energy-energy correlator (EEC), which probes angular correlations between particle pairs -- and discuss the efficient and intuitive higher-point analogues introduced by the author in \Reff{}, which provide computationally-realistic, pollution-insensitive probes of angular many-body correlations in QCD jets.
+%
+Finally, we exposit the generic theory of energy-weighted observable correlations (EWOCs), introduced by the author in \Reff{}, which utilize the energy weighting of the EEC to provide pollution-insensitive probes of non-angular correlations within jets.
+\end{changemargin}
+\end{Abstract}

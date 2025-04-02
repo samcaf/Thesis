@@ -12,11 +12,14 @@
 \usepackage{physics}
 \usepackage{enumitem}
 \usepackage{etoolbox}
+\usepackage{yhmath}
+\usepackage{changepage}
+
 
 % =====================================
 % Hyperlinks
 % =====================================
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 % ---------------------------------
 % hyperref fixes
@@ -63,7 +66,6 @@
 % See https://en.wikibooks.org/wiki/LaTeX/Glossary
 % Note: glossaries must be loaded after hyperref
 
-% DEBUG: Not sure which options to use for glossaries (esp if I want an index)
 % \usepackage[acronym,automake=immediate,nonumberlist,toc,xindy]{glossaries}
 % \usepackage[acronym,nomain,toc,automake]{glossaries-extra}
 % \usepackage[acronym,automake,toc,xindy]{glossaries-extra}
@@ -72,7 +74,7 @@
 \usepackage[
  % automake,% create glossaries automatically
  acronym,% create 'abbreviations' glossary
- index,% create 'index' glossary
+ % index,% create 'index' glossary
  nostyles,%don't load predefined styles
  % postdot,% insert dot after descriptions
  % record,% using bib2gls
@@ -85,17 +87,17 @@
 % ---------------------------------
 % Preparing for use with Index
 % ---------------------------------
-\GlsXtrLoadResources[
- src={terms},% data in terms.bib
- label-prefix={idx.},% prefix for primary entry labels
- dual-prefix={},% prefix for dual entry labels
- type=index,% put primary entries in 'index' glossary
- combine-dual-locations={primary}% merge locations and assign to primary list
-]
+% \GlsXtrLoadResources[
+%  src={terms},% data in terms.bib
+%  label-prefix={idx.},% prefix for primary entry labels
+%  dual-prefix={},% prefix for dual entry labels
+%  type=index,% put primary entries in 'index' glossary
+%  combine-dual-locations={primary}% merge locations and assign to primary list
+% ]
 
-% provide commands that work like \gls etc for the @index entries
-% (that don't have a dual counterpart)
-\glsxtrnewglslike{idx.}{\idx}{\idxpl}{\Idx}{\Idxpl}
+% % provide commands that work like \gls etc for the @index entries
+% % (that don't have a dual counterpart)
+% \glsxtrnewglslike{idx.}{\idx}{\idxpl}{\Idx}{\Idxpl}
 
 % ========================
 % Figures
@@ -119,7 +121,8 @@
 % ========================
 % Graphics
 % ========================
-\usepackage{graphbox,xspace,float,xcolor,color}
+\usepackage{graphbox,xspace,float,color}
+\usepackage[table,xcdraw]{xcolor}
 
 \usepackage{tikz, tikzscale, tikz-cd, pgf, pgfplots}  % drawing pictures
 \usetikzlibrary{angles,quotes,shapes}
@@ -149,6 +152,37 @@
 % ========================
 % Symbols
 % ========================
+\let\thorn\th % so that thorn-rune \th is not lost
+
+\newcommand{\st}{%
+    \ifmmode%
+        ^\mathrm{st}%
+    \else%
+        \textsuperscript{st}\xspace%
+    \fi%
+}
+\newcommand{\nd}{%
+    \ifmmode%
+        ^\mathrm{nd}%
+    \else%
+        \textsuperscript{nd}\xspace%
+    \fi%
+}
+\newcommand{\rd}{%
+    \ifmmode%
+        ^\mathrm{rd}%
+    \else%
+        \textsuperscript{rd}\xspace%
+    \fi%
+}
+\renewcommand{\th}{%
+    \ifmmode% math mode
+        ^\mathrm{th}%
+    \else%
+        \textsuperscript{th}\xspace%
+    \fi%
+}
+
 \DeclareMathSymbol{\mhyphen}{\mathord}{AMSa}{"39}
 
 \usepackage{pifont}
@@ -177,6 +211,8 @@
 \definecolor{amber}{rgb}{1.0, 0.75, 0.0}
 \definecolor{cornflowerblue}{rgb}{.53, .80, .93}  % slightly different from online val, to match matplotlib
 \definecolor{awesome}{rgb}{1.0, 0.13, 0.32}
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0} % Ao (English)
+
 
 \definecolor{darkpastelred}{rgb}{0.76, 0.23, 0.13}
 \definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
@@ -198,6 +234,9 @@
 % ========================
 % Additional Paper Commands:
 % ========================
+\DeclareRobustCommand{\Chap}[1]{Chap.~\ref{chap:#1}}
+\DeclareRobustCommand{\Chaps}[2]{Chaps.~\ref{chap:#1} and \ref{chap:#2}}
+\DeclareRobustCommand{\Chapss}[3]{Chaps.~\ref{chap:#1}, \ref{chap:#2} and \ref{chap:#3}}
 \DeclareRobustCommand{\Sec}[1]{Sec.~\ref{sec:#1}}
 \DeclareRobustCommand{\Secs}[2]{Secs.~\ref{sec:#1} and \ref{sec:#2}}
 \DeclareRobustCommand{\Secss}[3]{Secs.~\ref{sec:#1}, \ref{sec:#2} and \ref{sec:#3}}
@@ -209,16 +248,22 @@
 \DeclareRobustCommand{\Fig}[1]{Fig.~\ref{fig:#1}}
 \DeclareRobustCommand{\Figs}[2]{Figs.~\ref{fig:#1} and \ref{fig:#2}}
 \DeclareRobustCommand{\Figss}[3]{Figs.~\ref{fig:#1}, \ref{fig:#2}, and \ref{fig:#3}}
-\DeclareRobustCommand{\Eq}[1]{Eq.~(\ref{eqn:#1})}
-\DeclareRobustCommand{\Eqs}[2]{Eqs.~(\ref{eqn:#1}) and (\ref{eqn:#2})}
-\DeclareRobustCommand{\Eqss}[3]{Eqs.~(\ref{eqn:#1}), (\ref{eqn:#2}), and (\ref{eqn:#3})}
+\DeclareRobustCommand{\Eq}[1]{Eq.~(\ref{eq:#1})}
+\DeclareRobustCommand{\Eqs}[2]{Eqs.~(\ref{eq:#1}) and (\ref{eq:#2})}
+\DeclareRobustCommand{\Eqss}[3]{Eqs.~(\ref{eq:#1}), (\ref{eq:#2}), and (\ref{eq:#3})}
 \DeclareRobustCommand{\Reff}[1]{Ref.~\cite{#1}}
 \DeclareRobustCommand{\Reffs}[1]{Refs.~\cite{#1}}
 
-\DeclareRobustCommand{\Thm}[1]{Theorem~\ref{#1}}
+\DeclareRobustCommand{\Def}[1]{Definition~\ref{def:#1}}
+\DeclareRobustCommand{\Thm}[1]{Theorem~\ref{thm:#1}}
+\DeclareRobustCommand{\Lem}[1]{Lemma~\ref{lem:#1}}
+\DeclareRobustCommand{\Prop}[1]{Proposition~\ref{prop:#1}}
+
+\DeclareRobustCommand{\Prob}[1]{Prob.~\ref{prob:#1}}
+\DeclareRobustCommand{\Example}[1]{Example~\ref{ex:#1}}
+\DeclareRobustCommand{\Exercise}[1]{Exercise~\ref{ex:#1}}
 
 \newtheorem{definitiontext}{Definition}
-\DeclareRobustCommand{\Def}[1]{Definition~\ref{def:#1}}
 
 
 %=======================================
@@ -325,7 +370,7 @@
 % Misc. math definitions
 \newcommand{\eqdelta}{\overset{\Delta}{=}}
 \newcommand{\eqquestion}{\overset{?}{=}}
-\newcommand{\eqexclamation}{\overset{?}{=}}
+\newcommand{\eqexclamation}{\overset{!}{=}}
 \newcommand{\reppedby}{\overset{\boldsymbol{\cdot}}{=}}
 \newcommand{\reps}{\underset{\boldsymbol{\cdot}}{=}}
 \newcommand{\paren}[1]{\left(#1\right)}
@@ -367,6 +412,8 @@
 
 \definecolor{defcolor}{rgb}{0.8, 0.0, 0.0} % Boston University Red
 \definecolor{thmcolor}{rgb}{0.0, 0.28, 0.67} % Cobalt
+\definecolor{conjcolor}{rgb}{0.96, 0.76, 0.76} % tearose(rose)
+\definecolor{lorecolor}{rgb}{0,0,0} % tearose(rose)
 \definecolor{propcolor}{rgb}{0.69, 0.4, 0.0} % Ginger
 \definecolor{qcolor}{rgb}{0.6, 0.2, 0.8} % Dark Orchid
 
@@ -410,7 +457,7 @@
 % tcb Theorem Styles:
 %--------------------------------------
 % Definition
-\newtcbtheorem[auto counter, number within=section]
+\newtcbtheorem[use counter*=equation, number within=chapter, list inside={def}]
 {definitionbox}{Definition}{
     enhanced,
     breakable,
@@ -422,11 +469,15 @@
     lower separated=false,
     boxed title style={colframe=defcolor!75!black},
     attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
-    title={Definition \thetcbcounter: #1}
+    title={Definition \thetcbcounter: #1},
+    % list entry={Def. \protect\numberline{\thetcbcounter:}#1},
+    before upper={\addtocounter{equation}{-1} \begin{subequations}},
+    after upper={\end{subequations}}
 }{def}
 
+
 % Theorem
-\newtcbtheorem[number within=section, use counter from=definitionbox]
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
 {theorembox}{Theorem}{
     enhanced,
     breakable,
@@ -438,11 +489,47 @@
     lower separated=false,
     boxed title style={colframe=thmcolor!75!black},
     attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
-    title={Theorem \thetcbcounter: #1}
+    title={Theorem \thetcbcounter: #1},
+    before upper={\addtocounter{equation}{-1} \begin{subequations}},
+    after upper={\end{subequations}}
 }{thm}
 
+
+% Lore
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
+{lore}{Lore}{
+    enhanced,
+    breakable,
+    colback=lorecolor!5!white,
+    colframe=lorecolor!75!black,
+    colbacktitle=lorecolor!17!white,
+    coltitle=lorecolor!65!black,
+    fonttitle=\bfseries,
+    lower separated=false,
+    boxed title style={colframe=lorecolor!75!black},
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title={Lore \thetcbcounter: #1}
+}{lore}
+
+
+% Conjecture
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
+{conjecture}{Conjecture}{
+    enhanced,
+    breakable,
+    colback=conjcolor!5!white,
+    colframe=conjcolor!75!black,
+    colbacktitle=conjcolor!17!white,
+    coltitle=conjcolor!65!black,
+    fonttitle=\bfseries,
+    lower separated=false,
+    boxed title style={colframe=conjcolor!75!black},
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title={Conjecture \thetcbcounter: #1}
+}{cnj}
+
 % Proposition
-\newtcbtheorem[number within=section, use counter from=definitionbox]
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
 {proposition}{Proposition}{
     enhanced,
     breakable,
@@ -454,12 +541,14 @@
     lower separated=false,
     boxed title style={colframe=propcolor!75!black},
     attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
-    title={Proposition \thetcbcounter: #1}
+    title={Proposition \thetcbcounter: #1},
+    before upper={\addtocounter{equation}{-1} \begin{subequations}},
+    after upper={\end{subequations}}
 }{prop}
 
-% Question
-\newtcbtheorem[number within=section, use counter from=definitionbox]
-{question}{Question}{
+% Lemma
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
+{lemma}{Lemma}{
     enhanced,
     breakable,
     colback=qcolor!5!white,
@@ -470,11 +559,29 @@
     lower separated=false,
     boxed title style={colframe=qcolor!75!black},
     attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
-    title={Question \thetcbcounter: #1}
-}{question}
+    title={Lemma \thetcbcounter: #1},
+    before upper={\addtocounter{equation}{-1} \begin{subequations}},
+    after upper={\end{subequations}}
+}{lem}
+
+% % Question
+% \newtcbtheorem[number within=chapter, use counter from=definitionbox]
+% {question}{Question}{
+%     enhanced,
+%     breakable,
+%     colback=qcolor!5!white,
+%     colframe=qcolor!75!black,
+%     colbacktitle=qcolor!17!white,
+%     coltitle=qcolor!70!black,
+%     fonttitle=\bfseries,
+%     lower separated=false,
+%     boxed title style={colframe=qcolor!75!black},
+%     attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+%     title={Question \thetcbcounter: #1}
+% }{question}
 
 % Remark
-\newtcbtheorem[number within=section, use counter from=definitionbox]
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
 {remarkbox}{Remark}{
     enhanced,
     breakable,
@@ -485,8 +592,27 @@
     opacitybacktitle=0,
     opacityframe=0,
     coltitle=ao!90!black,
+    title={Remark \thetcbcounter: #1},
+    before upper={\addtocounter{equation}{-1} \begin{subequations}},
+    after upper={\end{subequations}}
+}{rem}
+
+% Question
+\newtcbtheorem[number within=chapter, use counter from=definitionbox]
+{question}{Question}{
+    enhanced,
+    breakable,
+    fonttitle=\bfseries,
+    lower separated=false,
+    standard jigsaw,
+    opacityback=0,
+    opacitybacktitle=0,
+    opacityframe=0,
+    coltitle=qcolor!90!black,
     title={Remark \thetcbcounter: #1}
 }{rem}
+
+
 
 \newcommand{\remark}[2]{
 \begin{remarkbox}{}{#1}

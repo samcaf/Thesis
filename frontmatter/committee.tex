@@ -1,0 +1,130 @@
+% Sample thesis committee page for mitthesis.cls
+% Version 1.02, 2025/01/28
+%
+% This page is not required by the MIT Libraries, but some departments require it.
+%
+% Insert between title page and abstract page.
+% Format this page in any way that you like.
+% Add supervisor titles, degrees, and departments as appropriate.
+
+%%%%% FORMATTING COMMANDS %%%%%%%%%%%%%%%%%%
+
+%% Format title
+\NewDocumentCommand\CommitteePageTitle{m}{
+	% \vspace*{40pt}
+	\IfPackageLoadedTF{microtype}
+		{\textls*{\Large\textbf{\MakeUppercase{#1}}}}
+		{{\Large\textbf{\MakeUppercase{#1}}}}%
+	\pdfbookmark[0]{#1}{Committee}%
+	% \vspace*{10pt}%
+}
+% \textls* produces additional letter separation (appropriate for capitalized display text),
+% PROVIDED THAT \usepackage{microtype} has been loaded in the preamble.
+% The extra space added is 100/1000 em (adjustable, see package documentation).
+
+%% Format committee member subheadings
+\NewDocumentCommand\Role{m}{
+	\vspace*{25pt}
+	\IfPackageLoadedTF{microtype}
+		{\textls*{\large{\textsc{#1}}}}
+		{{\large\textsc{#1}}}%
+	\vspace*{10pt}%
+}
+
+\newcommand{\hruledotted}[2]{
+\begin{flushleft}
+    {\Large #1 by} \hbox to #2{\leaders\hbox to 5pt{\hss . \hss}\hfil}
+\end{flushleft}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushright}
+
+\CommitteePageTitle{Thesis committee}
+
+\Role{Thesis Supervisor}
+
+\vspace{10pt}
+
+\textbf{Jesse Thaler}
+\vspace{-18pt}
+\hruledotted{Certified}{9.7cm}
+\vspace{-5pt}
+{\itshape
+Professor of Physics
+\\
+MIT Center for Theoretical Physics
+}%
+% \\
+% Director of the NSF Institute for Artificial Intelligence and Fundamental Interactions
+\end{flushright}
+
+\begin{flushright}
+\Role{Thesis Readers}
+
+\vspace{10pt}
+
+\textbf{Iain Stewart}
+\vspace{-18pt}
+\hruledotted{Certified}{9.7cm}
+\vspace{-5pt}
+{\itshape
+Professor of Physics
+\\
+MIT Center for Theoretical Physics
+\\[18pt]
+}
+\end{flushright}
+
+\vspace{10pt}
+
+\begin{flushright}
+\textbf{Christoph Paus}
+\vspace{-18pt}
+\hruledotted{Certified}{9.0cm}
+\vspace{-5pt}
+{\itshape
+Professor of Physics
+\\
+MIT Laboratory for Nuclear Science
+}%
+\end{flushright}
+% \\
+% Co-lead for the CMS Experiment search for the Higgs Boson
+
+
+\vspace{20pt}
+\hrule
+\vspace{-5pt}
+
+
+\begin{flushright}
+\Role{Author}
+
+\vspace{10pt}
+
+\textbf{Samuel Alipour-fard}
+\vspace{-18pt}
+\hruledotted{Submitted}{7.8cm}
+\vspace{-5pt}
+{\itshape
+MIT Center for Theoretical Physics}
+\end{flushright}
+
+\begin{flushright}
+\Role{Department Head}
+
+\vspace{10pt}
+
+\textbf{Deepto Chakrabarty}
+\vspace{-18pt}
+\hruledotted{Accepted}{8.0cm}
+\vspace{-5pt}
+{\itshape
+Professor of Physics
+\\
+Kavli Institute for Astrophysics and Space Research
+}
+\end{flushright}
+
+\cleardoublepage

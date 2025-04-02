@@ -1,0 +1,50 @@
+% EVENT DISPLAY with CALO DEPOSITS
+\begin{tikzpicture}[scale=0.7,rotate=-20]
+  % ---------------------------------
+  % HCAL DEPOSITS
+  % ---------------------------------
+  % 100, 80, 125, 55
+  % 70 110
+  \begin{scope}
+    \clip (-2.6,1.0) rectangle (1.8,4.0);
+    % - - - - - - - - - - - - - - - - -
+    % Hard Particles
+    % - - - - - - - - - - - - - - - - -
+    % First hard particle
+    \draw[ecal] (0,0) -- (68:3.2) arc(68:72:3.2) -- cycle;
+    \draw[ecal] (68:2.0) -- (68:3.2) arc(68:72:3.2) -- (72:2.0) arc(72:68:2.0) -- cycle;
+    % Second hard particle
+    \draw[ecal] (0,0) -- (108:3.2) arc(108:112:3.2) -- cycle;
+    \draw[ecal] (108:2.0) -- (108:3.2) arc(108:112:3.2) -- (112:2.0) arc(112:108:2.0) -- cycle;
+  \end{scope}
+
+  % % ---------------------------------
+  % % INNER DETECTOR
+  % % ---------------------------------
+  \begin{scope}
+    \clip (-2.1,1.0) rectangle (2.1,2.1);
+    \draw[ultra thick,fill=white] (0,0) circle(2.0);
+  \end{scope}
+
+  % ---------------------------------
+  % PARTICLES
+  % ---------------------------------
+  % 2 particles
+  \draw[black,ultra thick,fill=none]
+    (70:0.25) to (70:1.9)
+    % (110:0.25) to (110:1.9);
+    (110:0.25) to (109:0.8);
+
+  % Draw a curve to link the hard particle to the collinear splitting?
+  \draw [black,semithick,line cap=round]
+    plot [smooth] coordinates {(113:1.0) (109:0.7) (105:1.0)};
+  \draw [black,semithick,line cap=round]
+    plot [smooth] coordinates {(113:1.0) (109:0.8) (105:1.0)};
+
+  % Collinear splitting
+  \draw[black,semithick,fill=none]
+    (113:1.0) to (112:1.92);
+
+  \draw[black,semithick,gluon,fill=none]
+    (107:1.92) to (105:1.0);
+\end{tikzpicture}

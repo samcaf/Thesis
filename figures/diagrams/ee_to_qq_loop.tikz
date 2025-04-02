@@ -1,0 +1,41 @@
+\(i \mathcal{M}_2^{(2)}\)
+\,\,
+:=
+\quad
+\raisebox{-25pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (i1) at (-1.5,0.5);
+        \vertex (i2) at (-1.5,-0.5);
+        \vertex (f1) at (1.6,0.55);
+        \vertex (f2) at (1.6,-0.55);
+        \vertex (m1) at (-0.5,0);
+        \vertex (m2) at (0.5,0);
+        %
+        \vertex (m3) at (1.25, 0.25);
+        \vertex (m4) at (1.25, -0.25);
+        \diagram* {
+            (i1)
+            -- [fermion, edge label=\(e^-\), near start]
+            (m1)
+            -- [photon]
+            (m2)
+            -- [fermion]
+            (m3)
+            -- [fermion, edge label=\(q\), near end]
+            (f1),
+            (m1)
+            -- [fermion, edge label=\(e^+\), near end]
+            (i2),
+            (f2)
+            -- [fermion, edge label=\(\overline{q}\), near start]
+            (m4)
+            -- [fermion]
+            (m2),
+            (m3)
+            -- [gluon]
+            (m4),
+        };
+    \end{feynman}
+\end{tikzpicture}
+}

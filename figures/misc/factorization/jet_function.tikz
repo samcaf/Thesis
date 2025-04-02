@@ -1,0 +1,154 @@
+\begin{tikzpicture}
+\begin{scope}[scale=0.5]
+    % Jet visualization
+    % Variables
+    \def\x{2.00}
+    \def\y{3.335}
+    \def\R{\x+0.005}
+    \def\yc{\y+0.04}
+    \def\e{0.5}
+    % Jet
+    \begin{scope}[scale=1.5,rotate=-90]
+        \clip (0.0,0.0) ++(0:0.2) arc (0:180:0.2) -- (-3,4.0) -- (3,4.0) -- cycle;
+        \shade[right color=white,left color=orange,opacity=0.2]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=orange,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+    \end{scope}
+
+    \begin{feynman}
+        \vertex (li);
+        % \vertex [scale=0.25, right=0.525 cm of li] (a) {};
+        \vertex [blob, scale=0.25, right=0.845 cm of li] (b) {};
+        \vertex [blob, scale=0.25, right=0.48 cm of b] (c) {};
+        \vertex [right=0.16 cm of c] (ct);
+        \vertex [right=.56 cm of ct] (ctt);
+        \vertex [blob, scale=0.25, right=.1 cm of ctt] (d) {};
+        % \vertex [above right=.34cm and .16cm of a] (hf1);
+        % \vertex [below right=.29cm and .21cm of b] (hf2);
+        % \vertex [above right=.2cm and .3cm of c] (hf3);
+        % \vertex [below right=.1cm and .4cm of d] (hf4);
+        % \vertex [above right=.1cm and .4cm of d] (e);
+        \diagram* {
+            (li) -- [fermion] (b),
+            (b)  --  (c),
+            (c)  --  (ct),
+            (ct) --  [dotted] (ctt),
+            (ctt)--  (d),
+            % (a)  --  (hf1),
+            % (b)  --  (hf2),
+            % (c)  --  (hf3),
+            % (d)  --  (hf4),
+            % (d)  --  (e),
+        };
+    \end{feynman}
+
+    % Subjet visualization
+    \def\x{0.8}
+    \def\y{2.5}
+    \def\R{\x+0.005}
+    \def\yc{\y+0.04}
+    \def\e{0.4}
+
+    \begin{scope}[xshift=32.5pt,yshift=-3.1pt]
+        \begin{scope}[xshift=.72cm,yshift=6.9pt]
+        \begin{scope}[scale=0.4,rotate=-167]
+            \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+            \shade[right color=white,left color=black,opacity=0.3]
+              (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+            \draw[fill=black,opacity=0.05]
+              (0,\yc) circle ({\R} and \e);
+            \draw
+              (-\x,\y) -- (0,0) -- (\x,\y);
+            \draw
+              (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        \begin{scope}[xshift=1.61cm]
+        \begin{scope}[scale=0.4,rotate=-35]
+        \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+        \shade[right color=white,left color=black,opacity=0.3]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=black,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        \begin{scope}[xshift=3.44cm,yshift=6.3pt]
+        \begin{scope}[scale=0.4,rotate=-127]
+            \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+            \shade[right color=white,left color=black,opacity=0.3]
+              (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+            \draw[fill=black,opacity=0.05]
+              (0,\yc) circle ({\R} and \e);
+            \draw
+              (-\x,\y) -- (0,0) -- (\x,\y);
+            \draw
+              (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        \begin{scope}[xshift=3.44cm]
+        \begin{scope}[scale=0.4,rotate=-53]
+        \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+        \shade[right color=white,left color=black,opacity=0.3]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=black,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+
+    \end{scope}
+\end{scope}
+
+% ---------------------
+% Text detailing
+% ---------------------
+
+% i = q
+\begin{scope}[shift={(10pt,15pt)}]
+    \node [rotate=30] at (0,0) {\scalebox{.8}{%
+        \textcolor{orange!65!black}%
+        {$\scriptsize i=q$}%
+    }};
+\end{scope}
+
+% Magnitude Squared
+\begin{scope}[shift={(38.4pt,0pt)}]
+    \begin{scope}[shift={(-41pt,0pt)}]
+        \draw[thin] (0,-1.63) -- (0,1.60);
+    \end{scope}
+    \begin{scope}[shift={(47pt,0pt)}]
+        \draw[thin] (0,-1.63) -- (0,1.60);
+    \end{scope}
+    \begin{scope}[shift={(52.5pt,43pt)}]
+        \node at (0,0.13) {2};
+    \end{scope}
+\end{scope}
+
+% Jet function text
+\begin{scope}[shift={(38.4pt,0pt)}]
+    \begin{scope}[yshift=-60pt]
+        \node at (0,0) {%
+            \(J_i^{\mathcal{O}} \sim \frac{\Sigma_{\mathcal{O}}}%
+            % {\dd n^\text{(jet)}_i}\)%
+            {\dd n_i}\)%
+        };
+    \end{scope}
+\end{scope}
+
+\end{tikzpicture}

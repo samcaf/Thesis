@@ -1,0 +1,144 @@
+\begin{tikzpicture}
+\begin{scope}[scale=0.5]
+    % Jet visualization
+    % Variables
+    \def\x{2.00}
+    \def\y{3.335}
+    \def\R{\x+0.005}
+    \def\yc{\y+0.04}
+    \def\e{0.5}
+    
+    % Jet
+    \begin{scope}[scale=1.5,rotate=-90]
+        \clip (0.0,0.0) ++(0:0.2) arc (0:180:0.2) -- (-3,4.0) -- (3,4.0) -- cycle;
+        \shade[right color=white,left color=black,opacity=0.1]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=black,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+    \end{scope}
+
+    \begin{feynman}
+        \vertex (li);
+        \vertex [blob, scale=0.45, right=0.8 cm of li] (a) {};
+        \vertex [dot, scale=0.3, right=0.75 cm of a] (d) {};
+        \vertex [blob, scale=0.25, above right=.25cm and 0.5 cm of d] (e) {};
+        \vertex [blob, scale=0.25, below right=.25cm and 0.5 cm of d] (f) {};
+        \vertex [above right=.1cm and .95cm of e] (g) {};
+        \vertex [below right=.1cm and .95cm of f] (h) {};
+        \diagram* {
+            (li) -- (a),
+            (a)  --  (d),
+            (a)  -- [gluon]  (d),
+            (d)  -- (e),
+            (d)  -- [gluon] (e),
+            (d)  -- (f),
+            (d)  -- [gluon] (f),
+            (e) -- (g),
+            (e) -- [gluon] (g),
+            (f) -- (h),
+            (f) -- [gluon] (h),
+        };
+    \end{feynman}
+
+    % Subjet visualization
+    \begin{scope}[xshift=20pt,yshift=-3.1pt]
+        % Inclusive over states other than final splitting
+        \def\x{1.2}
+        \def\y{3.4}
+        \def\R{\x+0.005}
+        \def\yc{\y+0.04}
+        \def\e{0.4}
+        \begin{scope}[xshift=1.32cm,yshift=.12cm]
+        \begin{scope}[scale=0.35,rotate=-34]
+        \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,4) -- (3,4) -- cycle;
+        \shade[right color=white,left color=inclusivecolor!70!black,opacity=0.7]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=inclusivecolor!70!black,opacity=0.15]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        % Radiation post-splitting
+        \def\x{0.5}
+        \def\y{3.0}
+        \def\R{\x+0.005}
+        \def\yc{\y+0.04}
+        \def\e{0.2}
+       
+        \begin{scope}[xshift=3.63cm,yshift=11pt]
+        \begin{scope}[scale=0.4,rotate=-25]
+        \clip (0.0,0.0) ++(0:1) arc (0:180:1) -- (-2,4) -- (2,4) -- cycle;
+        \shade[right color=white,left color=inclusivecolor!70!black,opacity=0.7]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=inclusivecolor!70!black,opacity=0.15]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope} 
+        
+        \begin{scope}[xshift=3.63cm,yshift=-5.0pt]
+        \begin{scope}[scale=0.4,rotate=-155]
+            \clip (0.0,0.0) ++(0:1) arc (0:180:1) -- (-2,4) -- (2,4) -- cycle;
+            \shade[right color=white,left color=inclusivecolor!70!black,opacity=0.7]
+              (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+            \draw[fill=inclusivecolor!70!black,opacity=0.15]
+              (0,\yc) circle ({\R} and \e);
+            \draw
+              (-\x,\y) -- (0,0) -- (\x,\y);
+            \draw
+              (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        % Subjets Emerging from Splitting
+        \def\x{0.9}
+        \def\y{3.0}
+        \def\R{\x+0.005}
+        \def\yc{\y+0.04}
+        \def\e{0.3}
+       
+        % \begin{scope}[xshift=4.5cm,yshift=20.0pt]
+        \begin{scope}[xshift=4.1cm,yshift=18.0pt]
+        \begin{scope}[scale=0.4,rotate=-84]
+            % \clip (0.0,0.0) ++(0:1) arc (0:180:1) -- (-2,4) -- (2,4) -- cycle;
+            \shade[right color=white,left color=green,opacity=0.3]
+              (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+            \draw[fill=green,opacity=0.2]
+              (0,\yc) circle ({\R} and \e);
+            \draw[green!30!black]
+              (-\x,\y) -- (0,0) -- (\x,\y);
+            \draw[green!30!black]
+              (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+        
+        % \begin{scope}[xshift=4.5cm,yshift=-14.0pt]
+        \begin{scope}[xshift=4.1cm,yshift=-12.0pt]
+        \begin{scope}[scale=0.4,rotate=-97]
+            % \clip (0.0,0.0) ++(0:1) arc (0:180:1) -- (-2,4) -- (2,4) -- cycle;
+            \shade[right color=white,left color=green,opacity=0.3]
+              (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+            \draw[fill=green,opacity=0.2]
+              (0,\yc) circle ({\R} and \e);
+            \draw[green!30!black]
+              (-\x,\y) -- (0,0) -- (\x,\y);
+            \draw[green!30!black]
+              (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+    \end{scope}
+\end{scope}
+
+\end{tikzpicture}

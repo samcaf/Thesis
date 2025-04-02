@@ -1,0 +1,999 @@
+% ==============================================
+\section{The Theoretical Laboratory of \texorpdfstring{\(e^+ e^- \to \,\) hadrons}{e+e- -> hadrons}}
+% ==============================================
+\label{sec:partonic-scattering}
+
+\begin{itemize}
+    \item
+Now we will initiate a quantitative discussion of scattering.
+
+    \item
+When necessary, we will work in the laboratory of \(e^+ e^-\to\,\)hadrons;
+%
+simple for various reasons -- no hadronic ISR/pdfs, no UE, can roughly pick the energy scale because of radiative return, roughly think of quark jets coming out -- and the important place for the theoretical computations that appear in the latter parts of this work.
+\end{itemize}
+
+\sam{Want a way to start introducing the concepts that will be useful later -- cross sections, electron-positron to hadrons cross section expressed as a sum of terms (of different number of outgoing particles), etc.}
+
+
+% TODO
+
+\sam{Explanation of why ee to hadrons is the right thing to start with}
+
+
+\sam{Structurally show factorization between leptonic and hadronic pieces}
+
+
+\sam{Structurally show factorization between hard and collinear pieces}
+
+
+
+Now that we know the features of partonic scattering that we should expect generically, we are ready for a specific calculation.
+%
+We follow the standard choice of introductory texts such as \cite{}:
+%
+we explore the production of hadrons by electron-positron scattering, \(e^+ e^-\to\,\)hadrons.
+%
+This process is a simple laboratory to test and develop our understanding -- far simpler than the more complicated context of proton-proton collisions, involving non-perturbative parton-distribution functions, the underlying event (UE), and beyond.
+%
+Furthermore, experimental analyses of particle collisions are far simpler in the cleaner environment of leptonic scattering events
+
+We make the following approximations, which further facilitate our analysis:
+\begin{itemize}
+    \item
+    We work only to \(\mathcal{O}(e^2)\) in amplitudes (\(\mathcal{O}(\alpha_\text{EM}^2)\) in cross sections).
+
+    This allows us to ignore the effects of electromagnetic initial-state radiation (ISR) and final-state radiation (FSR) and loop effects involving photons;
+
+    \item
+    We ignore the effects of electroweak corrections.
+\end{itemize}
+
+These simplifying assumptions give us a wonderful theoretical playground.
+%
+In particular, we will be able to restrict our analysis to the process \(e^+ e^- \to\gamma^*\,\)hadrons, with an \(s\)-channel photon, free of ISR, and with only hadronic FSR.
+%
+We need not consider any \(t\)-channel processes, which potentially complicate calculations.
+%
+Importantly, no initial-state hadronic initial state radiation will be necessary to generate the cancellations guaranteed by the KLN theorem (\Thm{kln}) to ensure that cross sections are infra-red finite.
+%
+We can focus on the physics of final-state radiation in \gls{qcd} -- the physics that will, in the next chapter, lead us to the structure of hadronic jets.
+
+
+
+% ---------------------------------------
+\subsection{One More Factorization Theorem: Leptonic and Hadronic Tensors}
+% ---------------------------------------
+\label{sec:ee-factorization}
+
+The analysis of the process \(e^+ e^- \to\,\)hadrons is simplified dramatically by separating the associated amplitudes into separate leptonic and hadronic pieces:
+\begin{proposition}{}{amplitude-factorization}
+    Consider a \(2\)-to-\(n\) scattering process of the form \(\ell_1 \ell_2 \to \gamma^* \to h_1\,h_2\,\cdots h_n\), as depicted in \Fig{two-to-n-factorization}, in which an \(s\)-channel photon facilitates the conversion of \(\ell_1\) and \(\ell_2\) (with momenta \(p_1\) and \(p_2\)) to \(n\) final state particles \(\{h_i\}\) (with momenta \(k_1,\,\cdots,\,k_n\)).
+
+    We may divide the amplitude-squared for this process into two pieces, \(L_{\mu\nu}\) and \(H_{\mu\nu}\), which depend only on the properties of the \(\{\ell_i\}\) or the \(\{h_i\}\), respectively.
+    %
+    In particular, using \(\mc M_{2 \to n}\) to denote \(\mc M_{\ell_1 \ell_2 \to \gamma^* \to h_1 \cdots h_n}\),
+    \begin{align}
+        \le| \mc M_{2 \to n} \ri|^2
+        %
+        =
+        %
+        L_{\mu \nu}(p_1, \, p_2)
+        \frac{1}{s^2}
+        H^{\mu \nu}(k_1, \,\cdots,\, k_n)
+        \,.
+    \end{align}
+\end{proposition}
+
+\begin{figure}[]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{\sam{two-to-n factorization}}
+    \label{fig:two-to-n-factorization}
+\end{figure}
+
+\remark{}{
+    \Prop{amplitude-factorization} follows from gauge-invariance;
+    %
+    more precisely, it follows from the \underline{off-shell Ward-Takahashi identity}, which guarantees that \(q_\mu \mc R^\mu = 0\), where \(\mc R^\mu\) is a polarization-stripped matrix element involving an external off-shell photon with momentum \(q^\mu\) and otherwise on-shell particles.
+    %
+    We did not need to assume that there were only two particles in the initial state, and similar statements hold for arbitrary amplitudes with an intermediate \(s\)-channel photon.
+    %
+    However, it is the 2-to-\(n\) case which will be useful for our discussion of scattering.
+}
+
+\begin{proof}
+   In a covariant \(R_\xi\) gauge, the amplitude takes the form
+   \begin{align}
+       \mathcal{M}_{2 \to n}
+       =
+       \mathcal{R}_\ell^\mu(p_1, p_2)
+       \frac{g_{\mu\nu} + (1-\xi) q_\mu q_\nu/q^2}{q^2}
+       \mathcal{R}_h^\nu(k_1,\,\cdots,\,k_n)
+       \,,
+   \end{align}
+where \(\mathcal{R}_\ell^\mu(\ell_1,\ell_2)\) is the \textit{polarization-stripped amplitude} (or \textit{remainder} of the amplitude) for the production of an off-shell photon of momentum \(q = \ell_1 + \ell_2\) (\(q^2 = E_\text{c.o.m}^2 = s\)),
+   \begin{align}
+       \mathcal{M}_{\ell_1\ell_2 \to \gamma^*}
+       =:
+       \epsilon_\mu \mathcal{R}_\ell^\mu(p_1, p_2)
+       \,,
+   \end{align}
+   the intermediate factor proportional to \(1/q^2\) is the photon propagator, and \(G_h^\rho(h_1,\,\cdots,\,h_n)\) is the polarization-stripped amplitude for an off-shell photon of momentum \(q\) to decay into the \(\{h_i\}\),
+   \begin{align}
+       \mathcal{M}_{\gamma^* \to h_1\cdots h_n}
+       =:
+       \epsilon_\mu \mathcal{R}_\ell^\mu(k_1,\,\cdots,\, k_n)
+       \,.
+   \end{align}
+
+   The use of the \textit{off-shell Ward identity}, \(q_\mu \mathcal{R}_i^\mu = 0\) for both \(\mathcal{R}_\ell\) and \(\mathcal{R}_h\), allows us to ignore the gauge-dependent term (which, of course, also vanishes in axial gauges not considered here).
+   %
+   Therefore
+   \begin{align}
+       \mathcal{M}_{2 \to n}
+       =
+       \mathcal{R}_\ell^\mu(\ell_1, \ell_2)
+       \frac{g_{\mu\rho}}{s}
+       \mathcal{R}_h^\rho(h_1,\,\cdots,\,h_n)
+       \,.
+   \end{align}
+   %
+   A more detailed proof of this statement -- following from the more general expression of the amplitude in terms of electromagnetic current insertions -- is the subject of \Prob{ward-takahashi}.
+
+   We can conclude that the \textit{square} of the amplitude is given by
+   \begin{align}
+       \abs{\mathcal{M}_{2 \to n}}^2
+       =
+       \mathcal{R}_\ell^\mu(\ell_1, \ell_2)
+       \,
+       \mathcal{R}_\ell^{\nu\,\,*}(\ell_1, \ell_2)
+       \,\,
+       \frac{g_{\mu\rho}\, g_{\nu\sigma}}{s^2}
+       \,\,
+       \mathcal{R}_h^\rho(h_1,\,\cdots,\,h_n)
+       \,
+       \mathcal{R}_h^{\sigma\,\,*}(h_1,\,\cdots,\,h_n)
+       \,.
+   \end{align}
+
+   Defining
+   \begin{align}
+       L^{\mu\nu}(\ell_1,\,\ell_2)
+       &:=
+       \mathcal{R}_\ell^\mu(\ell_1, \ell_2)
+       \mathcal{R}_\ell^{\nu\,\,*}(\ell_1, \ell_2)
+       \,,
+       \\
+       H^{\rho\sigma}
+       &:=
+       \mathcal{R}_h^\rho(h_1,\,\cdots,\,h_n)
+       \mathcal{R}_h^{\sigma\,\,*}(h_1,\,\cdots,\,h_n)
+       \,,
+   \end{align}
+   and contracting using the metric tensor completes the proof.
+
+\end{proof}
+
+\remark{}{
+    A proof of the off-shell Ward identity required for \Prop{amplitude-factorization}, based on the fact that Heisenberg-picture operators in quantum field theory obey the classical equations of motion, is explored in \Prob{ward-takahashi}.
+    %
+    \sam{ehhhh maybe just turn into a comment here}
+    %
+    In order to make this argument precisely, we need to make sense of the ``off-shell amplitudes'' that appear in our discussion above.
+    %
+    Using the LSZ reduction formula, off-shell amplitudes can be written/defined in terms of momentum-space correlation functions with truncated propagators.
+}
+
+\begin{adjustwidth}{20pt}{20pt}%
+\textit{%
+    We will use \(\,\mc C^\mu\) (the ``C'' stands for ``correlation function'') to indicate the momentum-space correlation function that, when external propagators are truncated, yields the remainder \(\mc R^\mu\) for which the off-shell photon has momentum \(q\) (contracting with the polarization \(\epsilon_\mu\) yields the full amplitude by the LSZ formula).
+    %
+    Crucially, since the \(\mc C^\mu\) are simply correlation functions of momentum space fields in our theory, there is no constraint that requires the momenta of these fields to be on-shell;
+    %
+    the \(\mc C^\mu\) are therefore powerful tools, and indeed are one way to \textit{define} the ``off-shell amplitudes'' we would like to explore.
+    }
+
+    \textit{%
+    As it appears in the LSZ formula, \(\mc C^\mu\) involves an insertion of \(A^\mu(q)\) and any other fields which are involved in the amplitude;
+    %
+    roughly}
+    \begin{align}
+        \mc C^\mu_{\gamma^* \to S}
+        =
+        \bra{0} T\le[ A^\mu(q) \prod_{k \in S} \mc O_k(p_k)\ri] \ket{0}
+        ,
+    \end{align}
+    \textit{%
+    and may have additional Lorentz indices depending on the Lorentz structure of the fields associated with the other particles in \(X\).
+    }
+
+    \textit{%
+    To convert our momentum-space correlation functions \(\mc C^\mu\) into \emph{on-shell} remainders \(R^\mu\), the LSZ formula in on-shell language tells us to multiply by ``kinetic factors'' \(K_i(p_i)\) which vanish when external states are on-shell.
+    %
+    The kinetic factors for bosons take the rough form \(K_i(p) \sim p_i^2 - m^2\) for bosons and \(K_i(p) \sim \slashed{p}_i + m\) for fermions, up to additional signs and Lorentz index structures, and cancel out the poles in the correlation functions associated with propagators of external particles.
+    }
+    \begin{align}
+        R^\mu_{\gamma^*(\varepsilon^\mu)_q; X, \{p\}}
+        &=
+        \prod_i K_i(p_i) \mc C^\mu
+        \,.
+    \end{align}
+    \textit{
+    This is often called \vocab{truncation} of the external propagators.
+    %
+    }
+
+    \textit{%
+    To obtain an off-shell amplitude with the LSZ formula in which the photon has a virtuality \(m^2\), we instead multiply by off-shell kinetic factors -- kinetic factors which vanish when the photon would be on-shell with a mass \(q^2 = m^2\).
+    }
+
+
+    \sam{Move around more to outside}
+    % TODO: ward-identity
+    %However, due to the replacement \(p_i \to p_i - q\) or \(p_j \to p_j + q\) in the above, each correlation function appearing in the sums after the final equality has a modified propagator;
+    %%
+    %it behaves like \(1/\le((p \pm q)^2 - m^2\ri)\) for bosons or \(1/\le(\slashed{p_k} \pm \slashed{q} +m\ri)\) for fermions.
+    %%
+    %However, the \(K_i(p_i)\) are designed to cancel poles in these propagators in the \textit{absence} of the additional factors of \(q\).
+    %%
+    %Therefore, none of the terms in the sums appearing in the final equation above have poles all of the zeros of \(K_i(p_i)\) for \textit{every} \(i\), and we must have
+    %\begin{align}
+    %    q_\mu \mc R^\mu_{\gamma^*(\varepsilon^\mu)_q; X, \{p\}}
+    %    &=
+    %    0
+    %    .
+    %\end{align}
+
+    %As a result, the gauge-dependent \((1-\xi) q^\mu q^\nu/q^2\) term in the photon propagator, which is always contracted with an \(R_\mu\) associated with a lepton or nucleon, has no effect on the full amplitude.
+\end{adjustwidth}
+
+
+
+\begin{example}
+    A calculation at \(\mathcal{O}(e^2)\) for \(L_{\mu\nu}\), with incoming massless spin-1/2 particles (i.e. electrons in the high-energy limit), yields
+    \begin{align}
+        \mathcal{R}_\ell^\mu(p_1,\,p_2)
+        &=
+        ie \, \overline{v}_1(p_1) \gamma^\mu u_2(p_2)
+        \\
+        L^{\mu \nu}
+        &=
+        e^2\,
+        \le(
+            \overline{v}_1(p_1) \gamma^\mu u_2(p_2)
+        \ri)
+        \le(
+            \overline{u}_2(p_2) \gamma^\nu v_1(p_1)
+        \ri)
+        \,,
+    \end{align}
+
+    Averaging over initial-state spins, using \(\sum_{s_i} v_i \overline{v}_i = \sum_{s_i} u_i \overline{u}_i = \slashed{p}_i + m_i\), and applying Gamma-matrix algebra in the massless limit yields the expression
+    \begin{align}
+        \le\langle
+        L^{\mu \nu}
+        \ri\rangle
+        &=
+        \frac{e^2}{4} \Tr\le(\slashed p_1 \gamma^\mu \slashed p_2 \gamma^\nu \ri)
+        =
+        p_1^\mu p_2^\nu + p_1^\nu p_2^\mu - \frac{s}{2} g^{\mu \nu}
+        \,,
+    \end{align}
+    which describes the leptonic contribution to unpolarized scattering electron-positron scattering with an intermediate \(s\)-channel photon.
+    %
+    Therefore, it describes the leading leptonic physics of \(e^+ e^- \to\,\)hadrons.
+\end{example}
+
+
+\begin{example}
+    Consider next the case where the outgoing particles of the electron-positron collision consist simply of a \textit{massless quark and an anti-quark} of type \(q\), i.e. \(q \in \{\)up, down, charm, strange, bottom\(\}\) -- the \vocab{active quarks} (the top quark is far too heavy, and we will assume that it cannot be produced).
+    %
+    Since the properties of massless quarks are very similar to those of the electron, by summing over final state spins we can immediately write
+    \begin{align}
+        \sum_{\substack{\text{final}\\\text{spins}}}
+        H^{\mu \nu}
+        &=
+        e_q^2
+        \Tr\le(\slashed k_1 \gamma^\mu \slashed k_2 \gamma^\nu \ri)
+        =
+        4 e_q^2
+        \le(
+            k_1^\mu k_2^\nu + k_1^\nu k_2^\mu - \frac{s}{2} g^{\mu \nu}
+        \ri)
+        \,,
+    \end{align}
+    where \(e_q\) is the electric charge of the quark.
+    %
+    This describes the \glslink{accuracy}{leading-order (LO)} hadronic contribution to the production of hadrons in electron-positron scattering.
+\end{example}
+
+\begin{exercise}
+    \label{ex:born-matrix-el}
+    Use the pieces above to determine the \glslink{accuracy}{LO} matrix-element-squared for \(e^+ e^-\to\,\)hadrons.
+
+    \vspace{7pt}
+    \hrule
+    \vspace{7pt}
+
+    \texttt{Solution:}
+    \begin{align}
+        \frac{1}{4}
+        \sum
+        \abs{\mathcal{M}_{e^+ e^- \to q \overline{q}}}^2
+        =
+        N_c
+        \frac{32\pi^2 \alpha_\text{EM}^2}{s^2}
+        \le(
+            t^2 + u^2
+        \ri)
+        \sum_q \frac{e_q^2}{e^2}
+        =
+        N_c
+        16\pi^2 \alpha_\text{EM}^2
+        \,
+        \le(1 + \cos^2(\theta)\ri)
+        \sum_q \frac{e_q^2}{e^2}
+        \,,
+    \end{align}
+    where the sum is over the initial spin states, final spin states, and final color states, and \(\theta\) is the angle between the direction of the incoming \(e^+\)-\(e-\) pair and the outgoing \(q\)-\(\overline{q}\) pair in the center of mass frame.
+    %
+    \(N_c\) indicates the number of colors of \gls{qcd}, and we have used the fine-structure constant \(\alpha_\text{EM}^2 := e^2 / 4\pi\) in favor of \(e^2\).
+\end{exercise}
+
+
+
+
+% ---------------------------------------
+\subsection{Fixed-Order Partonic Predictions}
+% ---------------------------------------
+\label{sec:ee-decay}
+
+% -----------------------------------
+% Cross Section Figure
+% -----------------------------------
+\begin{figure}[t!]
+    \centering
+    \tikzexdiagram{ee_to_qq}[0][2.0]
+
+    % Caption
+    \caption{
+        \sam{Leading order diagram for \(e^+e^- \to\,\)hadrons.}
+    }
+
+    % Figure Label
+    \label{fig:ee_lo}
+\end{figure}
+% -----------------------------------
+
+
+Our examples and exercises have already prepared us to write down the \glslink{accuracy}{leading order} differential cross section for \(e^+ e^-\to\,\)hadrons.
+%
+In particular, we can immediately write that the scattering produces a quark and an anti-quark with differential cross section
+\begin{align}
+    \label{eq:born-diff-xsec}
+    \frac{\dd\sigma_0}{\dd\Omega}
+    =
+    \frac{\dd\sigma_0}{\dd\phi \dd\cos\theta}
+    =
+    \le(
+    N_c \sum_q \frac{e_q^2}{e^2}
+    \ri)
+    \,
+    \frac{\alpha_\text{EM}^2}{4 s}
+    \,
+    \le(1 + \cos^2(\theta)\ri)
+    \,,
+\end{align}
+and a total cross section
+\begin{align}
+    \label{eq:born-xsec}
+    \sigma_0
+    :=
+    \le(
+    N_c \sum_q \frac{e_q^2}{e^2}
+    \ri)
+    \,
+    \frac{4 \pi \alpha_\text{EM}^2}{3 s}
+    \,.
+\end{align}
+
+\begin{exercise}
+    Using the results of Exercise~\ref{ex:two-to-two-xsec} and Exercise~\ref{ex:born-matrix-el}, prove \Eqs{born-diff-xsec}{born-xsec}.
+\end{exercise}
+
+
+\remark{}{
+    Our result for \(e^+ e^- \to\,\)hadrons is often compared to the cross section for muon production, \(e^+ e^-\to\mu^+\mu^-\), as a test of \gls{qcd}.
+    %
+    In particular, the \vocab{\(R\)-ratio},
+    \begin{align}
+        \frac{\sigma_{e^+ e^-\to\,\text{hadrons}}}{\sigma_{e^+ e^-\to\mu^+\mu^-}}
+        =:
+        R
+        \,,
+    \end{align}
+    provides an important bridge between theory and experiment.
+    When we have 5 active quark flavors, \(R = .. + \mathcal{O}(\alpha_s)\).
+    %
+    We have therefore made the theoretical prediction that
+    \begin{align}
+        R
+        =
+        N_c\,\sum_q e_q^2 / e^2
+        +
+        \mathcal{O}(\alpha_\text{EM}, \alpha_s)
+        \,.
+    \end{align}
+    Of course, \(N_c = 3\).
+    %
+    Furthermore, when all quarks but the top quark are allowed final states (i.e. at reasonably but not exorbitantly high scattering energies), \(\sum_q e_q^2 / e^2 = 11/9\), and we can quantitatively predict the value \(R \approx 11/3\) (in the absence of electroweak corrections).
+}
+
+
+
+Our leading order analysis for the differential cross section of \(e^+ e^-\to\,\)hadrons is complete.
+However, this is not the end of the story even for the two particle final state.
+%
+There are \textit{loop corrections}, as in \Fig{ee_nlo_loop}, which contribute to the hadronic tensor \(H^{\mu\nu}_2\) associated with two-parton final states.
+%
+Therefore, we now turn to computing the corrections at \(\mathcal{O}(g_s^2)\) due to the strong interaction.
+%
+First, we consider loop (virtual emission) contributions to the cross section due to two-particle final states.
+%
+Then, we compute the (real emission) contributions due to three-particle final states.
+
+\begin{exercise}{}
+    Argue that there must be at least two particles in the final state of an electron-positron collision, and that the contributions can be organized into powers of \(g_s\) as \(\mathcal{M}_k = \sum_{\ell=0}^\infty \mathcal{M}_k^{(k-2+2\ell)}\), where \(\ell\) indicates the number of loops in the associated diagrams and \(\mathcal{M}_k^{(n)}\) has \(n\) powers of \(g_s\).
+\end{exercise}
+
+
+
+% -----------------------------------
+% Cross Section Figure
+% -----------------------------------
+\begin{figure}[t!]
+    \centering
+    \subfloat[]{
+        \tikzexdiagram{ee_to_qqg}[0][1.5]
+        \label{fig:ee_nlo_tree}
+    }
+
+    \subfloat[]{
+        \tikzexdiagram{ee_to_qq_loop}[0][1.5]
+        \label{fig:ee_nlo_loop}
+    }
+
+    % Caption
+    \caption{
+        \sam{Next-to-leading order diagrams for \(e^+e^- \to\,\)hadrons.}
+    }
+
+    % Figure Label
+    \label{fig:amplitudes}
+\end{figure}
+% -----------------------------------
+
+
+Again using the trick of polarization-stripped amplitudes to compute only the new terms from \Fig{ee_nlo_loop}, we can write
+\begin{align}
+    \mathcal{R}^\mu_h(k_1, k_2)
+    =
+    \mathcal{R}^\mu_{h,\,(0)}(k_1, k_2)
+    +
+    \mathcal{R}^\mu_{h,\,(2)}(k_1, k_2)
+    +
+    \mathcal{O}(g_s^4)
+    \,,
+\end{align}
+where the subscripts \((0)\) and \((2)\) indicate that the associated terms contribute at \(\mathcal{O}(g_s^0)\) and \(\mathcal{O}(g_s^2)\), respectively.
+%
+By using the \gls{qcd} Feynman rules, and working in Feynman gauge, we can conclude that
+\begin{align}
+    \mathcal{R}^\mu_{h,\,(2)}(k_1, k_2)
+    =
+    g_s^2
+    e_q
+    \le(T^a\ri)\indices{^j_k}
+    \le(T^a\ri)\indices{^k_i}
+    \int\frac{\dd^d \ell}{\le(2 \pi\ri)^d}
+    \frac{1}{(k_1 - \ell)^2}
+    \frac{1}{l^2}
+    \frac{1}{(k_2 + \ell)^2}
+    \,\,
+    \overline{u}_2(k_2)
+    \,
+    \gamma^\rho
+    \,
+    \le(\slashed{k}_2 + \slashed{\ell}\ri)
+    \,
+    \gamma^\mu
+    \,
+    \le(\slashed{k}_1 - \slashed{\ell}\ri)
+    \,
+    \gamma_\rho
+    \,
+    v_1(k_1)
+    \,,
+\end{align}
+where \(i\) and \(j\) indicate the color of the outgoing quark and anti-quark, respectively.
+%
+\sam{work out better, check}
+
+The hadronic tensor becomes
+\begin{align}
+    H^{\mu\nu}
+    =
+    H^{\mu\nu}_{(0)}
+    +
+    H^{\mu\nu}_{(2)}
+    +
+    \mathcal{O}(g_s^4)
+    \,,
+\end{align}
+with
+\begin{align}
+    H^{\mu\nu}_{(2)}
+    =
+    \mathcal{R}^{\mu}_{h,\,(0)}
+    \mathcal{R}^{\nu\,\,*}_{h,\,(2)}
+    +
+    \mathcal{R}^{\mu}_{h,\,(2)}
+    \mathcal{R}^{\nu\,\,*}_{h,\,(0)}
+    =
+    \sam{complete}
+    \,.
+\end{align}
+
+
+
+By using dimensional regularization in \(d = 4-2\epsilon\) dimensions, we have
+\begin{align}
+    \mathcal{R}^\mu_{h,\,(2)}(k_1, k_2)
+    =
+    \,.
+\end{align}
+We already see the concerning emergence of an infinity, in four dimensions.
+%
+\sam{discussion?}
+
+The full cross section is
+\begin{align}
+    \sigma_2^{(0)}
+    +
+    \sigma_2^{(2)}
+    +
+    \mathcal{O}(g_s^4)
+    =
+    \,
+    N_c \sum_q \le(\frac{e_q^2}{e^2}\ri)
+    \,
+    \frac{4\pi \alpha_\text{EM}^2}{3 s}
+    \,
+    +
+    \,
+    \sigma_2^{(2)}
+    +
+    \mathcal{O}(g_s^4)
+    \,,
+\end{align}
+%
+When we have 5 active quark flavors, \(\sigma_2 = \).
+
+\remark{}{
+    See \Prob{} and its solution for a more detailed guide to these computations.
+}
+
+The cross section was finite at \(\mathcal{O}(g_s^0)\);
+%
+however, the virtual correction, \(\sigma_2^{(2)}\), is apparently problematic:
+%
+it contains a divergent integral! \sam{redundant}
+%
+This divergence, however, is simply a signal for great things to come \sam{(when combined with the three-particle cross section)}.
+
+
+
+
+\begin{subequations}
+\begin{align}
+    i\mathcal{M}_2^{(2)}
+    =
+\end{align}
+with
+\begin{align}
+    2 \Re \le(
+        \overline{\mathcal{M}_2^{(0)}
+        \mathcal{M}_2^{(2)\,*}}
+    \ri)
+    =
+\end{align}
+\end{subequations}
+
+
+
+\begin{align}
+    \overline{\abs{\mathcal{M}_3^{(1)}}^2}
+    =
+    \frac{8 e_q^2 e^2 g^2}{3 s}
+    \frac{x_1^2 + x_2^2}{(1-x_1) (1-x_2)}
+\end{align}
+\end{subequations}
+
+
+
+
+\begin{itemize}
+    \item
+3-particles at tree level:
+%
+\sam{Calculation is a problem which is worked out}
+%
+\begin{subequations}
+    \begin{align}
+        \langle\abs{\mathcal{M}_3}^2\rangle
+        &=
+        \cdots
+        +
+        \mathcal{O}(g_s^4)
+        \\
+        \frac{\dd\sigma_3}{\dd x_1 \dd x_2}
+        =
+        \sigma_2
+        \,
+        2 \ascf
+        \,
+        \int_{\text{bounds}}
+        \dd x_1 \dd x_2
+        \frac{x_1^2 + x_2^2}{(1-x_1)(1-x_2)}
+        \,.
+    \end{align}
+    \sam{variables?}
+    %
+    This also contains a divergent integral.
+    %
+    But now we can return to the other divergence...
+\end{subequations}
+
+    \item
+\begin{subequations}
+    In dimensional regularization, we can evaluate the loop diagram corresponding to the virtual correction to \(\sigma_2\):
+    \begin{align}
+        \sigma_2^{(2)}
+        :=
+        \,,
+    \end{align}
+\end{subequations}
+
+    \item
+Cancellation of divergences
+\end{itemize}
+
+
+
+
+
+\begin{itemize}
+    \item
+Hints of the collinear limit:
+%
+singular behavior means highest probabilities, so it seems from our calculations of \(e^+ e^- \to\,\)hadrons that the limit \(x \to 1\) -- the \textit{collinear limit} -- is the most important part of the phase space for parton production.
+%
+Expanding on this limit, we find the differential cross section
+\begin{align}
+    \frac{\dd\sigma}{\dd \theta \dd z}
+    =
+\end{align}
+This yields something nice:
+%
+\sam{splitting functions/probability}
+%
+But how useful?
+%
+Very useful! Universal!
+\end{itemize}
+
+
+\begin{example}{}
+    We used \sam{e+e-} to obtain the splitting function describing a quark splitting into a quark and a gluon.
+    %
+    Argue that this result for the splitting function is independent of the process in the collinear limit.
+\end{example}
+
+
+We will also take this opportunity to record the form of some simple observables in a final state with three massless particles, in terms of the energy-fraction coordinates \(x_i\):
+%
+Equating these two formulae quickly yields
+\begin{subequations}
+    \label{eq:ee_kinematics}
+    \begin{align}
+        \cos\theta_{ij} &= \frac{1}{x_i x_j} - \frac{2}{x_i} - \frac{2}{x_j} + 1
+        ,
+        \\
+        \frac{m^2_{ij}}{Q^2} &= x_i + x_j - 1
+        .
+    \end{align}
+\end{subequations}
+
+
+Next, note about the amplitude:
+\begin{subequations}
+\begin{align}
+    \mathcal{M}_{n+1}
+    =
+    \cdots
+    =
+    \mathcal{M}_n
+    \,
+    \times
+    \,
+    \cdots
+    \,,
+\end{align}
+\sam{Do I need different things for quarks and gluon emissions?}
+and therefore
+\begin{align}
+    \abs{\mathcal{M}_{n+1}}^2
+    =
+    \cdots
+    =
+    \abs{\mathcal{M}_n}^2
+    \,
+    \times
+    \,
+    \cdots
+    \,.
+\end{align}
+\end{subequations}
+
+Combining, we obtain result for the differential cross section
+\begin{subequations}
+\begin{align}
+    \dd \sigma_{n+1}
+    =
+    \cdots
+    =
+    \sigma_n
+    \,
+    \times
+    \,
+    \cdots
+    \,,
+\end{align}
+\end{subequations}
+where \sam{we have integrated over ... of the final particle}.
+
+When using the NLO splitting functions of \Sec{}, a parton can only split into two children.%
+\footnote{
+    Beginning at next-to-next-to-leading order (NNLO), a single parton may split into more than two children.
+    %
+    NNLO splitting functions provide important contributions to jet physics beyond LL accuracy, but will not appear in the applications presented in this thesis.
+}
+%
+we will use \(P_{jk \leftarrow i}(z)\) to denote splitting functions for which parton \(i\) splits into partons \(j\) and \(k\), where parton \(j\) carries an energy fraction \(z = E_j / E_i\) of parton \(i\) and parton \(k\) carries an energy fraction \(1-z\).
+%
+\sam{move to ch2}
+%
+The pseudo-probability density for the splitting \(i \to jk\) at NLO is then given by
+\begin{align}
+    \label{eq:splitting_probability}
+    \dd\mathbb{P}\le(x_j, \theta_{jk}\ri)
+    =
+    4 \as
+    \,
+    P_{jk \leftarrow i}(x_j)
+    \,
+    \frac{1}{\theta_{jk}}
+    \,\,
+    \dd x_j
+    \,
+    \dd\theta_{jk}
+    .
+\end{align}
+%
+In \(d = 4 - 2\varepsilon\) dimensions, the non-zero NLO splitting functions of QCD take the form
+\begin{subequations}
+\label{eq:qcd_splitting_functions}
+\begin{align}
+    P_{qg\leftarrow q}(z)
+    &=
+    C_F \le(
+        \frac{1 + z^2}{1-z} - \epsilon \le(1-z\ri)
+    \ri)
+    \\
+    P_{gg \leftarrow g}(z)
+    &=
+    2C_A\le(
+        \frac{1-z}{z}
+        +
+        \frac{z}{1-z}
+        +
+        z(1-z)
+    \ri)
+    +
+    \sam{delta fn}
+    \\
+    P_{q \overline{q} \leftarrow g}(z)
+    &=
+    T_F \, n_f
+    \le(
+        1 - \frac{2z(1-z)}{1-\epsilon}
+    \ri)
+    \\
+    \sam{check and use plus-functions}
+    \notag
+    ,
+\end{align}
+\end{subequations}
+\sam{factor of two in Pgg? If it belongs there I should footnote and explain}
+where \(C_F\) and \(C_A\) are the group theory factors defined in \Eq{group_theory}, \(n_f\) is the number of massless quark flavors, and we have omitted the redundant non-zero splitting functions.%
+\footnote{
+    i.e. the splitting functions related to those of \Eq{qcd_splitting_functions} by symmetry, such as
+    \(P_{qg\leftarrow q}(z) = P_{gq\leftarrow q}(1-z)\).
+}
+
+
+To begin, we provide explicit expressions for the DGLAP splitting functions, which describe the probability for the emission of partonic radiation from quarks and gluons, at one loop accuracy:
+%
+\begin{align}
+&p_{q\to q g}(z) = C_F \frac{1+(1-z)^2}{z},
+\label{eq:quark_splitting}
+\\
+&p_{g\to g g}(z) = 2C_A\frac{1-z}{z} + C_A z(1-z) + T_F n_f (z^2 + (1-z)^2).
+\label{eq:gluon_splitting}
+\end{align}
+%
+Here, \(z\) is the energy fraction of an emitted gluon relative to the total energy of the emitted gluon and an initial parton.
+%
+\(p_q\) describes the distribution of \(z\) in the case that a gluon emitted by a quark, \(q \to q g\), and \(p_g\) describes the distribution of \(z\) in the case \(g \to gg\).
+%
+\(T_F = \frac{1}{2}\) is the Dynkin index of the fundamental representation of the standard model SU(3) color gauge group, and \(n_f\) indicates the number of quark flavors.
+%
+In the following analysis, we take \(n_f = 5\), including all quark flavors except for the top quark.
+%
+As in the text, \(C_R\) is the quadratic Casimir for the representation \(R\) of SU(3).
+%
+\(C_R = C_F = \frac{4}{3}\) for quarks and \(C_R = C_A = 3\) for gluons.
+
+
+
+% -----------------------------------
+% Decay Figure
+% -----------------------------------
+\begin{figure}[t!]
+    % Figure graphics
+    \centering
+    \includegraphics[width=\textwidth]{example-image-a}
+
+    % Caption
+    \caption[\sam{A visualization of decay}]{
+        \sam{Decay figure}
+    }
+    % Figure Label
+    \label{fig:decay}
+\end{figure}
+% -----------------------------------
+
+
+\begin{itemize}
+    \item
+Virtual to on-shell (v2o), then virtual to v2o (vv2o);
+%
+lessons learned?
+%
+\sam{Preparing to go to parton shower, resummation}
+%
+Discussion of DGLAP later...
+
+    \item
+vv2o to get to massive...  dead cone effect
+%
+In terms of amplitudes?
+\end{itemize}
+
+
+
+
+
+    \begin{definitionbox}{Dead-cone Effect}{deadcone}
+        The \emph{\gls{deadcone}} effect refers to the suppression of radiation from a heavy parton (such as a top quark or a high-energy hadron) at small angles with respect to its direction of motion, due to the presence of its large mass.
+
+        \vspace{7pt}
+        \hrule
+        \vspace{7pt}
+
+        The \vocab{dead-cone effect} arises in the context of QCD and describes the suppression of radiation at small angles from a heavy parton with a large mass \( m \). The concept is based on the observation that for a parton moving at relativistic speeds, radiation is more effectively emitted at angles \( \theta \) larger than \( \theta_{\text{dead}} \), where:
+        \[
+        \theta_{\text{dead}} \sim \frac{m}{E},
+        \]
+        with \( m \) being the mass of the parton and \( E \) being its energy. For angles smaller than \( \theta_{\text{dead}} \), radiation is suppressed because the energetic parton does not have sufficient time to interact with the vacuum in the small angle region, as the characteristic formation time for radiation becomes longer than the travel time of the parton.
+
+        This effect is especially prominent for heavy quarks (like the top quark) and in the context of parton shower evolution in high-energy hadron collisions. The dead-cone is important in understanding phenomena such as jet substructure and energy loss mechanisms in particle collisions.
+    \end{definitionbox}
+
+    \iffalse
+    \begin{remarkbox}{Motivation and Physical Implications of the Dead-cone Effect}{}
+        The dead-cone effect provides an important mechanism for understanding the behavior of high-energy heavy quarks, particularly in high-energy hadronic collisions. For example, in the context of heavy quark production in jet events, the dead-cone effect results in a suppression of radiation at small angles, which influences the energy distribution within the jet. The larger the mass of the parton, the more pronounced the dead-cone effect becomes. This leads to more collimated jets from heavy quarks compared to light quarks. Additionally, the dead-cone effect provides insights into how heavy particles interact with the QCD vacuum and how their radiation patterns differ from those of lighter particles, which do not exhibit the same angular suppression.
+    }
+
+    \begin{remarkbox}{Dead-cone Effect and Jet Substructure}{}
+        The dead-cone effect plays a significant role in jet substructure, particularly in events involving heavy quarks, such as top quarks or Higgs decays. The suppression of radiation at small angles due to the dead-cone leads to different energy distributions in jets originating from heavy quarks compared to those from light quarks or gluons. This feature is often exploited in jet substructure studies, where algorithms may look for a characteristic "cone" around a heavy quark jet with reduced radiation. Understanding this effect allows for improved techniques in identifying heavy-flavor jets in particle detectors, such as those used at the LHC.
+    }
+
+    \begin{remarkbox}{Relation to Parton Shower and Energy Loss}{}
+        The dead-cone effect is closely related to the behavior of parton showers in QCD. In the regime of high-energy collisions, partons undergo multiple scatterings and radiate gluons. The dead-cone effect modifies the angular distribution of these radiations, causing a suppression of radiation at small angles. This suppression impacts the energy loss mechanisms of heavy quarks, such as those involved in the study of energy loss in the quark-gluon plasma. The dead-cone effect helps to explain why heavy quarks lose energy differently from lighter quarks, with less energy radiated at small angles, which can influence predictions for observables in high-energy heavy-ion collisions.
+    }
+
+\fi
+
+
+The splitting function encodes the probability that a parton of type \(a\) will split into two partons of types \(b\) and \(c\).
+%
+For that reason, a common derivation is in terms of the factorization of an amplitude of a process involving \(a\) and a process without \(a\) but with, say, \(b\) \sam{unclear}
+
+
+\begin{itemize}
+    \item
+    Inclusive perturbative (partonic) cross sections;
+
+    \item
+    Lightlike partons, nearly on shell;
+
+    \item
+    Factorization of amplitudes
+    \begin{align}
+        \mathcal{M}(a + d \to c + X)
+        =
+        \mathcal{M}(a \to b + c)
+        \frac{1}{\hat{t}}
+        \mathcal{M}(b + d \to X)
+        \label{eq:factorized_matrix_element}
+        .
+    \end{align}
+
+    \item
+    Factorization of cross sections:
+    \begin{align}
+        \dd \sigma(a + d \to c + X)
+        \eqdelta
+        \frac{\alphas}{2\pi}
+        \,
+        P_{a\to bc}(z, m_b^2)
+        \,
+        \dd\le(\log m_b^2 \ri)
+        \dd z
+        \,\,
+        \dd \sigma_N(b + d \to X)
+        \label{eq:factorized_cross_section}
+        .
+    \end{align}
+\end{itemize}
+
+% -----------------------------------
+% Figure Comment:
+% -----------------------------------
+\begin{figure}[h!]
+    % Multiple subfigure graphics using subfloat
+    \centering
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        % Subfigure label
+        \label{fig:splitfn_full_amplitude}
+    }
+    \subfloat[]{
+        % Subfigure graphic
+        \includegraphics[width=.48\textwidth]{example-image-a}
+        % Subfigure label
+        \label{fig:splitfn_sub_amplitude}
+    }
+
+    % Caption
+    \caption[\sam{representation of splitting function}]{
+        \sam{A representation of the processes involved in calculating a splitting function}
+    }
+
+    % Figure Label
+    \label{fig:label}
+\end{figure}
+% -----------------------------------

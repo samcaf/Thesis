@@ -1,0 +1,45 @@
+\begin{align}
+\raisebox{-40pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (u) at (0,1.5);
+        \vertex (il) at (-0.65,-0.375);
+        \vertex (l) at (-1.30,-0.75);
+        \vertex (ir) at (0.65,-0.375);
+        \vertex (r) at (1.30,-0.75);
+        \vertex (cen) at (0,0);
+        % edge labels
+        \vertex [above right=-0.8pt and 0.0ptof u] (tu) {$a, \mu$};
+        \vertex [below left=-0.8pt and 0.0ptof l] (tl) {$b$};
+        \vertex [below right=0.0pt and 0.0pt of r] (tr) {$c$};
+        % diagram
+        \diagram* {
+            (cen)
+            -- [gluon]%, momentum'=\(q\)]
+            (u)
+            ,
+            (l)
+            -- [dotted, arrow, ultra thick]
+            (il)
+            -- [dotted, ultra thick]
+            (cen)
+            ,
+            (cen) -- [dotted, ultra thick, momentum=\(r\)] (r)
+            ,
+            (cen)
+            -- [dotted, arrow, ultra thick]
+            (ir)
+            -- [dotted, ultra thick]
+            (r)
+            ,
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+:=
+\quad
+g f^{abc} r^\mu
+\,.
+\end{align}

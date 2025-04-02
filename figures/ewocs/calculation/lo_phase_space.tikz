@@ -1,0 +1,23 @@
+\begin{tikzpicture}[
+    every node/.style={anchor=south west,inner sep=0pt},
+    x=1mm, y=1mm,
+  ]
+ \node (ps) at (0,0)
+   {\includegraphics[width=.5\textwidth]
+   {figures/ewocs/calculation/lo_phase_space.pdf}};
+
+ \node (green) at (36, 28)
+   {\includegraphics[width=.09\textwidth,
+                     angle=35]
+   {figures/ewocs/cartoons/green_subjets.png}};
+
+ \node (red) at (54, 18)
+   {\includegraphics[width=.09\textwidth,
+                     angle=25]
+   {figures/ewocs/cartoons/red_subjets.png}};
+
+ \node (orange) at (12, 36)
+   {\includegraphics[width=.08\textwidth,
+                     angle=65]
+   {figures/ewocs/cartoons/orange_subjets.png}};
+\end{tikzpicture}

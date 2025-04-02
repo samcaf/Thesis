@@ -1,0 +1,21 @@
+\usepackage{xargs}
+
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+
+
+% Diagrams
+% (requires xargs)
+\newcommandx*\tikzexdiagram[3][2=0,3=1.0]{\ensuremath{%
+    \scalebox{#3}{%
+    \raisebox{#2pt}{%
+        \input{figures/diagrams/#1.tikz}%
+    }%
+    }%
+}}
+
+\newcommandx*\pdfexdiagram[3][2=0,3=0.2]{\ensuremath{%
+    \raisebox{#2pt}{%
+        \includegraphics[width=#3\textwidth]{figures/diagrams/#1.pdf}%
+    }%
+}}

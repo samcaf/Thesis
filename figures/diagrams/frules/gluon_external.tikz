@@ -1,0 +1,32 @@
+\begin{align}
+\raisebox{-6pt}{
+\begin{tikzpicture}
+    \begin{feynman}
+        % vertices
+        \vertex (i) at (-1.5,0.0);
+        \vertex (f) at (1.5,0.0);
+        % edge labels
+        \vertex [above left=-0.8pt and 0.0ptof i] (ti) {$a, \mu$};
+        \vertex [above right=-10.0pt and 10.0pt of f] (tf) {$b, \varepsilon(p)$};
+        % diagram
+        \diagram* {
+            (i)
+            -- [gluon, momentum=\(p\),-{Bar[line width=1.5pt, width=15pt]}]
+            (f)
+            ,
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\quad
+:=
+\quad
+\delta^{ab}
+\,
+\varepsilon^{*\, \mu}(-p)
+\end{align}
+for outgoing, final-state gluons.
+%
+For initial state gluons with incoming momentum \(p\), the factor of \(\varepsilon^{*\,\mu}(-p)\) is replaced by a factor of \(\varepsilon^\mu(p)\).
+%
+\sam{check}

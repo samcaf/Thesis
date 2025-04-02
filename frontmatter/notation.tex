@@ -1,0 +1,177 @@
+% =====================================
+\section*{Notation and Terminology}
+% =====================================
+% \markboth{Notation and Terminology}{Notation and Terminology}
+
+
+\epigraph{If you think this Universe is bad, you should see some of the others.}{Philip K. Dick}
+
+
+% =====================================
+\begin{sambox}{Resources}{}
+    % ---------------------------------
+    \begin{itemize}
+        \item
+            Larkoski Chapter 9:
+            %
+            ee to hadrons, jets, splitting functions, pheno problems
+
+        \item
+            Foundations Chapter 8:
+            %
+            Factorization, Mellin, DGLAP, sum rules
+
+        \item
+            Substructure Chapter 1:
+            %
+            Substructure motivation
+    \end{itemize}
+    % ---------------------------------
+\end{sambox}
+% =====================================
+
+\begin{sambox}{Some TODOs for Sam}{}
+    \begin{itemize}
+        \item
+            Need to fix header on problem pages, which simply use the most recent appendix instead.
+
+        \item
+            List of problems
+
+        \item
+            Signature page
+
+        \item
+            Add epsilon UV/IR calculations involving EEC
+
+        \item
+            Unify notation of epigraphs, probably want names then titles
+    \end{itemize}
+\end{sambox}
+
+Here is some common notation used throughout this thesis.
+%
+See \Sec{morenotation} for a more comprehensive list.
+
+\begin{itemize}
+    \item
+        A \vocab{calcule} is a smaller analogue of a calculation (such as a simple example or a part of a bigger calculation)
+
+    \item
+        \(A := B\) means ``\(A\) is defined to mean \(B\)'', as does \(B =: A\);
+
+    \item
+        For notational simplicity, I will set the physical constants \(\hbar = c = 1\) in all printed equations;
+
+    \item
+        \sam{Metric signature}
+
+    \item
+        The Mellin transform of a function \(f(x)\) on the interval $(0,\infty)$ is defined as
+        \begin{align}
+            \mathcal{M}[f](s)
+            \eqdelta
+            \int_0^\infty \,\frac{\dd x}{x}\, x^{s-1} \, f(x)
+            \eqdelta
+            \hat f(s)
+            .
+        \end{align}
+
+        For all of the applications in this work, other than some derivations which are relegated to the Problems \sam{of Chapter...}, the functions in whose Mellin transforms we are interested will have support only on the interval \((0,1)\).
+        %
+        Therefore, unless stated otherwise, the Mellin transform appearing in this work will appear in the form
+        \begin{align}
+            \hat f(s)
+            \eqdelta
+            \int_0^1 \,\frac{\dd x}{x}\, x^{s-1} \, f(x)
+            .
+        \end{align}
+
+        \sam{Put into the text where relevant}
+
+        \sam{Mention here the part of the text where this appears and the problems in which it appears}
+
+    \item
+        \sam{LO, NLO, LL, NLL, etc.}
+
+    \item
+        The \textit{energy fraction} carried by a particular particle in a scattering event or jet, relative to the total energy of the event or jet, will play an important role in this thesis.
+        %
+        We will use the symbol \(z_i\) to denote the energy fraction particle \(i\) within a jet or event:
+        \begin{align}
+            z_i
+            \eqdelta
+            \frac{E_i}{E_\text{tot}}
+            .
+        \end{align}
+        \sam{Revisit}
+
+    \item
+        We will also use the following standard definitions:
+        \begin{subequations}
+        \label{eq:qcd_coupling}
+        \begin{align}
+            \label{eq:as_defn}
+            \as &= \frac{\alpha_s}{4\pi}
+            \\
+            \label{eq:beta_fn_defn}
+            \frac{\dd}{\dd\log\mu}\alpha_s(\mu)
+            &\eqdelta
+            \beta(\alpha_s)
+            =
+            -2\beta_0 \alpha_s(\mu)^2 + \mathcal{O}\le(\alpha_s(\mu)^3\ri)
+            \\
+            \label{eq:alphas_1loop}
+            \alpha_s^\text{(1-loop)}(\mu)
+            &=
+            \frac{\alpha_s(Q)}{1 + 2\alpha_s(Q) \beta_0 \log(\frac{\mu}{Q})}
+            ,
+        \end{align}
+        where
+        \begin{align}
+            \beta_0 = \frac{1}{12\pi}\le(11\,C_A - 4\,T_f n_f\ri)
+        \end{align}
+        \end{subequations}
+        is the leading coefficient of the QCD beta function, \(n_f = 5\) denotes the number of effectively massless quark flavors, \(Q\) indicates a reference scale (such as the energy scale of a hard process), and
+        \begin{subequations}
+        \label{eq:group_theory}
+        \begin{align}
+            C_F &= \frac{N_c^2 - 1}{2N_c}
+            % \xrightarrow[]{\text{QCD}}
+            % \frac{4}{3}
+            \\
+            C_A &= N_c
+            % \xrightarrow[]{\text{QCD}}
+            % 3
+            \\
+            T_F &= \frac{1}{2}
+            ,
+        \end{align}
+        \end{subequations}
+        denote the quadratic Casimir for the fundamental representation of \(SU(N_c)\), the quadratic Casimir for the adjoint representation, and the Dynkin index of the fundamental representation, respectively.
+        %
+        The expressions of \Eq{group_theory} are often referred to collectively as \textit{group theory factors}.
+        %
+        For QCD, \(N_c = 3\), \(C_F = 4/3\), and \(C_A = 3\), giving \(
+            \beta_0 = \le(11 - 2 n_f / 3\ri)/4\pi
+            .
+        \)
+
+
+%         A useful definition for clarity is that of the value of \(\alpha_s\) divided by \(4\pi\), since this quantity appears in loop computations (which often have a \(4\pi\) suppression):
+%         \begin{subequations}
+%         \begin{align}
+%             a_s = \frac{\alpha_s}{4\pi}
+%         \end{align}
+%         \end{subequations}
+\end{itemize}
+
+
+Furthermore, we will assume
+\begin{itemize}
+    \item
+    That all partons other than the top quark are massless;
+
+    \item
+    That we may ignore electroweak effects (i.e. perform calculations without the \(W\) and \(Z\) bosons).
+\end{itemize}

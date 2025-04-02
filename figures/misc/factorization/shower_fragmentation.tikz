@@ -1,0 +1,152 @@
+\begin{tikzpicture}
+\begin{scope}[scale=0.5]
+    \begin{feynman}
+        \vertex (li);
+        \vertex [dot, scale=0.25, right=0.6 cm of li] (b) {};
+        \vertex [dot, scale=0.25, right=0.4 cm of b] (c) {};
+        \vertex [right=0.24 cm of c] (ct);
+        \vertex [right=.56 cm of ct] (ctt);
+        \vertex [dot, scale=0.25, right=.2 cm of ctt] (d) {};
+        \vertex [right=0.8 cm of ctt] (lf) {};
+        \vertex [blob, scale = 0.2, above right = .29cm and .067cm of b] (pb) {};
+        \vertex [blob, scale = 0.2, below right = .245cm and .172cm of c] (pc) {};
+        \vertex [blob, scale = 0.2, above right = .18cm and .23cm of d] (pd) {};
+        \diagram* {
+            (li) --  (b),
+            (b)  --  (c),
+            (c)  --  (ct),
+            (ct) --  [dotted] (ctt),
+            (ctt)--  (d),
+            (d)  --  (lf),
+            % Splittings
+            (b)  --  (pb),
+            (c)  --  (pc),
+            (d)  --  (pd),
+        };
+    \end{feynman}
+
+    % Subjet visualization
+    \def\x{0.8}
+    \def\y{2.5}
+    \def\R{\x+0.005}
+    \def\yc{\y+0.04}
+    \def\e{0.4}
+
+    \begin{scope}[xshift=32.5pt,yshift=-3.1pt]
+        \begin{scope}[xshift=0.19cm,yshift=0.51cm]
+        \begin{scope}[scale=0.4,rotate=-13]
+            \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+            \shade[right color=white,left color=black,opacity=0.3]
+              (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+            \draw[fill=black,opacity=0.05]
+              (0,\yc) circle ({\R} and \e);
+            \draw
+              (-\x,\y) -- (0,0) -- (\x,\y);
+            \draw
+              (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        \begin{scope}[xshift=1.14cm,yshift=-0.230cm]
+        \begin{scope}[scale=0.4,rotate=-145]
+        \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+        \shade[right color=white,left color=black,opacity=0.3]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=black,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+
+        \begin{scope}[xshift=3.24cm,yshift=0.36cm]
+        \begin{scope}[scale=0.4,rotate=-53]
+        \clip (0.0,0.0) ++(0:0.8) arc (0:180:0.8) -- (-3,3) -- (3,3) -- cycle;
+        \shade[right color=white,left color=black,opacity=0.3]
+          (-\x,\yc) -- (-\x,\yc) arc (180:360:{\R} and \e) -- (\x,\yc) -- (0,0) -- cycle;
+        \draw[fill=black,opacity=0.05]
+          (0,\yc) circle ({\R} and \e);
+        \draw
+          (-\x,\y) -- (0,0) -- (\x,\y);
+        \draw
+          (0,\yc) circle ({\R} and \e);
+        \end{scope}
+        \end{scope}
+    \end{scope}
+\end{scope}
+
+% ---------------------
+% Text detailing
+% ---------------------
+
+% Initial/Final
+
+\begin{scope}[shift={(5pt,-4pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(i\)}%
+    }};
+\end{scope}
+
+\begin{scope}[shift={(72pt,-4.4pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(f\)}%
+    }};
+\end{scope}
+
+% Intermediate 1
+\begin{scope}[shift={(21pt,15pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(k_1\)}%
+    }};
+\end{scope}
+\begin{scope}[shift={(23.65pt,2.7pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(j_1\)}%
+    }};
+\end{scope}
+
+% Intermediate 2
+\begin{scope}[shift={(37.9pt,-11.8pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(k_2\)}%
+    }};
+\end{scope}
+\begin{scope}[shift={(32.8pt,2.7pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(j_2\)}%
+    }};
+\end{scope}
+
+% Intermediate n-1 and k_n
+\begin{scope}[shift={(70.3pt,9.9pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(k_n\)}%
+    }};
+\end{scope}
+\begin{scope}[shift={(53.9pt,2.4pt)}]
+    \node at (0,0) {\scalebox{.4}{%
+            {\(j_{n-1}\)}%
+    }};
+\end{scope}
+
+% Contains
+\begin{scope}[shift={(-16.4pt,0pt)}]
+    \node at (0,0) {\scalebox{1}{\(\supset\)}};
+\end{scope}
+
+% Magnitude Squared
+\begin{scope}[shift={(38.4pt,0pt)}]
+    \begin{scope}[shift={(-41pt,0pt)}]
+        \draw[thin] (0,-1.0) -- (0,1.00);
+    \end{scope}
+    \begin{scope}[shift={(47pt,0pt)}]
+        \draw[thin] (0,-1.0) -- (0,1.00);
+    \end{scope}
+    \begin{scope}[shift={(52.5pt,26pt)}]
+        \node at (0,0.13) {\scalebox{.8}{2}};
+    \end{scope}
+\end{scope}
+
+\end{tikzpicture}

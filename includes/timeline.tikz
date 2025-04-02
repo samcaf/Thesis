@@ -1,0 +1,151 @@
+\begin{tikzpicture}[very thick]
+    % Define coordinate transformation function
+    \pgfmathsetmacro{\compressfactor}{1}
+    \pgfmathsetmacro{\earlytransition}{1947}
+    \pgfmathsetmacro{\moderntransition}{1973}
+
+
+    \tikzset{
+        % my x coord/.code={
+        %     \message{Compressfactor is: \compressfactor}%
+        %     \pgfmathparse{
+        %     (#1 < \earlytransition) * (
+        %         (\earlytransition-1890) * \compressfactor * (#1-1890)/(\earlytransition-1890)
+        %     ) + (#1 >= \earlytransition) * (
+        %         (\earlytransition-1890) * \compressfactor + (#1-\earlytransition) * 0.8
+        %     )
+        % }\let\result\pgfmathresult%,
+        % \message{Computed x: \pgfmathresult},
+        % },
+        my coords/.style={
+            % x={0.15cm},
+            x={0.25cm},
+            y={1cm},
+            % x coord=my x coord
+        }
+    }
+
+    \begin{scope}[my coords]
+        % Colors (same as before)
+        \definecolor{earlyera}{RGB}{230,240,255}
+        \definecolor{particleera}{RGB}{255,240,230}
+        \definecolor{modernera}{RGB}{230,255,230}
+        \definecolor{earlydot}{RGB}{180,200,255}
+        \definecolor{particledot}{RGB}{255,200,180}
+        \definecolor{moderndot}{RGB}{180,255,180}
+        \definecolor{earlyoutline}{RGB}{100,140,255}
+        \definecolor{particleoutline}{RGB}{255,140,100}
+        \definecolor{modernoutline}{RGB}{50,180,50}
+
+        % Styles (same as before)
+        \tikzset{
+            event/.style={circle, inner sep=2pt, font=\footnotesize},
+            early dot/.style={event, fill=earlydot, draw=earlyoutline, line width=0.8pt},
+            particle dot/.style={event, fill=particledot, draw=particleoutline, line width=0.8pt},
+            modern dot/.style={event, fill=moderndot, draw=modernoutline, line width=0.8pt},
+            upper label/.style={text width=2.8cm, align=center, above=0.6cm, font=\scriptsize, rotate=40},
+            lower label/.style={text width=2.8cm, align=center, below=0.6cm, font=\scriptsize, rotate=-40}
+        }
+
+        % Era backgrounds
+        % \fill[draw=white, left color=earlyera!5, middle color=earlyera, right color=earlyera] (1895,2.2) rectangle (\earlytransition,-2.2);
+        \fill[draw=white, left color=particleera!15, middle color=particleera, right color=particleera!90!modernera] (\earlytransition,2.2) rectangle (\moderntransition,-2.2);
+        \fill[draw=white, left color=modernera!90!particleera, middle color=modernera, right color=modernera!15] (\moderntransition,2.2) rectangle (2012,-2.2);
+
+        % Main timeline
+        % \draw[line width=1pt] (1895,0) -- (2012,0);
+        \draw[line width=1pt] (1947,0) -- (2012,0);
+
+        % =====================================================
+
+        % % Early Era events
+        % \node[early dot] (electron) at (1897,0) {};
+        % \node[lower label] at (electron.south) {1897\\Thomson's\\electron};
+
+        % \node[early dot] (rutherford) at (1911,0) {};
+        % \node[upper label] at (rutherford.north) {1911\\Rutherford's\\atomic model};
+
+        % \node[early dot] (proton) at (1919,0) {};
+        % \node[lower label] at (proton.south) {1919\\Proton\\discovery};
+
+        % Particle Era events
+        % \node[particle dot] (neutron) at (1932,0) {};
+        % \node[upper label] at (neutron.north) {1932\\Neutron discovery\\(Chadwick)};
+
+        \node[event, fill=purple, draw=purple!70!black, line width=0.8pt] (pion) at (1947,0) {};
+        \node[lower label] at (pion.north) {1947\\Pion discovery};
+
+        \node[particle dot] (strange) at (1953,0) {};
+        \node[upper label] at (strange.north) {1953\\Strange particles\\discovered};
+
+        \node[particle dot] (eightfold) at (1961,0) {};
+        \node[lower label] at (eightfold.south) {1961\\Eightfold Way\\(Gell-Mann)};
+
+        \node[particle dot] (omega) at (1964,0) {};
+        \node[upper label] at (omega.north) {1964\\$\Omega^-$ discovery};
+
+        \node[particle dot] (parton) at (1967,0) {};
+        \node[lower label] at (parton.south) {1967\\Parton model};
+
+        \node[particle dot] (dis) at (1969,0) {};
+        \node[upper label] at (dis.north) {1969\\DIS at SLAC};
+
+        % \node[particle dot] (scaling) at (1971,0) {};
+        % \node[lower label] at (scaling.south) {1971\\Bjorken scaling\\explained};
+
+        % Transition to QCD
+        \node[event, fill=purple, draw=purple!70!black, line width=0.8pt] (qcd) at (1973,0) {};
+        \node[lower label] at (qcd.south) {1973\\Asymptotic\\freedom};
+
+        % Modern Era events
+        \node[modern dot] (jpsi) at (1974,0) {};
+        \node[upper label] at (jpsi.north) {1974\\J/$\psi$ discovery};
+
+        \node[modern dot] (jets-theory) at (1977,0) {};
+        \node[upper label] at (jets-theory.north) {1977\\
+            %Sterman-Weinberg\\
+            Jets defined};
+
+        \node[modern dot] (gluon) at (1979,0) {};
+        \node[lower label] at (gluon.south) {1979\\Gluon jets\\at PETRA};
+
+        \node[modern dot] (jets-exp) at (1983,0) {};
+        \node[upper label] at (jets-exp.north) {1983\\Jets at\\UA1/UA2};
+
+        \node[modern dot] (thrust) at (1986,0) {};
+        \node[lower label] at (thrust.south) {1986\\Event shapes\\developed};
+
+        \node[modern dot] (lep) at (1989,0) {};
+        \node[upper label] at (lep.north) {1989\\Precision tests\\of QCD at LEP};
+
+        \node[modern dot] (nlo) at (1995,0) {};
+        \node[lower label] at (nlo.south) {1995\\NLO jet\\calculations};
+
+        \node[modern dot] (substructure) at (2005,0) {};
+        \node[upper label] at (substructure.south) {2005\\Jet substructure\\revolution};
+
+         \node[event, fill=purple, draw=purple!70!black, line width=0.8pt] (higgs) at (2012,0) {};
+        \node[lower label] at (higgs.north) {2012\\Higgs boson\\discovered};
+
+        % \node[modern dot] (ml) at (2016,0) {};
+        % \node[lower label] at (ml.south) {2016\\Machine learning\\for jets};
+
+        % =====================================================
+
+        % Era labels
+        % \node[font=\small\itshape] at (1907,2.5) {Early Atomic Era};
+        \node[font=\small\itshape] at (1962,2.5) {Pre-QCD};
+        \node[font=\small\itshape] at (1990,2.5) {Era of QCD and the Standard Model};
+
+        % % Dividing lines
+        % \draw[dashed] (\earlytransition,2.2) -- (\earlytransition,-2.2);
+        % \draw[dashed] (\moderntransition,2.2) -- (\moderntransition,-2.2);
+
+        % Tick marks
+        % \foreach \year in {1900,1920,1940,1960,1980,2000} {
+        \foreach \year in {1960,1980,2000} {
+            \draw (\year,-0.2) -- (\year,0.2);
+            \node[below=0.2cm, font=\tiny] at (\year,0) {\year};
+        }
+    \end{scope}
+\end{tikzpicture}

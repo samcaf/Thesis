@@ -1,0 +1,166 @@
+\begin{tikzpicture}
+% Defining colors
+\definecolor{cornflowerblue}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{cadmiumorange}{rgb}{0.93, 0.53, 0.18}
+\definecolor{darkgoldenrod}{rgb}{0.72, 0.53, 0.04}
+
+\definecolor{rosevale}{rgb}{0.67, 0.31, 0.32}
+\definecolor{palebrown}{rgb}{0.6, 0.46, 0.33}
+
+\definecolor{mediumorchid}{rgb}{0.73, 0.33, 0.83}
+
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0}
+\definecolor{lightseagreen}{rgb}{0.13, 0.7, 0.67}
+
+% Defining colors associated with different nodes
+\colorlet{colsp}{ao}
+\colorlet{coli1}{cornflowerblue}
+\colorlet{coli2}{coralred}
+\colorlet{coli3}{mediumorchid}
+\colorlet{coliN}{palebrown}
+
+% All grey
+% \colorlet{colsp}{gray}
+% \colorlet{coli1}{gray}
+% \colorlet{coli2}{gray}
+% \colorlet{coli3}{gray}
+% \colorlet{coliN}{gray}
+
+
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Particle N
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Beginning here so it is on the back layer
+\draw[color=coliN, line width=0.5mm]
+    (0, 0) -- (120:1.0) coordinate (iN)
+    node[pos=0.4, left, text=black, font=\Large]
+    {\textcolor{coliN!50!black}{$\boldsymbol{R_{N-1}}$}};
+
+\newif\ifrecursive
+\recursivefalse
+\ifrecursive
+% Sketch of N-1
+\draw[color=gray, dashed, line width=0.5mm]
+    (0, 0) -- (75:1.6) coordinate (iNm)
+    node[pos=0.4, left, text=black, font=\Large] {};
+% iN-1 node
+\filldraw[color=gray]
+    (iNm) circle (3pt)
+    node[above, xshift=-5pt, yshift=2pt]
+    {\textcolor{gray!60!black}{$i_{N-2}$}};
+% phi_N arc
+\draw[-stealth, color=coliN, dashed, line width=0.4mm]
+    (75:1.0)
+    arc[start angle=75, end angle=115, radius=1.0]
+    node[pos=0.55, above, text=black, font=\large]
+    {\textcolor{coliN!50!black}{$\phi_{N-1}$}};
+\else
+% phi_N arc
+\draw[-stealth, color=coliN, dashed, line width=0.4mm]
+    (0:1.0)
+    arc[start angle=0, end angle=115, radius=1.0]
+    node[pos=0.55, above, text=black, font=\large]
+    {\textcolor{coliN!50!black}{$\phi_{N-1}$}};
+\fi
+
+% iN node
+\filldraw[color=coliN!50!black]
+    (iN) circle (3pt)
+    node[above left, xshift=-2pt, yshift=-2pt, font=\large]
+    {\textcolor{coliN!50!black}{$i_{N-1}$}};
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Particle 1
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\draw[color=coli1, line width=0.5mm]
+    (0, 0) -- (0:5) coordinate (i1)
+    node[pos=0.6, below, sloped, text=black,
+         font=\Large]
+        {\textcolor{coli1!50!black}{$\boldsymbol{R_1}$}};
+
+% i1 node
+\filldraw[color=coli1!50!black]
+    (i1) circle (3pt)
+    node[below right, font=\large]
+    {\textcolor{coli1!50!black}{$i_1$}};
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Particle 2
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\draw[color=coli2, line width=0.5mm]
+    (0, 0) -- (50:4.5) coordinate (i2)
+    node[pos=0.6, left, text=black, xshift=-4pt, font=\Large]
+    {\textcolor{coli2!50!black}{$\boldsymbol{R_2}$}};
+
+% phi_2 arc
+\draw[-stealth, color=coli2, dashed, line width=0.4mm]
+    (0:4.5)
+    arc [start angle=0, end angle=48.5, radius=4.5]
+    node[pos=0.5, right, text=black, font=\large]
+    {\textcolor{coli2!50!black}{$\phi_2$}};
+
+% i2 node
+\filldraw[coli2!50!black]
+    (i2) circle (3pt)
+    node[below, yshift=-5pt, font=\large]
+    {\textcolor{coli2!50!black}{$i_2$}};
+
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Particle 3
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\draw[color=coli3, line width=0.5mm]
+    (0, 0) -- (30:3) coordinate (i3)
+    node[pos=0.6, below, text=black, xshift=9pt, font=\Large]
+    {\textcolor{coli3!50!black}{$\boldsymbol{R_3}$}};
+
+\ifrecursive
+% phi_3 arc
+\draw[-stealth, color=coli3, dashed, line width=0.4mm]
+    (50:3.0)
+    arc [start angle=50, end angle=32, radius=3.0]
+    node[pos=0.3, right, xshift=2pt, text=black, font=\large]
+    {\textcolor{coli3!50!black}{$-\phi_3$}};
+\else
+% phi_3 arc
+\draw[-stealth, color=coli3, dashed, line width=0.4mm]
+    (0:3.0)
+    arc [start angle=0, end angle=28, radius=3.0]
+    node[pos=0.5, right, text=black, font=\large]
+    {\textcolor{coli3!50!black}{$-\phi_3$}};
+\fi
+
+% i3 node
+\filldraw[color=coli3!50!black]
+    (i3) circle (3pt)
+    node[below, yshift=-5pt, font=\large]
+    {\textcolor{coli3!50!black}{$i_3$}};
+
+
+
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Draw the central point s
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\filldraw[color=colsp!50!black]
+    (0, 0) circle (3pt)
+    node[below, yshift=-5pt, xshift=-2pt, font=\Large]
+    {\textcolor{colsp!50!black}{$s$}};
+
+
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+% Draw ellipses to indicate missing points
+% =:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+\draw[gray, dotted, line width=0.4mm,
+      xshift=-0.00cm, yshift=0.50cm]
+      (55:3.6)
+    arc[start angle=103, end angle=150, radius=4.]
+    node[pos=0.55, sloped, above,
+         xshift=0.1cm, yshift=0.2cm, text=black]
+        {$R_{N-1} < \cdots < R_2 < R_1$};
+
+\end{tikzpicture}
