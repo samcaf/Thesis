@@ -23,10 +23,8 @@
 \quad
 \delta^{ab}
 \,
-\varepsilon^{*\, \mu}(-p)
+\varepsilon^{*\, \mu}(p)
 \end{align}
 for outgoing, final-state gluons.
 %
-For initial state gluons with incoming momentum \(p\), the factor of \(\varepsilon^{*\,\mu}(-p)\) is replaced by a factor of \(\varepsilon^\mu(p)\).
-%
-\sam{check}
+For initial state gluons with incoming momentum \(p\), the factor of \(\varepsilon^{*\,\mu}(p)\) is replaced by a factor of \(\varepsilon^\mu(p)\).

@@ -38,14 +38,16 @@
 :=
 \quad
 &
+-i g^2
 \le[
 \begin{array}{rrr}
-    -i g^2 & f^{\bar{e}ac} f^{\bar{e}bd} &\le(g_{\mu\nu} g_{\rho\sigma} - g_{\mu\sigma} g_{\nu\rho}\ri)
+    & f^{\bar{e}ac} f^{\bar{e}bd} &\le(g_{\mu\nu} g_{\rho\sigma} - g_{\mu\sigma} g_{\nu\rho}\ri)
     \\
-    -i g^2 & f^{\bar{e}ad} f^{\bar{e}bc} &\le(g_{\mu\nu} g_{\rho\sigma} - g_{\mu\rho} g_{\nu\sigma}\ri)
+    +& f^{\bar{e}ad} f^{\bar{e}bc} &\le(g_{\mu\nu} g_{\rho\sigma} - g_{\mu\rho} g_{\nu\sigma}\ri)
     \\
-    -i g^2 & f^{\bar{e}ab} f^{\bar{e}cd} &\le(g_{\mu\rho} g_{\nu\sigma} - g_{\mu\sigma} g_{\nu\rho}\ri)
+    +& f^{\bar{e}ab} f^{\bar{e}cd} &\le(g_{\mu\rho} g_{\nu\sigma} - g_{\mu\sigma} g_{\nu\rho}\ri)
 \end{array}
 \ri]
-\,.
+\,,
 \end{align}
+where the ``barred'' index \(\bar{e}\) is marked only to indicate that it is summed over.

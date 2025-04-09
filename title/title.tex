@@ -1,6 +1,6 @@
 \DeclareFixedFont{\titlefont}{T1}{ppl}{b}{}{0.7in}
 \DeclareFixedFont{\subtitlefont}{T1}{ppl}{b}{}{0.4in}
-\newgeometry{left=1in, right=1in,top=1in, bottom=0in}
+\newgeometry{left=1in, right=1in,top=0.8in, bottom=0in}
 
 \tikzfading[name=fade l,left color=transparent!100,right color=transparent!0]
 \tikzfading[name=fade r,right color=transparent!100,left color=transparent!0]
@@ -23,16 +23,15 @@
 
 % Title
 \noindent\textcolor{cornflowerblue}{\rule{\linewidth}{5pt}}
+\vspace{-8pt}
 \begin{center}
-\textcolor{amber}{
-    \titlefont{
-    Particles Inside Particles:
-    }
-}
-    ~\\~\\
-\textcolor{awesome}{
-    \subtitlefont{The Flow of Energy in Quarks, Gluons, and Jets}
-}
+\textcolor{amber}{\titlefont{Particles Inside}}
+
+\textcolor{amber}{\titlefont{Particles:}}
+~\\~\\
+\textcolor{awesome}{\subtitlefont{The Flow of Energy}}
+
+\textcolor{awesome}{\subtitlefont{in Quarks, Gluons, and Jets}}
 \end{center}
 \noindent\textcolor{cornflowerblue}{\rule{\linewidth}{5pt}}
 
@@ -40,14 +39,22 @@
 
 % Image
 \begin{tikzpicture}
+% ripple
+\vspace{-20pt}
 \node[inner sep=10.1pt, outer sep=0pt](image){
- \makebox[\textwidth]{\includegraphics[width=.85\paperwidth]
-                        {title/jettitleimage}}
+ \makebox[\textwidth]{\includegraphics[width=.78\paperwidth]
+                        {title/ripple}}
 };
-\framenode[100pt]{image}
+% explosion of particles
+% \node[inner sep=10.1pt, outer sep=0pt](image){
+%  \makebox[\textwidth]{\includegraphics[width=.80\paperwidth]
+%                         {title/jettitleimage}}
+% };
+% \framenode[100pt]{image}
 \end{tikzpicture}
 
 % Author
+\vspace{5pt}  % for ripple
 \textcolor{amber}{\subtitlefont{Samuel Alipour-fard}}
 \end{center}
 

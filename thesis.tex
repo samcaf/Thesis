@@ -4,7 +4,9 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % =====================================
 \documentclass[letterpaper,11pt]{book}
+% \usepackage[style=numeric-comp]{biblatex}
 
+% TOGGLE switches for what to show
 \newif\ifshowfrontmatter
 \showfrontmattertrue
 % \showfrontmatterfalse
@@ -82,9 +84,14 @@
 \include{includes/glossary}
 
 
+
 % =====================================
 % Formatting
 % =====================================
+
+% Epigraph size on page
+\setlength \epigraphwidth {.85\textwidth}
+
 
 % ------------------------------
 % Headers
@@ -120,17 +127,6 @@
 % ------------------------------
 % List of Figures/Tables/Problems
 % ------------------------------
-
-% TOGGLE: list of problems
-% DEBUG: no page breaks in listsofX, so e.g. list of figures gets cut off to one package when tocloft is uncommented
-
-% \usepackage[subfigure]{tocloft}% http://ctan.org/pkg/tocloft
-% \newcommand{\listproblemname}{List of Problems}
-% \newlistof{problems}{prob}{\listproblemname}
-% \makeatletter
-% \preto\chapter{\addtocontents{prob}{\protect\addvspace{10\p@}}}%
-% \makeatother
-
 
 \makeatletter
 % Figures
@@ -359,12 +355,6 @@
     \fancyhead[LO]{\listtablename}
 }
 
-% TOGGLE: list of problems
-% DEBUG: no page breaks in listsofX
-
-% \listofproblems{
-%     \fancyhead[LE]{\listproblemname}
-% }
 
 \endgroup
 \fi  % ifshowfrontmatter

@@ -7,39 +7,10 @@
 \epigraph{If you think this Universe is bad, you should see some of the others.}{Philip K. Dick}
 
 
-% =====================================
-\begin{sambox}{Resources}{}
-    % ---------------------------------
-    \begin{itemize}
-        \item
-            Larkoski Chapter 9:
-            %
-            ee to hadrons, jets, splitting functions, pheno problems
-
-        \item
-            Foundations Chapter 8:
-            %
-            Factorization, Mellin, DGLAP, sum rules
-
-        \item
-            Substructure Chapter 1:
-            %
-            Substructure motivation
-    \end{itemize}
-    % ---------------------------------
-\end{sambox}
-% =====================================
-
 \begin{sambox}{Some TODOs for Sam}{}
     \begin{itemize}
         \item
             Need to fix header on problem pages, which simply use the most recent appendix instead.
-
-        \item
-            List of problems
-
-        \item
-            Signature page
 
         \item
             Add epsilon UV/IR calculations involving EEC
@@ -50,13 +21,8 @@
 \end{sambox}
 
 Here is some common notation used throughout this thesis.
-%
-See \Sec{morenotation} for a more comprehensive list.
 
 \begin{itemize}
-    \item
-        A \vocab{calcule} is a smaller analogue of a calculation (such as a simple example or a part of a bigger calculation)
-
     \item
         \(A := B\) means ``\(A\) is defined to mean \(B\)'', as does \(B =: A\);
 
@@ -64,32 +30,18 @@ See \Sec{morenotation} for a more comprehensive list.
         For notational simplicity, I will set the physical constants \(\hbar = c = 1\) in all printed equations;
 
     \item
-        \sam{Metric signature}
+        We make the unfortunate choice to use the ``mostly-minus'' metric, \(g^{\mu\nu} = \text{diag}\le(+,\,-,\,-,\,-\ri)\), with the gamma matrix algebra \(\acomm{\gamma^\mu}{\gamma^\nu} = 2 g^{\mu\nu}\,.\).
 
     \item
-        The Mellin transform of a function \(f(x)\) on the interval $(0,\infty)$ is defined as
+        The Mellin transform of a function \(f(x)\) with support on the interval \((0,1)\) (as in all concrete applications in this work) is
         \begin{align}
             \mathcal{M}[f](s)
             \eqdelta
-            \int_0^\infty \,\frac{\dd x}{x}\, x^{s-1} \, f(x)
-            \eqdelta
-            \hat f(s)
-            .
-        \end{align}
-
-        For all of the applications in this work, other than some derivations which are relegated to the Problems \sam{of Chapter...}, the functions in whose Mellin transforms we are interested will have support only on the interval \((0,1)\).
-        %
-        Therefore, unless stated otherwise, the Mellin transform appearing in this work will appear in the form
-        \begin{align}
-            \hat f(s)
-            \eqdelta
             \int_0^1 \,\frac{\dd x}{x}\, x^{s-1} \, f(x)
-            .
+            =
+            \hat f(s)
+            \,.
         \end{align}
-
-        \sam{Put into the text where relevant}
-
-        \sam{Mention here the part of the text where this appears and the problems in which it appears}
 
     \item
         \sam{LO, NLO, LL, NLL, etc.}
@@ -97,14 +49,13 @@ See \Sec{morenotation} for a more comprehensive list.
     \item
         The \textit{energy fraction} carried by a particular particle in a scattering event or jet, relative to the total energy of the event or jet, will play an important role in this thesis.
         %
-        We will use the symbol \(z_i\) to denote the energy fraction particle \(i\) within a jet or event:
+        We will use the symbol \(z_i\) to denote the energy fraction particle \(i\) relative to a ``parent'' of any type, such as a pair of particles, a jet, or an entire event (which of these should be clear based on context):
         \begin{align}
             z_i
             \eqdelta
             \frac{E_i}{E_\text{tot}}
-            .
+            \,.
         \end{align}
-        \sam{Revisit}
 
     \item
         We will also use the following standard definitions:
@@ -137,12 +88,12 @@ See \Sec{morenotation} for a more comprehensive list.
         \label{eq:group_theory}
         \begin{align}
             C_F &= \frac{N_c^2 - 1}{2N_c}
-            % \xrightarrow[]{\text{QCD}}
-            % \frac{4}{3}
+            \xrightarrow[]{\text{QCD}}
+            \frac{4}{3}
             \\
             C_A &= N_c
-            % \xrightarrow[]{\text{QCD}}
-            % 3
+            \xrightarrow[]{\text{QCD}}
+            3
             \\
             T_F &= \frac{1}{2}
             ,
@@ -156,21 +107,13 @@ See \Sec{morenotation} for a more comprehensive list.
             \beta_0 = \le(11 - 2 n_f / 3\ri)/4\pi
             .
         \)
-
-
-%         A useful definition for clarity is that of the value of \(\alpha_s\) divided by \(4\pi\), since this quantity appears in loop computations (which often have a \(4\pi\) suppression):
-%         \begin{subequations}
-%         \begin{align}
-%             a_s = \frac{\alpha_s}{4\pi}
-%         \end{align}
-%         \end{subequations}
 \end{itemize}
 
 
 Furthermore, we will assume
 \begin{itemize}
     \item
-    That all partons other than the top quark are massless;
+    That all partons are massless other than the top quark (whose effects we will mostly ignore);
 
     \item
     That we may ignore electroweak effects (i.e. perform calculations without the \(W\) and \(Z\) bosons).

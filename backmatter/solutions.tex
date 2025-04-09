@@ -2,6 +2,9 @@
 \section*{Chapter 2}
 % ==============================================
 
+\begingroup
+\renewcommand{\theequation}{\Aleph{chapter}.\arabic{equation}}
+
 \iffalse
 % ---------------------------------------
 \Soln{Non-Perturbative Effects}{lqcd-nonpert}
@@ -206,15 +209,15 @@ Let's examine the amplitude
     \,
     =
     \,\,\,
-    \widetilde{\mc{M}}_{m\to n}(p_1,\cdots,p_m;\,k_1,\cdots,k_n)
+    \widetilde{\mathcal{M}}_{m\to n}(p_1,\cdots,p_m;\,k_1,\cdots,k_n)
     \,\,
     .
 \end{align}
 We will deal only with connected amplitudes in what follows.
 
-Note that the only way to produce a \(\widetilde{\mc{M}}_{m \to n}\), at least perturbatively, is to use the cubic vertex of \phicubedsix{} to produce new outgoing lines from lower-order amplitudes:
+Note that the only way to produce a \(\widetilde{\mathcal{M}}_{m \to n}\), at least perturbatively, is to use the cubic vertex of \phicubedsix{} to produce new outgoing lines from lower-order amplitudes:
 \begin{align}
-    \widetilde{\mc{M}}_{m\to n}(p_1,\cdots,p_m;\,k_1,\cdots,k_n)
+    \widetilde{\mathcal{M}}_{m\to n}(p_1,\cdots,p_m;\,k_1,\cdots,k_n)
     \,\,
     =
     \begin{tikzpicture}[baseline={(0,-0.1)}]
@@ -298,10 +301,12 @@ for example, the first diagram of \Eq{eikonal_diagram} is
     \quad
     \frac{g}{(p_1 - k_n)^2 + m^2}
     \,\,\,\,
-    \widetilde{\mc{M}}_{m \to n-1}(p_1 - k_n, p_2,\cdots, p_m;\,k_1,\cdots,k_{n-1})
+    \widetilde{\mathcal{M}}_{m \to n-1}(p_1 - k_n, p_2,\cdots, p_m;\,k_1,\cdots,k_{n-1})
     .
 \end{align}
 The additional factor due to the propagator is called an \vocab{eikonal factor}.
+
+\sam{TODO: fix metric to match rest of thesis}
 
 When instead attaching our new outgoing external line to the out-going particles, we instead have the sum of two momenta in the propagator
 \begin{align}
@@ -330,7 +335,7 @@ When instead attaching our new outgoing external line to the out-going particles
     \quad
     \frac{g}{(k_{n-1} + k_n)^2 + m^2}
     \,\,\,\,
-    \widetilde{\mc{M}}_{m \to n-1}(p_1, p_2,\cdots, p_m;\,k_1,\cdots,k_{n-1}+k_n)
+    \widetilde{\mathcal{M}}_{m \to n-1}(p_1, p_2,\cdots, p_m;\,k_1,\cdots,k_{n-1}+k_n)
     .
 \end{align}
 
@@ -360,7 +365,7 @@ When instead attaching our new outgoing external line to the out-going particles
         \!\!
         =
         \frac{g}{2 E_n E_{n-1}(1 - \cos\theta)}
-        \widetilde{\mc{M}}_{m \to n-1}(p_1, p_2,\cdots, p_m;\,k_1,\cdots,k_{n-1}+k_n)
+        \widetilde{\mathcal{M}}_{m \to n-1}(p_1, p_2,\cdots, p_m;\,k_1,\cdots,k_{n-1}+k_n)
     \end{align}
     in the massless limit.
     %
@@ -373,7 +378,7 @@ When instead attaching our new outgoing external line to the out-going particles
 ~\\
 
 \begin{exercise*}
-    What are the mass dimensions of \(\widetilde{\mc{M}}_{m\to n}\)?
+    What are the mass dimensions of \(\widetilde{\mathcal{M}}_{m\to n}\)?
     %
     Ensure that these mass dimensions make sense when combined with the formulae above.
 \end{exercise*}
@@ -392,7 +397,7 @@ Remember that the differential cross section for \(2 \to n\) scattering is given
     \frac{1}{u_\alpha 2 E_{p_1} 2 E_{p_2}} \le(2\pi\ri)^d
     \delta^{(d)}\le(k_1 + \cdots + k_n - p_1 - p_2\ri)
     \le|
-        \widetilde{\mc{M}}_{2 \to n}
+        \widetilde{\mathcal{M}}_{2 \to n}
     \ri|
     \,
     \dd\widetilde{\Phi}_n
@@ -533,7 +538,7 @@ This yields\footnote{
         =
         E'
         =
-        E_n + E_{n-1} + \mc{O}\le(\theta^2\ri)
+        E_n + E_{n-1} + \mathcal{O}\le(\theta^2\ri)
         ,
     \end{align}
     and use this to argue that, in the collinear limit, we can parameterize the energy dependence of the differential cross section into dependence on \(E'\) and on \(x\), where \(x\) is an \vocab{energy fraction} defined through
@@ -543,7 +548,7 @@ This yields\footnote{
         E_{n-1} &= (1-x)E'
         .
     \end{align}
-    Again, this will hold up to \(\mc{O}(\theta^2)\).
+    Again, this will hold up to \(\mathcal{O}(\theta^2)\).
 \end{exercise*}
 
 Using the results of the participation exercises above, we can see that, in the collinear limit,
@@ -600,8 +605,8 @@ Let us write
     \dd\sigma_{n-1}
     \,\,
     \times
-    \frac{\le|\widetilde{\mc{M}}_{2\to n}\ri|^2}
-    {\le|\widetilde{\mc{M}}_{2\to {n-1}}\ri|^2}
+    \frac{\le|\widetilde{\mathcal{M}}_{2\to n}\ri|^2}
+    {\le|\widetilde{\mathcal{M}}_{2\to {n-1}}\ri|^2}
     \frac{\dd\widetilde{\Phi}_n}{\dd \widetilde\Phi_{n-1}}
     \
     ,
@@ -611,8 +616,8 @@ where we have used that \(\dd \widetilde\Phi_n\) contains a delta function that 
 
 Using all of the previous pieces we have derived, we can write
 \begin{align}
-    \frac{\le|\widetilde{\mc{M}}_{2\to n}\ri|^2}
-    {\le|\widetilde{\mc{M}}_{2\to {n-1}}\ri|^2}
+    \frac{\le|\widetilde{\mathcal{M}}_{2\to n}\ri|^2}
+    {\le|\widetilde{\mathcal{M}}_{2\to {n-1}}\ri|^2}
     &=
     \frac{1}{\le(E'\ri)^4}
     \frac{g^2}{4 x^2 (1-x)^2 \theta^4}
@@ -666,21 +671,41 @@ and in \(\phicubedsix{}\),
     =
     \dd \sigma_{n-1}
     \,\,\,
+    2 a_g
+    \,\,
+    \dd x\,\, p(x)
+    \,\,\,
+    \frac{\dd \theta}{\theta^{7-d}}
+    =
+    \dd \sigma_{n-1}
+    \,\,\,
+    2 a_g
+    \,\,
     \dd x\,\, p(x)
     \,\,\,
     \frac{\dd \theta}{\theta}
     ,
 \end{align}
-where the \vocab{splitting function} \(p(x)\) is
+where we have defined
+\begin{align}
+    a_g
+    =
+    \frac{g^2\Omega_{d-3}}{4 \le(2 \pi\ri)^{d-1}}
+    =
+    g^2 \Omega_3 / 256 \pi^5 = g^2 / 128 \pi^3
+    \,,
+\end{align}
+where as before, the final equality holds in \(d=6\) dimensions -- this is the \phicubedsix{} analogue of \(a_s = g_s^2 \Omega_2 / 64 \pi^3 = g_s^2 / \le(4 \pi\ri)^2\) in \gls{qcd} -- and the \glslink{splittingfn}{\vocab{splitting function}} \(p(x)\) is
 \begin{align}
     p(x)
     =
     \frac{g^2\Omega_{d-3}}{4 \le(2 \pi\ri)^{d-1}}
     x^{d-5}(1-x)^{d-5}
     =
-    2 a_g\, x(1-x)
+    x(1-x)
+    \,,
 \end{align}
-in \(d=6\) dimensions, where \(a_g = g^2 \Omega_3 / 256 \pi^5 = g^2 / 128 \pi^3\) is the analogue of \(a_s = g_s^2 \Omega_2 / 64 \pi^3 = g_s^2 / \le(4 \pi\ri)^2\) in \gls{qcd}.
+where the final equality holds again in \(d=6\) dimensions.
 
 We see that the collinear singularity of the amplitude survives through to become a singularity of the differential cross section.
 %
@@ -690,24 +715,13 @@ Therefore, we expect our \(n\)-particle scattering experiments to be dominated b
 
 In the standard model, and notably in \gls{qcd} where jets are major players, there is also a factor of \(\dd\theta/\theta\), so there is a collinear singularity.
 %
-However, some of the QCD splitting functions \(p_{kj\leftarrow i}(x)\) (where \(i, j\) and \(k\) denote ``partonic flavors'' such as ``quark'' or ``gluon'') also have singularities as \(x \to 0\);
+However, some of the \gls{qcd} splitting functions \(P_{kj\leftarrow i}(x)\) (where \(i, j\) and \(k\) denote ``partonic flavors'' such as ``quark'' or ``gluon'') also have singularities as \(x \to 0\);
 %
 these low-energy singularities are called \vocab{soft divergences}, and are important features of real-life collider physics experiments that do not appear in \phicubedsix.
 
 
 % ---------------------------------------
 \Soln{Splitting Functions of the SM I: QED}{massless-qed}
-% ---------------------------------------
-
-
-% ---------------------------------------
-\Soln{Splitting Functions of the SM II: QCD}{massless-qcd}
-% ---------------------------------------
-
-
-
-% ---------------------------------------
-\Soln{Mass vs. Angularity}{mass-vs-angularity}
 % ---------------------------------------
 
 
@@ -1367,7 +1381,7 @@ A concise flow of code for our parton shower at MLL accuracy is shown in \Fig{ps
 \end{tikzpicture}
 }
 % Caption
-    \caption[The basic code flow of our simple parton shower algorithm.]{The basic code flow of the parton shower algorithm described in \App{partonshower}.
+    \caption[The basic code flow of our simple parton shower algorithm.]{The basic code flow of the parton shower algorithm described in \Prob{partonshower}.
     %
     The veto algorithm is only used when considering MLL effects and is skipped at LL.
     %
@@ -1520,7 +1534,7 @@ The agreement between these calculations provides a simple validation for the re
 % ---------------------------------------
 We want to show that
 \begin{align}
-    \mc M[f \mellinconvolution g](s) = \mc M[f](s) \mc M[g](1-s)
+    \mathcal M[f \mellinconvolution g](s) = \mathcal M[f](s) \mathcal M[g](1-s)
     =: \hat{f}(s) \hat{g}(1-s)
     ,
 \end{align}
@@ -1568,7 +1582,7 @@ In the second equality, we have changed variables from \(x\) to \(z = x/y\) and 
 % ---------------------------------------
 We want to show that
 \begin{align}
-    \mc M[f \circ_{\mc M} g](s) = \mc M[f](s) \mc M[g](1-s)
+    \mathcal M[f \circ_{\mathcal M} g](s) = \mathcal M[f](s) \mathcal M[g](1-s)
     =:
     \hat{f}(s) \hat{g}(1-s)
     \,,
@@ -1576,7 +1590,7 @@ We want to show that
 where
 
 \(
-    (f(x) \circ_{\mc M} g(x))(x)
+    (f(x) \circ_{\mathcal M} g(x))(x)
     =
     \int_0^\infty\,\dd\xi f(x\,\xi) g(\xi)
     .
@@ -1679,7 +1693,7 @@ This is the random variable whose probability distribution is computed by the \g
 %    \frac{3\,\ascf}{4}
 %    \frac{\Theta\le(\chi > r^2/4\ri)}{\chi}
 %    +
-%    \mc{O}\le(\as^2\ri)
+%    \mathcal{O}\le(\as^2\ri)
 %\end{align}
 %for \(\chi > 0\).
 %%
@@ -1692,7 +1706,7 @@ This is the random variable whose probability distribution is computed by the \g
 %    \frac{3\,\ascf}{4}
 %    \frac{\Theta\le(\chi > \frac{r^2}{4}\ri)}{\chi}
 %    +
-%    \mc{O}\le(\as^2\ri)
+%    \mathcal{O}\le(\as^2\ri)
 %    ,
 %\end{align}
 %where we have switched to normalizing with respect to the full cross section, allowing to determine the terms proportional to \(\delta(\chi)\) by enforcing the normalization constraint that \Eq{subjet_eec_gr} must integrate to one.
@@ -1774,12 +1788,11 @@ A more detailed description of the EEC at NLO in \(e^+e^-\to\,\)hadrons requires
 %
 At NLO, the physics of \(e^+ e^- \to\,\)hadrons is captured by the process \(e^+ e^- \to q \overline{q} g\).
 %
-In terms of the variables \(x_i = 2 E_i / \sqrt{s} \in [0, 1]\), where \(i\,\in\,\{q,\overline{q},g\}\sim\,\{1,2,3\}\) denotes one of the three massless outgoing partons, the full differential cross section for \(e^+e^-\to q \overline{q} g\) is given by the well-known formula of \Eq{} \sam{do}
-% TODO: e+e- to hadrons diff xsec with plus-fn
+In terms of the variables \(x_i = 2 E_i / \sqrt{s} \in [0, 1]\), where \(i\,\in\,\{q,\overline{q},g\}\sim\,\{1,2,3\}\) denotes one of the three massless outgoing partons, the full differential cross section for \(e^+e^-\to q \overline{q} g\) is given by
 \begin{align}
     \dd \sigma
     =
-    \sigma_0
+    2\,\sigma_0
     \,
     \ascf
     \,
@@ -1815,7 +1828,7 @@ In terms of these variables, we may write the NLO EEC in integral form (away fro
     \frac{\dd\Sigma_\text{EEC}}{\dd\chi}
     (\chi>0)
     =
-    2
+    4\,
     \ascf
     \sum_{i<j}
     \int_0^1 \dd x_i
@@ -1868,7 +1881,7 @@ The EEC after the integration over \(x_j\) is then
 \begin{align}
     \dv{\Sigma_\text{EEC}}{\cos\chi}{}
     &=
-    \frac{\alpha_s C_F}{4\pi}
+    \frac{\alpha_s C_F}{2\pi}
     \sum_{i<j}
     \int_0^1 \dd x_i\,
     x_i^2 (1 - x_i)^2
@@ -1878,14 +1891,14 @@ The EEC after the integration over \(x_j\) is then
     \\
     &
     \eqdelta
-    \frac{\alpha_s C_F}{4\pi}
+    \frac{\alpha_s C_F}{2\pi}
     \sum_{i<j}
-    {\mc J}_{ij}(z)
+    {\mathcal{J}}_{ij}(z)
     \,,
 \end{align}
-where we have absorbed the integrals into the dimensionless functions \(\mc J_{ij}(z)\),
+where we have absorbed the integrals into the dimensionless functions \(\mathcal{J}_{ij}(z)\),
 \begin{align}
-    {\mc J}_{ij}(z)
+    {\mathcal{J}}_{ij}(z)
     =
     \int_0^1 \dd x_i\,
     x_i^2 (1 - x_i)^2
@@ -1896,11 +1909,11 @@ where we have absorbed the integrals into the dimensionless functions \(\mc J_{i
     \,.
 \end{align}
 %
-We may therefore express \Eq{ee2hadrons_EEC} as the sum of simpler integrals for each \(i, j\) pair (\((i, j) = (1,2),\,(2,3)\).
+We may therefore express \Eq{ee2hadrons_EEC} as the sum of simpler integrals for each \(i, j\) pair \((i, j) = (1,2),\,(2,3)\).
 %
 We work these integrals out below, yielding the results
 \begin{align}
-    \mc J_{12}(\chi)
+    \mathcal{J}_{12}(\chi)
     &=
    \frac{1}{1-\chi}
    \le(
@@ -1915,7 +1928,7 @@ We work these integrals out below, yielding the results
 \end{align}
 and
 \begin{align}
-    \mc J_{13}(\chi)
+    \mathcal{J}_{13}(\chi)
     &=
     \frac{1}{1-\chi} \le(
         \frac{13}{\chi^4}
@@ -1940,7 +1953,7 @@ Consolidating gives the known result for the NLO EEC \cite{Basham:1978bw}
     \label{eq:ee_to_hadrons_eec_nlo}
     \frac{\dd\Sigma_\text{EEC}}{\dd\chi}(\chi>0)
     &=
-    \frac{\ascf}{2}
+    \ascf
     \frac{3-2\chi}{(1-\chi)\chi^5}
     \le(
         3 \chi (2 - 3 \chi)
@@ -1954,9 +1967,9 @@ Notably, the collinear limit of the NLO result of \Eq{ee_to_hadrons_eec_nlo} con
 \begin{align}
     \frac{\dd\Sigma_\text{EEC}}{\dd\chi}(\chi\to 0)
     &=
-    \frac{3\ascf}{4\chi}
+    \frac{3\ascf}{2\chi}
     +
-    \mc O\le(\chi^0\ri)
+    \mathcal O\le(\chi^0\ri)
     .
 \end{align}
 %
@@ -1967,32 +1980,45 @@ Furthermore, in the opposite limit -- associated with anti-collinear particle co
     &\xrightarrow[\chi\to 1]{}
     \frac{\alpha_s C_F}{\pi}
     \le(
-        \frac{1}{1-\chi}
+        \frac{2}{1-\chi}
         \le(
             -\log(1-\chi)
             -\frac{3}{2}
         \ri)
         - 5 \log(1-\chi)
     \ri)
-    + \mc O\left((1-\chi)^0\right)
+    + \mathcal O\left((1-\chi)^0\right)
     \,.
 \end{align}
+
+Both singularities must be regularized in order to achieve the full regularized EEC.
 %
-Both singularities must be regularized in order to achieve the full EEC -- see \Prob{eec-dist}.
+Alternatively, noting that the LO EEC is a delta function at \(\chi = 0\) and that the EEC must integrate to one, we can simply write
+\begin{align}
+    \frac{\dd \Sigma_\text{EEC}}{\dd \chi}(\chi)
+    =
+    \delta(\chi)
+    +
+    \le[
+    \frac{\dd \Sigma_\text{EEC}}{\dd \chi}(\chi > 0)
+    \ri]_+
+    \,.
+\end{align}
 
 
 
-\vspace{7pt}
+
+\vspace{12pt}
 \hrule
-\vspace{7pt}
+\vspace{12pt}
 
-Let us now evaluate the integrals.
+Let us now show the evaluation of the integrals.
 %
-By symmetry, \(\mc J_{13}(\chi) = \mc J_{23}(\chi)\), so we need only consider \(\mc J_{12}\) and \(\mc J_{13}\).
+By symmetry, \(\mathcal{J}_{13}(\chi) = \mathcal{J}_{23}(\chi)\), so we need only consider \(\mathcal{J}_{12}\) and \(\mathcal{J}_{13}\).
 %
 First, we notice that the \(x_1\) and \(x_2\) dependent part of the integrand must be considered separately for each case.
 
-For \(\mc J_{12}\), we will use
+For \(\mathcal{J}_{12}\), we will use
 \begin{align}
     i=1,&\,j=2:\notag
     \\
@@ -2031,7 +2057,7 @@ where we have used that the constraint enforces
     .
 \end{equation}
 
-For \(\mc J_{13}\), we will use
+For \(\mathcal{J}_{13}\), we will use
 %
 \begin{align}
     i=1,&\,j=3:\notag
@@ -2086,9 +2112,9 @@ and that \((1-x_2)\) therefore becomes
 \end{equation}
 
 
-Using \Eqs{constrained_integrand_12}{constrained_integrand_13} and performing the integrals in \texttt{Mathematica}, the \(\mc J_{ij}\) are then
+Using \Eqs{constrained_integrand_12}{constrained_integrand_13} and performing the integrals in \texttt{Mathematica}, the \(\mathcal{J}_{ij}\) are then
 \begin{align}
-    \mc J_{12}(\chi)
+    \mathcal{J}_{12}(\chi)
     &=
     \int_0^1 \dd x_1\,
     x_1^2 (1 - x_1)^2
@@ -2120,7 +2146,7 @@ Using \Eqs{constrained_integrand_12}{constrained_integrand_13} and performing th
 \end{align}
 and
 \begin{align}
-    \mc J_{13}(\chi)
+    \mathcal{J}_{13}(\chi)
     &=
     \notag
     \int_0^1 \dd x_1\,
@@ -2160,7 +2186,7 @@ and
 %
 Again, by symmetry,
 \begin{align}
-    \mc J_{23}(\chi) &= \mc J_{13}(\chi).
+    \mathcal{J}_{23}(\chi) &= \mathcal{J}_{13}(\chi).
 \end{align}
 
 
@@ -2208,7 +2234,7 @@ is governed by:
     Unlike the hard function, the jet function depends on the parametrization of the observable.
 \end{itemize}
 %
-In this appendix, we quantify the difference between the jet function for our new PENC (the \(R_1\) jet function) and the traditional PENC (the \(R_L\) jet function). Using theoretical arguments and numerical evidence, we argue that their difference is only relevant at next-to-next-to-leading-logarithmic (NNLL) order.
+In this problem, we quantify the difference between the jet function for our new PENC (the \(R_1\) jet function) and the traditional PENC (the \(R_L\) jet function). Using theoretical arguments and numerical evidence, we argue that their difference is only relevant at next-to-next-to-leading-logarithmic (NNLL) order.
 
 The resummation of logarithms of $R_1$ in $\Sigma_N$ can be achieved by evaluating the hard function at the scale $\mu_H \sim Q$ and the jet function at the scale $\mu_J \sim Q R_1$, and using the renormalization group equations to evolve them to a common scale $\mu$.
 %
@@ -2225,7 +2251,11 @@ However, \(R_1\) and \(R_L\) will differ for a jet of three particles or more, c
 \begin{figure}[h]
     \centering
     	\includegraphics[width=0.6\textwidth]{figures/eec-angles/ENC_quantiles.pdf}
-        \caption[Difference between the new and traditional parameterizations of projected energy correlators obtained from the quantiles of the corresponding cumulative distributions.]{
+        \caption[
+        Comparison of new and traditional projected energy correlators via quantiles of the corresponding cumulative distributions.
+        %
+        Figure by Ankita Budhraja.
+    ]{
         Difference between the new parametrization ($R_1$) and the old parametrization ($R_L$) obtained from corresponding quantiles of the cumulative distributions.
         %
         The dashed lines correspond to a fit (of the overall coefficient) of the difference \( \log(R_L/R_1) \) to $\frac{\alpha_s}{\pi} \log(1+R_L\,(N-1))$ for integer values of $N$ from 3 to 7.
@@ -2525,6 +2555,7 @@ However, we show our resulting estimate of the non-perturbative features as the 
 
 
 
+\iffalse
 % ---------------------------------------
 \Soln{A Would-Be Particle-Level EWOC}{ee_ewoc}
 % ---------------------------------------
@@ -2560,6 +2591,7 @@ where we have added an overall factor of \(2\) on the right-hand-side to write t
 
 
     Answer related to IRC safety only being a problem with three or more emissions
+\fi
 
 
 % ---------------------------------------
@@ -3033,7 +3065,7 @@ We can also conclude
 % ---------------------------------------
 We want to show that
 \begin{align}
-    \mc M[f \mellinconvolution g](s) = \mc M[f](s) \mc M[g](s)
+    \mathcal M[f \mellinconvolution g](s) = \mathcal M[f](s) \mathcal M[g](s)
     ,
 \end{align}
 where
@@ -3080,7 +3112,7 @@ In the second equality, we have changed variables from \(x\) to \(z = x/y\) and 
 % ---------------------------------------
 We want to show that
 \begin{align}
-    \mc M[f \circ_{\mc M} g](s) = \mc M[f](s) \mc M[g](s)
+    \mathcal M[f \circ_{\mathcal M} g](s) = \mathcal M[f](s) \mathcal M[g](s)
     ,
 \end{align}
 where
@@ -3090,7 +3122,7 @@ where
 \)
 and
 \(
-    (f(x) \circ_{\mc M} g(x))(x)
+    (f(x) \circ_{\mathcal M} g(x))(x)
     =
     \int_0^\infty\,\dd\xi f(x\,\xi) g(\xi)
     .
@@ -3123,3 +3155,6 @@ In the first equality, we have exchanged the two integrals and changed variables
 
 \qed{}
 \fi
+
+
+\endgroup

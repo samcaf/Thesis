@@ -13,8 +13,8 @@
 \NewDocumentCommand\CommitteePageTitle{m}{
 	% \vspace*{40pt}
 	\IfPackageLoadedTF{microtype}
-		{\textls*{\Large\textbf{\MakeUppercase{#1}}}}
-		{{\Large\textbf{\MakeUppercase{#1}}}}%
+		{\textls*{\LARGE\textbf{\MakeUppercase{#1}}}}
+		{{\LARGE\textbf{\MakeUppercase{#1}}}}%
 	\pdfbookmark[0]{#1}{Committee}%
 	% \vspace*{10pt}%
 }
@@ -26,14 +26,14 @@
 \NewDocumentCommand\Role{m}{
 	\vspace*{25pt}
 	\IfPackageLoadedTF{microtype}
-		{\textls*{\large{\textsc{#1}}}}
-		{{\large\textsc{#1}}}%
+		{\textls*{\Large{\textsc{#1}}}}
+		{{\Large\textsc{#1}}}%
 	\vspace*{10pt}%
 }
 
 \newcommand{\hruledotted}[2]{
 \begin{flushleft}
-    {\Large #1 by} \hbox to #2{\leaders\hbox to 5pt{\hss . \hss}\hfil}
+    {\Large \textsc{#1 by}} \hbox to #2{\leaders\hbox to 5pt{\hss . \hss}\hfil}
 \end{flushleft}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,7 +48,7 @@
 
 \textbf{Jesse Thaler}
 \vspace{-18pt}
-\hruledotted{Certified}{9.7cm}
+\hruledotted{Certified}{9.3cm}
 \vspace{-5pt}
 {\itshape
 Professor of Physics
@@ -66,7 +66,7 @@ MIT Center for Theoretical Physics
 
 \textbf{Iain Stewart}
 \vspace{-18pt}
-\hruledotted{Certified}{9.7cm}
+\hruledotted{Certified}{9.3cm}
 \vspace{-5pt}
 {\itshape
 Professor of Physics
@@ -81,7 +81,7 @@ MIT Center for Theoretical Physics
 \begin{flushright}
 \textbf{Christoph Paus}
 \vspace{-18pt}
-\hruledotted{Certified}{9.0cm}
+\hruledotted{Certified}{8.6cm}
 \vspace{-5pt}
 {\itshape
 Professor of Physics
@@ -105,7 +105,7 @@ MIT Laboratory for Nuclear Science
 
 \textbf{Samuel Alipour-fard}
 \vspace{-18pt}
-\hruledotted{Submitted}{7.8cm}
+\hruledotted{Submitted}{7.4cm}
 \vspace{-5pt}
 {\itshape
 MIT Center for Theoretical Physics}
@@ -118,7 +118,7 @@ MIT Center for Theoretical Physics}
 
 \textbf{Deepto Chakrabarty}
 \vspace{-18pt}
-\hruledotted{Accepted}{8.0cm}
+\hruledotted{Accepted}{7.6cm}
 \vspace{-5pt}
 {\itshape
 Professor of Physics

@@ -53,16 +53,15 @@
 %     }
 % }
 
-% DEBUG? Not showing up correctly, but may not want to include anyway
-\newglossaryentry{beta-sd}
-{
-    name=\ensuremath{\beta_\text{SD}},
-    description={
-        A parameter controlling the angular dependence of the \glsxshort{sd} algorithm.
-        %
-        As \(beta_\text{SD}\) gets larger, SD is more and more biased to remove wide-angle radiation;
-    }
-}
+%\newglossaryentry{beta-sd}
+%{
+%    name=\ensuremath{\beta_\text{SD}},
+%    description={
+%        A parameter controlling the angular dependence of the \glsxshort{sd} algorithm.
+%        %
+%        As \(beta_\text{SD}\) gets larger, SD is more and more biased to remove wide-angle radiation;
+%    }
+%}
 
 
 % \newglossaryentry{as}
@@ -74,7 +73,6 @@
 % }
 
 
-% DEBUG? Not showing up correctly, but may not want to include anyway
 %\newglossaryentry{fsoft}
 %{
 %    name=\ensuremath{f_{\text{soft}}},
@@ -196,6 +194,7 @@
 {
     name=confinement,
     description={
+        The phenomenon of QCD where quarks and gluons are permanently bound within composite hadrons, and cannot be isolated as free particles
     }
 }
 
@@ -405,7 +404,7 @@
 {
     name=Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP),
     description={
-        Physicists who contributed deeply to the foundational results of perturbative QCD that bear their names.
+        Physicists who contributed deeply to foundational results of perturbative QCD, including those that bear their names.
     }
 }
 
@@ -475,6 +474,8 @@
     \newglossaryentry{clustering-discontinuity}
     {
         name=of jet clustering,
+        text={clustering discontinuity},
+        plural={clustering discontinuities},
         description={Angular-discontinuous behavior of jet clustering algorithms due to their clustering criteria},
         parent=discontinuity,
     }
@@ -483,6 +484,7 @@
     {
         name=soft,
         text=soft discontinuity,
+        plural=soft discontinuities,
         description={A discontinuity sensitive to the emission of small amounts of energy},
         parent=discontinuity,
     }
@@ -490,6 +492,8 @@
     \newglossaryentry{angular-discontinuity}
     {
         name=angular,
+        text={angular discontinuity},
+        plural={angular discontinuities},
         description={A discontinuity sensitive to small angular variations in energy flow},
         parent=discontinuity,
     }
@@ -915,7 +919,7 @@
         % type=\acronymtype,
         name=Soft Drop (SD),
         % name=SD,
-        description={a two-parameter family of discontinuous jet groomers},
+        description={a two-parameter family of hard-cutoff jet groomers},
         first={the Soft Drop de-clustering algorithm (Soft Drop, or SD)},
         text={Soft Drop},
         short={SD},
@@ -1080,6 +1084,8 @@
 \newglossaryentry{phd}
 {
   name=parton-hadron duality (PHD),
+  first=parton-hadron duality (PHD),
+  text=PHD,
   description={
       A principle of pQCD in which the parton-level predictions of energy-flow are assumed to be similar to the energy-flow at hadron-level.
       %
@@ -1090,6 +1096,8 @@
     \newglossaryentry{lphd}
     {
       name=local parton-hadron duality (LPHD),
+      first=local parton-hadron duality (LPHD),
+      text=LPHD,
       description={A refinement of the principle of PHD in which \sam{}.
       %
       See preconfinement},
@@ -1112,7 +1120,7 @@
 {
   name=parton shower,
   text=parton shower,
-  description={See also tree of partonic splittings}
+  description={Any probabilistic algorithm that applies the principles of partonic cascade to produce final-state particles given an initial set of particles}
 }
 
 
@@ -1321,6 +1329,15 @@
     long={Soft Drop De-Clustering Algorithm},
 }
 
+
+\newglossaryentry{soft-limit}
+{
+    name=soft limit,
+    description={
+        A limit in which a single particle in a scattering process has very small energy, with universal features described by soft theorems (e.g. soft photon or gluon theorems)
+    }
+}
+
 \newglossaryentry{splitting}
 {
   name=partonic splitting,
@@ -1363,12 +1380,6 @@
 
 
 
-\newglossaryentry{softsing}
-{
-  name=soft singularity,
-  first=\vocab{soft singularity},
-  description={}
-}
 
 % sudakov factor/exponent
 
@@ -1385,21 +1396,6 @@
   name=sum rule,
   description={}
 }
-
-\newglossaryentry{track}
-{
-  name=track,
-  description={}
-}
-
-    \newglossaryentry{trackfn}
-    {
-      name=function,
-      text=track function,
-      description={},
-      parent=track
-    }
-
 
 
 \newglossaryentry{ue}

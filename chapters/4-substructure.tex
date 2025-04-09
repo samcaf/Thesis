@@ -1,4 +1,4 @@
-\chapter[Removing the Rubble:\\\phantom{Chapter 4:|}Jet Grooming and Cleanup Fish]{Removing the Rubble\\Jet Grooming and Cleanup Fish}
+\chapter[Removing the Rubble:\\\phantom{Chapter 4:|}Jet Grooming and Cleanup Fish]{Removing the Rubble:\hfill\\Jet Grooming and Cleanup Fish}
 \markboth{\small \textsc{Chapter \thechapter}: \bf Removing the Rubble: Jet Grooming and Cleanup Fish}{}
 
 \label{chap:grooming}
@@ -6,18 +6,14 @@
 % -----------------------------------
 % Picturebook figure
 % -----------------------------------
-\vspace{-200pt}
 \reusefigure[]{picturebook_substructure}
 
 
-\begin{itemize}
-    \item
-We've seen jets as proxies for partons, and discussed how there are difficulties turning this into predictions and comparisons betweeen theory and experiment
-
-    \item
-First step towards soft-insensitive jet substructure through jet grooming -- an important suite of tools both experimentally and theoretically which will give us a quick handle on partonic physics even in an experimental context.
-\end{itemize}
-
+We've now seen jets as proxies for partons, discussed the partonic cascade as a model of jet formation, and given some predictions regarding the jet observables and the flow of energy within jets.
+%
+We have also seen that there will be difficulties comparing these predictions to experimental results, in the form of low-energy pollution within particle collision events.
+%
+We now take a first step towards developing soft-insensitive probes of jet substructure, in order to gain information about the flow of energy in the partonic cascade in a more realistic experimental context.
 
 In this chapter, we introduce \textit{\gls{jet-grooming}}:
 %
@@ -25,6 +21,8 @@ a powerful and conceptually simple set of tools that facilitate our understandin
 %
 The low-energy phenomena of QCD that produce both soft contamination and \gls{additive-contamination} are notoriously difficult to model, and jet grooming has become an important toolkit used to empower both experimental and theoretical analyses of jet substructure
 \cite{Krohn:2009th,Ellis:2009me,Larkoski:2014wba,Dasgupta:2013ihk,Dasgupta:2013via,Tseng:2013dva,Dasgupta:2016ktv,Thaler:2008ju,Thaler:2011gf,Hook:2011cq,Gallicchio:2011xq,Soper:2012pb,Gallicchio:2012ez,CMS-PAS-JME-09-001,CMS-PAS-EXO-09-002,CMS:2013kfa,ATL-PHYS-PUB-2009-081,ATL-PHYS-PUB-2010-008,Cui:2010km,ATLAS-CONF-2011-053,Chatrchyan:2013rla,Larkoski:2013eya,Dasgupta:2012hg,Backovic:2013bga,ATLAS-CONF-2013-084,Komiske:2018vkc,Komiske:2016rsd,Metodiev:2018ftz,Krohn:2012fg,MERINO:2013tta,Bhattacherjee:2016bpy,Macaluso:2018tck,Egan:2017ojy,Kasieczka:2017nvn,Pearkes:2017hku,Butter:2017cot,Catani:1992ua,Dokshitzer:1998kz,Dasgupta:2001sh,Banfi:2004yd,Banfi:2005gj,Ellis:2009su,Banfi:2010pa,Walsh:2011fz,Chien:2012ur,Li:2012bw,Jouttenus:2013hs,Hatta:2013iba,Larkoski:2014tva,Procura:2018zpn,Aaboud:2017aca,Frye:2016aiz, Almeida:2008yp,Larkoski:2017iuy,Larkoski:2017cqq,Thaler:2010tr,Abdesselam:2010pt,Katz:2010mr,Gallicchio:2010dq,Adams:2015hiv,Sirunyan:2017ezt,Moore:2018lsr,FerreiradeLima:2016gcz,Rubin:2010fc,Chatrchyan:2012sn,ATLAS:2019kwg,CMS-PAS-BTV-13-001,CMS-PAS-JME-13-006,Kribs:2009yh,Chen:2010wk,Hackstein:2010wk,Kim:2010uj,Almeida:2011aa,Pandolfi:2012ima,Vernieri:2014wfa,CMS-PAS-HIG-17-007,Procura:2014cba,ATL-PHYS-PUB-2019-027,Aad:2019vyi,ATLAS:2020gwe}.
+%
+Again, I also highly recommend the pedagogical treatment of \Reff{Marzani:2019hun}.
 
 
 
@@ -59,21 +57,19 @@ The conceptual simplicity of jet grooming is accompanied by several practical be
 %
 Jet grooming can be used to address many sources of low-energy pollution at once, leading to simple analyses that yield robust experimental jet substructure results.
 %
-Appropriately designed jet grooming strategies can even facilitate analytic calculations of jet substructure observables that may have otherwise involved complicated regions of phase space, or allow the analytic prediction of traditionally mystifying \gls{hadronization} effects \cite{}.
+Appropriately designed jet grooming strategies can even facilitate analytic calculations of jet substructure observables that may have otherwise involved complicated regions of phase space, or allow the analytic prediction of traditionally mystifying \gls{hadronization} effects \cite{Larkoski:2014wba}.
 
 
 Jet grooming must also be computationally efficient.
 %
-High-energy particle accelerators collect data from \textit{around one billion collision events every second};%
+High-energy particle accelerators collect data from \textit{more than 500 million collision events every second}.%
 \footnote{
-    This is a concern because jet grooming is used in experimental trigger systems, which filter among these billion events which ones should be stored in the memory of a particle collision database.
+    This is a concern because jet grooming is used in experimental trigger systems, which filter among these half-a-billion events which ones should be stored in the memory of a particle collision database.
+    %
+    The given number is from \href{http://lhc-machine-outreach.web.cern.ch/collisions.htm}{\texttt{the CERN website}}, and does not account for fluctuations in the number of collisions.
 }
 %
-much less importantly, theoretical physicists may get bored if their computers don't spit out an answer immediately.
-%
-\sam{funny, but you can say something more reasonable here}
-%
-In order to meet the needs of modern particle physicists, jet grooming algorithms must be as fast as possible.
+In order to meet the needs of modern particle physicists, jet grooming algorithms must be as fast as possible in order to parse through our vast mountains of data.
 
 
 There is one final feature we will discuss that is desirable for jet grooming procedures, but that is deceptively difficult to achieve:
@@ -99,14 +95,6 @@ The more specific examples of \textit{soft continuity} and \textit{angular conti
 We will provide more precise definitions of continuity in \Sec{emd}, where we discuss the continuity of grooming algorithms as maps on the space of energy flows.
 
 
-\remark{jet-discontinuity}{
-    All observables depending on a jet definition are technically angularly discontinuous because the angles between particles determine, discontinuously, whether they are reconstructed as within the same jet by the jet algorithm.
-    %
-    The \gls{kt} and \gls{akt} jet algorithms are soft discontinuous for the same reason.
-    %
-    Therefore, whenever we use the terms ``soft (angular) continuous'', we implicitly mean ``soft (angular) continuous up to discontinuities associated with jet boundaries/the jet definition itself.''
-}
-
 
 Unfortunately, traditional jet grooming algorithms are discontinuous, as we discuss in detail in \Sec{discontinuity} (and as in, for example, \Reffs{Dasgupta:2013ihk,Larkoski:2014wba}).
 %
@@ -117,15 +105,21 @@ Experimentally, discontinuities in grooming lead to large responses of groomed s
 Theoretically, discontinuities in grooming lead to uncertainties in fixed-order calculations \cite{Larkoski:2014wba} and complications in describing the effects of \gls{hadronization} on groomed jet substructure \cite{Hoang:2019ceu}.
 
 
-In this chapter, we show that grooming can provide a useful and intuitive way to extract high-energy information from jet substructure.
+In order to create continuous methods for extracting high-energy information from jets, we introduce the paradigm of Pileup and Infrared Radiation Annihilation (\PIRANHA{}) for \emph{continuous jet grooming}, introduced by myself and my collaborators in \Reff{Alipour-Fard:2023prj}.
 %
-We exposit the physics of traditional, hard-cutoff grooming in \Sec{traditional-grooming} before exploring strategies for continuous grooming -- the \PIRANHA{} paradigm -- in \Sec{piranha}.
+The \PIRANHA{} paradigm utilizes lessons from traditional jet grooming together with geometric intuition from optimal transport -- see e.g. \Sec{emd} -- in order to generate more continuous grooming strategies, with better formal and phenomenological behavior.
 %
-We emphasize the improved continuity of \PIRANHA{} formally in \Sec{discontinuity} and in practical, phenomenological examples in \Sec{grooming-pheno}.
+However, though we achieve the goal of continuous grooming through the framework of \PIRANHA{}, we will see that as we make grooming procedures which are more and more continuous, they become less and less malleable for interpretation in perturbative calculations.
+%
+Indeed, without some very subtle work, \textit{any} grooming procedure which attempts to utilize the tree-like structure of partonic emissions discussed in the previous chapter will be necessarily discontinuous (see \Sec{ang_discont}).
 
 
+\remark{jet-discontinuity}{
+    All observables depending on a jet definition are technically angularly discontinuous because the angles between particles determine, discontinuously, whether a jet algorithm reconstructs them as ling within the same jet.
+    %
+    Therefore, whenever we use the terms ``soft (angular) continuous'', we implicitly mean ``soft (angular) continuous up to discontinuities associated with jet boundaries/the jet definition itself.''
+}
 
-% TODO: put in table, maybe earlier
 
 \begin{table}[t]
     \centering
@@ -149,16 +143,15 @@ The soft continuity properties expressed in \Tab{groomerlist} are simple to unde
 %
 The angular discontinuities expressed in \Tab{groomerlist} are more subtle and are inherited from angular-ordered jet clustering.
 %
-We note that the Recursive Subtraction algorithms we introduce are discontinuous only in a highly suppressed region of phase space, and we still find it suitable to call P-RS a family of \PIRANHA{} groomers.
+We note that the Recursive Subtraction algorithms (P-RS) we introduce are discontinuous only in a highly suppressed region of phase space, and we still find it suitable to call P-RS a family of \PIRANHA{} groomers.
 
 
-Finally, we will achieve the goal of continuous grooming, but not without great toil:
+In the remainder of the chapter, we show that grooming can provide a useful and intuitive way to extract high-energy information from jet substructure.
 %
-as we make grooming procedures which are more and more continuous, they become less and less malleable for theoretical interpretation.
+We exposit the physics of traditional, hard-cutoff grooming in \Sec{traditional-grooming} before exploring \PIRANHA{} strategies for continuous grooming in \Sec{piranha}.
 %
-Indeed, without some very subtle work, \textit{any} grooming procedure which attempts to utilize the tree-like structure of partonic emissions discussed in the previous chapter will be necessarily discontinuous.
-%
-Wrestling with the discontinuities of jet grooming and creating continuous methods of extracting partonic information from jets is the continual goal of this section.
+We emphasize the improved continuity of \PIRANHA{} formally in \Sec{discontinuity} and in practical applications in \Sec{grooming-pheno}.
+
 
 
 
@@ -191,13 +184,10 @@ We begin with an extremely simple -- and not impractical -- grooming procedure t
 %
 We then focus on \glsentrylong{soft-drop} -- an algorithm for jet grooming which is extremely popular due to its simplicity, efficiency, and flexibility.%
 \footnote{
-    Other traditional grooming algorithms include filtering \cite{}, pruning \cite{}, and some algorithms for boosted object tagging \cite{}, and have similar formal properties to Soft Drop -- including the use of reclustering and the presence of discontinuous behavior.
-    % https://arxiv.org/pdf/1901.10342#figure.caption.47
-    % https://arxiv.org/pdf/1901.10342#subfigure.6.4.1
-    % Resummation not as simple..?
+    Other traditional grooming algorithms include filtering, trimming, pruning \cite{Dasgupta:2013ihk}, and some algorithms for boosted object tagging \cite{CMS-PAS-JME-09-001}, and have similar formal properties to Soft Drop -- including the use of reclustering and the presence of discontinuous behavior.
 }
 
-Traditional jet grooming algorithms are discontinuous, but we will only briefly touch on the effects of their discontinuous behavior.
+Traditional jet grooming algorithms are discontinuous, but we will only briefly touch on the effects of their discontinuous behavior in this section.
 %
 Therefore, readers familiar with hard-cutoff jet grooming algorithms such as Soft Drop may want to skip to \Sec{discontinuity}, where we discuss the soft discontinuities of the Soft Drop algorithm.
 %
@@ -213,7 +203,7 @@ The goal of jet grooming is the efficient removal of low-energy pollution.
 %
 A simple strategy is to throw away any jet constituents with an energy \(E < E_\text{cut}\), for some constant \(E_\text{cut}\).
 %
-This is a reasonable first step, and indeed removes low energy radiation from the groomed jet.
+This is a reasonable first step, and indeed removes low energy radiation to form a resulting groomed jet.
 
 However, we can develop a better algorithm which leverages the tree structure of the partonic cascade and is therefore more amenable to resummed calculations.
 %
@@ -292,7 +282,7 @@ We call this algorithm the \textit{\gls{constant-cutoff}} algorithm for jet groo
 \remark{}{
     Since inequalities are discontinuous (for example, \(z > \zcut\) is a discontinuous function from \(z\) to the set \{True, False\}), \glspl{hard-cutoff-groomer} are generically discontinuous as well.
     %
-    We say that the constant cutoff algorithm exhibits a \gls{soft-discontinuity} (defined more thoroughly in \Sec{discontinuity}) because the addition of very small amounts of energy can discontinuously change the result of the grooming.
+    We say that the constant cutoff algorithm exhibits a \gls{soft-discontinuity} because the addition of very small amounts of energy can discontinuously change the result of the grooming.
 }
 
 
@@ -571,7 +561,7 @@ Using the singular pieces of the splitting functions and keeping only leading lo
 \end{exercise}
 
 \remark{cc-discontinuity}{
-    The discontinuity of the \gls{constant-cutoff} grooming algorithm manifests in LL calculations as a \textit{discontinuity in the radiators} of substructure observables, e.g. as in \Eq{ll-cc-mass}.
+    The discontinuity of the \gls{constant-cutoff} grooming algorithm manifests in LL calculations as a \emph{kinds in the radiators} of substructure observables, and associated discontinuities of LL probability distributions (e.g. as in \Eq{ll-cc-mass})
     %
     Unfortunately, the kink in the radiator presents a complication when attempting to achieve computations beyond LL.
     %
@@ -623,12 +613,12 @@ Another set of important collider observables that characterize groomed jet subs
 
 In a constant-cutoff groomed jet, \(\thetacrit\) is a proxy for the first emission in the partonic cascade which satisfies \(z > \zcut\) (similar intuition will hold for \(\thetacrit\) in \gls{soft-drop} groomed jets, as we discuss in the next section).
 %
-The distribution of \(\zcrit\) is an experimentally accessible probe of the DGLAP splitting functions themselves.\cite{}
+The distribution of \(\zcrit\) is an experimentally accessible probe of the DGLAP splitting functions themselves \cite{Larkoski:2015lea,ALargeIonColliderExperiment:2021mqf}.
 %
 These observable have a number of practical applications, some of which we will discover ourselves in this chapter, and they are also quite fun to compute on its own.
 
 \begin{exercise}
-    Argue that, though \(\thetacrit\) is not an additive observable, we may nonetheless use \glspl{substructure-diagram} and \Eq{ll-groomed-additive} to calculate the cumulative distribution for \(\thetacrit\) at LL.
+    Argue that, though \(\thetacrit\) is not formally an additive observable, we may nonetheless use \glspl{substructure-diagram} and \Eq{ll-groomed-additive} to calculate the cumulative distribution for \(\thetacrit\) at LL.
     %
     In particular, defining \(\Sigma^{\text{(LL)}}_{\thetacrit}\) as the LL probability that no emission with \(z > \zcut\) has \(\theta > \thetacrit\), argue that
     % On the other hand, the probability distribution for \(\theta_{\rm crit}\) alone can be quickly read off from the solution to Example \ref{ex:theta_crit}:
@@ -965,7 +955,7 @@ This discontinuous behavior leads to theoretical challenges and uncertainties, u
     \begin{enumerate}
         \item
         \label{item:declustering}
-        The most recent stage of the C/A clustering is undone, breaking the jet into two sub-jets.
+        The most recent stage of the C/A clustering is undone, breaking the jet into two branches/sub-jets.
 
         \item
         The softer sub-jet is removed from the jet if it is not energetic enough to be considered relevant to the hard physics under study;
@@ -989,7 +979,7 @@ This discontinuous behavior leads to theoretical challenges and uncertainties, u
     \end{enumerate}
 \end{definitionbox}
 
-In this work, we use Soft Drop in \vocab{grooming mode}:
+In the work presented in this thesis, we use Soft Drop in \vocab{grooming mode}:
 %
 if Soft Drop reaches a final-state particle that cannot be \glslink{declustering}{de-clustered} as required by Step \ref{item:declustering}, we keep it as the groomed jet.
 %
@@ -1014,16 +1004,8 @@ if Soft Drop reaches a final-state particle that cannot be \glslink{declustering
     Furthermore, while the constant cutoff algorithm was collinear-unsafe, the \gls{soft-drop} with \(\betasd > 0\) are fully \glslink{irc-safety}{IRC safe}.
 }
 
-\remark{}{
-    The first emission of the angular-ordered jet branching history to pass the grooming procedure will be referred to as the \gls{crit-emission}.
-    %
-    The ungroomed emissions that occur afterward will be called \glspl{sub-emission}.
-    %
-    When relevant, we will refer to any branches of the jet history \textit{before} the critical emission as \glspl{precrit-emission}.
-}
 
-
-\gls{soft-drop} \gls{declustering} \sam{Check} is a generalization of the modified Mass Drop Tagger (mMDT) algorithm \cite{Dasgupta:2013ihk}, and reproduces mMDT when \(\beta_{\rm SD} = 0\).
+\gls{soft-drop} \gls{declustering} is a generalization of the modified Mass Drop Tagger (mMDT) algorithm \cite{Dasgupta:2013ihk}, and reproduces mMDT when \(\beta_{\rm SD} = 0\).
 %
 Soft Drop has seen success in a wide variety of phenomenological applications, such as the characterization of boosted objects \cite{Thaler:2008ju,Thaler:2011gf,Hook:2011cq,Gallicchio:2011xq,Soper:2012pb,Gallicchio:2012ez,CMS-PAS-JME-09-001,CMS-PAS-EXO-09-002,CMS:2013kfa,ATL-PHYS-PUB-2009-081,ATL-PHYS-PUB-2010-008,ATLAS:2019kwg,Cui:2010km,ATLAS-CONF-2011-053,Chatrchyan:2013rla,Larkoski:2013eya,Dasgupta:2012hg,Backovic:2013bga,ATLAS-CONF-2013-084,Komiske:2018vkc,Komiske:2016rsd,Metodiev:2018ftz,Krohn:2012fg,MERINO:2013tta,Bhattacherjee:2016bpy,Macaluso:2018tck,Egan:2017ojy,Kasieczka:2017nvn,Pearkes:2017hku,Butter:2017cot,Catani:1992ua,Dokshitzer:1998kz,Dasgupta:2001sh,Banfi:2004yd,Banfi:2005gj,Ellis:2009su,Banfi:2010pa,Walsh:2011fz,Chien:2012ur,Li:2012bw,Jouttenus:2013hs,Hatta:2013iba,Larkoski:2014tva,Procura:2018zpn,Aaboud:2017aca,Frye:2016aiz, Almeida:2008yp,Larkoski:2017iuy,Larkoski:2017cqq,Thaler:2010tr,Ellis:2009me,Abdesselam:2010pt,Katz:2010mr,Gallicchio:2010dq,Adams:2015hiv,Sirunyan:2017ezt,Moore:2018lsr,FerreiradeLima:2016gcz,Rubin:2010fc,Chatrchyan:2012sn,CMS-PAS-BTV-13-001,CMS-PAS-JME-13-006,Kribs:2009yh,Chen:2010wk,Hackstein:2010wk,Kim:2010uj,Almeida:2011aa,Pandolfi:2012ima,Vernieri:2014wfa,CMS-PAS-HIG-17-007,Procura:2014cba} and the extraction of parameters of the Standard Model, such as the top quark mass \cite{Hoang:2017kmk,ATLAS:2021urs,Negrini:2022gec} and the strong coupling constant \cite{Marzani:2019evv}, from particle collision data.
 
@@ -1200,13 +1182,13 @@ The same argument extends to \gls{soft-drop} with \(\betasd > 0\) as well, drama
     \end{align}
     where the dotted line now indicates \(z = \zcut\theta^{\betasd}\), and has a slope of \(\betasd\).
 
-    Using the singular pieces of the splitting functions and keeping only leading logarithmic terms in \(\log(m^2/Q^2)\) yields the LL result, for a jet initiated by a parton of color representation \(R\),%
+    If we use only the singular pieces of the splitting functions, integrate \(z\) from 0 to 1 for simplicity/compactness of final results, and keep only leading logarithmic terms in \(\log(m^2/Q^2)\), we obtain the LL result, for a jet initiated by a parton of color representation \(R\),%
     \footnote{
-        The result including non-singular pieces of splitting functions can be found e.g. in \href{https://arxiv.org/pdf/1402.2657\#equation.3.9}{Eq. (3.9)} of \Reff{Larkoski:2014wba} by setting their \(\beta = \betasd\), \(\alpha = 2\).
+        The result including additional logarithmic terms in \(\zcut\) and non-singular pieces of splitting functions can be found e.g. in \href{https://arxiv.org/pdf/1402.2657\#equation.3.9}{Eq. (3.9)} of \Reff{Larkoski:2014wba} by setting their \(\beta = \betasd\), \(\alpha = 2\).
     }
     %
     \begin{align}
-        \label{eq:ll-cc-mass}
+        \label{eq:ll-sd-mass}
         \Sigma^{\rm(LL)}_{m^2}(m^2)
         =
         \begin{cases}
@@ -1237,9 +1219,6 @@ The same argument extends to \gls{soft-drop} with \(\betasd > 0\) as well, drama
             \,.
         \end{cases}
     \end{align}
-    %
-    \sam{Fix factors of two!!!}
-
 \end{example}
 
 
@@ -1249,10 +1228,6 @@ The same argument extends to \gls{soft-drop} with \(\betasd > 0\) as well, drama
     Therefore, in the LL phase space of pQCD, subsequent emissions are \textit{extremely} unlikely to contribute meaningfully to any additive jet observable (which is the sum of contributions which are monotonic in \(\theta\) and vanish as \(\theta \to 0\)).
     %
     Nonetheless, including the effects of the subsequent emissions on additive observables leads to normalizable resummed distributions for observables whose NLO distributions appear to have singular, non-integrable behavior.
-    %
-    For example, the groomed jet mass distribution we consider above is well-behaved and normalized to unity (\(\Sigma(Q^2/2) = 1\)), but the NLO result, obtained when we expand at \(\mathcal{O}(\alpha_s)\), is singular and not normalizable.
-    %
-    \sam{Fix factors of two!!!}
 }
 
 
@@ -1322,11 +1297,11 @@ In the next Section, we extend the successes of Soft Drop into the regime of gro
 %
 We will introduce a paradigm for continuous jet grooming which, motivated by the geometry of event space, combines techniques from \gls{pu-mitigation} and hard-cutoff grooming.
 %
-It is the paradigm of \glslink{piranha}{\textbf{P}ileup and \textbf{I}nfrared \textbf{R}adiation \textbf{A}n\textbf{N}i\textbf{H}il\textbf{A}tion} (\textsc{Piranha}) for jet grooming.
+It is the paradigm of \glslink{piranha}{\textbf{P}ileup and \textbf{I}nfrared \textbf{R}adiation \textbf{A}n\textbf{N}i\textbf{H}il\textbf{A}tion} (\textsc{Piranha}) for continuous jet grooming.
 %
 The name evokes the physical properties of \textsc{Piranha} groomers, which may be thought of as optimal transport algorithms which assign hungry crews of cleanup fish to eat up low-energy pollution within jets.
 %
-As we will see, the \textsc{Piranha} paradigm itself has intricate theoretical properties and several phenomenological advantages.
+We will find that the \textsc{Piranha} paradigm itself has intricate theoretical properties and several phenomenological advantages.
 
 
 
@@ -1358,7 +1333,7 @@ Theoretically, discontinuities in grooming lead to uncertainties in fixed-order 
 %
 These complications lead to additional uncertainties when extracting physical parameters, such as the top quark mass, from measurements of jet substructure.
 %
-This is one reason why recent work in jet substructure is moving instead towards using energy correlators (see \Chap{ewocs}) to extract the top mass \cite{}.
+This is one reason why recent work in jet substructure is moving instead towards using energy correlators (see \Chap{ewocs}) to extract the top mass \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz}.
 
 
 In this section, we introduce the \PIRANHA{} paradigm for continuous jet grooming.
@@ -1692,7 +1667,6 @@ The simplest family of \gls{rs} algorithms are the \glslink{rsf}{Recursive Subtr
 
         \item
         \gls{rsf} divides the grooming assigned to branch \(i\) between the softer sub-jet (\(i,\,\text{soft}\)) and the harder sub-jet (\(i,\,\text{hard}\)):
-        \begin{subequations}
         \begin{align}
             \Delta^{(i,\,\text{soft})}
         &=
@@ -1707,20 +1681,17 @@ The simplest family of \gls{rs} algorithms are the \glslink{rsf}{Recursive Subtr
         \zcut^{(i,\,\text{hard})} p_{T,\, \rm tot}
             ,
         \end{align}
-        \end{subequations}
         so that \(\Delta^{(i,\,\text{soft})} + \Delta^{(i,\,\text{hard})} = \Delta^{(i)}\).
         %
         In words, \gls{rsf} assigns a fraction \(f_{\rm soft}\) of the grooming to the softer sub-jet, and the remaining fraction \(1 - f_{\rm soft}\) to the harder sub-jet.
         %
         Equivalently,
-        \begin{subequations}
         \begin{align}
             \zcut^{(i,\,\text{soft})} &= f_{\rm soft} \zcut^{(i)}
             \\
             \zcut^{(i,\,\text{hard})} &= (1-f_{\rm soft}) \zcut^{(i)}
             ,
         \end{align}
-        \end{subequations}
         so that \(\zcut^{(i,\,\text{soft})} + \zcut^{(i,\,\text{hard})} = \zcut^{(i)}\).
         \label{item:rsf_softhard}
 
@@ -1911,8 +1882,7 @@ We introduce the EMD here both to facilitate our definition of continuity in jet
 \end{definitionbox}
 
 
-
-In this work, we adopt the hadronic angular measure of \Reff{Komiske:2020qhg}, given by
+We adopt the hadronic angular measure of \Reff{Komiske:2020qhg}, given by
 \begin{equation}
     \theta_{ij} = \sqrt{-(n_i - n_j)^2}
     ,
@@ -2188,7 +2158,7 @@ Unfortunately, the computational cost of finding the Apollonius diagram for a gi
 %
 we use a uniform grid of ``ghost'' particles in the \(\eta\)-\(\phi\) plane to obtain the Apollonius diagram associated with a particular event computationally.
 %
-Data collection and analysis for theoretical and experimental studies at colliders motivate the computationally efficient analogs of \gls{apollonius} that we describe in the remainder of this section.\footnote{Another approach to developing analogs of \gls{apollonius} that we do not pursue in this work is to use the formalism of \textit{linearized optimal transport}, explored mathematically in \Reffs{cai2022linearized,sarrazin2023linearized} and applied to particle collisions in \Reffs{Cai:2020vzx,Cai:2021hnn}, which preserves the strengths of the EMD and significantly reduces the computational costs associated with optimal transport problems.}
+Data collection and analysis for theoretical and experimental studies at colliders motivate the computationally efficient analogs of \gls{apollonius} that we describe in the remainder of this section.\footnote{Another approach to developing analogs of \gls{apollonius} that we do not pursue in this thesis is to use the formalism of \textit{linearized optimal transport}, explored mathematically in \Reffs{cai2022linearized,sarrazin2023linearized} and applied to particle collisions in \Reffs{Cai:2020vzx,Cai:2021hnn}, which preserves the strengths of the EMD and significantly reduces the computational costs associated with optimal transport problems.}
 %
 A comparison of the runtime for our different \PIRANHA{} algorithms is given in \Fig{runtimes} of \App{feedingfrenzy}.
 
@@ -2331,9 +2301,9 @@ Are other methods for continuous grooming, such as EMD-mode \PIRANHA{} introduce
 %
 Can this knowledge help us identify obstacles to achieving these stronger types of continuity and guide us in designing more powerful, robust observables and groomers?
 
-Though we do not investigate grooming methods that utilize these more restrictive analogs of continuity in this work, the invention and understanding of such groomers offer an intriguing and promising avenue for future research.
+Though we do not investigate grooming methods that utilize these more restrictive analogs of continuity in this thesis, the invention and understanding of such groomers offer an intriguing and promising avenue for future research.
 %
-Instead, the remainder of this work is devoted to introducing hard-cutoff grooming, examining the types of discontinuities that may emerge in jet grooming, and studying the sensitivity of the continuous groomers we introduced in this section to important examples of low-energy pollution that appear in the study of particle collision data.
+Instead, the remainder of this chapter is devoted to introducing hard-cutoff grooming, examining the types of discontinuities that may emerge in jet grooming, and studying the sensitivity of the continuous groomers we introduced in this section to important examples of low-energy pollution that appear in the study of particle collision data.
 
 
 
@@ -2439,7 +2409,6 @@ where  \(C_1^{(\varsigma)}(z,\theta)\) is the functional form of the groomed ECF
     \label{ex:rsf-gecf}
     Up to terms that are power-suppressed in \(C\), \(\zcut\), or both, show that the NLO distribution for \gls{rsf}-groomed \gls{gecf} away from \(C = 0\) is
     %
-    \begin{subequations}
     \label{eq:prsf_LO}
     \begin{align}
         \rho^{\rm(LO)}_{i,~\varsigma}(C>0)
@@ -2463,7 +2432,6 @@ where  \(C_1^{(\varsigma)}(z,\theta)\) is the functional form of the groomed ECF
             \mathcal{O}\left(C,\,\zcut\right)
         \right)
     \end{align}
-    \end{subequations}
     %
     where \(\tilde C = C \times (1-\zcut)^2 / (1 - (1-f)\zcut)\), \(C_{R_i}\) is the quadratic Casimir of the color representation of the initiating parton, and we have defined the factor \(B_i\) to capture behavior from non-singular components of the splitting functions:
     %
@@ -2770,7 +2738,7 @@ In particular, the ungroomed subsequent emissions after the \PRSF{1} algorithm t
 \caption[Distributions of the observable \(C_1^{(2)}\approx m^2 / p_T^2\) for quark jets groomed with \SD{0} and \PRSF{1}.]{
 Distributions of the observable \(C_1^{(2)}\approx m^2 / p_T^2\) of \Eq{ECFdefn_repeat} for quark jets groomed with \SD{0} (top row) and \PRSF{1} (bottom row), with and without multiple emissions, at (left column) LL accuracy and (right column) MLL accuracy.
 %
-For each plot, we display the results of the convolution method of \Eq{convolution} using numerical integration and \gls{pqcd} with \(10^6\) phase space samples as well as the parton shower algorithm of \App{partonshower}.
+For each plot, we display the results of the convolution method of \Eq{convolution} using numerical integration and \gls{pqcd} with \(10^6\) phase space samples as well as our own parton shower algorithm, discussed in \Prob{parton-shower} and its solution.
 %
 At LL, we compare these results to the analytic prediction of \Eq{ECF_LL};
 %
@@ -2785,7 +2753,7 @@ As a result, performing resummed calculations of Soft Drop groomed substructure 
 %
 The relative accuracy of the LL, single-emission result for Soft Drop and \PRSF{1} is demonstrated in \Figs{LL_SD0}{LL_PRSF1}, which compares the fixed-order behavior of \(C_1^{(2)}\) distributions for jets groomed with Soft Drop or \PRSF{1}, respectively, using either the critical emission or all emissions in the jet.
 %
-Our parton shower procedure is inspired by \Reff{Larkoski:2013paa} and is exposed in more detail in Problem~\ref{prob:partonshower}.
+Our parton shower procedure is inspired by \Reff{Larkoski:2013paa} and is exposed in more detail in Problem~\ref{prob:parton-shower}.
 %
 Including multiple emissions does not dramatically change the Soft Drop substructure distribution, but leads to non-negligible changes in \PRSF{1} substructure distributions.
 
@@ -2793,8 +2761,6 @@ Including multiple emissions does not dramatically change the Soft Drop substruc
 %=====================================
 % Modified Leading Logarithmic Calculation
 %=====================================
-%
-\sam{redundant?}
 We include effects from the running of the strong coupling constant and multiple emissions within the ungroomed jet to determine the behavior of the cumulative distribution of \(C_1^{(\varsigma)}\) at MLL accuracy.
 %
 While including these features in our calculation does not fully achieve next-to-leading-logarithmic (NLL) accuracy, the MLL calculation is an important piece of the full NLL result.
@@ -3023,8 +2989,6 @@ We also note that, while our numerical results for \PRSF{1} in the MLL figures a
 %
 There is a similar additional peak in the hadron-level \texttt{Pythia} distribution for mMDT (\SD{0}) groomed \(C_1^{(2)}\).
 
-
-% \sam{Turn into a problem, as in jet notes?}
 
 % \begin{example}
 %     \label{ex:conditionalprecrit}
@@ -3264,7 +3228,7 @@ The mMDT grooming procedure maps \(\mathcal{E}^+\) and \(\mathcal{E}^-\) to very
 We chose an unusually high value of \(\zcut = 0.25\) when grooming the QCD events to make the discontinuity of mMDT more apparent.
 %
 \footnotetext{
-Soft Drop with \(\beta_{\rm SD} \leq 0\) is not collinear safe in grooming mode, used in this work, where jets consisting of a single particle are retained as groomed jets.
+Soft Drop with \(\beta_{\rm SD} \leq 0\) is not collinear safe in grooming mode, used in this thesis, where jets consisting of a single particle are retained as groomed jets.
 %
 Grooming mode is a natural choice in the context of \gls{pu-mitigation} (see \Sec{sd_discont}).
 %
@@ -4556,13 +4520,11 @@ To produce the groomed mass distributions of \Figs{w_tagging_dist}{top_tagging_d
 %==============================================
 \section{Connecting back out}
 %==============================================
-In this chapter, we proposed the paradigm of Pileup and Infra-red Radiation Annihilation (\PIRANHA{}) for continuous jet grooming.
+In this chapter, we explored jet grooming as a tool for illuminating the inner structure of jets in the presence of low-energy pollution.
 %
-\sam{include discussion of hard-cutoff grooming}
+We introduced traditional hard-cutoff jet grooming strategies and their analytic features, and proposed the paradigm of Pileup and Infra-red Radiation Annihilation (\PIRANHA{}) for continuous jet grooming.
 %
-We began introduced Recursive Subtraction with a Fraction (P-RSF) as a family of new groomers motivated by the \PIRANHA{} paradigm.
-%
-\sam{re-order}
+Borrowing from the declustering properties of the popular \gls{soft-drop} algorithm for hard-cutoff jet grooming, we introduced Recursive Subtraction with a Fraction (P-RSF) as a family of new groomers motivated by the \PIRANHA{} paradigm.
 %
 Motivated by optimal transport theory and the \glslink{emd}{Energy Mover's Distance (EMD)} of \Reff{Komiske:2019fks}, we re-framed the \glslink{apollonius}{Apollonius Subtraction (P-AS)} and \glslink{ivs}{Iterated Voronoi Subtraction (P-IVS)} procedures of \Reff{Komiske:2020qhg} as implementations of the \PIRANHA{} paradigm.
 %
@@ -4576,35 +4538,42 @@ Though hard-cutoff groomers may be more robust against effects from \gls{ue} wit
 %
 We used the example of \gls{additive-contamination} from \gls{ue} to argue that \PIRANHA{} may also have applications in the tagging of boosted objects.
 
-   There are several immediately evident avenues for future phenomenological and theoretical exploration.
-   %
-    While we argued that P-RSF had more robust responses to \glspl{soft-distortion}, it will be interesting to quantify this including theoretical, model-dependent uncertainties.
-   %
-   For example, it will be interesting to study the robustness of \PRSF{1/2} to \gls{hadronization} when using different models of color recombination, with different \texttt{Pythia} tunes, and from the perspective of effective field theory as in \Reff{Hoang:2019ceu}.
-   %
-   Similarly, the effects of experimental detectors on \PRSF{1/2} groomed quantities must be explored with more realistic models of detector responses and compared in more detail with traditional grooming techniques.
-   %
-   More detailed studies of these model-dependent uncertainties may facilitate a more precise, and even process-dependent method to tune the parameters of \PIRANHA{} groomers such as P-RSF to the removal of \gls{pileup} and \gls{ue} in more realistic scenarios.
+There are several immediately evident avenues for future phenomenological and theoretical exploration.
+%
+While we argued that P-RSF had more robust responses to \glspl{soft-distortion}, it will be interesting to quantify this including theoretical, model-dependent uncertainties.
+%
+For example, it will be interesting to study the robustness of \PRSF{1/2} to \gls{hadronization} when using different models of color recombination, with different \texttt{Pythia} tunes, and from the perspective of effective field theory as in \Reff{Hoang:2019ceu}.
+%
+Similarly, the effects of experimental detectors on \PRSF{1/2} groomed quantities must be explored with more realistic models of detector responses and compared in more detail with traditional grooming techniques.
+%
+More detailed studies of these model-dependent uncertainties may facilitate a more precise, and even process-dependent method to tune the parameters of \PIRANHA{} groomers such as P-RSF to the removal of \gls{pileup} and \gls{ue} in more realistic scenarios.
 
-   Designing and studying variants of P-RSF in which the amount of grooming for a particular emission depends on the angle of the emission, as in Soft Drop with \(\beta_{\rm SD} \neq 0\), and even the energy fraction, may be another easy way to improve the robustness and precision of P-RS algorithms in removing specific models of soft contamination.
-   %
-   Indeed, any method that varies \(f_{\rm soft}\), \(\zcut\), \(\rho\), or other parameters of the jet grooming procedure in a way that depends on more detailed information within the jet could be useful in more precise removal of contaminating radiation, such as the removal of \gls{pileup}, \gls{ue}, or the thermal noise that contaminates jets originating in heavy ion collisions.
+Designing and studying variants of P-RSF in which the amount of grooming for a particular emission depends on the angle of the emission, as in Soft Drop with \(\beta_{\rm SD} \neq 0\), and even the energy fraction, may be another easy way to improve the robustness and precision of P-RS algorithms in removing specific models of soft contamination.
+%
+Indeed, any method that varies \(f_{\rm soft}\), \(\zcut\), \(\rho\), or other parameters of the jet grooming procedure in a way that depends on more detailed information within the jet could be useful in more precise removal of contaminating radiation, such as the removal of \gls{pileup}, \gls{ue}, or the thermal noise that contaminates jets originating in heavy ion collisions.
 
-       A first-principles calculation of Recursive Subtraction groomed jet observables will rely on analytic exploration of the elaborately correlated emissions of P-RS groomed jets, as well as contributions from non-global configurations.
-    %
-    We begin this journey in \App{calc}, but further exploration may depend on a more precise application of existing tools for jet substructure or even on newer tools in \gls{pqcd}, such as the techniques of \Reff{Larkoski:2015zka}.
+   A first-principles calculation of Recursive Subtraction groomed jet observables will rely on analytic exploration of the elaborately correlated emissions of P-RS groomed jets, as well as contributions from non-global configurations.
+%
+We begin this journey in \App{calc}, but further exploration may depend on a more precise application of existing tools for jet substructure or even on newer tools in \gls{pqcd}, such as the techniques of \Reff{Larkoski:2015zka}.
 
-   The study of EMD-mode \PIRANHA{} grooming, introduced in \App{grooming_in_emd_mode}, is another interesting avenue for the development of continuous grooming techniques.
-   %
-   Unlike the \PIRANHA{} groomers explored in the main text, EMD-mode \PIRANHA{} groomers have the potential to remove an arbitrary amount of \(p_T\) from an event.
-   %
-   We look forward to future studies of EMD-mode grooming for its potential to address stochastic fluctuations in the levels of jet contamination.
+The study of EMD-mode \PIRANHA{} grooming, introduced in \App{grooming_in_emd_mode}, is another interesting avenue for the development of continuous grooming techniques.
+%
+Unlike the \PIRANHA{} groomers explored in the main text, EMD-mode \PIRANHA{} groomers have the potential to remove an arbitrary amount of \(p_T\) from an event.
+%
+We look forward to future studies of EMD-mode grooming for its potential to address stochastic fluctuations in the levels of jet contamination.
 
-   Finally, the use of alternative methods for optimal transport, such as the EMD without the restriction of \(\beta = 1\) that we chose in this work, or the flexible and computationally efficient formalism of linearized optimal transport \cite{Cai:2020vzx,Cai:2021hnn,cai2022linearized,sarrazin2023linearized}, may offer new tools and additional insights into continuous grooming.
+Finally, the use of alternative methods for optimal transport, such as the EMD without the restriction of \(\beta = 1\) that we chose in this thesis, or the flexible and computationally efficient formalism of linearized optimal transport \cite{Cai:2020vzx,Cai:2021hnn,cai2022linearized,sarrazin2023linearized}, may offer new tools and additional insights into continuous grooming.
 
 The \PIRANHA{} grooming strategy has intricate geometric origins, but its goal is simple: the optimal and continuous removal of contaminating low-energy radiation.
 %
-We hope that the simple strategies and examples of continuous grooming discussed in this work may provide and inspire new tools for clear communication between experimental results and theoretical predictions regarding our microscopic universe.
+We hope that the simple strategies and examples of continuous grooming discussed in this thesis may provide and inspire new tools for clear communication between experimental results and theoretical predictions regarding our microscopic universe.
+
+
+Our appetite has now been whet for continuous probes of jet substructure.
+%
+In the next chapter, we pursue a complementary approach to designing continuous collider observables that are insensitive to the presence of low-energy pollution.
+%
+Rather than directly removing soft radiation, we will \textit{ignore} it by designing energy-weighted correlators which directly probe the correlations of high-energy structures within jets.
 
 
 % TODO: where do I put SECTION ACKNOWLEDGMENTS?
@@ -4614,12 +4583,10 @@ We hope that the simple strategies and examples of continuous grooming discussed
 %%
 %We would also like to thank Pier Monni for helpful discussions regarding resummation, and Sean Benevedes and Rikab Gambhir for engaging conversations and careful readings of the manuscript.
 %%
-%Finally, we extend our appreciation to an anonymous referee whose thoughtful comments and feedback contributed to improving the quality and clarity of this work and especially of \Sec{discontinuity}.
+%Finally, we extend our appreciation to an anonymous referee whose thoughtful comments and feedback contributed to improving the quality and clarity of this thesis and especially of \Sec{discontinuity}.
 %%
 %This work was supported by the Office of Nuclear Physics of the U.S. Department of Energy (DOE) under grant DE-SC-0011090, by the DOE Office of High Energy Physics under grants DE-SC0012567 and DE-SC0019128, and by the National Science Foundation under Cooperative Agreement PHY-2019786 (The NSF AI Institute for Artificial Intelligence and Fundamental Interactions, \url{http://iaifi.org}).
 
-
-\sam{Use continuity and \gls{ue} mass resolution as a segueway to energy correlations}
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4634,7 +4601,7 @@ In the studies of this section, we use \texttt{Pythia 8.244} \cite{Sjostrand:201
 %
 We consider jets with transverse momentum \(p_T > 500\) GeV, maximum pseudorapidity \(|\eta| < 4\), and clustered with the anti-\(k_T\) algorithm \cite{Cacciari:2008gp} with \(R = 1\);
 %
-we then re-cluster using the Cambridge-Aachen algorithm \cite{Dokshitzer:1997in}.
+we then re-cluster using the Cambridge-Aachen algorithm \cite{Dokshitzer:1997in,Wobisch:1998wt}.
 %
 Our analyses focus on Soft Drop with \(\beta_{\rm SD} = 2\) as a representative for traditional grooming procedures and on Balanced Recursive Subtraction (\PRSF{1/2}) as a representative for \PIRANHA{} grooming;
 %

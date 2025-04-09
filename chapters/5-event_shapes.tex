@@ -1,48 +1,31 @@
-\chapter[Seeing through the Smog:\\\phantom{Chapter 5:|}Energy Flow and Weighted Correlations]{Seeing through the Smog\hfill\\Energy Flow and Weighted Correlators}
+\chapter[Seeing through the Smog:\\\phantom{Chapter 5:|}Energy Flow and Weighted Correlations]{Seeing through the Smog:\hfill\\Energy Flow and Weighted Correlators}
 \markboth{\small \textsc{Chapter \thechapter}: \bf Seeing through the Smog: Energy Flow and Weighted Correlations}{}
 
 \label{chap:ewocs}
 
 \epigraph{feel the delight\\of walking in the noisy street,\\and \textit{being} the noise.}{Rumi, ``A Community of the Spirit'' (transl. Coleman Barks)}
 
-\iffalse
-% TODO: move exposition
+%We've now discovered the good, the bad, and the ugly of jet grooming;
+%%
+%we've overcome the soft discontinuities of hard-cutoff jet grooming, and uncovered that all tree-based jet grooming algorithms suffer from \glslink{angular-discontinuity}{angular} \glspl{clustering-discontinuity}.
+%%
+%In this chapter, we continue our search for continuous characterizations of jet substructure by finding soft-continuous methods for \textit{gently ignoring} soft particles -- rather than strictly removing them -- with the framework of \vocab{\gls{energy-weighted-correlations}}.
 
 
-
-The flow of energy within hadronic jets is an indispensable probe of Quantum Chromodynamics (QCD)~\cite{PhysRevD.1.1416, PhysRevLett.39.1237, PhysRevLett.39.1587, PARISI197865, PhysRevD.20.2759, RAKOW198163}.
+In this chapter, we continue characterizing the substructure of jets, this time with energy-weighted correlations.
 %
-
-
-
-The discovery of hadronic jets in high-energy particle collisions is one of the most important milestones in human understanding of the microscopic universe, and has solidified quantum chromodynamics (QCD) as our fundamental theory of the strong nuclear force.
+Much like jet grooming, \gls{energy-weighted-correlations} uncover high energy structures within jets;
 %
-Jets were originally predicted \cite{Feynman:1969wa,Bjorken:1969wi,Drell:1969wb,Cabibbo:1970mh,Berman:1971xz}, and later measured \cite{Hanson:1975fe,Wiik:1979cq,Barber:1979yr,TASSO:1979zyf,PLUTO:1979dxn,JADE:1979rke,Ali:1979em,Hanson:1981em,Ali:2010tw}, as collimated sprays of hadronic radiation produced in high-energy collisions involving the strong interaction.
+however, they do so completely removing the influence of low energy radiation, leading to formal and phenomenological benefits that we will see throughout this chapter.
+
+In \Sec{eec}, we exposit the very basics of the most common energy-weighted correlation, the \glslink{eec}{energy-energy correlator (EEC)} -- a probe of angular correlations between high energy structures within jets, and gain an understanding of how the EEC characterizes the internal viscera of jets using the technology of \gls{parton-to-parton} discussed in \Sec{p2p-fragmentation}.
 %
-The quantification of the internal structure of jets, enabled by the excellent performance of the current generation of experimental detectors, has been a particularly fruitful area of study.
+In \Sec{new-angles}, we explore higher-particle generalizations of the EEC, and the work of myself and my collaborators in creating visually intuitive and computationally efficient parametrizations which are more suitable for use on realistic datasets than previous parametrizations in the literature.
 %
-The study of jet substructure has led to the development of a large class of observables that characterize hadronic radiation in particle collisions, facilitating our understanding of the physical properties of the Standard Model of particle physics (SM) and beyond.
-
-
-\fi
-
-
-\begin{itemize}
-    \item
-We've discovered the good, the bad, and the ugly of jet grooming, especially tree-based jet grooming.
-
-    \item
-Instead of strictly removing soft particles, what about slightly ignoring them?
+Finally, in \Sec{ewocs}, we explore the more general framework of \glslink{ewoc}{energy-weighted observable correlations (EWOCs)}, introduced by myself and Wouter Waalejwin, for probing high-energy structures within jets by expanding the philosophy of the EEC to non-angular correlations.
 %
-This leads us to energy-weighted correlators, which treat \textit{high-energy} objects as the most important.
-%
-After all, the high-energy structures within a jet are precisely those which, by asymptotic freedom, encode the physics of the partons of QCD.
+We will see that the mass EWOC, which captures pair-wise mass correlations between subjets within a jet, is a powerful tool for extracting mass scales associated with jet production which has phenomenological benefits even over jet grooming and the EEC.
 
-    \item
-Applications to \(\alpha_s\), \(m_t\), and beyond (QGP).
-%
-But for our purposes, we simply exposit how we may efficiently think about energy-weighted correlations, define them  in a way that avoids the infinities and seeming inconsistencies of quantum field theory, and impressionistically expound their usefulness in some very simple contexts without the burden of full realism.
-\end{itemize}
 
 % ==============================================
 \section{The physical picture}
@@ -51,13 +34,6 @@ But for our purposes, we simply exposit how we may efficiently think about energ
 
 We have now seen that grooming provides a useful, but generically discontinuous, toolkit for extracting high-energy partonic information from jets at colliders.
 %
-The tree-based jet grooming algorithms that we can compare to the splitting structure of the partonic cascade have (albeit suppressed) discontinuities.
-
-% TODO: change discussion
-\sam{EWOCs except the EEC are discontinuous as long as the infra-red regulator is discontinuous...}
-%
-\sam{Discontinuity of infra-red regulators?}
-
 In this chapter, we continue our search for soft-insensitive, continuous characterizations of partonic physics and jet substructure.
 %
 Rather than directly and completely removing radiation from the jet using a tree-based algorithm, however, we instead decide to \textit{partially ignore} soft radiation.
@@ -117,7 +93,9 @@ In particular, collinear safety requires that particle-level \glspl{ewoc} can \t
 %
 In order to obtain \glslink{irc-safety}{IRC safe} observable, we must either study only \textit{angular correlations} or \textit{give up on particle-level correlations} in favor of correlations between collective degrees of freedom.%
 \footnote{
-    We will also see that the requirement of \gls{continuity} is again quite difficult to achieve, and that only energy correlators -- particle-level \glspl{ewoc} involving angular correlations -- are continuous.
+    We use subjets as proxies for collective degrees of freedom so that our energy-weighted correlations are not fully continuous \glslink{continuity}{continuous} (the number of subjets in a jet, and the discrete yes/no choice of whether a particle belongs to a given subjet, are both discontinuous).
+    %
+    The only fully continuous substructure observables of this chapter are the EEC and its multi-particle generalizations.
     %
     Nonetheless, the study of \glspl{ewoc} will lead to results which are \textit{more} robust to hadronization.
 }
@@ -133,7 +111,7 @@ We will see that the additional flexibility provided by \glspl{ewoc}, despite th
 % -----------------------------------
 % Picturebook figure
 % -----------------------------------
-\reusefigure[ht]{picturebook_eventshapes}
+\reusefigure[t]{picturebook_eventshapes}
 
 
 % ==============================================
@@ -170,28 +148,16 @@ The EEC has been investigated as a probe of jets traveling through the quark-glu
 The study of the EEC has also shed light on the structure of non-perturbative QCD \cite{Nason:1995np,Korchemsky:1997sy,Korchemsky:1999kt,Dokshitzer:1999sh,Chen:2020vvp,Jaarsma:2023ell,Schindler:2023cww,Lee:2024esz}
 and of quantum field theory in general \cite{Richards:1983sr,Sveshnikov:1995vi,Hofman:2008ar,Hatta:2012kn,Belitsky:2013bja,Belitsky:2013ofa,Belitsky:2013xxa,Belitsky:2014zha,Korchemsky:2015ssa,Goncalves:2014ffa,Farnsworth:2015hum,Hofman:2016awc,Kravchuk:2018htv,Kologlu:2019mfz,Chang:2020qpj,Korchemsky:2021htm,Caron-Huot:2022eqs,Chen:2023wah,Chicherin:2023gxt,Chicherin:2024ifn}.
 %
+It also been put forward as a way to search for new physics in hadronic decays of electroweak bosons~\cite{Ricci:2022htc}.
+%
 Finally, while most jet substructure observables are dominated by contributions from two-particle correlations, the EEC can be naturally extended to multi-point energy correlators which can characterize correlations between an arbitrary number of particles.
 %
 Recent theoretical work suggests that multi-point generalizations of the EEC may be used to extract the mass of the top quark at the LHC \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz}.
-
-\sam{Cite \cite{Ricci:2022htc} somewhere}
 
 
 Energy correlators have also been used in studies of gluon saturation and nuclear tomography  \cite{Karapetyan:2019fst,Liu:2022wop,Liu:2023aqb,Kang:2023gvg,Cao:2023oef}.
 %
 Further, energy correlators have produced the most precise jet substructure measurement of the strong coupling constant to date~\cite{CMS:2024mlf}.
-
-
-
-
-\begin{itemize}
-    \item
-        % TODO: EEC is continuous
-    Argue that, on a jet-by-jet level, each jet has a continuous contribution (as a map from energy flows to 1D distributions) though we will be working at the level of average correlations/distributions, as before
-    %
-    (a small change in the jet leads to a small change in the EEC by the Wasserstein metric/spectral distance -- cite Jesse and Andrew)
-\end{itemize}
-
 
 
 
@@ -237,7 +203,6 @@ Further, energy correlators have produced the most precise jet substructure meas
     where we have used \(\sum_{i, j} = \sum_i + 2 \sum_{i<j}\).
     %
     The terms in the second sum, \(\sum_i\), are referred to as \vocab{contact terms}.
-    also known as \vocab{contact} terms
     %
     The contact terms ensure that the EEC integrates to 1:
     \begin{align}
@@ -306,11 +271,9 @@ We will then study jets of fixed partonic flavor (i.e. quark jets or gluon jets)
         \ri)
         \,,
     \end{align}
-    where the expectation value indicates a quantum mechanical average, potentially over an ensemble of initial states, as discussed in Remark~\ref{rem:eec-average}.
+    where the expectation value indicates a quantum mechanical average, potentially over an ensemble of initial states.
     %
-    \sam{not done, but want something like \(\langle A \rangle = \sum_{\substack{\text{ensemble of}\\\text{final states}}} \bra{f}A\ket{f} = \Tr \mathbb{P} S \rho S^\dagger \mathbb{P}^\dagger A\), where \(\mathbb{P}\) is a projection onto the states defined by \(\dd\sigma\).}
-    %
-    For the definition of \Eq{eec-deltaR}, measuring correlations of distance \(\Delta R\) in the rapidity-azimuth plane, the delta function of \Eq{eec-energy-flow} must be replaced by
+    When measuring correlations of distance \(\Delta R\) in the rapidity-azimuth plane -- i.e. in proton-proton collisions -- the delta function of \Eq{eec-energy-flow} must be replaced by
     \begin{align}
         \delta\le(R_{ij} - \Delta R\le(\hat{n}_1, \hat{n}_2\ri)\ri)
         \,.
@@ -318,10 +281,6 @@ We will then study jets of fixed partonic flavor (i.e. quark jets or gluon jets)
     In practice, one will also add cuts on the radiation considered in the EEC or consider the EEC only within a specific jet, which requires the use of additional constraints (for example, the use of Heaviside Theta functions in the integrand, dependent on the energy flow itself, which enforce that \(\hat{n}_1\) and \(\hat{n}_2\) lie within the same jet).
     %
     While these additional constraints may be complicated functionals of the energy flow operator, they may generally be disregarded in the collinear limit that we consider.
-    % TODO: refine/incorporate
-    %Energy correlator observables~\cite{Sterman:1975xv, Basham:1977iq, Basham:1978bw, Basham:1978zq, Basham:1979gh} are particularly powerful tools for understanding energy flow both theoretically and experimentally~\cite{Mazzilli:2024ots,CMS:2024mlf,Tamis:2023guc}.
-    %%
-    %Since energy correlators can be described directly in terms of field-theoretic energy flow operators~\cite{Sveshnikov:1995vi, Tkachov:1995kk, Korchemsky:1999kt, Lee:2006nr, Hofman:2008ar, Belitsky:2013xxa, Belitsky:2013bja, Kravchuk:2018htv}, one can use sophisticated theoretical techniques, including the powerful technology of conformal field theories~\cite{Hofman:2008ar, Kologlu:2019mfz}, to extract rich information about jet substructure, especially in the collinear limit~\cite{Dixon:2019uzg, Chen:2020vvp, Chen:2019bpb, Chen:2020adz, Chen:2021gdk, Schindler:2023cww, Gao:2023ivm, Chen:2023zlx, Chicherin:2024ifn, Chen:2024nyc, Chang:2022ryc,Budhraja:2024xiq,Budhraja:2024tev,Lee:2024jnt}.
 }
 
 
@@ -437,11 +396,19 @@ With these tools, we are ready to present the factorization of the EEC:
     The factor of \(z^2\) in \Eq{factorization_defn} normalizes the contribution of the EEC from jets of type \(i\) encoded by the jet function to the energy of the full event.
 \end{lemma}
 
-    The factorization of the EEC in the collinear limit is discussed in \Reff{}.
+    The factorization of the EEC in the collinear limit is discussed in \Reff{Dixon:2019uzg}.
     %
     Physically, EEC factorization occurs neither the hard function nor the jet function contain any information about correlations between particles of different jets, so we can only use them to probe angular correlations of pairs of particles within a single jet.
     %
     However, inter-jet correlations become invisible in the collinear limit, and \Eq{factorization_defn} becomes a powerful approximation.
+
+
+\begin{exercise}
+    Use the formal definitions of the hard function and jet function above to derive \Lem{eec-factorization}.
+    %
+    Explain the factor of \(z^2\).
+\end{exercise}
+
 
 
     Hard-collinear factorization ensures that the EEC has universal, process-independent characteristics both at NLO and at LL.
@@ -487,7 +454,8 @@ With these tools, we are ready to present the factorization of the EEC:
 
 
 \begin{exercise}
-    Argue that the hard function for the process \(e^+ e^- \to\,\)hadrons is simply
+    \label{ex:ee-hard-function}
+    Argue that the LO hard function for the process \(e^+ e^- \to\,\)hadrons is simply
     \begin{align}
         H_i(z)
         =
@@ -497,13 +465,13 @@ With these tools, we are ready to present the factorization of the EEC:
     \end{align}
     where \(z\) indicates an energy fraction relative to the center-of-mass energy of the entire event, at \(\mathcal{O}(\alpha_s^0)\).
     %
-    Conclude that to obtain leading results for the EEC in the collinear limit, we need only the EEC quark jet function.
+    Conclude that to obtain leading results for the EEC in the collinear limit, we need only the quark jet function for the EEC.
 \end{exercise}
 
 
 
 \remark{}{
-    As discussed in , The EEC is infra-red/collinear (IRC) safe (as we discuss further in \Sec{ewoc-irc} in the context of general \glspl{ewoc}) and can therefore be computed in perturbation theory.
+    As discussed in , The EEC is \glslink{irc-safety}{IRC safe} (as we discuss further in \Sec{ewoc-irc} in the context of general \glspl{ewoc}) and can therefore be computed in perturbation theory.
     %
     In particular, the use of energy weighting ensures that the EEC is unchanged under the addition of zero-energy radiation (infra-red safety), and the energy weighting together with the dependence of the delta function solely on the angles of particles ensures that it is unchanged under exactly collinear splittings of final-state particles (collinear safety).
     %
@@ -511,6 +479,8 @@ With these tools, we are ready to present the factorization of the EEC:
     %
     The IRC robustness of the EEC is one it is useful tool for the extraction of the strong coupling constant from particle collision data.
 }
+
+
 
 
 % ---------------------------------------
@@ -526,9 +496,9 @@ In particular, the collinear limit allows us to use the universal features of th
 %
 In \Prob{ee_eec}, you are invited to see how these universal features manifest in the process \(e^+ e^-\to\,\)hadrons.
 
-First, we recall the important universal pieces of the collinear limit that will be important to our discussion \cite{Altarelli:1977zs,PhysRevD.9.980,PhysRevD.46.1980,Ritzmann:2014mka}.
+First, we recall the important universal features of the collinear limit of \gls{qcd} that will be important to our discussion.
 %
-In dimensional regularization with \(d = 4 - 2\epsilon\) spacetime dimensions, the differential cross-section for the collinear limit of the amplitude for \(q^* \to q\,g\) is given by
+Borrowing from \Sec{universal-features} (and in turn from \cite{Altarelli:1977zs,PhysRevD.9.980,PhysRevD.46.1980,Ritzmann:2014mka}), the differential cross-section for the collinear limit of the amplitude for \(q^* \to q\,g\) in \(d = 4 - 2\epsilon\) spacetime dimensions is given by
 \begin{align}
     \label{eq:collinear_xsec}
     \frac{\dd \sigma_{qg}}{\dd \Phi_{qg}}
@@ -554,38 +524,44 @@ where \(s\) is the invariant mass of the final-state quark-gluon pair (the virtu
     \dd z \, \dd s
     .
 \end{align}
-%
-\sam{reference collinear limit section}
 
 
-\begin{proposition}{}{}
- The differential EEC for any process containing an intermediate quark (or anti-quark) should contains a universal piece of the form
+\begin{proposition}{The (differential) NLO EEC Jet Function}{nlo-eec-jet-function}
+The differential EEC for any process containing a massless intermediate quark (or anti-quark) contains a universal piece of the form
 \begin{align}
     \label{eq:universal_differential_eec}
     \frac{\dd \Sigma_\text{EEC}}{\dd \chi}
     (\chi \to 0)
     \supset
     \le[
-    \frac{3\ascf}{4\chi}
+    \frac{3\ascf}{\chi}
     \ri]_+
     \,,
 \end{align}
 up to a numerical, process dependent coefficient encoding the average number density and energy fraction of quarks (or anti-quarks).
+
+\Eq{universal_differential_eec} is the EEC associated with a single splitting within a quark jet, normalized to the energy of the quark.
+%
+Therefore, it is the \(\mathcal{O}(\alpha_s)\) (NLO) jet function for the \textit{differential} EEC \cite{Dixon:2019uzg}.
 \end{proposition}
 
 
 \begin{proof}
-Using the expressions for the differential cross section for a collinear quark splitting, we can conclude that any process containing an outgoing, off-shell quark which then splits into a final-state quark and gluon gives a contribution to the \textit{cumulative} EEC of
+    Let \(Q\) denote the energy of an outgoing, off-shell quark which undergoes a collinear splitting into a final-state quark and gluon.
+    %
+    We use use \(z = E_q / Q\) and \((1-z) = E_g/Q\) to denote the energy fractions of the final-state quark and gluon, respectively, and \(\chi_{qg} = (1 - \cos\theta_{qg})/2 \approx \theta_{qg}^2/4\) to describe their angular separation.
+
+    In the collinear limit, and using the quark splitting function and collinear phase space derived in \Chap{particles}, the \textit{cumulative} EEC associated with the splitting is
 \begin{subequations}
 \label{eq:eec_pair}
 \begin{align}
     \Sigma_\text{EEC}(\chi \to 0)
     &\supset
-    \int \dd\sigma_{qg} \,
+    2\int \dd\sigma_{qg} \,
         \frac{E_q E_g}{Q^2}
         \Theta\le(\chi > \chi_{qg}\ri)
     =
-    \int_0^1 \dd z \,
+    2\int_0^1 \dd z \,
     \int_0^\infty \dd s
         \,\,
         \frac{E_q E_g}{Q^2}
@@ -594,7 +570,7 @@ Using the expressions for the differential cross section for a collinear quark s
     \\
     \notag
     &=
-    2^{3-2\epsilon} \pi^{1-\epsilon}
+    2^{4-2\epsilon} \pi^{1-\epsilon}
     \alpha_s C_F
     \mu^{2\epsilon}\,
     {(4\pi)}^{\epsilon-2}
@@ -622,40 +598,38 @@ Using the expressions for the differential cross section for a collinear quark s
     \\
     \label{eq:eec_pair_final}
     &=
-    \ascf
+    3\ascf
     \le(
-        \frac{3}{4}\log\le(\chi\ri)
+        \log\le(\chi\ri)
         -
-        \frac{3}{4}\log\le(\frac{Q^2}{\mu^2}\ri)
+        \log\le(\frac{Q^2}{\mu^2}\ri)
         -
-        \frac{3}{4}\frac{1}{\epsir}
+        \frac{1}{\epsir}
         -
-        \frac{37}{12}
+        \frac{37}{9}
     \ri)
     +
     \mc O\le(\epsilon\ri)
     \,,
 \end{align}
 \end{subequations}
-where the Heaviside theta-function in \Eq{eec-lim-b} enforces the condition that \(\chi\) is greater than the value of \(\chi_{qg} = \le(1 - \cos\theta_{qg}(s,z)\ri)/2\), and we have used \(\epsir\) to indicate that the divergence as \(\epsilon \to 0\) in the integral of \Eq{eec_pair} comes from the low-energy region near \(s = 0\).%
+where the factor of \(2\) emerges because we sum the sum on \(i, j\) in the EEC includes both \(i = q, j = g\) and \(j=q, i=g\).
+%
+The Heaviside theta-function in \Eq{eec-lim-b} enforces the condition that \(\chi\) is greater than the value of \(\chi_{qg} = \le(1 - \cos\theta_{qg}(s,z)\ri)/2\), and we have used \(\epsir\) to indicate that the divergence as \(\epsilon \to 0\) in the integral of \Eq{eec_pair} comes from the low-energy region near \(s = 0\).%
 \footnote{
-    The integration on \(s\) may be taken from 0 to \(\infty\) for the particle-level EEC up to negligible power corrections, which we discuss below.
+    The integration on \(s\) may be taken from 0 to \(\infty\) for the particle-level EEC up to the presence of a process-dependent ultraviolet cutoff;
     %
-    These bounds will change when we include a subjet radius, however, and the subjet radius will regularize the IR divergences of the subjet EEC or subjet EWOC.
+    in our treatment here, the ultraviolet divergence in the integration over \(s\) is taken care of more indirectly by the use of dimensional regularization.
+    %
+    The bounds on the integration over \(s\) also change in the presence of a subjet radius or similar infrared cutoff.
 }
 
-\sam{where \(Q\) is the energy of the quark}
-\sam{What's the energy of the intermediate quark? I think I forgot to mention an important step (which I used in the calculation) that I rescale the energy of the intermediate quark to be \(Q/2\)}
 
-\sam{Notably, this step is different (i.e. doesn't happen) if I'm considering the EEC normalized by the jet energy}
-
-\sam{Where's the factor of two? I think I forgot to mention the step where I multiply by two in order to take the sum over (ordered) pairs into account}
-
-The final expression presented in \Eq{eec_pair_final} consists of contributions very near \(\chi = 0\).
+The final expression presented in \Eq{eec_pair_final} is infrared divergent to due the presence of collinear contributions in the region near contributions very near \(s = 0\).
 %
 However, we must also add the \emph{contact terms} -- the particle self-correlations of the EEC that are captured by the terms with \(i=j\) in the sum over particle pairs.
 %
-contact terms capture the trivial self-correlation of each particle, i.e. the angles \(\chi_{qq} = \chi_{gg} = 0\), which always contribute to the cumulative EEC (and contribute a delta-function at \(\chi = 0\) to the differential EEC).
+Contact terms capture the trivial self-correlation of each particle, i.e. the angles \(\chi_{qq} = \chi_{gg} = 0\), which always contribute to the cumulative EEC (and contribute a delta-function at \(\chi = 0\) to the differential EEC).
 %
 The universal contact terms in the collinear limit of a process containing a quark-gluon splitting may be calculated with an integrand similar to that of \Eq{eec_pair}, but the final result is much simpler:
 \begin{align}
@@ -668,9 +642,9 @@ The universal contact terms in the collinear limit of a process containing a qua
     \int \dd\sigma_{qg} \,
     \le(z^2 + \le(1-z\ri)^2\ri)
     =
-    \frac{3}{4}\ascf
+    3 \ascf
     \le(\frac{1}{\epsir} - \frac{1}{\epsuv}\ri)
-    ,
+    \,,
 \end{align}
 where the IR pole comes from the region of small \(s\), the UV pole comes from the region of large \(s\), we have discarded terms which vanish as \(\epsir\) or \(\epsuv\) approaches 0, and we have set \(\epsir/\epsuv = 1\) in several places to facilitate fortuitous cancellations.
 %
@@ -680,19 +654,30 @@ indeed, it \textit{must} vanish:
 %
 it is a scaleless integral evaluated with dimensional regularization.
 
+
+\begin{exercise}
+    Derive \Eq{eec_contact} by using dimensional regularization by splitting the problematic integral over the quark-gluon pair-wise mass, \(\dd s\), into a low-mass infrared region and a high-mass ultraviolet region.
+    %
+    Use a regulator \(\epsilon \to \epsir\) in the IR and \(\epsilon \to \epsuv\) in the UV;
+    %
+    which must be positive, and which negative to ensure a finite result?
+\end{exercise}
+
+
+
 Combining both the pair terms of \Eq{eec_pair} and the contact terms of \Eq{eec_contact}, we are left with the IR-finite expression
 \begin{align}
     \Sigma_\text{EEC}(\chi \to 0)
     &\supset
-    \ascf
+    3 \ascf
     \le(
-        \frac{3}{4}\log\le(\chi\ri)
+        \log\le(\chi\ri)
         -
-        \frac{3}{4}\log\le(\frac{Q^2}{\mu^2}\ri)
+        \log\le(\frac{Q^2}{\mu^2}\ri)
         -
-        \frac{3}{4}\frac{1}{\epsuv}
+        \frac{1}{\epsuv}
         -
-        \frac{37}{12}
+        \frac{37}{9}
     \ri)
     ,
 \end{align}
@@ -702,38 +687,23 @@ containing only a UV pole, which in turn can be removed by renormalization.%
     %
     Nonetheless, one may be worried about its presence in the cumulative EEC, which should be bounded by 1 since it is properly normalized;
     %
-    in process-dependent calculations, it will be calculated by counterterms of interaction vertices for the associated process, much as discussed in \Sec{}.
-    %
-    \sam{Make sure I discuss}
+    in process-dependent calculations, it will be calculated by counterterms of interaction vertices for the associated process \cite{Dixon:2019uzg}.
 }
 %
 To obtain the differential EEC, we take a derivative and note that the full EEC should be properly normalized.
 %
-Therefore, we may simply regulate the universal piece we obtained above with \gls{plus-fn} regularization.
-%
-Therefore, we have shown that the differential EEC for any process containing an intermediate quark \sam{of energy fraction blah} thus contain a universal piece of the form
+Therefore, we may simply regulate the universal piece we obtained above with \gls{plus-fn} regularization, and we have shown that the differential EEC for any process containing an intermediate quark thus contain a universal piece of the form
 \begin{align}
     \label{eq:universal_differential_eec}
     \frac{\dd \Sigma_\text{EEC}}{\dd \chi}
     (\chi \to 0)
     \supset
     \le[
-    \frac{3\ascf}{4\chi}
+    \frac{3\ascf}{\chi}
     \ri]_+
     .
 \end{align}
-
-\sam{energy of quark... integrate to find final result}
-
 \end{proof}
-
-
-\begin{exercise}
-    Repeat the computation above using gluon splitting functions to derive the universal features of the EEC for any process with an intermediate gluon.
-\end{exercise}
-
-
-
 
 \remark{}{
    We note that \Eq{universal_differential_eec} is modified by several power corrections which are, by definition, ignored in the collinear limit.
@@ -752,10 +722,50 @@ Therefore, we have shown that the differential EEC for any process containing an
 }
 
 
+
+\begin{exercise}
+    Use the hard function for \(e^+e^-\) given in \Exercise{ee-hard-function} and the quark jet function for the EEC given in \Prop{nlo-eec-jet-function} to predict the form of the EEC in \(e^+ e^- \to\,\) hadrons in the collinear limit \(\chi \to 0\).
+    %
+    You will compare your quick prediction to an explicit NLO computation in \Prob{ee_eec}.
+\end{exercise}
+
+
+
+\begin{exercise}
+    Repeat the computation in the proof of \Prop{nlo-eec-jet-function}, using gluon splitting functions instead of quark splitting functions, to derive the universal features of the EEC for any process with an intermediate gluon.
+    %
+    Check your result against \Reff{Dixon:2019uzg}, which gives:
+    \begin{align}
+        \dd\Sigma_\text{EEC} / \dd \chi
+        \supset
+        \as \le(\frac{14}{5}C_A + \frac{1}{5} n_F \ri)
+        \le[\frac{1}{\chi}\ri]_+
+        \,.
+    \end{align}
+\end{exercise}
+
+
+Notably, however, \Eq{universal_differential_eec} gives the EEC normalized to the energy of the ``decaying'' quark;
+%
+to obtain the appropriate contribution due to a quark of energy fraction \(z\) in a jet, one would need to multiply by \(z^2\) (similar to the factor of \(z^2\) in \Lem{eec-factorization}).
+
+\begin{exercise}
+    \texttt{(\(\star\,\,\)For the brave:\(\,\,\star\))}
+
+    Applying the statement directly above, deduce that the EEC must obey a \glslink{dglapeqn}{DGLAP-like equation} (see, for example, \Sec{p2p-fragmentation}) \textit{using only physical intuition}.
+    %
+    We will derive the DGLAP equation for the EEC in more detail momentarily, in \Sec{eec-resummed}.
+\end{exercise}
+
+
+
+
+
+
 % ---------------------------------------
 \subsection{The Resummed EEC}
-\label{sec:eec-resummed}
 % ---------------------------------------
+\label{sec:eec-resummed}
 
 We are finally prepared to examine the all-orders structure of the EEC in the limit of small \(z\).
 %
@@ -792,8 +802,6 @@ We will later use a similar analysis to write the resummed structure of EWOCs in
     in \hyperref[fig:shower:cartoon:collinear2]{(b)}, the fragmentation of the initiating parton produces wide-angle radiation which does not contribute to the EEC in the collinear limit.
     %
     The combination of partonic fragmentation and partonic splitting leads to a factorized expression for the EEC in the collinear limit, as in \Eq{eec_jet_fn_ll_1}.
-    %
-    \sam{fig capitalization}
     }
     \label{fig:shower:cartoon:collinear}
 \end{figure}
@@ -801,14 +809,15 @@ We will later use a similar analysis to write the resummed structure of EWOCs in
 
 We will be most interested in the collinear limit of the EEC.
 %
-The collinear limit is useful in part because if we consider the contribution of a particular jet to the EEC in the context of factorization as discussed in Lemma~\ref{lem:eec-factorization}, the collinear limit is a valid tool as long as the jet itself is narrow.
+The collinear limit, which applied to narrow jets, is useful in part because it enables us to work with factorized expressions (as in Lemma~\ref{lem:eec-factorization}).
 %
-Furthermore, the collinear limit simplifies our calculations by justifying the use of the collinear phase space measure and splitting functions of \Eqs{splitting_probability}{qcd_splitting_functions}.
+Furthermore, the collinear limit simplifies our calculations by justifying the use of the collinear phase space measure and splitting functions of \Secs{collinear-phase-space}{splitting-functions}.
+
 
 
 To calculate the EEC in the collinear limit, we need only calculate the contributions due to the \emph{most} collinear pairs of particles in a jet;
 %
-since the fragmentation of the initiating parton is angular ordered (as discussed in \Sec{partonic-cascade}), the collinear limit of the EEC at LL is dominated by contributions of pairs of particles emerging from the final splittings in the jet (see \Fig{shower:cartoon:collinear}).
+since the fragmentation of the initiating parton is angular ordered (as discussed in \Sec{parton-shower}), the collinear limit of the EEC at LL is dominated by contributions of pairs of particles emerging from the final splittings in the jet (see \Fig{shower:cartoon:collinear}).
 
 We conclude that the contribution of a single jet (or initiating parton) to the EEC in the collinear limit can be separated into two distinct, calculable pieces (see also \Fig{shower:cartoon:collinear2}):
 \begin{enumerate}
@@ -840,9 +849,9 @@ We conclude that the contribution of a single jet (or initiating parton) to the 
     \item[b)]
     \textbf{the final-state partons:}
     %
-    the penultimate parton produces a pair of nearly collinear ``final-state'' partons, \(a\) and \(b\), according to the splitting functions \(P_{ab \leftarrow i}\) of \Eq{qcd_splitting_functions} and the pseudo-probability distribution of \Eq{splitting_probability}
+    the penultimate parton produces a pair of nearly collinear ``final-state'' partons, \(a\) and \(b\), according to the \gls{qcd} splitting functions \(P_{ab \leftarrow i}\) and splitting probabilities of \Sec{splitting-functions}
     %
-    (depicted schematically in \Fig{shower:cartoon:subjet_collinear}).
+    (depicted schematically in \Fig{shower:cartoon:collinear}).
     %
     As we discuss below, the final states' angle \(\theta_{ab}\) and energy fractions \(x_a\), \(x_b\) determine their contribution \(C_{ab\leftarrow f}\) to the EEC:%
     \footnote{
@@ -869,14 +878,17 @@ We conclude that the contribution of a single jet (or initiating parton) to the 
 \remark{}{
     Of course, there is not \emph{really} such a thing as a final-state parton.
     %
-    By ``final-state partons'', I mean ``partons which correspond to hadronic degrees of freedom exactly in the limit of infinite energy such that local-parton-hadron-duality is exact''.
-    %
-    However, even the ``final-state'' partons denoted \(a\) and \(b\) may undergo further splittings.
-    %
-    Nonetheless, due to strong angular ordering, these splittings do not affect the angle \(\theta_{ab}\) up to terms which are \emph{dramatically} smaller than \(\theta_{ab}\);
-    %
-    therefore, the function \(C_{ab\leftarrow f}(\chi)\) accurately captures the EEC up to small variations which vanish in the collinear limit, where \(\theta_{ab} = \chi \ll 1\).
+    By ``final-state partons'', I mean ``partons which correspond to hadronic degrees of freedom exactly in the limit (of infinite energy) where local-parton-hadron-duality is exact''.
 }
+
+\begin{exercise}
+   Even the ``final-state'' partons denoted \(a\) and \(b\) may undergo further splittings.
+   %
+   Invoke strong angular ordering and energy conservation to argue that, even if the `final-state'' partons undergo further splittings, these splittings do not affect the angle \(\theta_{ab}\) up to terms which are dramatically smaller than \(\theta_{ab}\).
+   %
+   Argue therefore that the function \(C_{ab\leftarrow f}(\chi)\) accurately captures the EEC up to small variations which vanish in the strongly-angular-ordered limit.
+\end{exercise}
+
 
 
 Combining the physics of the fragmentation stage of jet formation with the final-state splittings we need in the collinear limit, we see that the contribution of the jet initiated by \(i\) to the EEC is
@@ -922,7 +934,7 @@ Using \Eqss{ll_fragmentation_function}{splitting_fn_contribution_to_eec}{jet_fn_
         {\alpha_s\le(Q\,\Rjet\ri)}
     \ri)
     ^
-    {\frac{\hat{p}(m)}{2\pi\beta_0}}
+    {\frac{\hat{p}(2)}{2\pi\beta_0}}
     _{f\leftarrow i}
     .
 \end{align}
@@ -948,7 +960,7 @@ Before proceeding to a phenomenological discussion of higher-point energy correl
     \end{align}
 \end{itemize}
 %
-\Eq{jet_fn_ll_0} and these features of the resummed EEC have been well understood at least since the seminal work of \Reff{Konishi:1978dg,Konishi:1978yx}.
+\Eq{jet_fn_ll_0} and these features of the resummed EEC have been well understood at least since the seminal work of \Reffs{Konishi:1978dg,Konishi:1978yx}.
 
 
 
@@ -1043,7 +1055,7 @@ Projected Energy Correlators (\glspl{penc}) are $N$-point energy correlators whi
 %
 We will first discuss the traditionally parametrized \glspl{penc} before addressing their computational inefficiencies with a new parametrization.
 
-\begin{definitionbox}{Traditional PENC Parametrization}{}
+\begin{definitionbox}{Traditional PENC Parametrization}{traditional-penc}
     In proton-proton collisions -- the focus of this section -- \glspl{penc} are usually defined via~\cite{Chen:2020vvp}:
     \begin{align}
         \label{eq:old_def}
@@ -1094,7 +1106,7 @@ Furthermore, in the high-multiplicity environment of heavy ion collisions, even 
 Improved computational efficiency is therefore necessary to leverage the full potential of \glspl{penc} in the study of realistic data samples.
 
 
-Therefore, rather than focusing on the traditional projections of ENCs, in this section we focus on new parameterizations of higher point energy correlators, introduced in \Reff{}, with a number of improved properties.
+Therefore, rather than focusing on the traditional projections of ENCs, in this section we focus on new parametrizations of higher point energy correlators, introduced in \Reff{Alipour-fard:2024szj}, with a number of improved properties.
 %
 First, our parametrization of the \gls{penc} depends on the largest distance \(R_1\) to a ``special'' particle $s$ in a set of $N$ particles, suitably averaged over all choices for $s$;
 %
@@ -1116,7 +1128,7 @@ Our implementation for computing the \glspl{penc} of \Eq{new_def} be found on Gi
     \scalebox{1.2}{
         \input{figures/eec-angles/bullseye_cartoon.tikz}
     }
-    \caption[Cartoon of the new parameterization of ENCs introduced by the author and collaborators]{
+    \caption[Cartoon of the new parametrization of ENCs introduced by the author and collaborators]{
         A cartoon of the new parametrization of ENCs we introduce in \Eqs{new_def}{renc}.
         %
         Instead of computing the ENC using all \(\binom{N}{2}\) pairwise distances, we parametrize the ENC with \(2N - 3\) oriented polar coordinates centered on a special particle \izero{}, and then perform a momentum-weighted sum over all choices for \izero{}.
@@ -1125,7 +1137,7 @@ Our implementation for computing the \glspl{penc} of \Eq{new_def} be found on Gi
 \end{figure}
 
 
-\begin{definitionbox}{New PENC Parametrization}{}
+\begin{definitionbox}{New PENC Parametrization}{new-penc}
     Our new parametrization of \glspl{penc}, with a simpler phase space structure, takes the form:
     %%%
     \begin{align}
@@ -1160,7 +1172,7 @@ Our implementation for computing the \glspl{penc} of \Eq{new_def} be found on Gi
     \centering
     \includegraphics[width=0.8\textwidth]{figures/eec-angles/ENC.pdf}
     \caption[%
-        Comparisons of the new and traditional parameterizations of projected ENCs.
+        Comparisons of the new and traditional parametrizations of projected ENCs.
         %
         Figure by Ankita Budhraja.
     ]{
@@ -1183,7 +1195,7 @@ Indeed, the \glspl{penc} displayed in \Fig{ENC} show that the difference between
 \Figss{ENC}{bullseye}{density} all feature energy correlators evaluated on the CMS 2011A Jet Primary Dataset~\cite{CERNOpenDataPortal, CMS:JetPrimary2011A}, also available in MIT Open Data format~\cite{Komiske:2019jim, komiske_patrick_2019_3340205}, on jets with transverse momenta $p_{T}^{\text{jet}} \in [500, 550]$ GeV and pseudo-rapidity $\vert \eta^{\rm jet} \vert < 1.9$.
 
 \indent
-A major strength of the parameterization of \Eq{new_def} it its dramatically improved computational efficiency relative to older \gls{penc} paramterization.
+A major strength of the parametrization of \Eq{new_def} it its dramatically improved computational efficiency relative to older \gls{penc} paramterization.
 %
 The computational efficiency of our parametrization is more clear in the expression for (normalized) cumulative distribution:
 %%%
@@ -1217,9 +1229,9 @@ Sorting particles by their distance to \izero{} takes $M\ln M$ time, and the rem
 This computational speed up is especially interesting for heavy-ion collisions where $M$ is typically very large.
 
 
-The factorization formula in \Eq{factorization_defn} can be extended to that of traditionally-parameterized \glspl{penc}~\cite{Chen:2020vvp}.
+The factorization formula in \Eq{factorization_defn} can be extended to that of traditionally-parametrized \glspl{penc}~\cite{Chen:2020vvp}.
 %
-The factorization for existing \glspl{penc} also applies to our new parameterization, with one small difference:
+The factorization for existing \glspl{penc} also applies to our new parametrization, with one small difference:
 %
 because the variables $R_1$ and $R_L$ differ for three or more emissions, the jet function for our \glspl{penc} differs from the old one at $\ord{\alpha_s^2}$, or at next-to-next-to-leading logarithmic accuracy (NNLL).
 %
@@ -1431,7 +1443,7 @@ some examples up to \(N = 100\) are shown in \Fig{runtime_largeN}.
 %
 We highlight that our implementation takes similar runtime for all values of $N$.
 %
-Therefore, we expect the \gls{penc} we introduce in this work to significantly benefit ongoing studies which apply energy correlators in jets produced in heavy-ion collisions for revealing the emergent scales of the quark-gluon plasma in these environments.
+Therefore, we expect the \glspl{penc} we introduce in this section to significantly benefit ongoing studies which apply energy correlators in jets produced in heavy-ion collisions for revealing the emergent scales of the quark-gluon plasma in these environments.
 
 \begin{figure}[t!]
     % \centering
@@ -1444,11 +1456,9 @@ Therefore, we expect the \gls{penc} we introduce in this work to significantly b
         \includegraphics[width=.45\textwidth]{figures/eec-angles/opendata/od_projected_runtime.pdf}
         \label{fig:runtime_largeN}
     }
-    \caption[Plots emphasizing the computational performance of the new parameterization of energy correlators discussed in this work.]
+    \caption[Plots emphasizing the computational performance of our new parametrizations for energy correlators.]
     {
-        Plots emphasizing the computational performance of the energy correlators we introduce in this work.
-        %
-        \sam{fix, together wtih the other ref comments}
+        Plots emphasizing the computational performance of the energy correlators we introduce in this section.
         %
         \textbf{(a)}
         Runtime of the \gls{penc} and \gls{renc} code of Ref.~\cite{github:RENC} on CMS Open Data as a function of the number of particles in a jet, together with a polynomial fit to guide the eye.
@@ -1456,11 +1466,11 @@ Therefore, we expect the \gls{penc} we introduce in this work to significantly b
         \textbf{(b)}
         \glspl{penc} for $N=$ 2, 5, 10, 50, and 100, each computed using on \(10^5\) CMS Open Data jets in less than thirty seconds.
         %
-        The solid lines show the \glspl{penc} introduced in this work, and the dashed lines show the traditional \glspl{penc}.
+        The solid lines show the \glspl{penc} of \Def{new-penc} introduced in this section, and the dashed lines show the traditional \glspl{penc} of \Def{traditional-penc}.
         %
         Even for $N=5$, the traditional computation takes $6266$ seconds (close to 2 hours) to run on the same CMS Open Data samples, and the computation time grows exponentially as $N$ increases.
         %
-        The large values of $N$, which are computationally inaccessible to the traditional \gls{penc} even for $N=10$, are chosen to stress that the \glspl{penc} we introduce in this work make quick work of previously unimaginable computations.
+        The large values of $N$, which are computationally inaccessible to the traditional \gls{penc} even for $N=10$, are chosen to stress that the new parametrization of \glspl{penc} we introduce in \Def{new-penc} make quick work of previously unimaginable computations.
     }
 	\label{fig:runtime}%
 \end{figure}
@@ -1579,7 +1589,7 @@ This behavior therefore offers an interesting test of parton shower generators.
 % ----------------------------------------------
 \label{sec:enc-pheno}
 
-In this section, we survey the behavior of our new parameterization for energy correlators on a variety of jet samples.
+In this section, we survey the behavior of our new parametrization for energy correlators on a variety of jet samples.
 %
 We first provide additional polar heat maps, or \textit{bullseye} visualizations, of RE3Cs and RE4Cs evaluated on CMS Open Data, which yield an intuitive view into the internal structure of jets enabled by our new parametrization.
 %
@@ -1608,7 +1618,7 @@ For small \(R_2\), these correlations diminish, and the bullseye visualizations 
 
 \vspace{20pt}
 
-\begin{figure}[ht!]
+\begin{figure}[t]
     \vspace{-20pt}
     \centering
     \subfloat[]{
@@ -1631,7 +1641,7 @@ For small \(R_2\), these correlations diminish, and the bullseye visualizations 
     }
     \label{fig:cms_re3cs}
 \end{figure}
-\begin{figure}[ht!]
+\begin{figure}[t]
     % \centering
     \subfloat[]{
     	\includegraphics[width=0.32\textwidth]{figures/eec-angles/opendata/od_4particle_bullseye_0.0401108_0.82_0.753982.pdf}
@@ -1708,7 +1718,7 @@ We note that the rings in the polar heat maps for the RE3C are correlated with t
 
 The bullseye of representation of the RE3C we introduce are similar to the analogous bullseye representations of the traditional E3C for each jet sample, shown in \Fig{pythia_old_e3cs}, for which the radial variable is the ratio \(R_S/R_L\) and the polar angle is the associated azimuthal angle.
 %
-However, the traditional E3C shows only a small slice of the information of the RE3C we introduce in this work, and the RE3C introduced in this work contains additional information about the relative orientations of particles within a jet;
+However, the traditional E3C shows only a small slice of the information of the new RE3C (of \Def{renc}) and the RE3C contains additional information about the relative orientations of particles within a jet;
 %
 for example, \Figs{w_medium_re3c}{w_large_re3c} can be compared to \Figs{w_medium_trade3c}{w_large_trade3c} to conclude that the RE3C we introduce conveys additional information about the orientation of the rings of radiation within \(W\)-boson-initiated jets.
 
@@ -1756,7 +1766,7 @@ for example, \Figs{w_medium_re3c}{w_large_re3c} can be compared to \Figs{w_mediu
     	\includegraphics[width=0.34\textwidth]{figures/eec-angles/supplemental/3particle/top0.668604_3particle_bullseye.pdf}
     }
     \caption[Polar heat maps of the resolved three-point energy corrleator on QCD, \(W\), and top jets.]{
-        Polar heat maps of the RE3C we introduce in this work for (first column) QCD-, (second column) \(W\)-, and (third column) top-quark-initiated jets.
+        Polar heat maps of the RE3C for (first column) QCD-, (second column) \(W\)-, and (third column) top-quark-initiated jets.
         %
         The radial direction in each plot is the ratio \(R_1/R_2\), and the polar angle of each plot indicates the angle \(\phi_2\).
         %
@@ -1815,7 +1825,7 @@ for example, \Figs{w_medium_re3c}{w_large_re3c} can be compared to \Figs{w_mediu
         %
         The \(R_L\) bins for each plot are chosen to be the same as the \(R_1\) bins in \Fig{pythia_re3cs}.
         %
-        The polar heat maps of the traditional E3C contain similar information as the RE3Cs introduced in this work and shown in \Fig{pythia_re3cs};
+        The polar heat maps of the traditional E3C contain similar information as the RE3Cs (\Def{renc}) shown in \Fig{pythia_re3cs};
         %
         however, the traditional E3C does not capture all the orientation information about radiation patterns in each jet sample that is present in our new RE3C.
     }
@@ -1873,7 +1883,7 @@ Finally, we visualize the \(\phi_2\)-integrated RE3Cs for each jet sample in the
 %
 Much as in the case of the polar heat maps, the integrated RE3Cs densities provide strictly more information than the densities associated with traditional E3Cs. These provide a clear visual distinction between each sample of jets.
 
-\begin{figure}[ht!]
+\begin{figure}[t]
     \centering
     \subfloat[]{
     	\includegraphics[width=0.34\textwidth]{figures/eec-angles/supplemental/density/qcd_newdef_density.pdf}
@@ -1901,8 +1911,9 @@ Much as in the case of the polar heat maps, the integrated RE3Cs densities provi
         %
         Each row illuminates how three-point energy correlators encode the unique features of each type of jet.
         %
-        We note that the information of the traditional E3C is a subset of the information conveyed by the RE3C we introduce in this work.
-        %, and that our RE3C contains strictly more information about the three-particle correlations within each jet sample.
+        We note that the information of the traditional E3C is a subset of the information conveyed by the RE3C (\Def{renc}).
+        %
+        Our RE3C contains strictly more information about the three-particle correlations within each jet sample.
     }
 	\label{fig:pythia_densities}%
 \end{figure}
@@ -1949,13 +1960,14 @@ Similarly, heavy-ion collisions and the properties of the QGP are characterized 
 
 The framework of (subjet-level) \glslink{ewoc}{energy-weighted observable correlations (EWOCs)} that we expound in this section takes the mitigation of low-energy effects one step further.
 %
-In addition to using the energy weighting of the EEC, we use subjets instead of particles, and the subjet radius provides an explicit collinear cutoff on contributing radiation.%
-\footnote{
+In addition to using the energy weighting of the EEC, we use subjets instead of particles, and the subjet radius provides an explicit collinear cutoff on contributing radiation.
+
+\remark{lund-eec}{
     Subjet algorithms are not the only regularization schemes which provide a collinear cutoff on the physics of the EEC.
     %
     For example, \Reffs{Barata:2023bhh}{Budhraja:2024xiq} both compute the EEC on collinear-safe collective degrees of freedom based on the Lund plane or on the clustering history of the jet under study, respectively.
 }
-%
+
 Any collection of particles which lead to the same subjet configurations will have the same EWOCs, regardless of the details of the particles themselves.
 
 EWOCs therefore trade the ability to capture correlations between all particles in a jet for the ability to more easily control the effects of low-energy QCD.
@@ -1965,9 +1977,7 @@ As we discuss further in \Sec{ewoc-irc}, EWOCs are not collinear safe without an
 %
 therefore, we consider EWOCs which capture correlations between \textit{subjets}.%
 \footnote{
-    In principle, we could use any infra-red regulator.
-    %
-    \sam{steal}
+    In principle, we could use any infra-red regulator -- see Remark~\ref{lund-eec}.
 }
 %
 These subjet EWOCs, which we will henceforth simply call EWOCs, have some important similarities and differences from the energy correlators defined above.
@@ -2029,7 +2039,7 @@ The EWOC framework we introduce expands on the strengths of the EEC in two ways:
     \item
         We study correlations of \textbf{generic pairwise observables}, i.e.~any observables that depend on the properties of two particles;
         %
-        this includes not only the relative angle between their momenta, probed by the EEC, but also their total invariant mass, our main focus in this work.
+        this includes not only the relative angle between their momenta, probed by the EEC, but also their total invariant mass, our main focus in this section.
 
     \item
         We study correlations between \textbf{subjets} rather than particles within a jet;
@@ -2047,7 +2057,7 @@ The choice of subjet definition (e.g.~radius and recombination scheme) determine
 %
 For example, the subjet radius may be chosen to capture the subjets emerging from the hadronic decays of a boosted particle, as we explore in \Sec{mass}.
 %
-In this work, we focus on the concrete example of the mass EWOC as a proof-of-concept, with a subjet radius chosen to probe decays of the \(W\) boson, but the use of EWOCs is by no means limited to the measurement of mass correlations.
+In this section, we focus on the concrete example of the mass EWOC as a proof-of-concept, with a subjet radius chosen to probe decays of the \(W\) boson, but the use of EWOCs is by no means limited to the measurement of mass correlations.
 %
 Possible pairwise observables include:
 \begin{itemize}
@@ -2064,7 +2074,7 @@ Possible pairwise observables include:
         \footnote{
             The four-momenta of the subjets depends on the recombination scheme used to define the subjets.
             %
-            In this work, we use winner-take-all schemes which enforce that all subjets are massless.
+            In this section, we use winner-take-all schemes which enforce that all subjets are massless.
             %
             We have found that this choice of recombination scheme does not affect the performance of the mass EWOC in constraining the $W$-boson mass.
         }, applied to the phenomenolgy of massive decaying particles in \Sec{mass};
@@ -2092,8 +2102,6 @@ Each observable is useful for the study of different physical effects, and each 
 The EEC has traditionally been applied to particle physics in order to extract the strong coupling constant \cite{Martin:1986uq,DELPHI:1990sof,SLD:1994yoe,ATLAS:2015yaa,ATLAS:2017qir,dEnterria:2018cye,Kardos:2018kqj,Ali:2020ksn,dEnterria:2022hzv,Komiske:2022enw,ATLAS:2023tgo,CMS:2024mlf}, and more recently to a broad set of applications including extracting mass scales of boosted objects in colliders \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz} and the characterization of relativistic heavy-ion collisions \cite{Lokhtin:2004tx,Lokhtin:2006dp,Andres:2022ovj,Barata:2023zqg,Andres:2023xwr,Yang:2023dwc,Barata:2023vnl,Barata:2023bhh,Barata:2024nqo}.
 %
 More general EWOCs refine and extend the goals of the EEC in particle physics, and the addition of a subjet radius or new pairwise observables may be useful in several contexts.
-
-\sam{Cite \cite{Ricci:2022htc} somewhere}
 
 
 \begin{exercise}
@@ -2138,7 +2146,7 @@ More general EWOCs refine and extend the goals of the EEC in particle physics, a
         Visualizations of the hadronic decay of a \(W\) boson in 14 TeV LHC events simulated with \pythia{}.
         %
         \hyperref[fig:m_ewoc:pp_to_ww:with_cartoon]{(a)}
-        The mass EWOC, introduced in this work, which captures the mass of the of \(W\) boson directly from the pairwise mass of subjets (the red cones) of radius \(\rsub=0.3\).
+        The mass EWOC which capture the mass of the of \(W\) boson directly from the pairwise mass of subjets (the red cones) of radius \(\rsub=0.3\).
         %
         \hyperref[fig:eec:pp_to_ww:with_cartoon]{(b)}
         The EEC evaluated on pairs of particles;
@@ -2323,7 +2331,7 @@ More general EWOCs refine and extend the goals of the EEC in particle physics, a
     }
     \caption[Several measures of robustness of determinations of \(m_W\) based on the mass EWOC, the EEC, and the mMDT groomed jet mass]{
         Several measures of robustness of determinations of \(m_W\)
-        based only on the peak of the mass EWOC introduced in this work, the EEC, or the mass distribution of jets groomed using the modified mass drop tagger (mMDT).
+        based only on the peak of the mass EWOC, the EEC, or the mass distribution of jets groomed using the modified mass drop tagger (mMDT).
         %
         These are all evaluated on \pythia{} samples of a pair of hadronically-decaying \(W\) bosons at the LHC.
         %
@@ -2342,7 +2350,7 @@ The EWOC framework may also be used to extract more general and phenomenological
 %
 For example, we expect that the three-point mass EWOC may be used as an alternative to the three-point, angle-based energy correlator for extracting the mass of top quark from its three-pronged decay \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz}.
 %
-While we do not explore these phenomenologically important measurements in this work, we hope that the EWOC framework will be helpful for extracting a wide variety of correlations of physical interest from future experimental measurements.
+While we do not explore these phenomenologically important measurements in this thesis, we hope that the EWOC framework will be helpful for extracting a wide variety of correlations of physical interest from future experimental measurements.
 
 In Table \ref{tab:obs_comparison}, we further evince the phenomenological value of the mass EWOC by comparing shifts in the \(m_W\) determination obtained by using the peaks of the mass EWOC, the EEC, and the mass distribution of jets groomed using the modified mass drop tagger (mMDT, which far outperforms the ungroomed jet mass) \cite{Dasgupta:2013ihk,Larkoski:2014wba}.
 %
@@ -2419,7 +2427,6 @@ Much like energy correlators, generic \glspl{ewoc} can be defined in terms of th
         \end{cases}
     \end{align}
     while the function \(f_1\le(\{\hat{n}\}, \mathcal{E}\ri)\) is a functional of \(\mathcal{E}\) which encodes the energy (fraction) carried by each subjet:
-    \begin{subequations}
     \begin{align}
         E_i
         &=
@@ -2437,7 +2444,6 @@ Much like energy correlators, generic \glspl{ewoc} can be defined in terms of th
         \,.
     \end{align}
     where \(\theta_{12}\) -- another complicated function of \(\hat{n}_1\) and \(\hat{n}_2\) and functional of \(\mathcal{E}\) -- is the angle between the subjets in which \(\hat{n}_1\) and \(\hat{n}_2\) lie.
-    \end{subequations}
     %
     Therefore, while \glspl{ewoc} \textit{do} encode complicated features of energy flow, and I would be excited to see this applied in the context where the energy flow operator is defined in terms of the stress energy tensor, I am not holding my breath.
 }
@@ -2931,7 +2937,7 @@ This leads quickly to the leading-logarithmic form \(
     \ri]_{j \leftarrow i}
 \) for the \gls{parton-to-parton} functions\footnote{
 See, for example, Table III of \Reff{Konishi:1978ks} for expressions for the \(\hat P_{j\ell\leftarrow i}(\kappa)\).
-}, and reproduces the leading-logarithmic EEC obtained via jet calculus \cite{Konishi:1978dg,Konishi:1978yx,Konishi:1978ks}.
+}, and reproduces the leading-logarithmic EEC obtained via jet calculus \cite{Konishi:1978dg,Konishi:1978yx,Konishi:1978ks}, as in \Sec{eec-resummed}.
 %
 However, for more generic EWOCs, the momentum-fraction integrals do not decouple, and numerical integration of \Eq{allorder_ewoc_convolution} will be required to obtain more precise, leading-logarithmic results.
 
@@ -3281,7 +3287,7 @@ subjets are proxies for the quarks emerging from the \(W\) decay, and the pairwi
 %
 Furthermore, while we focus on the \(W\) boson in this section, similar methods may be used for the analysis of generic two-pronged hadronic decays, such as hadronic two-prong decays of a hypothetical beyond-the-standard-model $Z'$.
 
-Fig.~\ref{fig:pp_to_ww:money} shows the mass EWOC at several different values of the \(k_T\) subjet radius as well as a direct comparison of the mass EWOC to the mass distribution of jets groomed with the modified mass drop tagger (mMDT) \cite{Dasgupta:2013ihk,Larkoski:2014wba}, which is much more robust than the ungroomed jet mass in the estimation of \(m_W\).
+Fig.~\ref{fig:pp_to_ww:money} shows the mass EWOC at several different values of the \(k_T\) subjet radius as well as a direct comparison of the mass EWOC to the mass distribution of jets groomed with the modified mass drop tagger (mMDT) \cite{Dasgupta:2013ihk} -- i.e. \gls{soft-drop} with \(\beta_\text{SD} = 0\) \cite{Larkoski:2014wba} -- which is much more robust than the ungroomed jet mass in the estimation of \(m_W\).
 %
 The mass EWOC is best at singling out the \(W\)-boson mass when we pick a subjet radius roughly equal to the expected separation between the partonic decay products of the \(W\):
 %
@@ -3359,38 +3365,40 @@ Now, we turn towards mass EWOCs in the cleaner laboratory of electron-positron c
 \section{Connecting back out}
 % ==============================================
 
-
 % ============================
 % New Angles
 % ============================
-Motivated by the tremendous success and potential of energy correlators, this Letter introduces a new parametrization for higher-point correlators with several distinct advantages for both theoretical and data-driven analyses.
+
+In this chapter, we took our final foray into continuous, soft-insensitive probes of jet substructure.
 %
-Our new parametrization exhibits dramatically improved computational efficiency when evaluated on experimental data (without approximations), preserves information about the parity and relative orientation between particles within jets, and has intuitive features that benefit data visualization.
+We began with a theoretical discussion of the energy-energy correlator (EEC), its hard-collinear factorization properties, and some of its universal properties.
+%
+In particular, we saw that its resummed behavior was related to the Mellin moments of splitting functions in the partonic cascade model of jet formation.
+
+Motivated by the tremendous success and potential of energy correlators in probing the structure of our microscopic universe, we then introduced a new parametrization for higher-point correlators with several distinct advantages for both theoretical and data-driven analyses.
+%
+We showed that our parametrization exhibits dramatically improved computational efficiency when evaluated on experimental data (without approximations), preserves information about the parity and relative orientation between particles within jets, and has intuitive features that benefit data visualization.
 %
 We also expect that the simplified phase space will streamline theoretical calculations, the inclusion of hadronization effects, and pile-up subtraction.
 %
 Additionally, our parametrization does not involve any redundancy of phase space variables, unlike traditional parametrizations.
 %
-We anticipate that the reparametrization of energy correlators we introduce in this work will benefit current studies of energy flow within hadronic jets and open new avenues for the use of energy correlators in the study of particle collisions.
+We anticipate that the reparametrization of energy correlators discussed in this chapter will benefit current studies of energy flow within hadronic jets and open new avenues for the use of energy correlators in the study of particle collisions.
 
 
-
-% ============================
-% EWOCs
-% ============================
-In this work, we introduced Energy-Weighted Observable Correlations (EWOCs) as a flexible new tool for studying the patters of radiation within hadronic jets produced in particle collisions, generalizing the more familiar Energy-Energy Correlator (EEC).
+We then introduced Energy-Weighted Observable Correlations (EWOCs) as a flexible new tool, generalizing energy correlators, for studying the patterns of radiation within hadronic jets.
 %
 We examined the formal features of EWOCs, their utility in the extraction of mass scales in particle collisions, and their analytic structure.
-
+%
 We began by motivating and defining EWOCs as generalizations of the EEC which can be chosen to probe a variety of different multi-particle correlations, such as the dominant mass scales or formation times involved in jet production in a particular jet sample.
 %
 We highlighted that collinear safety requires generic EWOCs to be equipped with an additional collinear cutoff, such as a subjet radius.
 %
-Consequently, the subjet EWOCs on which we focus in this work are more robust to non-perturbative effects such as hadronization.
+Consequently, the subjet EWOCs on which we focus in this thesis are more robust to non-perturbative effects such as hadronization.
 %
 We also found that EWOCs, unlike the particle-level EEC, remain collinear-safe even when using non-unity energy weights, allowing for additional suppression of obfuscating soft physics such as hadronization and the underlying event (UE).
 
-We then restricted ourselves to the study of the mass EWOC.
+Finally, we explored the phenomenology of the mass EWOC as a probe of jet substructure.
 %
 We showed that the mass EWOC provided an estimate of the \(W\) boson mass which was even more robust to the effects of hadronization and UE than the analogous estimate using the EEC (and comparable to the estimate of \(m_W\) using groomed jet masses).
 %
@@ -3400,7 +3408,7 @@ We then presented the mass EWOC at leading order in \(e^+ e^- \to\,\)hadrons -- 
 %
 We conclude that EWOCs provide new perspectives into physical correlations within jets which are robust to soft radiation, and are flexible probes of physics in a variety of contexts due to the user-defined observable and subjet radius.
 
-There are several straightforward avenues for future work:
+There are several straightforward avenues for future work.
 %
 Extending the analysis of \Sec{mass} to real collision data and including the effects of QCD backgrounds would provide a more realistic test of the utility of the mass EWOC in extracting the \(W\) mass and beyond.
 %
@@ -3410,7 +3418,7 @@ for example, the study of formation-time EWOCs in heavy-ion collisions may eluci
 %
 More broadly, the use of energy flow polynomials \cite{Komiske:2017aww} as EWOC observables could provide a powerful new tool for studying a variety of correlations within jets.
 
-A particularly simple and phenomenologically interesting extension of the analysis presented in this work is the study of EWOCs to three-point observables;
+A particularly simple and phenomenologically interesting extension of the analysis presented in this chapter is the study of EWOCs to three-point observables;
 %
 the three-point mass EWOC, for example, could be used to extract the top quark mass from LHC data.
 %
@@ -3418,13 +3426,10 @@ We also note that EWOCs may have applications in searches for physics beyond the
 %
 In particular, for models which predict the production of SM jets from the decay of BSM particles, the substructure of the SM jets may be used to probe the properties of the BSM particles.
 %
-It is possible that our proof of concept for the mass EWOC as a tool for extracting the \(W\)-boson mass from LHC collisions in this work may be extended to the extraction of mass scales involved in BSM decays.
-
-\sam{Cite \cite{Ricci:2022htc} somewhere}
-
-This paper serves as an invitation to further explore the landscape of EWOCs and their applications.
+It is possible that our proof of concept for the mass EWOC as a tool for extracting the \(W\)-boson mass from LHC collisions in this chapter may be extended to the extraction of mass scales involved in BSM decays.
 %
-We expect that EWOCs and their generalizations can contribute to the bridge between experimental and theoretical particle physics, providing new insights into nature from particle collisions.
+We hope that EWOCs and their generalizations can contribute to the bridge between experimental and theoretical particle physics, providing new insights into nature and the properties of \gls{qcd}.
+
 
 
 
@@ -3454,7 +3459,7 @@ Our samples are summarized in Table~\ref{tab:samples}.
 %
 Finally, we note that all of the traditional \glspl{penc} shown in this  are calculated with the \texttt{EnergyEnergyCorrelators} package~\cite{EEC_github}.
 
-\begin{table}[ht!]
+\begin{table}[t]
     \vspace{10pt}
     \centering
     \begin{tabular}{>{\centering\arraybackslash}p{1.9cm}p{1.6cm}p{1.8cm}c@{}}
@@ -3552,12 +3557,11 @@ We also restrict our analysis to jets with a minimum energy of \(E > 100\,\)GeV 
 
 
 \makeprob{The EEC in \texorpdfstring{\(e^+e^-\to\,\)}{ee to }hadrons}{ee_eec}{
-    Compute the event-wide EEC for the process \(e^+ e^-\to\,\)hadrons, and compare your result to the universal features predicted in \Eq{universal_differential_eec}.
-
-    You should use the NLO differential cross section of \Eq{}:
+    Use the NLO differential cross section for the process \(e^+ e^- \, \to \) hadrons is (see, e.g. \Reff{Schwartz:2014sze}):
     \begin{align*}
         \dd \sigma
         =
+        2\,
         \sigma_0
         \,
         \ascf
@@ -3576,6 +3580,8 @@ We also restrict our analysis to jets with a minimum energy of \(E > 100\,\)GeV 
         \,N_c\,\sum_q \frac{e_q^2}{e^2}
     \)
     is the LO cross section for \(e^+e^-\to q \overline{q}\), summed over quark flavors with charges \(e_q\), and \(1/{(1-x)}_+\) denotes a \hyperlink{footnote:plusfn_defn}{\textit{plus-distribution}}.
+
+    Compute the event-wide EEC for the process \(e^+ e^-\to\,\)hadrons, and compare your result to the universal features predicted in \Eq{universal_differential_eec}.
 }
 
 
@@ -3603,15 +3609,15 @@ We also restrict our analysis to jets with a minimum energy of \(E > 100\,\)GeV 
 
 
 
-\makeprob{\(\star\) A Would-Be Particle Level EWOC \(\star\)}{ee_ewoc}{
-    Study the universal features of the would-be \textit{particle-level} mass ``\gls{ewoc}'' (analogous to the analysis of the universal features of the \gls{eec} in \Sec{eec-universal}) and evaluate it in the process \(e^+ e^-\to\,\)hadrons (analogous to the analysis of \Prob{ee_eec}).
-    %
-    Compare the two.
+%\makeprob{\(\star\) A Would-Be Particle Level EWOC \(\star\)}{ee_ewoc}{
+%    Study the universal features of the would-be \textit{particle-level} mass ``\gls{ewoc}'' (analogous to the analysis of the universal features of the \gls{eec} in \Sec{eec-universal}) and evaluate it in the process \(e^+ e^-\to\,\)hadrons (analogous to the analysis of \Prob{ee_eec}).
+%    %
+%    Compare the two.
 
-    We argued that the would-be particle-level mass ``\gls{ewoc}'' is IRC unsafe, which seems to imply that it cannot be computed perturbatively.
-    %
-    Why were you able to compute it above?
-}
+%    We argued that the would-be particle-level mass ``\gls{ewoc}'' is IRC unsafe, which seems to imply that it cannot be computed perturbatively.
+%    %
+%    Why were you able to compute it above?
+%}
 
 
 

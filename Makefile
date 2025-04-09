@@ -7,6 +7,24 @@ print_todo:
 	# TODO list
 	# --------------------------------
 	@grep -r "TODO" --exclude Makefile --exclude=\*.aux --exclude-dir venv;
+
+print_cite:
+	# --------------------------------
+	# cite list
+	# --------------------------------
+	@grep -r "cite{}" --exclude Makefile --exclude=\*.aux --exclude-dir venv;
+
+print_reff:
+	# --------------------------------
+	# reff list
+	# --------------------------------
+	@grep -r "Reff{}" --exclude Makefile --exclude=\*.aux --exclude-dir venv;
+
+print_sam:
+	# --------------------------------
+	# comment list
+	# --------------------------------
+	@grep -r "\sam" --exclude Makefile --exclude=\*.aux --exclude-dir venv;
 	@printf "\n"
 
 print_debug:
