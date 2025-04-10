@@ -4,7 +4,6 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % =====================================
 \documentclass[letterpaper,11pt]{book}
-% \usepackage[style=numeric-comp]{biblatex}
 
 % TOGGLE switches for what to show
 \newif\ifshowfrontmatter
@@ -310,10 +309,6 @@
 
 \newpage
 
-\input{frontmatter/prerequisites}
-
-\newpage
-
 \input{frontmatter/notation}
 
 \clearpage
@@ -475,6 +470,7 @@
 \fancyhead[RE]{\slshape\bibname}
 \addnewlinetotoc{}
 \addcontentsline{toc}{chapter}{Bibliography}
+\typeout{}
 \bibliography{thesis_bib}
 \endgroup
 
