@@ -1,7 +1,7 @@
 \section*{Prerequisites}
 % \markboth{Prerequisites}{Prerequisites}
 
-\epigraph{``You earn your right to speculate depending on how much work you do.''}{Barton Zweibach}
+% \epigraph{``You earn your right to speculate depending on how much work you do.''}{Barton Zweibach}
 
 In order to understand the technical details of the material in this thesis, I expect that the following prerequisites are necessary (if you can understand them without these prerequisites, great work!):
 \begin{itemize}
@@ -17,19 +17,19 @@ In addition, I expect that you should probably be able to understand the followi
     \item
         The strong coupling \(\alpha_s(\mu)\) obeys the \vocab{renormalization group equation}
         \begin{equation}
-        \mu \frac{d}{d\mu} \alpha_s(\mu) = \beta(\alpha_s(\mu))
+        \beta(\alpha_s(\mu))\mu
+        :=
+        \frac{d}{d\mu} \alpha_s(\mu)
         =
-        - \sum_{n=0}^\infty \beta_n
-        {\left(\frac{\alpha_s(\mu)}{4\pi}\right)}^{n+2},
+        -2\alpha_s\sum_{n=0}^\infty \beta_n
+        {\left(\frac{\alpha_s(\mu)}{4\pi}\right)}^{n+1},
         \end{equation}
-        \sam{check} with the first \vocab{beta function coefficient}
+        {check} with the first \vocab{beta function coefficient}
         \begin{equation}
             \beta_0
             =
-            \frac{1}{4\pi}\le(
-                \frac{11}{3} C_A - \frac{4}{3} T_F n_f
-            \ri)
-            ,
+            \frac{11}{3} C_A - \frac{4}{3} T_F n_f
+            \,,
         \end{equation}
         taking an important role at one-loop and in the studies in this thesis.
 
@@ -42,7 +42,7 @@ In addition, I expect that you should probably be able to understand the followi
         \begin{equation}
             \LambdaQCD = \mu \exp\left(-\frac{1}{2\beta_0 \alpha_s(\mu)}\right).
         \end{equation}
-        \sam{This was just written by copilot -- double check in terms of these definitions.}
+        {This was just written by copilot -- double check in terms of these definitions.}
 \end{itemize}
 
 
@@ -52,11 +52,11 @@ In addition, since we are lucky enough to live in the age of free internet resou
 \textbf{Basics of Quantum Field Theory:}
 \begin{itemize}
     \item
-        \underline{Book name}, by \sam{author}
+        \underline{Book name}, by {author}
 
-        This book \sam{does ...}
+        This book {does ...}
 
-        Available at \sam{place/url}
+        Available at {place/url}
 \end{itemize}
 
 
@@ -65,7 +65,7 @@ In addition, since we are lucky enough to live in the age of free internet resou
     \item
         \underline{Applications of Perturbative QCD}, by Richard D. Field;
 
-        This book \sam{does ...}
+        This book {does ...}
 
         Of course, it would be a shame to access this book quickly, easily, and for free using \url{libgen.is}, so I will mention that it is also available (at time of writing) at \href{https://www.desy.de/~jung/qcd_and_mc_2009-2010/R.Field-Applications-of-pQCD.pdf}{this desy.de link}.
 \end{itemize}

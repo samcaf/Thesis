@@ -79,7 +79,7 @@ which yields a normalized probability distribution in \(\chi\).
 %
 An \gls{ewoc} involving pair-wise contributions is also called a \vocab{two-point} \gls{ewoc}
 %
-A more general definition of \glspl{ewoc} involving higher-point correlations and more will be given in \Sec{ewoc}.
+A more general definition of \glspl{ewoc} involving higher-point correlations and more will be given in \Sec{ewocs}.
 
 Importantly, we have left the sum on \(i,j\) a little bit vague.
 %
@@ -136,7 +136,7 @@ Physically, the EEC measures the mean correlation in the energy passing through 
 \footnote{
     More concretely, this means that the contribution of each particle in an event to the EEC is weighted by the particle's energy,
     %
-    see \Eq{eec_defn}.
+    as in \Eq{intro_ewoc_def} and, shorty, \Def{eec}.
     %
     This energy weighting mitigates the effects of the low-energy physics of QCD that complicates the theoretical description of other jet substructure observables.
 }
@@ -251,7 +251,7 @@ We will use the laboratories of the universal splitting process \(q^* \to q g\) 
 We will then study jets of fixed partonic flavor (i.e. quark jets or gluon jets) in the collinear limit to obtain results at LL and beyond.
 
 \remark{eec-energyflow}{
-    The EEC of \Eq{eec-real-angle} in a theory with massless particles (or in the high-energy limit \(m^2 / Q^2 \ll 1\) for all particle masses \(m\)) can also be expressed in terms of the energy flow operators of \Def{energy-flow} as
+    The EEC of \Def{eec} in a theory with massless particles (or in the high-energy limit \(m^2 / Q^2 \ll 1\) for all particle masses \(m\)) can also be expressed in terms of the energy flow operators of \Def{energy-flow} as
     \begin{align}
         \label{eq:eec-energy-flow}
         \frac{\dd \Sigma_\text{eec}}{\dd\chi}
@@ -529,7 +529,7 @@ where \(s\) is the invariant mass of the final-state quark-gluon pair (the virtu
 \begin{proposition}{The (differential) NLO EEC Jet Function}{nlo-eec-jet-function}
 The differential EEC for any process containing a massless intermediate quark (or anti-quark) contains a universal piece of the form
 \begin{align}
-    \label{eq:universal_differential_eec}
+    \label{eq:universal_differential_eec_prop}
     \frac{\dd \Sigma_\text{EEC}}{\dd \chi}
     (\chi \to 0)
     \supset
@@ -540,7 +540,7 @@ The differential EEC for any process containing a massless intermediate quark (o
 \end{align}
 up to a numerical, process dependent coefficient encoding the average number density and energy fraction of quarks (or anti-quarks).
 
-\Eq{universal_differential_eec} is the EEC associated with a single splitting within a quark jet, normalized to the energy of the quark.
+\Eq{universal_differential_eec_prop} is the EEC associated with a single splitting within a quark jet, normalized to the energy of the quark.
 %
 Therefore, it is the \(\mathcal{O}(\alpha_s)\) (NLO) jet function for the \textit{differential} EEC \cite{Dixon:2019uzg}.
 \end{proposition}
@@ -831,7 +831,7 @@ We conclude that the contribution of a single jet (or initiating parton) to the 
     We derived the relevant expressions for parton-to-parton fragmentation in \Sec{p2p-fragmentation}, where we found that the Mellin moments of parton-to-parton fragmentation functions were given by \Eq{ll_fragmentation_function}.
     %
     We repeat them here with \(\theta_f = 2\sqrt{\chi}\) (from \(\chi = (1-\cos\theta)/2, \theta\ll1\)) for convenience:
-    \begin{align*}
+    \begin{align}
         \hat{F}_{f \leftarrow i} (m;\,
         \theta_f = 2 \sqrt{\chi}\leftarrow \Rjet)
         =
@@ -841,10 +841,10 @@ We conclude that the contribution of a single jet (or initiating parton) to the 
             \alpha_s\le(Q\,\Rjet\ri)
         \ri)
         ^
-        {\hat{p}(m) \, / \, 2\pi\beta_0}
+        {2 \hat{p}(m) \, / \, \beta_0}
         _{f\leftarrow i}
-        ;
-    \end{align*}
+        \,;
+    \end{align}
 
     \item[b)]
     \textbf{the final-state partons:}
@@ -934,7 +934,7 @@ Using \Eqss{ll_fragmentation_function}{splitting_fn_contribution_to_eec}{jet_fn_
         {\alpha_s\le(Q\,\Rjet\ri)}
     \ri)
     ^
-    {\frac{\hat{p}(2)}{2\pi\beta_0}}
+    {\frac{2\hat{p}(2)}{\beta_0}}
     _{f\leftarrow i}
     .
 \end{align}
@@ -1097,7 +1097,7 @@ This computational cost impedes several exciting \gls{penc} applications.
 %
 For example, \glspl{penc} have an approximate scaling behavior related to the $N$-th Mellin moment of the DGLAP splitting functions~\cite{Chen:2020vvp};
 %
-the analytic continuation of the \gls{penc} to non-integer $N$ therefore provides access both to the full splitting functions of QCD and, in the limit $N \to 0$, a unique opportunity to study small-$x$ physics and BFKL dynamics with jets~\cite{Chen:2020vvp, Budhraja:2024tev,Neill:2020bwv}.
+the analytic continuation of the \gls{penc} to non-integer $N$ therefore provides access both to the full splitting functions of QCD and, in the limit $N \to 0$, a unique opportunity to study small-$x$ physics and BFKL dynamics with jets~\cite{Chen:2020vvp,Neill:2020bwv,Budhraja:2024tev}.
 %
 At very large values of \(N\), \glspl{penc} also encode additional fundamental features of QCD~\cite{Chen:2020vvp,Dai:2024wff}, such as level crossings with twist-4 operators.
 %
@@ -1120,7 +1120,7 @@ Third, our parametrization offers dramatic improvements in computational perform
 %
 Finally, we anticipate that these conceptual and computational improvements will yield simpler theoretical calculations.
 %
-Our implementation for computing the \glspl{penc} of \Eq{new_def} be found on GitHub as an update to \textsc{FastEEC}~\cite{FASTEEC}, and of our \glspl{penc} and \gls{renc}s at \texttt{ResolvedEnergyCorrelators}~\cite{github:RENC}.
+Our implementation for computing the \glspl{penc} of \Eq{new_def} be found on GitHub as an update to \textsc{FastEEC}~\cite{Budhraja:2024xiq}, and of our \glspl{penc} and \gls{renc}s at \texttt{ResolvedEnergyCorrelators}~\cite{github:RENC}.
 
 
 \begin{figure}
@@ -1977,7 +1977,7 @@ As we discuss further in \Sec{ewoc-irc}, EWOCs are not collinear safe without an
 %
 therefore, we consider EWOCs which capture correlations between \textit{subjets}.%
 \footnote{
-    In principle, we could use any infra-red regulator -- see Remark~\ref{lund-eec}.
+    In principle, we could use any infra-red regulator -- see Remark~\ref{rem:lund-eec}.
 }
 %
 These subjet EWOCs, which we will henceforth simply call EWOCs, have some important similarities and differences from the energy correlators defined above.
@@ -1986,14 +1986,14 @@ These subjet EWOCs, which we will henceforth simply call EWOCs, have some import
 
 In addition to the angular correlations probed by the EEC, EWOCs can be used to capture many other correlations -- such as correlations in mass, formation time, or any other observable on subjets -- which are forbidden by collinear safety in the absence of a subjet radius.
 %
-An EWOC for a generic observable \(\mathcal{O}(\text{subjet 1, subjet 2})\) on pairs of subjets takes a similar form to \Eq{eec_defn}.
+An EWOC for a generic observable \(\mathcal{O}(\text{subjet 1, subjet 2})\) on pairs of subjets takes a similar form to the form of the EEC given in \Def{eec}.
 %
 Its definition was given in \Eq{intro_ewoc_def} and is repeated here for convenience:
 %
 \begin{definitionbox}{Pairwise EWOC}{pairwise-ewoc}
     A \glslink{ewoc}{\vocab{pairwise (or two-point) EWOC}} takes the form
     \begin{align}
-        \label{eq:intro_ewoc_def}
+        \label{eq:ewoc_def_2}
         \frac{\dd \Sigma_\mathcal{O}}{\dd \chi}
         =
         \frac{1}{\sigma}
@@ -2008,7 +2008,7 @@ Its definition was given in \Eq{intro_ewoc_def} and is repeated here for conveni
     \end{align}
     where \((\dd)\sigma\) indicates the (differential) cross section for jet production in the process under consideration and the sum on \(i\) and \(j\) run over the subjets within the jet.
     %
-    The energy-weighting factors \(z_{i,j}\), adopted from the EEC, ensure that higher-energy subjets contribute more to the EWOC of \Eq{intro_ewoc_def}.%
+    The energy-weighting factors \(z_{i,j}\), adopted from the EEC, ensure that higher-energy subjets contribute more to the EWOC of \Eq{ewoc_def_2}.%
     \footnote{
         For proton-proton collisions at the LHC, transverse momentum fractions \(z_i = p_{T,i}/p_{T,\text{jet}}\) are a natural choice, while energy fractions \(z_{i} = E_{i}/E_\text{jet}\) are more natural in the context of electron-positron collisions.
     }
@@ -2030,7 +2030,7 @@ Its definition was given in \Eq{intro_ewoc_def} and is repeated here for conveni
 
 
 \remark{}{
-    For example, using the two-particle angular separation in \Eq{intro_ewoc_def}, \(\mathcal O_{ij} \to \theta_{ij}\), recovers the traditional EEC of $e^+e^-$ collisions in the limit of zero subjet radius (i.e.~where the sum over pairs of subjets is replaced by a sum over pairs of particles).
+    For example, using the two-particle angular separation in \Eq{ewoc_def_2}, \(\mathcal O_{ij} \to \theta_{ij}\), recovers the traditional EEC of $e^+e^-$ collisions in the limit of zero subjet radius (i.e.~where the sum over pairs of subjets is replaced by a sum over pairs of particles).
 }
 
 
@@ -2055,7 +2055,7 @@ The advantage of EWOCs is that they directly probe correlations in an observable
 %
 The choice of subjet definition (e.g.~radius and recombination scheme) determines the set of subjets that contribute to the EWOC, and therefore may also be tuned to capture different physical effects.
 %
-For example, the subjet radius may be chosen to capture the subjets emerging from the hadronic decays of a boosted particle, as we explore in \Sec{mass}.
+For example, the subjet radius may be chosen to capture the subjets emerging from the hadronic decays of a boosted particle, as we explore in \Sec{ewoc-mass}.
 %
 In this section, we focus on the concrete example of the mass EWOC as a proof-of-concept, with a subjet radius chosen to probe decays of the \(W\) boson, but the use of EWOCs is by no means limited to the measurement of mass correlations.
 %
@@ -2077,7 +2077,7 @@ Possible pairwise observables include:
             In this section, we use winner-take-all schemes which enforce that all subjets are massless.
             %
             We have found that this choice of recombination scheme does not affect the performance of the mass EWOC in constraining the $W$-boson mass.
-        }, applied to the phenomenolgy of massive decaying particles in \Sec{mass};
+        }, applied to the phenomenolgy of massive decaying particles in \Sec{ewoc-mass};
 
     \item
         The formation time \(\tau_{ij} = \max{\le(E_i, E_j\ri)} / m^2_{ij}\), which probes the Lorentz-dilated time scale at which partons (subjets) \(i\) and \(j\)  become ``separate''.%
@@ -3410,7 +3410,7 @@ We conclude that EWOCs provide new perspectives into physical correlations withi
 
 There are several straightforward avenues for future work.
 %
-Extending the analysis of \Sec{mass} to real collision data and including the effects of QCD backgrounds would provide a more realistic test of the utility of the mass EWOC in extracting the \(W\) mass and beyond.
+Extending the analysis of \Sec{ewoc-mass} to real collision data and including the effects of QCD backgrounds would provide a more realistic test of the utility of the mass EWOC in extracting the \(W\) mass and beyond.
 %
 The study of more complicated observables with EWOCs in more variegated contexts is also a promising approach towards extending the utility of EWOCs;
 %

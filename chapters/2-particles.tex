@@ -102,13 +102,13 @@ they cannot be written as a combination of more fundamental pieces.
 }
 
 \remark{}{
-    The definition of fundamental particles as irreps of the Poincar\'e group actually implies that all \textit{inertial}, or non-accelerating observers, should agree on which states define a particular particle.
-    %
-    However, the story does not end there, and there is a forest of subtleties which lie far beyond the scope of this thesis.
+    The story does not end there, and there is a forest of subtleties which lie far beyond the scope of this thesis.
     %
     One important subtlety is that in \textit{gauge theories} such as \gls{qcd} and the \gls{sm}, even the description of fundamental particles as irreducible representations of the Poincar\'e group has flaws;
     %
     in technical language, gauge invariant states of a gauge theory are associated with additional gauge fields and asymptotic charge that are not encompassed by the definition of particles as irreps of the Poincar\'e group.
+    %
+    See e.g. the influential early work of \Reff{Kulish:1970ut}, which states that ``the representation of the Poincar\'e group ... acting in the physical Hilbert space ... does not contain discrete irreducible terms with nonvanishing mass. In other words, one can say that the relativistic concept of a charged particle does not exist.''
 }
 
 Particles interact according to forces such as electromagnetism, the strong force, and the weak force.
@@ -145,7 +145,7 @@ In \Sec{sm-scattering-review}, we review the ingredients of the \gls{sm}, focusi
 
 Quantum field theory (\gls{qft}) is our simplest framework for relativistic quantum mechanics, and provides elegant solutions to a huge number of conceptual difficulties.%
 \footnote{
-See, for example, the early chapters of Daniel Harlow's  \textit{Notes on Quantum Field Theory} \cite{}, as well as \href{https://arnold-neumaier.at/physfaq/topics/multi.html}{the blog post of Arnold Neumeier on multiparticle relativistic quantum mechanics, \texttt{available at this https url}}.
+See, for example, the early chapters of Daniel Harlow's  \textit{Notes on Quantum Field Theory} \cite{Harlow:2024zz}, as well as \href{https://arnold-neumaier.at/physfaq/topics/multi.html}{a blog post of Arnold Neumeier on multiparticle relativistic quantum mechanics, \texttt{available at this https url}}.
 }
 %
 \Gls{qft} was developed first as a tool to describe the fundamental constituents of our universe -- a story that has culminated in the development of \gls{qcd} and the \gls{sm}.%
@@ -213,9 +213,9 @@ We will take a shortcut to the \gls{sm} through the theory of electromagnetism, 
 \remark{}{
     A more in-depth exposition of \gls{qft} would require a great deal of effort, and distract from the physics of quarks, gluons, and jets that we wish to explore in this thesis.
     %
-    Nonetheless, I mention that some of my favorite introductory resources on \gls{qft} are Mark Srednicki's \underline{Quantum Field Theory} \cite{Srednicki:2007qs} and Daniel Harlow's \textit{Notes on Quantum Field Theory} \cite{}.
+    Nonetheless, I mention that some of my favorite introductory resources on \gls{qft} are Mark Srednicki's \underline{Quantum Field Theory} \cite{Srednicki:2007qs} and Daniel Harlow's \textit{Notes on Quantum Field Theory} \cite{Harlow:2024zz}.
     %
-    The latter in particular gives a sense of the full, deep flavor of \gls{qft} from algebraic, calculational, and intuitive perspectives through rigorous and detailed discussion.
+    The latter in particular gives a sense of the full, deep flavor of \gls{qft} from algebraic, calculational, and intuitive perspectives through a detailed discussion that is not usually emphasized in introductory discussions of \gls{qft}.
 }
 
 
@@ -983,35 +983,33 @@ It is often parameterized in terms of perturbatively calculable coefficients as
 \begin{align}
     \beta_{g_s}(g_s)
     =
-    -\frac{g_s}{8\pi}\,
+    -g_s\,
     \sum_{n=0}^\infty \beta_n \le(\frac{g_s^2}{16\pi^2}\ri)^{n+1}
     \,,
 \end{align}
-\sam{Fix!!! See QCD and Collider Physics, page 25}
 or
 \begin{align}
     \beta_{\alpha_s}(\alpha_s)
     =
-    -\sum_{n=0}^\infty \beta_n \le(\frac{\alpha_s}{4\pi}\ri)^{n+2}
+    -2\alpha_s
+    \sum_{n=0}^\infty \beta_n \le(\frac{\alpha_s}{4\pi}\ri)^{n+1}
 \end{align}
-where \(\alpha_s = g_s^2 / 4 \pi\) and the \(\beta_k\) are coefficients that can be captured by \(N^{k+1}LO\) computations.
+where \(\alpha_s = g_s^2 / 4 \pi\) and the \(\beta_k\) are coefficients that can be captured by N\(^{k+1}\)LO computations.
 %
 This parameterization is used because the combination \(\alpha_s / 4\pi\) appears frequently in loop calculations.
 
 In 1972-73, Gerard `t Hooft \cite{tHooft:1998qmr}, Hugh Politzer \cite{Politzer:1973fx}, and David Gross and Frank Wilczek \cite{Gross:1973ju} discovered through one-loop computations that the beta function of \gls{qcd} is negative.
 %
 In particular, with \(N_f\) quark flavors (i.e. up, down, charm, etc), the \glslink{accuracy}{NLO} running of the effective strong coupling constant is dictated by
-\sam{Fix!!!}  % TODO: Fix beta_0, globally
 \begin{align}
-    \beta_0 =
-    \frac{1}{4\pi}\le(\frac{11}{3} C_A - \frac{4}{3} T_F N_f\ri)
+    \beta_0 = \frac{11}{3} C_A - \frac{4}{3} T_F N_f
     \,,
 \end{align}
 with the startling result that the effective coupling
 \begin{align}
     \alpha_s(\mu)
     =
-    \frac{\alpha_s(\mu_0)}{1 + 2 \alpha_s(\mu_0) \beta_0 \ln\le(\mu / \mu_0\ri)}
+    \frac{\alpha_s(\mu_0)}{1 + \alpha_s(\mu_0) \beta_0 \ln\le(\mu / \mu_0\ri)/2\pi}
     \,,
 \end{align}
 \textit{decreases as a function of the energy scale} \(\mu\).
@@ -1054,7 +1052,7 @@ This is already a hint of \emph{confinement}, the phenomenon in \gls{qcd} where 
 \remark{confinement}{
     One argument that quarks must be confined is that the physical states of our universe must be gauge invariant in the framework of gauge theories like \gls{qcd}.
     %
-    Other purely theoretical hints of\gls{confinement} include \textit{renormalons} in the quark propagator \cite{}, which indicate that quarks are not physical particles in that they do not correspond to poles of the \(S\)-matrix, and the theoretical considerations of the Gribov-Zwanziger model of \gls{qcd} \cite{} that also indicate that \emph{gluons} do not correspond to poles of the \(S\)-matrix \cite{}.
+    Other purely theoretical hints of\gls{confinement} include \textit{renormalons} in the quark propagator (see e.g. \cite{Altarelli:1995kz,Beneke:1998ui,Schindler:2023cww}), which indicate that quarks are not physical particles in that they do not correspond to poles of the \(S\)-matrix, and the theoretical considerations of the Gribov-Zwanziger model of \gls{qcd} \cite{Gribov:1977wm,Zwanziger:1988jt,Zwanziger:1989mf} that also indicate that \emph{gluons} do not correspond to poles of the \(S\)-matrix \cite{Zwanziger:1988jt} (see \Reff{Vandersickel:2012tz} for a review).
     %
     Additionally, extensive studies in lattice \gls{qcd} show that \gls{confinement} can be associated with the confining \textit{Cornell potential},
     \begin{equation}
@@ -1132,7 +1130,7 @@ Concretely, the framework of scattering can be developed if a \gls{qft} has a \t
 \end{definitionbox}
 
 \remark{}{
-    This precise definition, a reformulation of the definitions given in Chapter 3.1 of Weinberg's \underline{The Theory of Quantum Fields, Volume I} \cite{Weinberg:1995mt}, is taken from \href{https://www.mit.edu/~harlow/HarlowQFT1.pdf\#page=101}{Chapter 8.3 of Daniel Harlow's exceptional notes on quantum field theory}.
+    This precise definition, a reformulation of the definitions given in Chapter 3.1 of Weinberg's \underline{The Theory of Quantum Fields, Volume I} \cite{Weinberg:1995mt}, is taken from \href{https://www.mit.edu/~harlow/HarlowQFT1.pdf\#page=101}{Chapter 8.3 of Daniel Harlow's exceptional notes on quantum field theory} \cite{Harlow:2024zz}.
     %
     The basics of scattering theory in this framing discussed in depth in Prof. Harlow's notes.
     %
@@ -1757,7 +1755,7 @@ for a textbook focused on development of systematic technology and applications 
 
 Importantly, the IR divergences of standard \glspl{qft} (including the \gls{sm} and \gls{qcd}) cancel between quantum mechanical corrections (loop integrals) and corrections due to real emissions (integrals over classical phase space) in the calculation of inclusive cross sections.
 %
-The proof of this result, called the \vocab{Kinoshita-Lee-Nauenberg (KLN) theorem} \cite{Kinoshita:1962ur,Lee:1964is,} (see also \Reff{Frye:2018xjj}), is \textit{far} beyond the scope of this thesis;
+The proof of this result, called the \vocab{Kinoshita-Lee-Nauenberg (KLN) theorem} \cite{Kinoshita:1962ur,Lee:1964is} (see also \Reff{Frye:2018xjj}), is \textit{far} beyond the scope of this thesis;
 %
 it is a giant on whose shoulders we will stand moving forward:
 
@@ -1784,11 +1782,11 @@ The key cancellation ensuring the validity of the KLN theorem in \gls{qcd}, and 
 The KLN theorem motivates the criterion of \glslink{irc-safety}{infra-red and collinear (IRC) safe} collider \glspl{observable}, which exhibit well-behaved perturbative properties, discussed in \Sec{irc-safety}.
 
 \remark{}{
-    The Fadeev-Kulish (FK) formalism for dressed, gauge invariant states \cite{}, motivated by the preliminary work of P.A.M. Dirac \cite{}, offers a complementary perspective on IR finiteness.
+    The Fadeev-Kulish (FK) formalism for dressed, gauge invariant scattering \cite{Kulish:1970ut}, inspired by the preliminary work of P.A.M. Dirac \cite{Dirac:1955uv} and the later work of \Reff{Chung:1965zza}, offers a complementary perspective on IR finiteness (see also \Reff{Contopanagos:1991yb} for more developments on the KLN perspective).
     %
     The FK formalism operates under the assumption that infra-red finiteness may be ensured by working with appropriately defined initial and final states involving \vocab{dressed} charged particles -- roughly, particles surrounded by clouds of gauge bosons.
     %
-    See \Reffs{Frye:2018xjj,Hannesdottir:2021oqb} for a modern perspective on the FK formalism, including recent discussions of dressed states in \gls{qcd}.
+    See \Reffs{Catani:1984dp,Ciafaloni:1989vs,Lavelle:1995ty,Bagan:1999jf,Larkoski:2014bxa,Frye:2018xjj,Hannesdottir:2021oqb} for additional perspectives and discussions on dressed states in \gls{qcd}.
 }
 
 
@@ -1915,7 +1913,7 @@ Since the standard lore is quite useful, let us present the rough argument for t
 %
 The probability distribution for an observable \(X\),
 \begin{align}
-    \label{eq:prob_distribution}
+    \label{eq:prob_distribution_irc}
     \frac{\dd\Sigma}{\dd X}(x)
     :=
     \frac{1}{\sigma}
@@ -1924,11 +1922,10 @@ The probability distribution for an observable \(X\),
     \delta\le(X(\sigma) - x\ri)
     \,,
 \end{align}
-can be calculated in perturbation theory if and only the integral of \Eq{prob_distribution} is finite.
+can be calculated in perturbation theory if and only the integral of \Eq{prob_distribution_irc} is finite.
 %
 Expanding in the number of particles contributing to the cross section, we have
 \begin{align}
-    \label{eq:prob_distribution}
     \sigma \frac{\dd\Sigma}{\dd X}(x)
     :=
     \int \dd\sigma_2 \delta\le(X_2 - x\ri)
@@ -2009,9 +2006,7 @@ Therefore, there is a strong argument for the standard lore that \gls{irc-safety
 
 The simplest form of experimentally-accessible information in particle collision events is the distribution of energy of the radiation which explodes outward from the collision;
 %
-we call this distribution of energy the \vocab{\gls{energy-flow}} of the collision~\cite{Sterman:1975xv, Basham:1977iq, Basham:1978bw, Basham:1978zq, Basham:1979gh,Mazzilli:2024ots,CMS:2024mlf,Tamis:2023guc}.
-    %%
-    %Since energy correlators can be described directly in terms of field-theoretic energy flow operators~, one can use sophisticated theoretical techniques, including the powerful technology of conformal field theories, to extract rich information about jet substructure, especially in the collinear limit~.
+we call this distribution of energy the \vocab{\gls{energy-flow}} of the collision~\cite{Sterman:1975xv, Basham:1977iq, Basham:1978bw, Basham:1978zq, Basham:1979gh,Tamis:2023guc,Mazzilli:2024ots,CMS:2024mlf}.
 \begin{definitionbox}{Energy Flow}{energy-flow}
     In a particle collision with \(N\) outgoing particles with energies \(E_i\) and angles \(\hat n_i\), \(i \in \{1,\,\ldots,\,N\}\), the \gls{energy-flow} is the distribution
     %
@@ -2048,7 +2043,7 @@ We will return to discussions of the energy flow in \Chap{ewocs}, where we compu
 
 
 \remark{}{
-    If all particles are massless (and thus in the infinite-energy limit of scattering), the energy flow can be considered as a quantum operator on the Hilbert space of an underlying quantum field theory \cite{Sveshnikov:1995vi, Tkachov:1995kk, Korchemsky:1999kt, Lee:2006nr, Hofman:2008ar, Belitsky:2013xxa, Belitsky:2013bja, Kravchuk:2018htv}.
+    If all particles are massless (and thus in the infinite-energy limit of scattering), the energy flow can be considered as a quantum operator on the Hilbert space of an underlying quantum field theory \cite{Sveshnikov:1995vi,Tkachov:1995kk,Korchemsky:1999kt,Lee:2006nr, Hofman:2008ar, Belitsky:2013xxa, Belitsky:2013bja, Kravchuk:2018htv}.
     %
     Since the energy flow depends on the energy of outgoing radiation, it may be expressed in terms of the relativistic \textit{stress tensor} \(\mathbf{\hat{\mathcal{T}}}_{\mu\nu}\), the operator which encodes energy and momentum in a relativistic \gls{qft}.
     %
@@ -2076,7 +2071,7 @@ We will return to discussions of the energy flow in \Chap{ewocs}, where we compu
     \footnote{
         For example, in characterizing fundamental features of conformal field theories~\cite{Hofman:2008ar, Kologlu:2019mfz}, and even as a probe of entanglement \cite{Faulkner:2015csl,Balakrishnan:2019gxl}.
     }
-    The energy flow operator may be used in particle physics applications by enabling powerful technology from conformal field theory (notably, the operator product expansion) in the computation of collider observables, especially in the collinear limit \cite{Geyer:1994zu,Dixon:2019uzg, Chen:2020vvp, Chen:2019bpb, Chen:2020adz, Chen:2021gdk, Schindler:2023cww, Gao:2023ivm, Chen:2023zlx, Chicherin:2024ifn, Chen:2024nyc, Lee:2022uwt, Chang:2022ryc,Budhraja:2024xiq,Budhraja:2024tev,Lee:2024jnt}.
+    The energy flow operator may be used in particle physics applications by enabling powerful technology from conformal field theory (notably, the operator product expansion) in the computation of collider observables, especially in the collinear limit \cite{Geyer:1994zu,Dixon:2019uzg, Chen:2020vvp,Chen:2019bpb, Chen:2020adz,Chen:2021gdk, Schindler:2023cww, Gao:2023ivm, Chen:2023zlx, Chicherin:2024ifn, Chen:2024nyc, Lee:2022uwt,Chang:2022ryc,Budhraja:2024xiq,Budhraja:2024tev,Lee:2024jnt}.
     %
     The energy flow operator itself is a member of the larger class of \emph{light-ray operators} \cite{Kravchuk:2018htv,Kologlu:2019mfz}.
 }
@@ -2087,9 +2082,9 @@ We will return to discussions of the energy flow in \Chap{ewocs}, where we compu
     %
     Roughly, a collider observable \(X\) is \textit{continuous} if small changes to the energy flow of an event can only ever lead to small changes in the value of \(X\) when computed on the event.
     %
-    We will use the terms \vocab{\gls{soft-discontinuity}} and \vocab{\gls{angular-discontinuity}} to refer to collider observables which exhibit discontinuous behavior when the energies or angles of particle constituents are subject to small perturbations, respectively.
+    We also use the terms \vocab{\gls{soft-discontinuity}} and \vocab{\gls{angular-discontinuity}} to refer to collider observables which exhibit discontinuous behavior when the energies or angles of particle constituents are subject to small perturbations, respectively.
     %
-    We will also provide more precise definitions of continuity in the context of \gls{jet-grooming} in \Sec{emd} of \Chap{grooming}, where we discuss continuity of maps from the space of collider events to itself.
+    These concepts play a particularly central role in \Chap{grooming}, where we also provide more precise definitions of continuity in the context of \gls{jet-grooming} in \Sec{emd}, with a focus on the continuity of maps from the space of collider events to itself (i.e. maps \(f:S \to S\) in the language of \Def{observable}).
 }
 
 
@@ -2220,10 +2215,8 @@ the approach to high-energy \gls{qcd} physics in which the properties of \gls{qc
     \includegraphics[width=0.7\textwidth]{example-image-a}
 
     % Caption
-    \caption[\sam{A visualization of \gls{preconfinement}}]{
-        A visualization of \gls{preconfinement}, a local manifestation of \glslink{phd}{parton-hadron duality} in which partons tend to form low-mass color-singlet clusters.
-        %
-        \sam{complete}
+    \caption[A visualization of \gls{preconfinement}\sam{incomplete}]{
+        A visualization of \gls{preconfinement}, a local manifestation of \glslink{phd}{parton-hadron duality} in which partons tend to form low-mass color-singlet clusters. \sam{complete}
     }
     \label{fig:preconfinement}
 \end{figure}
@@ -2274,29 +2267,12 @@ Quantitative descriptions and tests of \gls{lphd} are more sparse;
 %
 while there is a precise OPE description of \gls{phd}, I am not aware of any such description of \gls{lphd}.
 %
-Nonetheless, \gls{lphd} is often phrased in terms of quantitative predictions for fragmentation functions \cite{}, particle multiplicities \cite{}, and even the by comparing parton- and hadron-/resonance-level results for locally-defined Mellin moments of structure functions \cite{}.
-    % Frag?
-    % https://iopscience.iop.org/article/10.1088/0954-3899/17/10/017/pdf
-    % https://iopscience.iop.org/article/10.1088/0954-3899/17/10/003/pdf
-    % https://link.springer.com/content/pdf/10.1007/978-1-4615-3774-8.pdf
-    %
-    % particle multiplicity
-    % https://lib-extopc.kek.jp/preprints/PDF/1989/8902/8902234.pdf
-    %
-    % Local mellin
-    % https://inspirehep.net/literature/781361
-    % https://arxiv.org/pdf/0803.2055
-and even the entanglement entropy associated with the composition of hadrons \cite{}%
+Nonetheless, \gls{lphd} is often phrased in terms of quantitative predictions for fragmentation functions \cite{Dokshitzer:1991eq,Dokshitzer:1991fc}, particle multiplicities \cite{Andersson:1989ww}, or more recently by comparing parton- and hadron-/resonance-level results for locally-defined Mellin moments of structure functions \cite{Psaker:2008ju}.
+%
+\gls{lphd} is also a useful starting point for discussing hadrons as entangled states of quarks and gluons, and even for extracting information about the inner entanglement of hadrons in terms of collision measurements \cite{Tu:2019ouv,Hentschinski:2021aux,Hentschinski:2022rsa,Hentschinski:2023izh,Hentschinski:2024gaa}.%
 \footnote{
-    Thanks to Artur Avkhadiev for pointing out these references
+    Thanks to Artur Avkhadiev for pointing out this feature of \gls{lphd}.
 }.
-% https://arxiv.org/abs/1904.11974
-% https://arxiv.org/abs/2110.06156
-% https://arxiv.org/abs/2207.09430
-% https://arxiv.org/abs/2305.03069
-% https://arxiv.org/pdf/2408.1259
-% and references therein
-% https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.241901
 
 
 A modern and more theoretically accessible realization of local parton-hadron duality is the beautiful framework of \textit{factorization}.
@@ -3393,7 +3369,7 @@ The complicated general formulation of \Prop{correlation-matrix-factorization} c
     %
     To complete this exercise, I deigned to use a computer algebra system rather than my own weak hands, and the the polarization vectors and bispinors of \App{qcd-compendium} that I derived to simplify the polarization/spinor algebra of the collinear limit.
     %
-    My rough code is available on \href{https://github.com/samcaf/Thesis}{\texttt{the GitHub repository associated with this thesis at this https url}}.
+    My rough code (which \textit{does not} involve importing more dedicated technology, like FeynCalc, etc.) is available on \href{https://github.com/samcaf/Thesis}{\texttt{the GitHub repository associated with this thesis at this https url}}.
     %
     Spinor helicity methods can also be a useful tool, if you know them.
 \end{exercise}
@@ -3919,7 +3895,7 @@ where we have used the definition of the \textit{inclusive} splitting function \
 \footnote{
     Beyond NLO, we must include additional splitting functions with a more complicated structure.
     %
-    At NNLO, for example, there are \(1 \to 3\) splitting functions describing the probability of a single parton converting into three partons \cite{}.
+    At NNLO, for example, there are \(1 \to 3\) splitting functions describing the probability of a single parton converting into three partons \cite{Campbell:1997hg,Catani:1999ss} (see also \Reff{Larkoski:2024uoc} and references therein).
     %
     Nonetheless, the structure of \(\rho_{i\leftarrow \ell}\) can easily be extended, e.g. by summing over \emph{two} final-state partonic flavors in the \(1\to 3\) splitting functions to isolate the index \(i\) and, more generally, \(N-1\) final-state flavors for \(1\to N\) splitting functions.
 }
@@ -4041,13 +4017,13 @@ For gluons, our final ingredient, we can invoke symmetry under \(z \leftrightarr
     %
     However, we stand by the symmetry of the gluon splitting function in the physically-motivated discussion of this chapter.
     %
-    We should note that using a symmetric representation of the regularized \(p_{gg}\) does not directly translate into familiar DGLAP renormalization evolution for \emph{all} structure functions.
+    We should note that, according to \Reff{Altarelli:1977zs}, using a symmetric representation of the regularized \(p_{gg}\) does not directly translate into familiar DGLAP renormalization evolution for \emph{all} structure functions (see discussion near their Eq. (37)).
     %
-    The difference arises (\emph{only}) in the \(m\leq1\) Mellin moments (see e.g. \App{mellin}) of \(p_{gg}(z)\);
+    However, differences due to our symmetric representation here arise (\emph{only}) in the \(m\leq1\) Mellin moments (see e.g. \App{mellin}) of \(p_{gg}(z)\).
     %
-    the first Mellin moment of \(p_{gg}\) in the symmetric representation we use in this thesis does not correspond exactly to an anomalous dimension of a twist-two operator associated with DGLAP evolution (see e.g. the comments of \Reff{Altarelli:1977zs} near their Eq. (37)).
+    We do not use \(m=1\) Mellin moments directly in this thesis, and the symmetric representation yields correct results for all higher-order Mellin moments.
     %
-    However, we do not use \(m=1\) Mellin moments directly in this thesis, and the symmetric representation yields correct results for all higher-order Mellin moments.
+    Furthermore, since the Mellin transform of the symmetric and standard representations, the \(\hat{p}_{gg}(m)\), are analytic and agree for \(\Re m > 1\), the identity theorem suggests that they must have the same analytic continuation.
 }
 %
 we have no number conservation sum rule.
@@ -4125,9 +4101,7 @@ To satisfy the sum rule, we must set
 
 We also note the miraculous appearance of half of the \gls{qcd} beta function coefficient,
 \begin{align}
-    \beta_0
-    =
-    \frac{11}{3} C_A - \frac{4}{3}N_f T_F
+    \beta_0 = \frac{11}{3} C_A - \frac{4}{3}N_f T_F
     \,.
 \end{align}
 \end{example}
@@ -4137,7 +4111,7 @@ We also note the miraculous appearance of half of the \gls{qcd} beta function co
 \end{exercise}
 
 \begin{exercise}
-    Write a general form for the sum rule on splitting functions associated with a quantum number \(\chi\).
+    Write a general form for the sum rule on splitting functions associated with a conserved quantum number \(\chi\).
 \end{exercise}
 
 
@@ -4184,6 +4158,19 @@ With a combination of physical intuition and sociological evidence we have found
 \end{answer}
 
 
+We are done with one of the most important steps in our preparation for understanding jets.
+%
+We now understand the distributions by which energy is divided when a nearly-on-shell particle ``splits'' into two.
+%
+Next, we will study the \textit{angular} behavior of radiation patterns.
+%
+By combining our understanding of the energy and angular distributions of \gls{qcd} radiation, we will describe the flow of energy in the partonic cascade in \Chap{jets}.
+%
+We will be left with a powerful and relatively simple framework through which we calculate and quantify the inner lives of quarks and gluons.
+%
+Therefore, we take our next step.
+%
+To angles!
 
 
 % ---------------------------------------
@@ -4480,7 +4467,7 @@ A quick proof of \Lem{angular-ordering} is available in Chapter 5.5 of \underlin
 Angular ordering in the more physical contexts we discuss below was first found in QED \cite{osti_4367332} and was discovered in \gls{qcd} in the context of fixed-order scattering, where it was conjectured to hold logarithmically \cite{Mueller:1981ex}.
 
 
-The discovery of angular ordering led to the development of \vocab{coherent parton branching} \cite{Dokshitzer:1982fh,Webber:1983if,Marchesini:1983bm,Ciafaloni:1984zr,Ellis:1996mzs,Collins:2011zzd}, an important feature of radiation patters of \gls{qcd} which will be a pillar of our model of jet formation developed in \Chap{jets}.
+The discovery of angular ordering led to the development of \vocab{coherent parton branching} \cite{Dokshitzer:1982fh,Webber:1983if,Marchesini:1983bm,Ciafaloni:1984zr,Catani:1985ta,Catani:1989yc,Ellis:1996mzs,Collins:2011zzd}, an important feature of radiation patters of \gls{qcd} which will be a pillar of our model of jet formation developed in \Chap{jets}.
 %
 We discuss the version of coherent parton branching that will be used in our analysis -- \vocab{collinear color coherence} -- in more detail below.
 %
@@ -4700,10 +4687,8 @@ charge coherence phenomena in the analogous but simpler example of QED.
 \begin{figure}[]
     \centering
     \includegraphics[width=0.6\textwidth]{example-image-a}
-    \caption{%
-        \sam{
-            Cartoon depicting two-particle examples of charge coherence in QED.
-        }
+    \caption[A cartoon depicting charge coherence in QED. \sam{incomplete}]{%
+        \sam{ Cartoon depicting two-particle examples of charge coherence in QED.  }
     }
     \label{fig:qed-coherent-branching}
 \end{figure}
@@ -4974,10 +4959,9 @@ The collinear limit again comes to the rescue to facilitate factorization and dr
 \begin{figure}[]
     \centering
     \includegraphics[width=0.8\textwidth]{example-image-a}
-    \caption{
-        \sam{
-            Cartoons depicting angular ordering as a coherence effect in QCD.
-            %
+    \caption[A cartoon depicting color coherence and angular ordering in QCD. \sam{incomplete}]
+    {
+        \sam{ Cartoons depicting angular ordering as a coherence effect in QCD.  %
             Qualitative analogy, imagining gluon radiation, analogized as ripples in a pool of water, produced by charged \gls{qcd} matter, analogized as rocks dropped into the water which source the ripples.
         }
     }
@@ -5284,9 +5268,9 @@ The collinear limit again comes to the rescue to facilitate factorization and dr
     %
     It is encouraging that the soft limit for our explicit answers for soft gluon emission agree with the result guaranteed by \Thm{soft-gluon}.
     %
-    To improve the accuracy of the results we obtain with \Thm{soft-gluon}, we can therefore replace the factor of \(2 C_R \dd \omega / \omega\) by \(P_{ij \leftarrow \ell}(z) \dd z\):
+    To improve the accuracy of the results we obtain with \Thm{soft-gluon}, we can therefore replace the factor of \(2 C_R \dd \omega / \omega\) by \(P_{ij \leftarrow \ell}(z) \dd z\);
     %
-    the splitting functions we derived capture universal behavior as well, both in the purely soft \emph{and} purely collinear limits.
+    the splitting functions we derived do not change the behavior of the soft limit above -- any terms they add are subleading to the dominant \(1/z\) term -- but they \emph{also} capture universal behavior of partonic radiation in the purely collinear limit.
 }
 
 
@@ -5944,13 +5928,8 @@ We pursue a more rigorous understanding of this recursive, fractal-like nature o
 
 
 \begin{subappendices}
-% If appendices to stand are their own
 
-% ---------------------------------------
-% \Soln{QCD at Loop Level}{qcd-loop}
-% ---------------------------------------
-
-\section{A QCD Compendium}
+\section{A Collinear QCD Compendium}
 \label{app:qcd-compendium}
 
 \subsection{Gluons and Polarization Vectors}
@@ -6008,7 +5987,9 @@ with the notable property that
 
 A constructive way of producing polarization vectors for general momenta is by selecting two arbitrary four-vectors, projecting each to the component orthogonal to the gauge-boson four-momentum \(p^\mu\) (Mathematica's \texttt{Orthogonalize} is a useful tool), and then finding the orthogonal linear combinations which are eigenvectors of the little group rotations of \(p^\mu\).
 %
-For the calculations of splitting functions in this section (and for the calculation of the QED polarization vectors in \Prob{massless-qed}), we now record the results for polarization vectors of collinear gluons.
+For the calculations of splitting functions in this section,
+%(and for the calculation of the QED polarization vectors in \Prob{massless-qed}),
+we now record the results for polarization vectors of collinear gluons.
 
 \begin{example}
 In the concrete calculations of splitting functions in \Sec{splitting-functions}, we will also need polarization vectors for \textit{collinear} gluons travelling nearly along the \(z\)-axis, with a polar angle \(\theta \ll 1\):
@@ -6531,7 +6512,7 @@ with the normalization
     \,.
 \end{align}
 
-\sam{?}
+\sam{correct group theory?}
 \begin{align}
     T_A = \frac{1}{2}
     \,.
@@ -6556,7 +6537,7 @@ In fact,
     C_R = \frac{T_A C_A}{T_R}
     \,,
 \end{align}
-\sam{?}
+\sam{correct group theory?}
 which can be quickly and amusingly shown with \vocab{bird track diagrams} \cite{Cvitanovic:2008zz,Keppeler:2017kwt}.
 
 \end{subequations}
@@ -6565,33 +6546,32 @@ which can be quickly and amusingly shown with \vocab{bird track diagrams} \cite{
 \subsection{Splitting Functions}
 
 Finally, we tabulate the properties of the exclusive and inclusive \gls{qcd} \glspl{splittingfn} in \Tabs{exclusive-splitting}{inclusive-splitting} respectively.
-
-\sam{Missing delta functions/virtual contributions}
 %
-\(B(m,n)\) is Euler's beta function,
+We use \(B(m,n)\) to denote Euler's beta function,
 \begin{align}
     B(m,n) = \frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}
     \,.
 \end{align}
 
+\sam{Missing delta functions/virtual contributions}
+%
+
 
 % +===================================
 \begin{table}[h!]
-    \label{tab:exclusive-splitting}
 \begin{center}
 \LARGE $\boldsymbol{P_{ij \leftarrow \ell}(z)}$
 \end{center}
 \vspace{-10pt}
 \centering
-\caption{
-    Exclusive QCD Splitting Functions and their Mellin moments at NLO (\(z = E_i/E_\ell\)).
+\caption[Exclusive NLO QCD splitting functions and their Mellin moments.]{
+    Exclusive QCD splitting functions and their Mellin moments at NLO (\(z = E_i/E_\ell\)).
     %
-    $B(m,n)$ denotes Euler's beta function.
+    $B(m,n)$ denotes Euler's beta function.  \sam{check}
     %
-    \sam{check}
-    %
-    \sam{comment about \(N_f\)}
+    \sam{include comment about \(N_f\)}
 }
+\label{tab:exclusive-splitting}
 \vspace{5pt}
 \renewcommand{\arraystretch}{3.2}
 \rowcolors{1}{gray!20}{gray!5}
@@ -6639,19 +6619,17 @@ $T_F \le(B\le(m+2, n\ri) + B\le(m, n+2\ri)\ri)$
 \vspace{1em}
 % +===================================
 \begin{table}[h!]
-\label{tab:inclusive-splitting}
 \begin{center}
 \LARGE $\boldsymbol{p_{i \leftarrow \ell}(z)}$
 \end{center}
 \vspace{-10pt}
 \centering
-\caption{
-    Inclusive QCD Splitting Functions and their Mellin moments at NLO.
-    %
-    \sam{check}
+\caption[Inclusive NLO QCD splitting functions and their Mellin moments.]{
+    Inclusive QCD Splitting Functions and their Mellin moments at NLO.  \sam{check}
     %
     \sam{comment about \(N_f\)}
 }
+\label{tab:inclusive-splitting}
 \vspace{5pt}
 \renewcommand{\arraystretch}{3.5}
 \rowcolors{1}{gray!20}{gray!5}
@@ -6787,8 +6765,7 @@ Plus-Distribution
     However, I found this precise (if verbose) notation helpful in some of the following examples, especially those in which multiple variables are involved and may appear inside the plus-distribution.
 }
 
-\remark{}{
-    \label{remark:extended_definition}
+\remark{extended-plus-definition}{
     The definition of the plus-distribution may be extended relative to the above definition, so that it may be integrated outside of the domain of integration \(\mc R\).
     %
     Formally, we may do this by writing
@@ -6805,7 +6782,7 @@ Plus-Distribution
 }
 
 \begin{exercise}
-    \label{ex:plus-fn-dervivative}
+    \label{ex:plus-fn-derivative}
     Using \Eq{extended_plus-fn}, show that
     \begin{align}
         \label{eq:plus-fn-derivative}
@@ -7005,8 +6982,8 @@ Finally, let us come to what I consider to be our first non-trivial example.
 We will now study the interactions that occur when we have a delta-function and a plus-distribution in the same integral.
 %
 This type of behavior is important for deriving regularized fixed-order behavior of distributions of collider observables.
-%
-In \Prob{eec-dist}, we examine the example of the regularized behavior of the fixed-order \gls{eec}.
+%%
+%In \Prob{eec-dist}, we examine the example of the regularized behavior of the fixed-order \gls{eec}.
 ~\\
 \begin{example}{}
     One of the simplest examples I have found for the interactions between plus-distributions and delta-functions is the following:
@@ -7302,7 +7279,7 @@ Instead, let us consider the case where the integration region is non-trivial:
         \end{align}
     } and that \(\text{Li}_n(1) = \zeta(n)\), \(\text{Li}_n(0) = 0\).
     %
-    This example in particular helps to build intuition for the fixed-order phase space of \(e^+e^-\to\,\)hadrons, and appears in the computation of the \gls{eec} in \Prob{eec-dist}.
+    This example in particular helps to build intuition for the fixed-order phase space of \(e^+e^-\to\,\)hadrons, and appears in the computation of the \gls{eec} (the regularization of the computation presented in \Prob{ee_eec}).
 \end{exercise}
 
 
@@ -7475,7 +7452,7 @@ Though I find this example to be significantly harder than our previous examples
 
 
 \makeprob{Model Splitting Functions: \texorpdfstring{\(\le(\phi^3\ri)_{d=6}\)}{phi-cubed} Theory in Six Dimensions}{phi-cubed-splitting}{
-    Repeat the analysis of \Sec{universal features} to derive the \glslink{collinear-limit}{collinear} factorization properties of differential cross sections in the toy model of massless \(\phi^3\) theory in \(d = 6-2 \epsilon\) dimensions.
+    Repeat the analysis of \Sec{universal-features} to derive the \glslink{collinear-limit}{collinear} factorization properties of differential cross sections in the toy model of massless \(\phi^3\) theory in \(d = 6-2 \epsilon\) dimensions.
     %
     The theory has Lagrangian
     \begin{align}

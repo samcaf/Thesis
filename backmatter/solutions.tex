@@ -111,33 +111,6 @@ Assuming all partons are massless and working in Feynman gauge,
 \Soln{Kinematics for \texorpdfstring{\(e^+\,e^-\)}{electron-positron} to hadrons at NLO}{eetohadrons_kinematics}
 % ---------------------------------------
 
-Notice that
-\begin{align}
-    (p_i + p_j)^2 = 2 E_i E_j (1 - \cos\theta_{ij}) = \frac{1}{2}Q^2 x_i x_j (1 - \cos\theta_{ij})
-    \,,
-\end{align}
-which by momentum conservation is
-\begin{align}
-    (q - p_{\overline{ij}})^2 = Q^2 - 2 Q E_{\overline{ij}} = Q^2(1 - x_{\overline{ij}}) = Q^2(x_i + x_j - 1).
-\end{align}
-where \(p_{\overline{ij}}\) is the momentum of the final state which is not \(i\) or \(j\)
-%
---
-%
-for example, if \(i=q\) and \(j = g\), then \(\overline{ij} = \bar{q}\), while if \(i=q\) and \(j = \bar{q}\), then \(\overline{ij} = g\).
-
-Equating these formulae quickly yields
-\begin{align}
-    \cos\theta_{ij} &= \frac{1}{x_i x_j} - \frac{2}{x_i} - \frac{2}{x_j} + 1
-    ,
-    \\
-    \frac{m^2_{ij}}{Q^2} &= x_i + x_j - 1
-    .
-\end{align}
-
-The Lorentz-invariant form of these equations can be quickly written by noting that \(x_i = 2 E_i/\sqrt{s} = \frac{2 p_i\cdot q}{q^2}\), since, in the center of mass frame, the photon has momentum \(q \reppedby \sqrt{s}(1,0,0,0)\).
-
-
 
 % ---------------------------------------
 \Soln{Factorization of Collinear Phase Space}{phase-space-factorization}
@@ -416,7 +389,7 @@ Previously, we saw that amplitudes could be decomposed into lower-point amplitud
 %
 A similar decomposition can be made for the phase space measure.
 
-This was done in \Sec{eikonal-limit}, so let us do it in a slightly different way,
+This was done in \Sec{universal-features}, so let us do it in a slightly different way,
 \begin{align}
     \dd \widetilde\Phi_n
     &=
@@ -721,7 +694,7 @@ these low-energy singularities are called \vocab{soft divergences}, and are impo
 
 
 % ---------------------------------------
-\Soln{Splitting Functions of the SM I: QED}{massless-qed}
+% \Soln{Splitting Functions of the SM I: QED}{massless-qed}
 % ---------------------------------------
 
 
@@ -1169,7 +1142,7 @@ We can also conclude
         \frac{\ln^n(a)}{a}
         \,,
     \end{align}
-    which is simply a manifestation of the alternative distributional definition of plus-functions given in \Eq{extended_plus-fn} of Remark~\ref{rem:extended_definition} together with the fundamental theorem of calculus, as emphasized in Exercise~\ref{ex:plus-fn-derivative}.
+    which is simply a manifestation of the alternative distributional definition of plus-functions given in \Eq{extended_plus-fn} of Remark~\ref{rem:extended-plus-definition} together with the fundamental theorem of calculus, as emphasized in \Exercise{plus-fn-derivative}.
 }
 \end{remarkbox*}
 
@@ -1334,7 +1307,7 @@ as a special case of Equation (4.20) of \href{https://arxiv.org/pdf/hep-ph/98013
 
 
 % ---------------------------------------
-\Soln{Substructure with Multiple Emissions}{ungroomed-me}
+% \Soln{Substructure with Multiple Emissions}{ungroomed-me}
 % ---------------------------------------
 
 
@@ -1381,7 +1354,7 @@ A concise flow of code for our parton shower at MLL accuracy is shown in \Fig{ps
 \end{tikzpicture}
 }
 % Caption
-    \caption[The basic code flow of our simple parton shower algorithm.]{The basic code flow of the parton shower algorithm described in \Prob{partonshower}.
+    \caption[The basic code flow of our simple parton shower algorithm.]{The basic code flow of the parton shower algorithm described in \Prob{parton-shower}.
     %
     The veto algorithm is only used when considering MLL effects and is skipped at LL.
     %
@@ -1773,7 +1746,7 @@ This is the random variable whose probability distribution is computed by the \g
 %        {\alpha_s\le(Q\,\Rjet\ri)}
 %    \ri)
 %    ^
-%    {\frac{\hat{p}(m)}{2\pi\beta_0}}
+%    {\frac{2 \hat{p}(m)}{\beta_0}}
 %    _{f\leftarrow i}
 %    .
 %\end{align}
@@ -1815,14 +1788,37 @@ The integration variables can be any pair \(x_i,\,x_j\) of \(x\)-variables with 
 %
 the remaining variable is determined by the constraint \(x_q + x_{\overline{q}} + x_g = 2\).
 
-In terms of the \(x_i\) the angle between partons \(i\) and \(j\) is given by
+
+First, let us record some kinematics.
+%
+Notice that
 \begin{align}
-    \cos\theta_{ij} = \frac{2}{x_i x_j} - \frac{2}{x_i} - \frac{2}{x_j} + 1
+    (p_i + p_j)^2 = 2 E_i E_j (1 - \cos\theta_{ij}) = \frac{1}{2}Q^2 x_i x_j (1 - \cos\theta_{ij})
     \,,
 \end{align}
-as shown in \Prob{eetohadrons_kinematics}.
+which by momentum conservation is
+\begin{align}
+    (q - p_{\overline{ij}})^2 = Q^2 - 2 Q E_{\overline{ij}} = Q^2(1 - x_{\overline{ij}}) = Q^2(x_i + x_j - 1).
+\end{align}
+where \(p_{\overline{ij}}\) is the momentum of the final state which is not \(i\) or \(j\)
+%
+--
+%
+for example, if \(i=q\) and \(j = g\), then \(\overline{ij} = \bar{q}\), while if \(i=q\) and \(j = \bar{q}\), then \(\overline{ij} = g\).
 
-In terms of these variables, we may write the NLO EEC in integral form (away from \(\chi = 0\), if we neglect contact terms with \(i=j\)) as
+Equating these formulae quickly yields
+\begin{align}
+    \cos\theta_{ij} &= \frac{1}{x_i x_j} - \frac{2}{x_i} - \frac{2}{x_j} + 1
+    ,
+    \\
+    \frac{m^2_{ij}}{Q^2} &= x_i + x_j - 1
+    .
+\end{align}
+%
+The Lorentz-invariant form of these equations can be quickly written by noting that \(x_i = 2 E_i/\sqrt{s} = \frac{2 p_i\cdot q}{q^2}\), since, in the center of mass frame, the photon has momentum \(q \reppedby \sqrt{s}(1,0,0,0)\).
+
+
+In terms of the \(x_i\), we may therefore write the NLO EEC in integral form (away from \(\chi = 0\), if we neglect contact terms with \(i=j\)) as
 \begin{align}
     \label{eq:ee2hadrons_EEC}
     \frac{\dd\Sigma_\text{EEC}}{\dd\chi}

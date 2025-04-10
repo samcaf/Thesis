@@ -6,31 +6,101 @@
 
 \epigraph{If you think this Universe is bad, you should see some of the others.}{Philip K. Dick}
 
-
-\begin{sambox}{Some TODOs for Sam}{}
-    \begin{itemize}
-        \item
-            Need to fix header on problem pages, which simply use the most recent appendix instead.
-
-        \item
-            Add epsilon UV/IR calculations involving EEC
-
-        \item
-            Unify notation of epigraphs, probably want names then titles
-    \end{itemize}
-\end{sambox}
-
 Here is some common notation used throughout this thesis.
-
 \begin{itemize}
     \item
         \(A := B\) means ``\(A\) is defined to mean \(B\)'', as does \(B =: A\);
 
     \item
-        For notational simplicity, I will set the physical constants \(\hbar = c = 1\) in all printed equations;
+        For simplicity, I set the physical constants \(\hbar = c = 1\) in all printed equations;
 
     \item
-        We make the unfortunate choice to use the ``mostly-minus'' metric, \(g^{\mu\nu} = \text{diag}\le(+,\,-,\,-,\,-\ri)\), with the gamma matrix algebra \(\acomm{\gamma^\mu}{\gamma^\nu} = 2 g^{\mu\nu}\,.\).
+        We make the unfortunate choice to use the ``mostly-minus'' metric, \(g^{\mu\nu} = \text{diag}\le(+,\,-,\,-,\,-\ri)\), such that \(\acomm{\gamma^\mu}{\gamma^\nu} = 2 g^{\mu\nu}\), and with the saving grace that we can write \(p^2 = m^2\).
+
+    \item
+        We will use the symbol \(z_i\) to denote the energy fraction particle \(i\) relative to a ``parent'' of any type, such as a pair of particles, a jet, or an entire event (which of these should be clear based on context):
+        \begin{align}
+            z_i
+            \eqdelta
+            \frac{E_i}{E_\text{tot}}
+            \,.
+        \end{align}
+
+
+    \item
+        We will also use the following standard definitions:%
+        \footnote{
+            We are leaving out the term \(-\epsilon \alpha_s\) that appears in \(d=4-2\epsilon\) dimensions when defining \(\alpha_s\) to be dimensionless.
+            %
+            The extra factor of two in the beta function vanishes if one defines the beta function instead to be the derivative of \(\alpha_s\) relative to \(\ln\mu^2\), or if it is written in terms of \(g_s\):
+            %
+            \(\dd g_s / \dd\ln_\mu = - g_s \sum_n \beta_n \le(\alpha_s/4\pi\ri)^{n+1}\).
+        }
+        \begin{subequations}
+        \label{eq:qcd_coupling}
+        \begin{align}
+            \label{eq:as_defn}
+            \alpha_s = \frac{g^2_s}{4\pi}
+            \,,&
+            \qquad\quad
+            \as = \frac{\alpha_s}{4\pi}
+            \,,
+            \\
+            \label{eq:beta_fn_defn}
+            \beta(\alpha_s)
+            :=
+            \frac{\dd}{\dd\log\mu}\alpha_s&(\mu)
+            =
+            -2 \, \alpha_s
+            \sum_{n=0}^\infty
+            \beta_n \le(\frac{\alpha_s}{4\pi}\ri)^{n+1}
+            \,.
+        \end{align}
+        At one loop (i.e. ignoring \(\beta_m\) for \(m \geq 1\)),
+        \begin{align}
+            \label{eq:alphas_1loop}
+            \alpha_s^\text{(1-loop)}(\mu)
+            &=
+            \frac{\alpha_s(Q)}{1 + \alpha_s(Q) \beta_0 \log(\mu/Q)/2\pi}
+            \,.
+        \end{align}
+        where
+        \begin{align}
+            \beta_0 = \frac{11}{3}\,C_A - \frac{4}{3}\,T_f N_f
+        \end{align}
+        \end{subequations}
+        is the leading coefficient of the QCD beta function, \(N_f\) denotes the number of effectively massless quark flavors (\(N_f = 5\) in this thesis), \(Q\) indicates a reference scale (such as the energy scale of a hard process), and
+        \begin{align}
+        \label{eq:group_theory}
+            C_F = \frac{N_c^2 - 1}{2N_c}
+            \xrightarrow[]{\text{QCD}}
+            \frac{4}{3}
+            \,,
+            \qquad
+            C_A = N_c
+            \xrightarrow[]{\text{QCD}}
+            3
+            \,,
+            \qquad
+            T_F = \frac{1}{2}
+            \,,
+        \end{align}
+        denote the quadratic Casimir for the fundamental representation of \(SU(N_c)\), the quadratic Casimir for the adjoint representation, and the Dynkin index of the fundamental representation, respectively.
+        %
+        The expressions of \Eq{group_theory} are often referred to collectively as \textit{group theory factors}.
+        %
+        For QCD, \(N_c = 3\), \(C_F = 4/3\), and \(C_A = 3\), giving \(\beta_0 = 11 - 2 N_f / 3\,.\)
+
+
+    \item
+        The \glslink{splittingfn}{Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) splitting functions}, computed in \Sec{splitting-functions} and related to the \glslink{dglapeqn}{DGLAP equation} in \Sec{p2p-fragmentation}, are often written in the \emph{exclusive} form \(P_{i\,j \leftarrow \ell}(z)\), with a probabilistic interpretation related to the probability of a parton of type \(\ell\) to split into partons of type \(i\), carrying an energy fraction \(z = z_i = E_i / E_\ell\), and type \(j\), carrying an energy fraction of \(z_j = 1-z\).
+        %
+        The \emph{inclusive} (meaning ``including a sum over some final state information'') DGLAP splitting functions are defined by
+        \begin{align}
+            \sum_{k'} P_{i\,k' \leftarrow \ell}(z) =: p_{i\leftarrow \ell}(z)
+            \,.
+        \end{align}
+
 
     \item
         The Mellin transform of a function \(f(x)\) with support on the interval \((0,1)\) (as in all concrete applications in this work) is
@@ -43,70 +113,6 @@ Here is some common notation used throughout this thesis.
             \,.
         \end{align}
 
-    \item
-        \sam{LO, NLO, LL, NLL, etc.}
-
-    \item
-        The \textit{energy fraction} carried by a particular particle in a scattering event or jet, relative to the total energy of the event or jet, will play an important role in this thesis.
-        %
-        We will use the symbol \(z_i\) to denote the energy fraction particle \(i\) relative to a ``parent'' of any type, such as a pair of particles, a jet, or an entire event (which of these should be clear based on context):
-        \begin{align}
-            z_i
-            \eqdelta
-            \frac{E_i}{E_\text{tot}}
-            \,.
-        \end{align}
-
-    \item
-        We will also use the following standard definitions:
-        \begin{subequations}
-        \label{eq:qcd_coupling}
-        \begin{align}
-            \label{eq:as_defn}
-            \as &= \frac{\alpha_s}{4\pi}
-            \\
-            \label{eq:beta_fn_defn}
-            \frac{\dd}{\dd\log\mu}\alpha_s(\mu)
-            &\eqdelta
-            \beta(\alpha_s)
-            =
-            -2\beta_0 \alpha_s(\mu)^2 + \mathcal{O}\le(\alpha_s(\mu)^3\ri)
-            \\
-            \label{eq:alphas_1loop}
-            \alpha_s^\text{(1-loop)}(\mu)
-            &=
-            \frac{\alpha_s(Q)}{1 + 2\alpha_s(Q) \beta_0 \log(\frac{\mu}{Q})}
-            ,
-        \end{align}
-        where
-        \begin{align}
-            \beta_0 = \frac{1}{12\pi}\le(11\,C_A - 4\,T_f n_f\ri)
-        \end{align}
-        \end{subequations}
-        is the leading coefficient of the QCD beta function, \(n_f = 5\) denotes the number of effectively massless quark flavors, \(Q\) indicates a reference scale (such as the energy scale of a hard process), and
-        \begin{subequations}
-        \label{eq:group_theory}
-        \begin{align}
-            C_F &= \frac{N_c^2 - 1}{2N_c}
-            \xrightarrow[]{\text{QCD}}
-            \frac{4}{3}
-            \\
-            C_A &= N_c
-            \xrightarrow[]{\text{QCD}}
-            3
-            \\
-            T_F &= \frac{1}{2}
-            ,
-        \end{align}
-        \end{subequations}
-        denote the quadratic Casimir for the fundamental representation of \(SU(N_c)\), the quadratic Casimir for the adjoint representation, and the Dynkin index of the fundamental representation, respectively.
-        %
-        The expressions of \Eq{group_theory} are often referred to collectively as \textit{group theory factors}.
-        %
-        For QCD, \(N_c = 3\), \(C_F = 4/3\), and \(C_A = 3\), giving \(
-            \beta_0 = \le(11 - 2 n_f / 3\ri)/4\pi
-            .
-        \)
 \end{itemize}
 
 

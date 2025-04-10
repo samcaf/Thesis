@@ -77,7 +77,7 @@ There is one final feature we will discuss that is desirable for jet grooming pr
 \textit{continuity}.
 
 
-The principle of \gls{lphd}, discussed in \Def{lphd}, suggests that small changes in hadronic energy flow should be associated with small changes in the associated partonic degrees of freedom, and vice versa.
+The principle of \gls{lphd} (discussed in \Sec{phd}) suggests that small changes in hadronic energy flow should be associated with small changes in the associated partonic degrees of freedom, and vice versa.
 %
 Therefore, we will hope to achieve a way of isolating high-energy, partonic information in a \textit{continuous} way:
 %
@@ -325,7 +325,7 @@ The only difference is that we now have \(X_i = 0\) for \(z_i < \zcut\).%
     Therefore, the cumulative distribution at LL can be written
     \begin{equation}
     \begin{aligned}
-        \label{eq:LL_mass}
+        \label{eq:LL_mass_sd}
         \Sigma^{\rm(LL)}_{m^2}(m^2)
         =
         \sum_{n = 0}^{\infty}\frac{1}{n!}
@@ -565,9 +565,18 @@ Using the singular pieces of the splitting functions and keeping only leading lo
     %
     Unfortunately, the kink in the radiator presents a complication when attempting to achieve computations beyond LL.
     %
-    In particular, the formula of \Eq{multiple-emissions} for the inclusion of multiple-emissions effects on cumulative distributions of additive observables depends on the derivative of the radiator;
+    In particular, the formula of \Eq{resummed-multiple-emissions} for the inclusion of multiple-emissions effects on cumulative distributions of additive observables depends on the derivative of the radiator.
     %
-    therefore, probability distributions which leverage \Eq{multiple-emissions} depend on the \textit{second derivative} of the radiator.
+    We repeat it here for convenience:
+    \begin{align}
+        \Sigma_X(x)
+        &=
+        \frac{\exp\le(-R_X(x) - \gamma_E R'_X(x)\ri)}{\Gamma\le(1 + R'_X(x)\ri)}
+        \,,
+    \end{align}
+    where \(R'\) denotes the negative logarithmic derivative of \(R\).
+    %
+    Therefore, probability distributions which leverage \Eq{resummed-multiple-emissions} depend on the \textit{second derivative} of the radiator.
     %
     Though the radiator turns out to have a well defined derivative, e.g. in \Eq{ll-cc-mass}, it is not second-differentiable, and it is more difficult to account for multiple-emissions effects in \glslink{hard-cutoff-groomer}{hard-cutoff-groomed} jet observables than in ungroomed jet observables.
 }
@@ -912,7 +921,7 @@ Like the \gls{constant-cutoff} algorithm, \gls{soft-drop} is a tree-based, angul
 \footnote{
     As a reminder this means that \gls{soft-drop} acts on a jet with characteristic radius \(R_0\) that is first clustered using an arbitrary algorithm, such as the anti-\(k_t\) algorithm, and then re-clustered with the angular-ordered Cambridge-Aachen (C/A) algorithm.
     %
-    As discussed in \Secs{reclustering}{constantcutoff}, this produces a binary tree of clustered particles within the jet, such that particles deeper in the tree tend to be closer in angle.
+    As discussed in \Sec{reclustering}, this produces a binary tree of clustered particles within the jet, such that particles deeper in the tree tend to be closer in angle.
 }
 %
 and is therefore computationally efficient and amenable to resummed calculations.
@@ -1031,7 +1040,7 @@ We would also like to understand the analytic behavior of the substructure of je
 %
 Luckily, the \glspl{substructure-diagram} we developed for use with the Constant Cutoff grooming algorithm can be quickly extended for use with Soft Drop.
 %
-Let us start with the most similar examples, for which \(\gls{beta-sd}=0\).
+Let us start with the most similar examples, for which \(\betasd=0\).
 
 \begin{lemma}{}{}
     The LL \glspl{substructure-diagram} for additive observables evaluated on Soft-Drop-groomed jets with \(\betasd=0\) are identical to the \glspl{substructure-diagram} for the Constant Cutoff algorithm at leading-logarithmic accuracy.
@@ -1352,8 +1361,7 @@ We begin with a toy example of a \PIRANHA{} groomer in \Sec{constant-cutoff} -- 
 }
 \begin{itemize}
     \item
-    \vocab{\gls{rs}} is a family of nearly-continuous, computationally efficient, tree-based algorithms.
-    % motivated by P-AS and P-IVS.
+        \vocab{\gls{rs}} is a family of nearly-continuous, computationally efficient, tree-based algorithms introduced in \Reff{Alipour-Fard:2023prj}.
     %
     We develop the concrete implementation of \vocab{\glslink{rsf}{Recursive Subtraction with a Fraction \(f_\text{soft}\) (P-RSF\(_{f}\))}} in \Sec{recursive-subtraction}.
     %
@@ -1367,35 +1375,78 @@ We begin with a toy example of a \PIRANHA{} groomer in \Sec{constant-cutoff} -- 
 \end{itemize}
 
 
-\PIRANHA{} groomers may be roughly imagined as optimally transporting hungry piranhas to eat up delicious low-energy pollution.
+
+Before we give a more detailed account of \PIRANHA{} grooming, however, let us start with some guiding philosophy.
 %
-Given an ungroomed event with energy density \(\mathcal{E}_{0}\) in the pseudorapidity-azimuth angle plane and any ansatz \(\rhoC\) for the energy density of low-energy pollution, one particularly succinct \PIRANHA{} algorithm is
+Given a measured collider event \(\mathcal{E}_0\) and a model \(\rhoC\) for the energy density of low energy pollution, we roughly want to subtract out the contamination to obtain a groomed collider event \(\mathcal{E}_g\);
 %
-\sam{haven't introduced EMD yet}
+na\"ively, we wish to write, formally,
+\begin{align}
+    \label{eq:naive-subtraction}
+    \mathcal{E}_g[\mathcal{E}_0]
+    =
+    \mathcal{E}_0
+    -
+    \rhoC
+    \,.
+\end{align}
+However, strict point-wise subtraction (i.e. \(\mathcal{E}_g(\hat{n}) = \mathcal{E}_0(\hat{n}) -\rhoC(\hat{n})\)) is not available to us if we want \(\mathcal{E}_g\) to be a well-defined energy flow:
 %
-\sam{borrow from talks}
+subtraction can produce negative numbers, and negative energies are not allowed in the space of energy flows.
+%
+However, based on the motivation above, we want a grooming algorithm that behaves \emph{roughly} through subtraction.
+%
+This motivation will push us to define the constant subtraction and Recursive Subtraction algorithms of \Secs{constant-subtraction}{recursive-subtraction}.
+
+In \Sec{emd}, however, we will introduce technology that will allow us to go further and take \Eq{naive-subtraction} nearly literally.
+%
+In particular, we will introduce the EMD:
+%
+a \emph{metric} that enables us to generalize the notion of subtraction.
+%
+Replacing \(\mathcal{E}\) by \(E\) and \(\rhoC\) by \(c\) for subtraction on the real line, we can write \(E_0 - c = \text{argmin}_{E_g'}d(E_g' + c, E_0)\), where \(d(\cdot,\cdot)\) is the standard metric on the real line.
+%
+This complicated way of writing regular subtraction of real numbers gives us the correct intuition for how to proceed with the EMD:
+%
+given an ungroomed event with energy density \(\mathcal{E}_{0}\) in the pseudorapidity-azimuth angle plane and any ansatz \(\rhoC\) for the energy density of low-energy pollution, one particularly succinct \PIRANHA{} algorithm is
+%
 \begin{align}
     \mathcal{E}_g\left[\mathcal{E}_0\right]
     =
     \underset{\mathcal{E}'}{\arg \min}\ {\rm EMD}_{\beta, R}
     \left(\mathcal{E}_0, \mathcal{E}' + \rhoC\right)
     \label{eq:simple_piranha_intro}
-    ,
+    \,,
 \end{align}
-where \(\mathcal{E}_g\) is a groomed energy distribution, \(\rho\,\mathcal{C}\) is a free input to the algorithm indicating a model of the energy flow of the contaminating radiation (see \Sec{emd}), and explicit dependence on the EMD metric makes the continuity of \(\mathcal{E}_g\left[\mathcal{E}_0\right]\) manifest.
+where explicit dependent on the EMD metric makes the continuity of \(\mathcal{E}_g\left[\mathcal{E}_0\right]\) manifest.
+%
+Because the EMD is an optimal transport algorithm, \PIRANHA{} groomers may be roughly imagined as optimally transporting hungry piranhas to eat up delicious low-energy pollution.
 
 \gls{apollonius} is a direct, continuous application of \Eq{simple_piranha_intro} with \(\beta = 1\), and for which \(\rhoC\) is uniform in the pseudorapidity-azimuth plane to approximate common sources of \gls{additive-contamination} such as \gls{pileup} and \gls{ue} \cite{Soyez:2018opl,Monk:2018clo,Sjostrand:1987su,Sjostrand:2014zea,Dasgupta:2007wa,Kirchgaesser:2020poq,Moraes:2007rq,CDF:2015txs,Larkoski:2021hee,Baron:2020xoi,Marzani:2017kqd}.
 %
 \gls{ivs} approximates \gls{apollonius} and preserves its continuity.
 %
-Finally, the \glslink{rsf}{Recursive Subtraction with a Fraction 1/2 (\PRSF{1/2})} algorithm we introduce in \Sec{rsf} furnishes, to our knowledge, the first example of a soft continuous tree-based jet grooming algorithm;
+Finally, the \glslink{rsf}{Recursive Subtraction with a Fraction 1/2 (\PRSF{1/2})} algorithm we introduce in \Sec{recursive-subtraction} furnishes, to our knowledge, the first example of a soft continuous tree-based jet grooming algorithm;
 %
 the soft discontinuities of other P-RS algorithms occur only in highly suppressed regions of phase space.
 
 
 This section is devoted to an introduction of the \PIRANHA{} paradigm.
 %
-Readers looking for a more detailed discussion of continuity may want to skip to \Sec{softdicont}, which examines the soft discontinuities present in hard-cutoff groomers and \gls{rsf}, the soft continuity of \PRSF{1/2}, and angular discontinuity in tree-based groomers.
+Readers looking for a more detailed discussion of continuity may want to skip to \Sec{discontinuity}, which examines the soft discontinuities present in hard-cutoff groomers and \gls{rsf}, the soft continuity of \PRSF{1/2}, and angular discontinuity in tree-based groomers.
+
+
+\remark{}{
+    Our presentation, beginning with the constant subtraction and P-RS algorithms \emph{before} introducing \gls{apollonius}, is chronologically backwards and chosen with the goal of pedagogical clarity.
+    %
+    \gls{apollonius} and \gls{ivs} were both introduced in \Reff{Komiske:2020qhg}, and myself and my collaborators introduced P-RS and the \PIRANHA{} paradigm in the follow-up work of \Reff{Alipour-Fard:2023prj}.
+    %
+    The constant subtraction algorithm that we begin with now is not really of formal interest because it is collinear unsafe;
+    %
+    however, it exposits the basics of subtractive algorithms without too many algorithmic steps, and is conceptually similar to the constant cutoff algorithm we introduced in \Sec{constant-cutoff}.
+    %
+    For this reason, we now use the constant subtraction algorithm to introduce the basics of our calculations of \PIRANHA{}-groomed substructure.
+}
 
 
 
@@ -1414,6 +1465,9 @@ To overcome this difficulty, we will treat particles the same whether they are b
 %
 In this section, we introduce the \emph{constant subtraction} algorithm, which is nearly identical to the constant cutoff algorithm except that it \textit{always} subtracts from the hard branch of the jet by taking \(z \mapsto z_g = z - \zcut\).
 
+The constant subtraction algorithm is not quite a \PIRANHA{} algorithm -- it is not even collinear safe;
+%
+nonetheless, additive substructure observables computed on constant-subtraction groomed jets \textit{are} collinear safe, and the computation of additive observables in the simple context of this section will give us a sneak peak of computations of jet substructure in the Recursive Subtraction algorithms we explore in \Sec{recursive-subtraction}.
 
 \begin{definitionbox}{Constant Subtraction Grooming Algorithm}{}
     The \vocab{constant subtraction grooming algorithm} is a map which takes in a jet and returns a groomed result.
@@ -1440,7 +1494,7 @@ In this section, we introduce the \emph{constant subtraction} algorithm, which i
     \end{enumerate}
 \end{definitionbox}
 
-We are starting to see why the name \PIRANHA{} is suitable;
+Though the constant subtraction algorithm is not technically a \PIRANHA{} algorithm, we are starting to see why the name \PIRANHA{} is suitable;
 %
 not only does this algorithm annihilate the soft particles associated with \glslink{pileup}{pileup} and infra-red radiation, but it also can be imagined as putting a fish on each softer branch with a hunger for energy (fraction) given by \zcut, and which will subtract from its assigned branch until either it eats its fill or it completely annihilates its meal.
 
@@ -1509,7 +1563,7 @@ Up to terms that are power-suppressed in \(C\), \(\zcut\), or both, the fixed-or
 %
 where \(\tilde C = C \times (1-\zcut)^2\), \(C_{R_i}\) is the quadratic Casimir of the color representation of the initiating parton, and we have defined the factor \(B_i\) to capture behavior from non-singular components of the splitting functions:
 %
-\(B_q = -3/4\) for quark initiated jets and \(B_g = -11/12 + n_f/(6 C_A)\) for gluon initiated jets.
+\(B_q = -3/4\) for quark initiated jets and \(B_g = -11/12 + N_f/(6 C_A)\) for gluon initiated jets.
 \end{example}
 
 \begin{exercise}
@@ -1548,7 +1602,7 @@ where \({C_{\rm max}} = (1 - \zcut)^{2}/4\) is the maximum possible value of \(C
 \noindent
 The plus-function regularized expression of \Eq{plusdist_prsf_nlo} may be derived by replacing \(\overline{p}(z)\) in \Eq{NLO_dist_setup} with its plus-function analog.
 %
-Alternatively, one can recognize that the full distribution for \(C_1^{(\varsigma)}\) must integrate to one even at \glslink{accuracy}{NLO}, and that additional contributions to the \glslink{accuracy}{NLO} distribution in \Eq{prsf_LO} can only come from the regions of phase space where \(C_1^{(\varsigma)}=0\);
+Alternatively, one can recognize that the full distribution for \(C_1^{(\varsigma)}\) must integrate to one even at \glslink{accuracy}{NLO}, and that additional contributions to the \glslink{accuracy}{NLO} distribution in \Eq{prsf_NLO} can only come from the regions of phase space where \(C_1^{(\varsigma)}=0\);
 %
 this \gls{sum-rule} is enough to uniquely specify the result of \Eq{plusdist_prsf_lo} at \glslink{accuracy}{NLO}.
 \end{exercise}
@@ -1556,7 +1610,7 @@ this \gls{sum-rule} is enough to uniquely specify the result of \Eq{plusdist_prs
 
 
 \remark{}{
-    Since all \PIRANHA{} algorithms are subtractive, and subtraction from the harder branch of an emission has a subleading effect on the value of \(C_1^{(\varsigma)}\), \Eq{plusdist_prsf_nlo} provides an approximate expression for the NLO distribution of \(C_1^{(\varsigma)}\) for any \PIRANHA{}-groomed jet.
+    Since \PIRANHA{} algorithms are subtractive, and subtraction from the harder branch of an emission has a subleading effect on the value of \(C_1^{(\varsigma)}\), \Eq{plusdist_prsf_nlo} provides an approximate expression for the NLO distribution of \(C_1^{(\varsigma)}\) for any \PIRANHA{}-groomed jet.
     %
     Though the value of the effective grooming parameter may depend on the configuration of the particles for a more generic \PIRANHA{} groomer -- i.e. though in principle we must replace \(\zcut\to \zcut(z,\theta)\) -- we may use the soft and collinear limits to justify replacing \(\zcut(z,\theta)\) by \(\zcut(0,0)\) in \Eq{plusdist_prsf_nlo} for the applications considered in this thesis.
     %
@@ -1593,7 +1647,7 @@ this \gls{sum-rule} is enough to uniquely specify the result of \Eq{plusdist_prs
         \,.
     \end{align}
 
-    Argue that we can use \Eq{multiple-emissions} to realize a well-defined, continuous probability distribution for the constant-subtraction-groomed \gls{gecf} which includes the effects of multiple emissions.
+    Argue that we can use \Eq{resummed-multiple-emissions} to realize a well-defined, continuous probability distribution for the constant-subtraction-groomed \gls{gecf} which includes the effects of multiple emissions.
 \end{exercise}
 
 
@@ -1916,7 +1970,7 @@ For example, the EMD between a parton-level jet and the same jet after \gls{hadr
 %
 The parton-hadron EMD is therefore a powerful, observable independent tool for characterizing the response of a jet to \glspl{soft-distortion} from \gls{hadronization}.
 %
-We use the EMD in our analysis of grooming sensitivity to several sources of low-energy pollution in \Secs{soft_distortion}{add_contam}.
+We use the EMD in our analysis of the sensitivity of grooming to several sources of low-energy pollution in Sections \ref{sec:pira-hadronization} through \ref{sec:pira-ue}.
 
 
 We may use the EMD to define continuity more precisely for maps on energy flows, in the spirit of \href{https://arxiv.org/pdf/2004.04159.pdf#page=5\&zoom=100,0,350}{Definition 1} of \Reff{Komiske:2020qhg}:
@@ -1964,7 +2018,7 @@ For the more complicated \PIRANHA{} groomers we introduce in this paper, it will
     \item
         \glslink{angular-discontinuity}{\vocab{Angular Continuity}} is the requirement that a groomer is invariant under infinitesimally small angular changes in the directions of jet constituents.
 \end{itemize}
-\sam{Maybe this belongs earlier}
+
 
 We will see that hard-cutoff groomers and even many recursive subtraction algorithms suffer from soft discontinuity in \Secs{softdrop}{rsf_discont} respectively.
 %
@@ -2023,8 +2077,10 @@ It was shown in \href{https://arxiv.org/pdf/2004.04159.pdf#page=33\&zoom=100,0,0
 %
 In the piranha analogy, \(\rhoC\) roughly describes the distribution of our piranhas, with a ``piranha energy density'' \(\rho\), while the minimization problem of \Eq{simple_piranha} provides them with the transport plans that guide them to subtract from the \(p_T\) of jet constituents.
 %
-Furthermore, the form of \(\mathcal{E}_g[\mathcal E_0]\) in \Eq{simple_piranha} is manifestly continuous due to its dependence on the EMD metric.%
-\footnote{
+Furthermore, the form of \(\mathcal{E}_g[\mathcal E_0]\) in \Eq{simple_piranha} is manifestly continuous due to its dependence on the EMD metric.
+
+
+\remark{care-with-continuity}{
     While \(\mathcal{E}_g[\mathcal E_0]\) in \Eq{simple_piranha} is continuous, manifest continuity due to dependence on the EMD should be treated skeptically.
     %
     For example, the ``grooming procedure'' associated with  \Eq{simple_piranha} may not be continuous if the \(\arg \min\) operation is restricted to a non-convex sub-space of the full space of events.
@@ -2086,7 +2142,7 @@ Furthermore, the form of \(\mathcal{E}_g[\mathcal E_0]\) in \Eq{simple_piranha} 
     %
     (b) An Apollonius diagram in the rapidity-azimuth plane, also from \Reff{Komiske:2020qhg}, used by the \glslink{apollonius}{Apollonius Subtraction (P-AS) algorithm}.
     %
-    \gls{apollonius}, an implementation of the \PIRANHA{} paradigm described in \Sec{as}, models contaminating radiation as uniform in the rapidity-azimuth plane \(\mathcal C = \mathcal U\).
+    \gls{apollonius}, an implementation of the \PIRANHA{} paradigm described in \Sec{fully-continuous-piranha}, models contaminating radiation as uniform in the rapidity-azimuth plane \(\mathcal C = \mathcal U\).
     %
     The color intensity of each Apollonius region is proportional to the amount by which the corresponding particle \(i\) is groomed, and thus to the area \(A^{\rm Apoll.}_i\) of the region.
 }
@@ -2409,7 +2465,7 @@ where  \(C_1^{(\varsigma)}(z,\theta)\) is the functional form of the groomed ECF
     \label{ex:rsf-gecf}
     Up to terms that are power-suppressed in \(C\), \(\zcut\), or both, show that the NLO distribution for \gls{rsf}-groomed \gls{gecf} away from \(C = 0\) is
     %
-    \label{eq:prsf_LO}
+    \label{eq:prsf_NLO_1}
     \begin{align}
         \rho^{\rm(LO)}_{i,~\varsigma}(C>0)
         &=
@@ -2435,10 +2491,10 @@ where  \(C_1^{(\varsigma)}(z,\theta)\) is the functional form of the groomed ECF
     %
     where \(\tilde C = C \times (1-\zcut)^2 / (1 - (1-f)\zcut)\), \(C_{R_i}\) is the quadratic Casimir of the color representation of the initiating parton, and we have defined the factor \(B_i\) to capture behavior from non-singular components of the splitting functions:
     %
-    \(B_q = -3/4\) for quark initiated jets and \(B_g = -11/12 + n_f/(6 C_A)\) for gluon initiated jets.
+    \(B_q = -3/4\) for quark initiated jets and \(B_g = -11/12 + N_f/(6 C_A)\) for gluon initiated jets.
 \end{exercise}
 
-\remark{}{
+\remark{recursive-subtraction-virtual}{
     As in Exercise~\ref{ex:constant-subtraction-virtual}, including the \(\mathcal{O}(\alpha_s^0)\) jet configuration with a single parton for which \(C_1^{(\varsigma)} = 0\), the two-parton contributions for which \(z < f \zcut\) and the softer emission is completely eliminated, and the virtual contributions at \(\mathcal{O}(\alpha_s^1)\), we can write the full \glslink{accuracy}{NLO} probability distribution for \(C_1^{(\varsigma)}\) as
     \begin{align}
         \label{eq:plusdist_prsf_lo}
@@ -2461,7 +2517,7 @@ where \({C_{\rm max}} = (1/2 - f \zcut)(1 - (1-f)\zcut)/(1 - \zcut)^2\) is the m
     %
     \Eq{plusdist_prsf_lo} can be obtained simply by using the same logic of \textit{sum rules} discussed in the hint to Exercise~\ref{ex:constant-subtraction-virtual}:
     %
-    we need only remember that the full distribution for \(C_1^{(\varsigma)}\) must integrate to one even at \glslink{accuracy}{NLO}, and additional contributions to the \glslink{accuracy}{NLO} distribution in \Eq{prsf_LO} can only come from the regions of phase space where \(C_1^{(\varsigma)}=0\).
+    we need only remember that the full distribution for \(C_1^{(\varsigma)}\) must integrate to one even at \glslink{accuracy}{NLO}, and additional contributions to the \glslink{accuracy}{NLO} distribution in \Eq{prsf_NLO_1} can only come from the regions of phase space where \(C_1^{(\varsigma)}=0\).
     %
     Like the NLO \glslink{constant-subtraction}{constant-subtraction-groomed} substructure distributions, and unlike the \glslink{accuracy}{NLO} distributions for traditionally groomed jet substructure, the \glslink{accuracy}{NLO} distributions for \gls{rsf} groomed \(C_1^{(\varsigma)}\) do not exhibit piece-wise behavior, providing a hint of the continuity of \gls{rsf}.
 }
@@ -2687,7 +2743,7 @@ The circular dependence of the distributions of \(r_g\) and \(\zcut^{\rm(eff)}\)
     \end{equation}
     which more clearly reveals the LL contribution of the critical emission to the groomed value of \(C_1^{(\varsigma)}\).
     %
-    \Eq{ll_pdf_expansion} differs from the \glslink{accuracy}{NLO} result of \Eq{prsf_LO} by a factor of \(2\) inside the logarithm simply because we have integrated \(z\) from \(0\) to \(1/2\) and used only the singular parts of the splitting function in computing the LL result, while the \glslink{accuracy}{NLO} result includes non-singular pieces of the splitting function.
+    \Eq{ll_pdf_expansion} differs from the \glslink{accuracy}{NLO} result of \Eq{prsf_NLO_1} by a factor of \(2\) inside the logarithm simply because we have integrated \(z\) from \(0\) to \(1/2\) and used only the singular parts of the splitting function in computing the LL result, while the \glslink{accuracy}{NLO} result includes non-singular pieces of the splitting function.
     %
     By noting that the probability distribution must integrate to 1, one can also produce an expression with end-point contributions at \(C = 0\) which can then be compared to \Eq{plusdist_prsf_lo}.
 \end{example}
@@ -2803,7 +2859,7 @@ Each factor of \(\rho\) in \Eq{convolution} indicates a resummed probability dis
 %
 At the MLL level of accuracy, these resummed probability distributions are all calculated with a running coupling \(\alpha_s\).
 %
-We model non-perturbative effects by freezing the value of \(\alpha_s\) below the non-perturbative scale of \(\mu_{\rm freeze} = 1\) GeV, as in \Eq{frozencoupling}.
+We model non-perturbative effects by freezing the value of \(\alpha_s\) below the non-perturbative scale of \(\mu_{\rm freeze} = 1\) GeV, as in \Eq{frozen-coupling}.
 %
 Variations in our choice of non-perturbative scale lead only to small changes to our results.
 
@@ -2832,7 +2888,7 @@ Finally, \(C^{(\varsigma)}_{1,~\rm crit}(\thetacrit,\zcrit,\zpre)\) is the contr
 \end{itemize}
 
 \remark{}{
-    We examine the effects of \glspl{precrit-emission} and \glspl{sub-emission} on \gls{rsf}-groomed \gls{gecf} distributions, including multiple emissions effects, using the multiple emissions formula \Eq{multiple-emissions} exposited by Problem~\ref{prob:multiple-emissions}.
+    We examine the effects of \glspl{precrit-emission} and \glspl{sub-emission} on \gls{rsf}-groomed \gls{gecf} distributions, including multiple emissions effects, using the multiple emissions formula \Eq{resummed-multiple-emissions} exposited by Problem~\ref{prob:multiple-emissions}.
     %
     In particular, if we have the radiator for an additive observable \(\mathcal O\), it is simple to evaluate corrections due to the presence of multiple emissions with Laplace transform methods \cite{Banfi:2004yd} to find that, at MLL accuracy,
     %
@@ -2969,7 +3025,7 @@ In particular, \Figs{MLL_SD0}{MLL_PRSF1} compare our numerical MLL results to ha
 
 First, let us note the difference between our MLL results obtained with Monte Carlo integration and via parton showers (as in Problem~\ref{prob:parton-shower}).
 %
-Our Monte Carlo results use a frozen coupling below a non-perturbative scale \(\mu_{\rm freeze} = 1\) GeV (see, for example, \Eq{frozencoupling} of \App{soft-distortions}).
+Our Monte Carlo results use a frozen coupling below a non-perturbative scale \(\mu_{\rm freeze} = 1\) GeV (see, for example, \Eq{frozen-coupling} of \App{soft-distortions}).
 %
 Our parton shower results both freeze the coupling at \(\mu_{\rm freeze} = 1\) GeV and stop the shower below a non-perturbative cutoff \(\mu_{\rm cutoff} = 1\) MeV, tuned by hand to match results from \texttt{Pythia 8.244}.
 %
@@ -3404,7 +3460,7 @@ away from \(C_1^{(\varsigma)} = 0\), up to \(\mathcal{O}(\alpha_s^2)\) and terms
 %
 \(B_i\) is a factor due to hard-collinear pieces of the splitting function that are not singular as \(z\) approaches 0:
 %
-$B_q = -3/4$ for quarks and $B_g = -11/12+n_f/(6 C_A)$ for gluons, where $n_f$ is the number of active quark flavors.
+$B_q = -3/4$ for quarks and $B_g = -11/12+N_f/(6 C_A)$ for gluons, where $N_f$ is the number of active quark flavors.
 %
 The case \(\beta_{\rm SD} < 0\) leads to an identical result up to another constraint on \(C_1^{(\varsigma)}\), which simply multiplies the expression above by \(\Theta(C_1^{(\varsigma)} > \zcut^{\varsigma/ |\beta_{\rm SD}|})\).
 
@@ -3424,10 +3480,11 @@ In Exercise~\ref{ex:rsf-gecf}, however, we found the \glslink{accuracy}{NLO} res
         -\log\left(C_1^{(\varsigma)} + f\,\zcut\right)
         + B_i
     \right),
-    \label{eq:prsf_LO}
+    \label{eq:prsf_NLO}
 \end{equation}
-away from \(C_1^{(\varsigma)} = 0\), using the same factors of \(B_i\) as for Soft Drop, and up to terms that are power-suppressed in \(C_1^{(\varsigma)}\), \(\zcut\), or both.\footnote{
-We include some additional power-suppressed terms and additional contributions when \(C_1^{(\varsigma)} = 0\) in the \glslink{accuracy}{NLO} discussion of \App{LO_RSF}.
+away from \(C_1^{(\varsigma)} = 0\), using the same factors of \(B_i\) as for Soft Drop, and up to terms that are power-suppressed in \(C_1^{(\varsigma)}\), \(\zcut\), or both.%
+\footnote{
+    Up to virtual corrections, discussed in Remark~\ref{rem:recursive-subtraction-virtual}, and additional power-suppressed terms.
 }
 
 Notably, the P-RSF distribution for \(C_1^{(\varsigma)}\) is smooth and does not need to be defined in a piece-wise fashion.
@@ -4554,7 +4611,7 @@ Indeed, any method that varies \(f_{\rm soft}\), \(\zcut\), \(\rho\), or other p
 
    A first-principles calculation of Recursive Subtraction groomed jet observables will rely on analytic exploration of the elaborately correlated emissions of P-RS groomed jets, as well as contributions from non-global configurations.
 %
-We begin this journey in \App{calc}, but further exploration may depend on a more precise application of existing tools for jet substructure or even on newer tools in \gls{pqcd}, such as the techniques of \Reff{Larkoski:2015zka}.
+We began this journey in \Sec{pira-resummed}, but further exploration may depend on a more precise application of existing tools for jet substructure or even on newer tools in \gls{pqcd}, such as the techniques of \Reff{Larkoski:2015zka}.
 
 The study of EMD-mode \PIRANHA{} grooming, introduced in \App{grooming_in_emd_mode}, is another interesting avenue for the development of continuous grooming techniques.
 %
@@ -4656,7 +4713,7 @@ We study the responses of groomed jets to \glspl{soft-distortion} through three 
     As a concrete example of the response of substructure to soft radiation, we focus on \(\Delta C_1^{(2)} = \widetilde{C_1^{(2)}} - C_1^{(2)} \approx \Delta\left(m^2 / p_T^2\right)\), where a tilde again indicates the associated observable in the presence of a particular source of low-energy physics, while the absence of a tilde indicates the absence of low-energy effects.
 \end{itemize}
 
-We emphasize that in all of our phenomenological studies (except our studies of \glslink{ue}{the underlying event} in \Secs{ue}{pira-mass}), we examine how each source of contamination leads to changes on a ``per-jet'' level, rather than at the level of distributions of observables.
+We emphasize that in all of our phenomenological studies (except our studies of \glslink{ue}{the underlying event} in \Secs{pira-ue}{pira-mass}), we examine how each source of contamination leads to changes on a ``per-jet'' level, rather than at the level of distributions of observables.
 %
 In particular, we examine the EMD between each jet before and after contamination, and the changes in \(p_T\) and \(C_1^{(2)}\) induced by contamination for individual jets.
 %
@@ -4701,10 +4758,10 @@ First, let us briefly review how the \(p_T\)-mode algorithms we have presented f
 %
 \begin{itemize}
 \item
-\gls{apollonius} subtracts the pre-specified \(p_T\) all at once by finding the Apollonius regions associated with the event, as in \Sec{as}.
+\gls{apollonius} subtracts the pre-specified \(p_T\) all at once by finding the Apollonius regions associated with the event, as in \Sec{fully-continuous-piranha}.
 %
 \item
-\gls{ivs} subtracts the pre-specified \(p_T\) by subtracting \(p_T\) from each particle in the event until it removes a particle, and then continues recursively until the specified \(p_T\) has been removed, as in \Sec{ivs}.
+\gls{ivs} subtracts the pre-specified \(p_T\) by subtracting \(p_T\) from each particle in the event until it removes a particle, and then continues recursively until the specified \(p_T\) has been removed, as in \Sec{fully-continuous-piranha}.
 %
 \item
 P-RS subtracts the pre-specified \(p_T\) by recursively assigning fractions of the total \(p_T\) to be removed to each branch of the jet tree until it reaches the final-state particles of the jet, as in \Sec{recursive-subtraction}.
@@ -4719,7 +4776,7 @@ As a concrete example, let us construct the algorithm for \gls{ivs} in EMD mode,
 %
 \begin{enumerate}
     \item
-    \gls{ivs}\(^{(\rm EMD)}\) finds the Voronoi diagram for the event, as discussed in \Sec{ivs}, and indexes the steps of the algorithm by \(n\), starting at \(n=1\).
+    \gls{ivs}\(^{(\rm EMD)}\) finds the Voronoi diagram for the event, as discussed in \Sec{fully-continuous-piranha}, and indexes the steps of the algorithm by \(n\), starting at \(n=1\).
     %
     We define the energy flow of the algorithm after step \(n\) is completed by \(\mathcal{E}_n\), where \(\mathcal{E}_0\) is the energy flow of the original event.
     %
@@ -4740,7 +4797,7 @@ As a concrete example, let us construct the algorithm for \gls{ivs} in EMD mode,
     \end{align}
     in analogy with \Eq{ivs2}.
     %
-    As in \Sec{ivs}, \(\rho^{(n)}\) describes the maximum \(p_T\) that may be subtracted from an event before one of the particles in the event is groomed away entirely.
+    As in \Sec{fully-continuous-piranha}, \(\rho^{(n)}\) describes the maximum \(p_T\) that may be subtracted from an event before one of the particles in the event is groomed away entirely.
 
     \item
     \gls{ivs}\(^{(\rm EMD)}\) next calculates \({\rm EMD}_n\) for this proposed groomed event, and asks whether it has subtracted a total EMD of \( {\rm EMD}_{\rm cut}\) from the event.
