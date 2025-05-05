@@ -1,15 +1,6 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thesis Glossary
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \providecommand{\myglsindextext}[1]{\glsentrydesc{#1} (\glsentrytext{#1})}
-% \providecommand{\myglsindex}[1]{\index{\myglsindextext{#1}}}
-% \providecommand{\mygls}[1]{\gls{#1}\myglsindex{#1}}
-% \providecommand{\myglspl}[1]{\glspl{#1}\myglsindex{#1}}
-% \providecommand{\myGls}[1]{\Gls{#1}\myglsindex{#1}}
-% \providecommand{\myGlspl}[1]{\Glspl{#1}\myglsindex{#1}}
-
-% TODO: run `makeglossaries thesis' whenever I want to redo the glossary
-
 
 % =====================================
 % Symbols
@@ -22,66 +13,6 @@
   },
 }
 
-%    \newglossaryentry{betafunction}
-%    {
-%        name=beta function (\ensuremath{\beta}),
-%        text=beta function,
-%        description={%
-%            A function describing how the effective strength of QCD scattering changes with the energy of the scattered particles.
-%            %
-%            Not to be confused with the Euler beta function
-%        },
-%        parent=alphas
-%    }
-
-
-%    \newglossaryentry{frozencoup}
-%    {
-%      name=frozen coupling,
-%      description={
-%          A phenomenological prescription for modelling non-perturbative effects, in which the effective value of \(\alpha_s\) is fixed below an appropriately chosen non-perturbative scale
-%      },
-%      parent=alphas
-%    }
-
-
-
-% \newglossaryentry{betafunctioncoefficient}
-% {
-%     name=\ensuremath{\beta_k},
-%     description={
-%     }
-% }
-
-%\newglossaryentry{beta-sd}
-%{
-%    name=\ensuremath{\beta_\text{SD}},
-%    description={
-%        A parameter controlling the angular dependence of the \glsxshort{sd} algorithm.
-%        %
-%        As \(beta_\text{SD}\) gets larger, SD is more and more biased to remove wide-angle radiation;
-%    }
-%}
-
-
-% \newglossaryentry{as}
-% {
-%   name=\ensuremath{a_s},
-%   description={
-%   A parameterization of the strong coupling \ensuremath{a_s = }\gls{alphas}\ensuremath{/4\pi} often emerging from loop calculations.
-% },
-% }
-
-
-%\newglossaryentry{fsoft}
-%{
-%    name=\ensuremath{f_{\text{soft}}},
-%    description={%
-%        The fraction of the jet energy that is removed by \glsxshort{rsf}.
-%        %
-%        % The \gls{rsf} algorithm is described in \Section~\ref{sec:rsf}.
-%    }
-%}
 
 % =====================================
 % Glossary of Terms
@@ -1276,23 +1207,6 @@
     }
 }
 
-\newglossaryentry{elastic}
-{
-    name=elastic,
-    text=elastic scattering,
-    description={
-    },
-    parent=scattering
-}
-
-\newglossaryentry{inelastic}
-{
-    name=inelastic,
-    text=inelastic scattering,
-    description={
-    },
-    parent=scattering
-}
 
 \newglossaryentry{scet}
 {
@@ -1422,7 +1336,7 @@
     description={}
 }
 
-\newglossaryentry{vetoalg}
+\newglossaryentry{veto-algorithm}
 {
     name=algorithm,
     text=veto algorithm,

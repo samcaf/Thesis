@@ -131,8 +131,6 @@ Indeed, without some very subtle work, \textit{any} grooming procedure which att
     The mark \cmark~indicates that a groomer satisfies the associated condition, while the mark \xmark~indicates that it does not.
     %
     The mark \raisebox{0.15 em}{\danger} indicates that a groomer does not satisfy the condition, but only in a boundary region of phase space that is exponentially suppressed at leading order in perturbative QCD.
-    %
-    The mark \raisebox{0.15 em}{\danger} indicates that a groomer does not satisfy the condition, but only in a boundary region of phase space that is exponentially suppressed at leading order in perturbative QCD.\footnotemark
     }
     \label{tab:groomerlist}
 \end{table}
@@ -1318,7 +1316,6 @@ We will find that the \textsc{Piranha} paradigm itself has intricate theoretical
 \section[\textbf{P}ileup and \textbf{I}nfrared \textbf{R}adiation \textbf{A}n\textbf{n}i\textbf{h}il\textbf{a}tion (\textsc{Piranha}):\\A Paradigm for Continuous Jet Grooming]{\textbf{P}ileup and \textbf{I}nfrared \textbf{R}adiation \textbf{A}n\textbf{n}i\textbf{h}il\textbf{a}tion (PIRANHA):\\A Paradigm for Continuous Jet Grooming}
 %==============================================
 \label{sec:piranha}
-% TODO: Make sure this markright is in the right place even at the beginning of the section
 \markright{\thechapter.\thesection{} \textsc{Piranha}: A Paradigm for Continuous Jet Grooming}
 
 
@@ -4494,8 +4491,6 @@ We demonstrate that hard-cutoff groomers indeed require less additional \(\delta
 %=====================================
 \subsection{Mass Extraction with Grooming: \texorpdfstring{\(W\)}{W} and Top Jets at the LHC}
 \label{sec:pira-mass}
-% TODO: add gls mass extraction to PIRANHA mass res section
-
     As a final case study, we explore the use of \PIRANHA{} grooming strategies in the tagging of boosted objects, another useful application of traditional grooming strategies such as Soft Drop.
    %
    We must once again overcome the subtlety that \PIRANHA{} grooming strategies remove energy proportional to the grooming parameter (such as \(\zcut\) in Recursive Safe Subtraction).
@@ -4633,7 +4628,6 @@ In the next chapter, we pursue a complementary approach to designing continuous 
 Rather than directly removing soft radiation, we will \textit{ignore} it by designing energy-weighted correlators which directly probe the correlations of high-energy structures within jets.
 
 
-% TODO: where do I put SECTION ACKNOWLEDGMENTS?
 %\acknowledgments
 
 %The authors would like to express their gratitude to Matthew LeBlanc, Jennifer Roloff, and the ATLAS Jet Definitions subgroup for valuable discussions, and to Nima Zardoshti for raising insightful questions during LHCP 2022.
@@ -5287,6 +5281,7 @@ We expect that with a dedicated study with better statistics that the jagged beh
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problems}
 
+    % TODO
 \makeprob{Constant-Cutoff Substructure at MLL}{constant-cutoff-mll}{
     Find the radiator for \glslink{constant-cutoff}{constant-cutoff-groomed} angularities at MLL.
     %
@@ -5296,6 +5291,7 @@ We expect that with a dedicated study with better statistics that the jagged beh
 }
 
 
+    % TODO
 \makeprob{Constant-Subtraction Substructure at MLL}{constant-subtraction-mll}{
     Find the radiator for \glslink{constant-subtraction}{constant-subtraction-groomed} angularities at MLL.
     %
@@ -5305,12 +5301,13 @@ We expect that with a dedicated study with better statistics that the jagged beh
 }
 
 
+%\makeprob{\(\star\) Multiplicity of Groomed Subjets \(\star\)}{simple-groomed-multiplicity}{
+%    Using the leading-logarithmic principles of the partonic cascade, find the multiplicity distribution of subjets of radius \rsub{} within a jet of radius \Rjet{} that is groomed using the constant-cutoff algorithm.
 
-\makeprob{\(\star\) Multiplicity of Simple Groomed Jets \(\star\)}{simple-groomed-multiplicity}{
-    Find the multiplicity distribution for constant-cutoff-groomed jets using the principles of the partonic cascade.
-    %
-    You may wish to refer to the solution of \Prob{subjet-multiplicity}.
-}
+%    \texttt{(Hint:)}
+%    %
+%    You may wish to refer to the solution of \Prob{subjet-multiplicity}.
+%}
 
 
 

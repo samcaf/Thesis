@@ -111,11 +111,6 @@ Assuming all partons are massless and working in Feynman gauge,
 \Soln{Kinematics for \texorpdfstring{\(e^+\,e^-\)}{electron-positron} to hadrons at NLO}{eetohadrons_kinematics}
 % ---------------------------------------
 
-
-% ---------------------------------------
-\Soln{Factorization of Collinear Phase Space}{phase-space-factorization}
-% ---------------------------------------
-
 % ---------------------------------------
 \Soln{A Physical Approach to Plus-Functions}{physics-plus}
 % ---------------------------------------
@@ -669,6 +664,8 @@ where we have defined
     \,,
 \end{align}
 where as before, the final equality holds in \(d=6\) dimensions -- this is the \phicubedsix{} analogue of \(a_s = g_s^2 \Omega_2 / 64 \pi^3 = g_s^2 / \le(4 \pi\ri)^2\) in \gls{qcd} -- and the \glslink{splittingfn}{\vocab{splitting function}} \(p(x)\) is
+%
+\sam{TODO: fix incorrect phi-cubed splitting function}
 \begin{align}
     p(x)
     =
@@ -691,12 +688,6 @@ In the standard model, and notably in \gls{qcd} where jets are major players, th
 However, some of the \gls{qcd} splitting functions \(P_{kj\leftarrow i}(x)\) (where \(i, j\) and \(k\) denote ``partonic flavors'' such as ``quark'' or ``gluon'') also have singularities as \(x \to 0\);
 %
 these low-energy singularities are called \vocab{soft divergences}, and are important features of real-life collider physics experiments that do not appear in \phicubedsix.
-
-
-% ---------------------------------------
-% \Soln{Splitting Functions of the SM I: QED}{massless-qed}
-% ---------------------------------------
-
 
 
 \vspace{10pt}
@@ -1153,170 +1144,264 @@ We can also conclude
 \section*{Chapter 3}
 % ==============================================
 
-
 % ---------------------------------------
-\Soln{Regimes and Accuracy}{accuracy}
-% ---------------------------------------
-
-% ---------------------------------------
-\Soln{No Emission Probability}{no-emission}
+\Soln{The No-Emission Probability}{no-emission}
 % ---------------------------------------
 
+In this problem, we derive the no-emission probability -- the probability that a partonic cascade contains no emission with some property.
+%
+We will be interested in particular in the probability that a cascade contains no emission with an angularity \(z_\text{soft} \theta^\varsigma > e_\sigma\).
+%
+Recall that \(z_\text{soft} := \min(z, 1-z)\).
 
-
-% ---------------------------------------
-\Soln{Fragmentation in a Parton Shower}{p2p-fragmentation}
-% ---------------------------------------
-
-
-
-% ---------------------------------------
-\Soln{Fragmentation of Partons into Hadrons}{p2h-fragmentation}
-% ---------------------------------------
-
-
-
-% ---------------------------------------
-\Soln{Multiple Emissions}{multiple-emissions}
-% ---------------------------------------
-
-% TODO: go through and fix
-\sam{right now, soft drop; want general}
-
-For the sake of completeness, let us go through the the derivation of the Soft Drop expression for the multiple emissions Sudakov exponent. We take the explicit form of the Sudakov exponent as
+The probability that there is no emission with a \textit{mass} greater than \(m^2\) will be similar, but we would need to invoke the strongly ordered limit to write the mass-squared of an emission as
 \begin{align}
-    \Sigma\left(C_1^{(\beta)}\right) &= \sum_{n = 1}^\infty \prod_{m = 1}^n \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{m-1} - \theta_m)\right]
+    m^2_{ij}
+    =
+    m^2_i + m^2_j + 2 \le(E_i E_j - \vec{p}_i \cdot \vec{p}_j\ri)
+    \,
+    \approx
+    \,
+    z_i\,z_j \theta^2_{ij}
+    \approx
+    z_\text{soft} \theta^2
+    \,,
+\end{align}
+where \(i\) and \(j\) denote the children of an emission, and the strongly-ordered limit allows us to write \(m^2_{i,\,j} \ll z(1-z)\theta^2_{ij}\), as discussed in \Sec{parton-shower}, as well as \(z(1-z) \approx z_\text{soft}\) and \(\theta := \theta_{ij} \ll 1\).
+%
+Therefore, in the strongly-ordered limit, the probability that there is no emission in the cascade with \textit{mass} greater than \(m\) can be related to the probability that there is no emission with an angularity greater than \(e_\varsigma\), once we set \(\varsigma = 2\).
+
+
+
+Next, we argue that the probability that there \textit{is} an emission with an angularity greater than \(e_\varsigma\) obeys a differential equation.
+%
+In particular, if \(e_\varsigma\) decreases slightly, then the probability that there is no emission with angularity greater than \(e_\varsigma\) \textit{also} decreases -- the phase space for such an emission becomes slightly larger.
+%
+The resulting differential equation for the no-emission probability can be written
+\begin{align}
+    \dv{\Pi_i(e_\varsigma)}{e_\varsigma}
+    \,\,
+    =
+    \,\,
+    \Pi_i(e_\varsigma)
+    \,\,\times\,\,
+    4
+    \int_0^R \,\, \as \, \frac{\dd\theta}{\theta}
+    \,\,
+    \int_0^1 \dd z \sum_j p_{j \leftarrow i}(z)
+    \,\,
+    \delta(z\theta^\varsigma - e_\varsigma)
+    \,,
+\end{align}
+which states that the no-emission probability decreases by an amount proportional to the probability that there \textit{is} an emission with angularity \(e_\varsigma\), and we have used the emission phase space derived in \Secs{splitting-functions}{parton-shower}.
+
+
+
+Therefore,
+\begin{align}
+    \int_{e' = e_\varsigma} \dd \ln \Pi_i(e')
+    =
+    -\ln \Pi_i(e_\varsigma)
+    =
+    4
+    \int_0^R \,\, \as \, \frac{\dd\theta}{\theta}
+    \,\,
+    \int_0^1 \dd z \sum_j p_{j \leftarrow i}(z)
+    \,\,
+    \le(
+        1 -
+        \Theta(e_\varsigma > z\theta^\varsigma)
+    \ri)
+    \,,
+\end{align}
+or
+\begin{align}
+    \ln \Pi_i(e_\varsigma)
+    =
+    -4
+    \int_0^R \,\, \as \, \frac{\dd\theta}{\theta}
+    \,\,
+    \int_0^1 \dd z \sum_j p_{j \leftarrow i}(z)
+    \,\,
+    \Theta(e_\varsigma < z\theta^\varsigma)
+    \,.
+\end{align}
+
+\begin{answer}
+    We conclude that
+    \begin{align}
+        \Pi_i(e_\varsigma)
+        =
+        \exp
+        \le[
+            -4
+            \int_0^R \,\, \as \, \frac{\dd\theta}{\theta}
+            \,\,
+            \int_0^1 \dd z \sum_j p_{j \leftarrow i}(z)
+            \,\,
+            \Theta(e_\varsigma < z\theta^\varsigma)
+        \ri]
+        \,.
+    \end{align}
+\end{answer}
+
+
+At LL, we can write \(p_{j \leftarrow i} = 2 C_{R_i} / z \delta_{j\, g}\).
+%
+We can then write, approximating the bounds of integration on \(z_\text{soft}\) as ranging from 0 to 1 rather than 0 to 1/2,
+\begin{align}
+    \int_0^R \frac{\dd\theta}{\theta}
+    \,
+    \int_0^1 \frac{\dd z}{z}
+    \,
+    &
+    \Theta(e_\varsigma < z\theta^\varsigma)
+    \,
+    =
+    \,
+    \frac{1}{\varsigma}
+    \,
+    \int_0^1 \frac{\dd z}{z}
+    \,
+    \int_0^{z R^\varsigma} \frac{\dd\theta}{\theta}
+    \,
+    \Theta(e_\varsigma < z\theta^\varsigma)
+    \,
+    =
+    \,
+    \frac{1}{\varsigma}
+    \,
+    \int_{e/R^\varsigma}^1 \frac{\dd z}{z}
+    \,
+    \ln\le(z R^\varsigma / e_\varsigma\ri)
+    \,
     \\
-    &\ \ \ \ \times\Theta\left(C_1^{(\beta)} - \sum_{m=1}^n z_m (\theta'_m)^\beta\right) \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right]
-\end{align}
-where we impose angular ordering with the \(\Theta(\theta_{i-1} - \theta_i)\). Notice that the Laplace transform of this expression is
-\begin{align}
-    \tilde\Sigma(\nu) &= \int_{-\infty}^\infty d C_1^{(\beta)} \Sigma(C_1^{(\beta)}) e^{-\nu C_1^{(\beta)}}
-    \\
-    &= \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times\int^\infty_{C_{\rm max}} dC_1^{(\beta)} e^{-v C_1^{(\beta)}}
-\end{align}
-where \(C_{\rm max} = \sum_m z_m (\theta'_m)^\beta\), and we have used the \(\Theta\) function. Performing the integral over \(C_1^{(\beta)}\), we have
-\begin{align}
-    \tilde\Sigma(\nu) &= -\frac{1}{\nu} \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
-    \\
-    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \right)^n\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
-    \\
-    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \times e^{-\nu z (\theta')^\beta}\right)^n\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right]
-    \\
-    &=  -\frac{1}{\nu} \exp\left[\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \left( e^{-\nu z (\theta')^\beta} - 1 \right)\right]
-\end{align}
-where we have gained an extra \(\frac{1}{n!}\) by eliminating the angular ordering in the second equality. By replacing \(\beta\) with \(\alpha\), and the theta function \(\Theta(z - z_c)\) with \(\Theta(z - z_c (\theta')^\beta)\), we recover Soft Drop Equations (3.11) and (3.12) (up to a minus sign in the inverse Laplace transform, is this fixed by our clockwise contour?).
-
-\textbf{LO Result}
-Following Soft Drop, we write then that
-\begin{align}
-    \Sigma(C_1^{(\beta)}) = \int \frac{d\nu}{2\pi i\nu} e^{\nu C_1^{(\beta)}} e^{-R(\nu^{-1})}
-    % \label{eqn:inverseLaplace}
-\end{align}
-with
-\begin{align}
-    R(\nu^{-1}) = \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alpha_s(\kappa)}{\pi}\Theta(z-z_c)\left(1 - e^{-\nu z (\theta')^\beta} \right)
-\end{align}
-As discussed by Soft Drop and \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} , we use the method of steepest descent to evaluate this integral, and do so at \(C_1^{(\beta)} = \nu^{-1}\). Furthermore, we approximate
-\begin{align}
-    1 - e^{-\nu \xi} \to \Theta(\xi - \nu^{-1})
-    % \label{theta_approx_1}
-\end{align}
-for large \(\nu\). We will take into account the corrections to this later. Then
-\begin{align}
-    R(\nu^{-1}) \to \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alpha_s(\kappa)}{\pi}\Theta(z-z_c) \Theta(z (\theta')^\beta - \nu^{-1})
-\end{align}
-As in Section \ref{sec:MLLNew}, we may perform the change of variables \(c = z(\theta')^{\beta}\), for which we have that
-\begin{align}
-    R(\nu^{-1}) \cong \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) = R_{LO}(\nu^{-1})
-\end{align}
-where we have defined
-\begin{align}
-    \phi(c^{-1}) = \frac{1}{\beta}\int_{\max(c, z_c)}^1 dz p_i(z) \frac{\alpha_s(\kappa)}{\pi}
-\end{align}
-such that our LO result is proportional to
-\begin{align}
-    \Sigma(C_1^{(\beta)}) \sim e^{- \int_{C_1^{(\beta)}}^1 dc \phi(c^{-1})} = e^{-R_{LO}(C_1^{(\beta)})} \approx e^{-R(C_1^{(\beta)})}
+    &=
+    \,
+    \frac{1}{2\,\varsigma}
+    \,
+    \ln^2\le(e_\varsigma / R^\varsigma\ri)
+    \,.
 \end{align}
 
-\textbf{Next Order Corrections}
-We may improve this by including corrections of the form
-\begin{align}
-    R(\nu^{-1}) = R_{LO}(\nu^{-1}) + \delta R(\nu^{-1})
-\end{align}
-with
-\begin{align}
-    R_{LO}(\nu^{-1}) &= \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1})
-    \\
-    \delta R(\nu^{-1}) &= -\int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) + \int_0^1 \frac{dc}{c} \phi(c^{-1}) \left( 1 - e^{-c \nu} \right)
-\end{align}
-where the second equation takes into account corrections from our earlier approximation in Equation \ref{theta_approx_1}.
-Let us define now \(x = c \nu\), so that
-\begin{align}
-    \delta R(\nu^{-1}) = \int_0^{\nu} \frac{dx}{x} \phi(\nu/x) \left( 1 - e^{-x}\right) - \int_1^\nu \frac{dx}{x} \phi(\nu/x)
-\end{align}
-Simplifying and regulating the integral with dimensional regularization, we have
-\begin{align}
-    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) x^\epsilon e^{-x}
-    % \label{eqn:nextorderintegrals}
-\end{align}
-Notice next that
-\begin{align}
-    \partial_\nu R_{LO}(\nu^{-1}) =  -\frac{1}{\nu^{-1}} \phi(\nu) \cdot (-\frac{1}{\nu^2})
-\end{align}
-so that
-\begin{align}
-    \frac{\partial R_{LO}(\nu^{-1})}{\partial \log(\nu)} = \phi(\nu)
-\end{align}
-%\Comment{I'm a little worried in our case that \(\phi\) may depend on \(\nu\) which might lead to additional terms. Probably fine, and so pushing ahead for now.} Nope! It's pretty clear that the only \(\nu\) dependence is where we've put it! Great!
-We may approximate the integrals in Equation \ref{eqn:nextorderintegrals} by replacing \(\phi(\nu/x)\) by its value at \(x = 1\). We may use further
-\begin{align}
-    \int_0^1\frac{dx x^\epsilon}{x} - \int_0^\infty\frac{dx x^\epsilon}{x}e^{-x} = \frac{1}{\epsilon} - \Gamma(\epsilon) = \gamma_E + \mathcal{O}(\epsilon)
-    % \label{eqn:dimregint1}
-\end{align}
-to see that, in the large \(\nu\) limit,
-\begin{align}
-    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) e^{-x} x^\epsilon \cong \gamma_E R'(\nu^{-1}) = \delta R^{(1)}(\nu^{-1})
-\end{align}
-with \(R'(\nu^{-1}) = \partial R_{LO}(\nu^{-1}) / \partial \log(\nu)\). In the region of integration for which \(\nu^{-1}\approx C_1^{(\beta)}\), we can wave our hands a bit and write that, up to subleading corrections, we may replace \(R'(\nu^{-1})\) by
-\begin{align}
-    R'(C_1^{(\beta)}) = \frac{\partial R (C_1^{(\beta)})}{\partial \log(1/C_1^{(\beta)})} = -\frac{\partial R (C_1^{(\beta)})}{\partial \log(C_1^{(\beta)})}
-\end{align}
-
-\textbf{Denominator}:
-The denominator that we see in, for example, Soft Drop, comes from the corrections to \(R_{LO}\). In particular, expanding in a Taylor series,
-\begin{align}
-    R(\nu^{-1}) = R_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu) R'_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu)^2 R''_{LO}(C_1^{(\beta)}) + \mathcal{O}(R'''_{LO}(C_1^{(\beta)}))
-\end{align}
-Then to a level of precision determined by \(R'\), we have
-\begin{align}
-    e^{-R(\nu^{-1})} \cong e^{-R(C) - \gamma_E R'(C)} (C_1^{(\beta)} \nu)^{-R'(C)}
-\end{align}
-We now notice that
-\begin{align}
-    \int \frac{d\nu}{2\pi i \nu} (C\cdot \nu)^{-\xi} e^{\nu C} = \int \frac{d\eta}{2\pi i \eta} \eta^{-\xi}e^\eta = \frac{1}{\Gamma(1 + \xi)}
-\end{align}
-as a special case of Equation (4.20) of \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} . We make this replacement in Equation (\ref{eqn:inverseLaplace}) above to find that, to \(\mathcal{O}(R')\), we have
-\begin{align}
-    \Sigma(C_1^{(\beta)}) \cong \frac{e^{-R(C) - \gamma_E R'(C)}}{\Gamma(1 + R'(C))}
-\end{align}
+\begin{answer}
+    At LL accuracy, we therefore have
+    \begin{align}
+        \Pi_i(e_\varsigma)
+        =
+        \exp
+        \le[
+            -\frac{4\as C_{R_i}}{\varsigma}
+            \ln^2\le(e_\varsigma / R^\varsigma\ri)
+        \ri]
+        \,.
+    \end{align}
+\end{answer}
 
 
 % ---------------------------------------
-% \Soln{Substructure with Multiple Emissions}{ungroomed-me}
+\Soln{The Veto Algorithm for Generating Partonic Emissions}{veto-algorithm}
 % ---------------------------------------
+\begin{enumerate}[label=\alph*)]
+    \item
+        Note that
+        \begin{align}
+            \mathbb{P}(F^{-1}(u) < x)
+            =
+            \mathbb{P}(u < F(x))
+            =
+            F(x)
+            \,,
+        \end{align}
+        since the probability that \(u\), which is uniformly distributed between 0 and 1, is less than \(F(x)\) (a number between 0 and 1) is simply \(F(x)\).
+
+        Since \(X\) and \(F^{-1}(U)\) have the same cumulative distributions, they must also have the same probability distributions.
+        %
+        Therefore, by sampling the random variable \(U\) uniformly between 0 and 1 and computing \(F^{-1}(U)\), we obtain a random variable whose probability distribution is identical to that of \(X\), and this method (the inverse transform method) effectively samples from the probability distribution of \(X\).
 
 
+        \item
+            The random number generated by applying the given graphical depiction of the veto algorithm has the distribution
+            \begin{align}
+                \rho(x \, | \, T)
+                =
+                \int_0^T \dd t'
+                \,
+                g(t') \, \Pi_g (t' \, | \, T)
+                \le(
+                    \frac{f(t')}{g(t')}
+                    \delta(x - t')
+                    \,\,
+                    +
+                    \,\,
+                    \le(1 - \frac{f(t')}{g(t')}\ri)
+                    \,
+                    \rho(x \, | \, t')
+                \ri)
+                \,,
+            \end{align}
+            where the factor of \(g(t') \Pi_g(t'|T)\) in the integrand is simply the probability distribution from which we are sampling, the first term in the parentheses are associated with the \textit{accept} step, and the second term in the parentheses is associated with the possibility of the \textit{veto}, after which we continue sampling from the \textit{new} distribution \(g(x) \Pi_g(x \, | \, t')\).
 
-% ---------------------------------------
-\Soln{Multiplicity of Subjets}{subjet-multiplicity}
-% ---------------------------------------
+            To make progress, we take a derivative with respect to \(T\) to obtain
+            \begin{align}
+                \partial_T \rho(x \, | \, T)
+                =
+                f(T) \delta(x - T)
+                \,\,
+                +
+                \,\,
+                \le(g(T) - f(T)\ri)
+                \,
+                \rho(x \, | \, T)
+                \,\,
+                -
+                \,\,
+                g(T) \rho(x\,|\,T)
+            \end{align}
+            where the final term comes from the derivative of \(\Pi_g(t'\, | \, T)\) \textit{within} the integrand -- \(\partial_T \Pi_g(t'\,|\,T) = -g(T) \Pi_g(t'\,|\,T)\) -- and in the remaining terms we have used that \(\Pi_g(T\,|\,T) = 1\).
+            %
+            Combining terms yields
+            \begin{align}
+                \partial_T \rho(x \, | \, T)
+                =
+                f(T) \le(
+                    \delta(x - T)
+                    -
+                    \rho(x \, | \, T)
+                \ri)
+                \,,
+            \end{align}
+            or
+            \begin{align}
+                e^{-\int_x^T f(t') \dd t'}
+                \partial_T \le(
+                    e^{\int_x^T f(t') \dd t'} \, \rho(x \, | \, T)
+                \ri)
+                =
+                f(T) \delta(x - T)
+                \,.
+            \end{align}
+            Re-ordering, exchanging \(T\) for a dummy variable \(T'\), and integrating over \(T'\) from \(x-\epsilon\) to \(T\), we obtain
+            \begin{align}
+                \exp\le[\int_x^{T'} f(t') \dd t'\ri]
+                \rho(x \, | \, T')
+                \Big|^{T'=T}_{T'=x-\epsilon}
+                =
+                f(x)
+                \,.
+            \end{align}
+            The bound of integration of \(x - \epsilon\) ensures that the delta function integrates to one, and additionally allows us to use that \(\rho(x \, | \, x - \epsilon) = 0\), since \(\rho(x\,|\,T)\) is associated with the probability distribution for sampling a value of \(x\) smaller than \(T\) by definition.
 
-
+            We conclude that
+            \begin{align}
+                \rho(x \, | \, T)
+                =
+                f(x)
+                \exp\le[-\int_x^{T} f(t') \dd t'\ri]
+                \,,
+            \end{align}
+            which is indeed the desired probability distribution.
+\end{enumerate}
 
 
 % ---------------------------------------
@@ -1395,7 +1480,7 @@ To obtain a parton shower valid at LL accuracy, we implement the following proce
     %
     Using the techniques of the previous section, we may write the LL probability that there is no emission with angularity greater than \(e^{(f)}_\varsigma\), given that there has been an emission with angularity \(e^{(i)}_\varsigma\), as
     \begin{align}
-        \label{eqn:alg_LLang_ratio}
+        \label{eq:alg_LLang_ratio}
         \mathbb{P}
         \left(
             {\rm no~emission~with~}e_\varsigma>e^{(f)}_\varsigma
@@ -1421,7 +1506,7 @@ To obtain a parton shower valid at LL accuracy, we implement the following proce
     %
     The corresponding value of \(e^{(f)}_\varsigma\) is
     \begin{align}
-        \label{eqn:alg_LLang}
+        \label{eq:alg_LLang}
         e^{(f)}_\varsigma
         =
         \frac{1}{2}
@@ -1463,7 +1548,7 @@ We produce these higher-order effects by using veto method sampling \cite{Sjostr
 \begin{enumerate}
 	\item
 	\label{item:MLL_ps_start}
-	Generate an angularity, angle, and energy fraction with Steps \ref{item:LL_ps_start}--\ref{item:LL_ztheta_sampling} of the LL parton shower algorithm, with the coupling \(\alpha_s\) of \Eqs{alg_LLang_ratio}{alg_LLang} replaced by a large fixed coupling \(\hat\alpha = \frac{1}{2}\).
+	Generate an angularity, angle, and energy fraction with Steps \ref{item:LL_ps_start}--\ref{item:LL_ztheta_sampling} of the LL parton shower algorithm, with the coupling \(\alpha_s\) of \Eqs{alg_LLang_ratio}{alg_LLang} replaced by a large fixed value for the coupling, \(\hat\alpha = \frac{1}{2}\).
 
 	\item
 	As dictated by the veto method, accept the generated variables with a probability given by the ratio \(\rho^{\rm(MLL)}(z,\theta)/\hat\rho^{\rm(LL)}(z,\theta)\), where \(\rho^{\rm(MLL)}\) indicates the MLL probability distribution function and \(\hat\rho^{\rm(LL)}\) indicates the LL probability distribution function with the coupling \(\hat\alpha\).
@@ -1491,8 +1576,323 @@ The final step is the key to the veto algorithm, and correctly takes into accoun
 
 Additionally, \Figs{LL_SD0}{LL_PRSF1} compare the LL ECF \(C_1^{(2)} \approx m^2 / p_T^2\) of \Eq{ECFdefn_repeat} for quark jets groomed using mMDT (Soft Drop with \(\beta_{\rm SD} = 0\)) and P-RSF\(_1\), obtained analytically, numerically, and using our parton shower procedure.
 %
-The agreement between these calculations provides a simple validation for the results we obtain analytically, using numerical integration, and with parton shower methods for P-RSF\(_1\) in the appendices.
+The agreement between these calculations provides a simple validation for the results we obtain analytically, using numerical integration, and with parton shower methods.
 
+
+
+
+% ---------------------------------------
+\Soln{Recursive Fragmentation Functions}{p2p-fragmentation}
+% ---------------------------------------
+
+\begin{enumerate}[label=\alph*)]
+    \item
+    Within a parton shower, there is either no emission, or a non-zero number of emissions (whose distribution is governed by splitting functions).
+    %
+    If there is no emission from a parton of flavor \(i\), then there is only one parton within the jet initiated by \(i\), and it has the same flavor (\(j = i\)) with momentum fraction \(E_i / E_j = z = 1\).
+    %
+    Otherwise, there is an emission, and the shower continues recursively.
+
+    In particular, if \(y'\) is the momentum fraction of an emission \(k'\) (at angular resolution \(\theta\)) from the initiating parton, \(y' = E_{k'} / E_i\), and the momentum fraction of another emission from \(k'\) is \(E_j / E_{k'}\), then \(E_j / E_i = z = (E_j / E_{k'}) y'\).
+    %
+    Therefore, the associated fragmentation function should have an argument \(E_j / E_{k'} = z / y'\).
+    %
+    Finally, since \(F(z) \dd z\) is the probability distribution for the momentum fraction from an emission from the primary parton, \(F(z/y') \dd z / y'\) is the probability distribution for the emission of a \textit{subsequent} emission, from the parton \(k'\), giving an additional factor of \(1/y'\) in the integrand.
+
+
+    \item
+    When \(\Rjet = \rsub\), this reproduces \(F_{j\leftarrow i}(z) = \delta_{ij} \delta(1-z)\) -- i.e. that at the same resolution \Rjet{} at which the initiating parton was measured, the only parton in the shower \textit{is} the initiating parton.
+
+    \item
+    By using the Mellin convolution theorem and taking a derivative with respect to \(\ln \rsub\) or \(\ln \Rjet\), the DGLAP equations follow immediately.
+\end{enumerate}
+
+
+
+% ---------------------------------------
+\Soln{Multiple Emissions}{multiple-emissions}
+% ---------------------------------------
+
+The cumulative distribution for the additive variable \(X\), including contributions from any number of emissions, is
+\begin{align}
+    \Sigma(x)
+    &=
+    \sum_{n = 1}^\infty \prod_{m = 1}^n
+    \left[
+        \int_0^{1} \frac{d\theta'_m}{\theta'_m}
+        \int_0^1 dz_m p_i(z_m)
+        \frac{\alpha_S(\kappa_m)}{\pi}
+        \Theta(\theta_{m-1} - \theta_m)
+        \Theta(z - z_c)
+    \right]
+    \,\,\,
+    \Theta\left(x - \sum_{m=1}^n X(z_m, \theta_m)\right)
+    \,.
+\end{align}
+The Laplace transform, \(\widetilde{f}(\nu) := \int_{-\infty}^\infty \dd x\, f(x) e^{-\nu x}\), of the cumulative distribution is therefore
+\begin{align}
+    \widetilde\Sigma(\nu)
+    &:=
+    \int_{-\infty}^\infty \dd x\, \Sigma(x) e^{-\nu x}
+    \\
+    &= \sum_{n=1}^\infty \prod_{m=1}^n  \left[
+        \int_0^{1} \frac{\dd \theta'_m}{\theta'_m}
+        \int_0^1 \dd z_m p_i(z_m)
+        \frac{\alpha_S(\kappa_m)}{\pi}
+        \Theta(\theta_{i-1} - \theta_i)
+    \right]
+    \,\,
+    \int^\infty_{\sum X_m} \dd x \, e^{-v x}
+    \\
+    &=
+    -\frac{1}{\nu}
+    \,\,
+    \sum_{n=1}^\infty \prod_{m=1}^n  \left[
+        \int_0^{1} \frac{\dd \theta'_m}{\theta'_m}
+        \int_0^1 \dd z_m p_i(z_m)
+        \frac{\alpha_S(\kappa_m)}{\pi}
+        \Theta(\theta_{i-1} - \theta_i)
+        e^{-v X(z_m, \theta_m)}
+    \right]
+    \,.
+\end{align}
+Now we can take advantage of angular ordering, using Dyson's trick to replace the factors of \(\Theta(\theta_{i-1} - \theta_i)\) by a single factor of \(1 / n!\).
+%
+Using that the resulting features of the integrand have identical forms for each emission, this yields
+\begin{align}
+    \widetilde\Sigma(\nu)
+    &=
+    -\frac{1}{\nu}
+    \,\,
+    \sum_{n=1}^\infty \frac{1}{n!}
+    \left(
+        \int_0^{1} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alpha_S(\kappa)}{\pi}
+        e^{-v X(z, \theta)}
+    \right)^n
+    \\
+    &=
+    -\frac{1}{\nu}
+    \,\,
+    \exp\le[
+        \int_0^{1} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alpha_S(\kappa)}{\pi}
+        e^{-v X(z, \theta)}
+    \ri]
+    \\
+    &=
+    -\frac{1}{\nu}
+    \,\,
+    \exp\le[
+        \int_0^{1} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alpha_S(\kappa)}{\pi}
+        \,
+        \le(e^{-v X(z, \theta)} - 1\ri)
+    \ri]
+    \,,
+\end{align}
+where in the final equality we have used that \(p_i(z)\) integrates to zero in the soft-collinear limit.
+
+Now we must invert the Laplace transform, via
+\begin{align}
+    \Sigma(x) = \int \frac{\dd \nu}{2\pi i} \, e^{\nu x} \widetilde\Sigma(\nu)
+    \,,
+\end{align}
+to obtain the cumulative distribution for \(X\).
+%
+In particular we evaluate
+\begin{align}
+    \Sigma(x)
+    =
+    \int \frac{\dd \nu}{2\pi i\, \nu} \, e^{\nu x}
+    \,
+    \exp\le[
+        \int_0^{1} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alpha_S(\kappa)}{\pi}
+        \,
+        \le(e^{-v X(z, \theta)} - 1\ri)
+    \ri]
+    \,,
+\end{align}
+by steepest descent.
+\sam{sign?}
+
+The stationary value of the integrand is \(\nu = 1 / x + \mathcal{O}(\alpha_s)\), so for small \(x\), \(\nu\) will be very large, and we can approximate
+\begin{align}
+    1 - e^{\nu X(z,\theta)}
+    \approx
+    1 - e^{X(z,\theta)/x}
+    =:
+    \Theta(X(z,\theta) - x) + \phi(x)
+    \,
+\end{align}
+as roughly equal to a Heaviside theta function, i.e. that \(\phi(x) := 1 - e^{X(z,\theta)/x} - \Theta(X(z, \theta) - x)\) is small for large values of \(\nu\).
+%
+We can therefore use the radiator for \(X\) to simplify our results, noting that
+\begin{align}
+    \int_0^{1} \frac{\dd \theta'}{\theta'}
+    \int_0^1 \dd z p_i(z)
+    \frac{\alpha_S(\kappa)}{\pi}
+    \,
+    \Theta(X(z,\theta) - x)
+    =:
+    R_X(x)
+    \,.
+\end{align}
+
+Furthermore, corrections due to \(\phi(x)\) can also be computed via
+\begin{align}
+    \int_0^{1} \frac{\dd \theta'}{\theta'}
+    \int_0^1 \dd z p_i(z)
+    \frac{\alpha_S(\kappa)}{\pi}
+    \,
+    \phi(x)
+    =
+    \int_0^{1} \frac{\dd \theta'}{\theta'}
+    \int_0^1 \dd z p_i(z)
+    \frac{\alpha_S(\kappa)}{\pi}
+    \,
+    (1 - e^{X(z,\theta)/x})
+    -
+    \sam{more}
+\end{align}
+\sam{test further...}
+
+
+
+% ---------------------------------------
+\Soln{Multiple Emissions SD}{multiple-emissions}
+% ---------------------------------------
+
+\sam{Re-evaluate relevance -- there are things here that aren't elsewhere...}
+
+For the sake of completeness, let us go through the the derivation of the Soft Drop expression for the multiple emissions Sudakov exponent. We take the explicit form of the Sudakov exponent as
+
+
+\begin{align}
+    \Sigma\left(C_1^{(\beta)}\right) &= \sum_{n = 1}^\infty \prod_{m = 1}^n \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{m-1} - \theta_m)\right]
+    \\
+    &\ \ \ \ \times\Theta\left(C_1^{(\beta)} - \sum_{m=1}^n z_m (\theta'_m)^\beta\right) \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right]
+\end{align}
+where we impose angular ordering with the \(\Theta(\theta_{i-1} - \theta_i)\). Notice that the Laplace transform of this expression is
+\begin{align}
+    \tilde\Sigma(\nu) &= \int_{-\infty}^\infty d C_1^{(\beta)} \Sigma(C_1^{(\beta)}) e^{-\nu C_1^{(\beta)}}
+    \\
+    &= \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times\int^\infty_{C_{\rm max}} dC_1^{(\beta)} e^{-v C_1^{(\beta)}}
+\end{align}
+where \(C_{\rm max} = \sum_m z_m (\theta'_m)^\beta\), and we have used the \(\Theta\) function. Performing the integral over \(C_1^{(\beta)}\), we have
+\begin{align}
+    \tilde\Sigma(\nu) &= -\frac{1}{\nu} \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
+    \\
+    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \right)^n\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
+    \\
+    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \times e^{-\nu z (\theta')^\beta}\right)^n\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right]
+    \\
+    &=  -\frac{1}{\nu} \exp\left[\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \left( e^{-\nu z (\theta')^\beta} - 1 \right)\right]
+\end{align}
+where we have gained an extra \(\frac{1}{n!}\) by eliminating the angular ordering in the second equality. By replacing \(\beta\) with \(\alpha\), and the theta function \(\Theta(z - z_c)\) with \(\Theta(z - z_c (\theta')^\beta)\), we recover Soft Drop Equations (3.11) and (3.12) (up to a minus sign in the inverse Laplace transform, is this fixed by our clockwise contour?).
+
+\textbf{LO Result}
+Following Soft Drop, we write then that
+\begin{align}
+    \Sigma(C_1^{(\beta)}) = \int \frac{d\nu}{2\pi i\nu} e^{\nu C_1^{(\beta)}} e^{-R(\nu^{-1})}
+    \label{eq:inverseLaplace}
+\end{align}
+with
+\begin{align}
+    R(\nu^{-1}) = \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alpha_s(\kappa)}{\pi}\Theta(z-z_c)\left(1 - e^{-\nu z (\theta')^\beta} \right)
+\end{align}
+As discussed by Soft Drop and \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} , we use the method of steepest descent to evaluate this integral, and do so at \(C_1^{(\beta)} = \nu^{-1}\). Furthermore, we approximate
+\begin{align}
+    1 - e^{-\nu \xi} \to \Theta(\xi - \nu^{-1})
+    % \label{theta_approx_1}
+\end{align}
+for large \(\nu\). We will take into account the corrections to this later. Then
+\begin{align}
+    R(\nu^{-1}) \to \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alpha_s(\kappa)}{\pi}\Theta(z-z_c) \Theta(z (\theta')^\beta - \nu^{-1})
+\end{align}
+As in Section \ref{sec:MLLNew}, we may perform the change of variables \(c = z(\theta')^{\beta}\), for which we have that
+\begin{align}
+    R(\nu^{-1}) \cong \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) = R_{LO}(\nu^{-1})
+\end{align}
+where we have defined
+\begin{align}
+    \phi(c^{-1}) = \frac{1}{\beta}\int_{\max(c, z_c)}^1 dz p_i(z) \frac{\alpha_s(\kappa)}{\pi}
+\end{align}
+such that our LO result is proportional to
+\begin{align}
+    \Sigma(C_1^{(\beta)}) \sim e^{- \int_{C_1^{(\beta)}}^1 dc \phi(c^{-1})} = e^{-R_{LO}(C_1^{(\beta)})} \approx e^{-R(C_1^{(\beta)})}
+\end{align}
+
+\textbf{Next Order Corrections}
+We may improve this by including corrections of the form
+\begin{align}
+    R(\nu^{-1}) = R_{LO}(\nu^{-1}) + \delta R(\nu^{-1})
+\end{align}
+with
+\begin{align}
+    R_{LO}(\nu^{-1}) &= \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1})
+    \\
+    \delta R(\nu^{-1}) &= -\int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) + \int_0^1 \frac{dc}{c} \phi(c^{-1}) \left( 1 - e^{-c \nu} \right)
+\end{align}
+where the second equation takes into account corrections from our earlier approximation in Equation \ref{theta_approx_1}.
+Let us define now \(x = c \nu\), so that
+\begin{align}
+    \delta R(\nu^{-1}) = \int_0^{\nu} \frac{dx}{x} \phi(\nu/x) \left( 1 - e^{-x}\right) - \int_1^\nu \frac{dx}{x} \phi(\nu/x)
+\end{align}
+Simplifying and regulating the integral with dimensional regularization, we have
+\begin{align}
+    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) x^\epsilon e^{-x}
+    \label{eq:nextorderintegrals}
+\end{align}
+Notice next that
+\begin{align}
+    \partial_\nu R_{LO}(\nu^{-1}) =  -\frac{1}{\nu^{-1}} \phi(\nu) \cdot (-\frac{1}{\nu^2})
+\end{align}
+so that
+\begin{align}
+    \frac{\partial R_{LO}(\nu^{-1})}{\partial \log(\nu)} = \phi(\nu)
+\end{align}
+%\Comment{I'm a little worried in our case that \(\phi\) may depend on \(\nu\) which might lead to additional terms. Probably fine, and so pushing ahead for now.} Nope! It's pretty clear that the only \(\nu\) dependence is where we've put it! Great!
+We may approximate the integrals in \Eq{nextorderintegrals} by replacing \(\phi(\nu/x)\) by its value at \(x = 1\). We may use further
+\begin{align}
+    \int_0^1\frac{dx x^\epsilon}{x} - \int_0^\infty\frac{dx x^\epsilon}{x}e^{-x} = \frac{1}{\epsilon} - \Gamma(\epsilon) = \gamma_E + \mathcal{O}(\epsilon)
+    \label{eq:dimregint1}
+\end{align}
+to see that, in the large \(\nu\) limit,
+\begin{align}
+    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) e^{-x} x^\epsilon \cong \gamma_E R'(\nu^{-1}) = \delta R^{(1)}(\nu^{-1})
+\end{align}
+with \(R'(\nu^{-1}) = \partial R_{LO}(\nu^{-1}) / \partial \log(\nu)\). In the region of integration for which \(\nu^{-1}\approx C_1^{(\beta)}\), we can wave our hands a bit and write that, up to subleading corrections, we may replace \(R'(\nu^{-1})\) by
+\begin{align}
+    R'(C_1^{(\beta)}) = \frac{\partial R (C_1^{(\beta)})}{\partial \log(1/C_1^{(\beta)})} = -\frac{\partial R (C_1^{(\beta)})}{\partial \log(C_1^{(\beta)})}
+\end{align}
+
+\textbf{Denominator}:
+The denominator that we see in, for example, Soft Drop, comes from the corrections to \(R_{LO}\). In particular, expanding in a Taylor series,
+\begin{align}
+    R(\nu^{-1}) = R_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu) R'_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu)^2 R''_{LO}(C_1^{(\beta)}) + \mathcal{O}(R'''_{LO}(C_1^{(\beta)}))
+\end{align}
+Then to a level of precision determined by \(R'\), we have
+\begin{align}
+    e^{-R(\nu^{-1})} \cong e^{-R(C) - \gamma_E R'(C)} (C_1^{(\beta)} \nu)^{-R'(C)}
+\end{align}
+We now notice that
+\begin{align}
+    \int \frac{d\nu}{2\pi i \nu} (C\cdot \nu)^{-\xi} e^{\nu C} = \int \frac{d\eta}{2\pi i \eta} \eta^{-\xi}e^\eta = \frac{1}{\Gamma(1 + \xi)}
+\end{align}
+as a special case of Equation (4.20) of \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} . We make this replacement in \Eq{inverseLaplace} above to find that, to \(\mathcal{O}(R')\), we have
+\begin{align}
+    \Sigma(C_1^{(\beta)}) \cong \frac{e^{-R(C) - \gamma_E R'(C)}}{\Gamma(1 + R'(C))}
+\end{align}
 
 
 
@@ -1606,13 +2006,16 @@ In the first equality, we have exchanged the two integrals and changed variables
 \Soln{Constant-Cutoff Substructure at MLL}{constant-cutoff-mll}
 % ---------------------------------------
 
+
 % ---------------------------------------
 \Soln{Constant-Subtraction Substructure at MLL}{constant-subtraction-mll}
 % ---------------------------------------
 
-% ---------------------------------------
-\Soln{Multiplicity of Simple Groomed Jets}{simple-groomed-multiplicity}
-% ---------------------------------------
+
+% % ---------------------------------------
+% \Soln{Multiplicity of Groomed Subjets}{simple-groomed-multiplicity}
+% % ---------------------------------------
+
 
 % ---------------------------------------
 \Soln{Resummed Recursive Subtraction}{resummed-rs}
@@ -1640,116 +2043,6 @@ You can do this twice to find a pair of particles in the case of pairwise \glspl
 Then, you compute the value of an observable on your selection of particles, such as \(\mathcal{O}_{ij}\) for a pairwise \gls{ewoc}.
 %
 This is the random variable whose probability distribution is computed by the \gls{ewoc}.
-
-
-%% ---------------------------------------
-%\Soln{The Subjet EEC}{subjet-eec}
-%% ---------------------------------------
-%Finally, let us make contact with the physics of the main text by adding a subjet radius to some of our calculations above.
-%%
-%In particular, we will focus on the universal features of the subjet EEC at fixed order, as in \App{EEC:collinear_fo} and on the effects of the subjet radius on the resummation procedure, as in \App{EEC:LL}.
-
-%First, we note that the subjet EEC can quickly be seen as the restriction of the EEC to the domain \(\chi > r^2/4\), up to contributions at zero proportional to \(\delta(\chi)\), because
-%\begin{align}
-%    \sam{eqn}
-%    ,
-%\end{align}
-%where we have used that \(\chi = (1 - \cos\theta)/2\), and \(\rsub < \theta\) in order for us to consider two separate subjets.
-
-%\sam{fixed order:}
-
-%\sam{Notation for subjet EEC?}
-%\begin{align}
-%    \label{eq:subjet_eec_gr0}
-%    \frac{1}{\sigma}\frac{\dd \Sigma_\text{EEC}}{\dd\chi}(\chi > 0, R)
-%    =
-%    \frac{3\,\ascf}{4}
-%    \frac{\Theta\le(\chi > r^2/4\ri)}{\chi}
-%    +
-%    \mathcal{O}\le(\as^2\ri)
-%\end{align}
-%for \(\chi > 0\).
-%%
-%Including contributions at \(\chi = 0\), we have
-%\begin{align}
-%    \frac{1}{\sigma}\frac{\dd \Sigma_\text{EEC}}{\dd\chi}(\chi, R)
-%    =
-%    \delta(\chi)\le(1 - \frac{3\,\ascf}{2}\log(R/r)\ri)
-%    +
-%    \frac{3\,\ascf}{4}
-%    \frac{\Theta\le(\chi > \frac{r^2}{4}\ri)}{\chi}
-%    +
-%    \mathcal{O}\le(\as^2\ri)
-%    ,
-%\end{align}
-%where we have switched to normalizing with respect to the full cross section, allowing to determine the terms proportional to \(\delta(\chi)\) by enforcing the normalization constraint that \Eq{subjet_eec_gr} must integrate to one.
-%%
-%The terms proportional to \(\delta(\chi)\) encode, respectively, the no-emission probability -- for which there is only a single particle and only a single subjet -- and the possibility that a quark emits a gluon at an angle less than the subjet radius -- for which there are two particles but still a single subjet.
-
-%% -----------------------------------
-%% Factorization in the Collinear Limit Figure:
-%% -----------------------------------
-%\begin{figure}[t!]
-%    \centering
-%    \subfloat[]{
-%        % Subfigure graphic
-%        \includegraphics[width=.4\textwidth]{figures/misc/factorization/jet_fn_subjet_collinear_1.pdf}
-%        \label{fig:shower:cartoon:subjet_collinear1}
-%    }
-%    \hfill
-%    \subfloat[]{
-%        % Subfigure graphic
-%        \includegraphics[width=.4\textwidth]{example-image-a}
-%        \label{fig:shower:cartoon:subjet_collinear2}
-%    }
-
-%    % Caption
-%    \caption[Cartoons depicting the tools used in resummed EWOC computations]{
-%    Depictions of the calculational tools involved in computations of (jet functions for) \hyperref[fig:shower:cartoon:subjet_collinear1]{(a)} generic two-point EWOCs, and \hyperref[fig:shower:cartoon:subjet_collinear2]{(b)} two-point EWOCs in the collinear limit.
-%    %
-%    The figure is nearly identical to the depiction of jet functions for the EEC in \Fig{shower:cartoon:collinear}, but uses subjets instead of particles.
-%    %
-%    \hyperref[fig:shower:cartoon:subjet_collinear1]{(a)} depicts the fragmentation of an initiating parton into a pair of final-state subjets, indicated by two small grey cones, and additional inclusive radiation indicated by a large red cone.
-%    %
-%    \hyperref[fig:shower:cartoon:subjet_collinear2]{(b)} visualizes a similar process in the collinear limit, in which the inclusive fragmentation of the initiating parton produces wide-angle radiation;
-%    %
-%    crucially, \hyperref[fig:shower:cartoon:subjet_collinear2]{(b)} depicts how the contributions to the EWOC in the collinear limit, which are nearly collinear final-state subjets, tend to emerge from the splitting of a single parton whose children then fragment into subjets.
-%    %
-%    The combination of partonic fragmentation and partonic splitting leads to a factorized expression for the EEC in the collinear limit, as in \Eq{eec_jet_fn_ll_1}.
-%    \sam{ref in text?}
-%    %
-%    \sam{Need more fragmentation}
-%    }
-
-%    \label{fig:shower:cartoon:subjet_collinear}
-%\end{figure}
-%% -----------------------------------
-
-%Similar arguments show that at LL, the subjet EEC within a jet initiated by a parton of type \(i\) is simply the corresponding particle-level EEC restricted to \(\chi > r^2 / 4\).
-%%
-%Expressing the EEC for such a jet as a jet function \(J^i(\chi, r; Q)\) as in \App{EEC:formal} and \Eq{eec_jet_fn_ll_1}, we write
-%\begin{align}
-%    J^i(\chi>0, r; Q)
-%    &=
-%    \frac{2 \as}{\chi}
-%    \,
-%    \Theta(\chi > r^2 /4)
-%    \,
-%    \sum_{ab}
-%    \le(
-%        \int_0^1 \dd z \, z (1-z) \,
-%        P_{ab \leftarrow i}(z)
-%    \ri)
-%    \,
-%    \le(
-%        \frac{\alpha_s\le(2\,Q\sqrt{\chi}\ri)}
-%        {\alpha_s\le(Q\,\Rjet\ri)}
-%    \ri)
-%    ^
-%    {\frac{2 \hat{p}(m)}{\beta_0}}
-%    _{f\leftarrow i}
-%    .
-%\end{align}
 
 
 

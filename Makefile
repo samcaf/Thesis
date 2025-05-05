@@ -41,4 +41,4 @@ edit_todo:
 edit_debug:
 	vim $$(grep -rIl 'DEBUG' --exclude Makefile --exclude=\*.aux --exclude-dir .git)
 
-print: print_todo print_debug
+print: print_todo print_comments print_todo print_cite

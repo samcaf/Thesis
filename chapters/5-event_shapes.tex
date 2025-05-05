@@ -85,7 +85,7 @@ Importantly, we have left the sum on \(i,j\) a little bit vague.
 %
 What are we summing over?
 %
-The answer is that if we \(i\) and \(j\) to index particles, so that the \gls{ewoc} captures pair-wise particle correlations, we quickly run into trouble.
+The answer is that if we use \(i\) and \(j\) to index particles, so that the \gls{ewoc} captures pair-wise particle correlations, we quickly run into trouble.
 %
 In particular, collinear safety requires that particle-level \glspl{ewoc} can \textit{only} encode angular correlations within a jet:
 %
@@ -93,7 +93,7 @@ In particular, collinear safety requires that particle-level \glspl{ewoc} can \t
 %
 In order to obtain \glslink{irc-safety}{IRC safe} observable, we must either study only \textit{angular correlations} or \textit{give up on particle-level correlations} in favor of correlations between collective degrees of freedom.%
 \footnote{
-    We use subjets as proxies for collective degrees of freedom so that our energy-weighted correlations are not fully continuous \glslink{continuity}{continuous} (the number of subjets in a jet, and the discrete yes/no choice of whether a particle belongs to a given subjet, are both discontinuous).
+    We use subjets as proxies for collective degrees of freedom so that our energy-weighted correlations are not fully \glslink{continuity}{continuous} (the number of subjets in a jet, and the discrete yes/no choice of whether a particle belongs to a given subjet, are both discontinuous).
     %
     The only fully continuous substructure observables of this chapter are the EEC and its multi-particle generalizations.
     %
@@ -143,7 +143,7 @@ Physically, the EEC measures the mean correlation in the energy passing through 
 %
 From the birth of the EEC to its use in recent collider studies, the simplicity of the EEC has enabled highly accurate perturbative computations \cite{Clay:1995sd,Glover:1994vz,Kramer:1996qr,DelDuca:2016csb,Gituliar:2017umx,Dixon:2018tpg,Dixon:2018qgp,Henn:2019gkr,Luo:2019nig,Gao:2020vyx,Neill:2022lqx,Lee:2023npz,Kramer:1995qh,deFlorian:2004mp,Banfi:2002vw,Tulipant:2017ybb,Moult:2018jzp,Korchemsky:2019nzm,Dixon:2019uzg,Gao:2019ojf,Luo:2019hmp,Luo:2019bmw,Moult:2019vou,Li:2020bub,Ebert:2020sfi,Li:2021txc,Duhr:2022yyp,Chen:2023zlx,Gao:2023ivm} and has facilitated measurements of the strong coupling constant \(\alpha_s\) \cite{Martin:1986uq,DELPHI:1990sof,SLD:1994yoe,ATLAS:2015yaa,ATLAS:2017qir,dEnterria:2018cye,Kardos:2018kqj,Ali:2020ksn,dEnterria:2022hzv,ATLAS:2023tgo} including the most precise jet substructure determinations of \(\alpha_s\) to date \cite{CMS:2024mlf}.
 %
-The EEC has been investigated as a probe of jets traveling through the quark-gluon plasma (QGP) produced in heavy-ion collisions \cite{Lokhtin:2004tx,Lokhtin:2006dp,Andres:2022ovj,Barata:2023zqg,Andres:2023xwr,Yang:2023dwc,Barata:2023vnl,Barata:2023bhh,Barata:2024nqo} and of correlations in nuclear physics \cite{Karapetyan:2019fst,Liu:2022wop,Liu:2023aqb,Kang:2023gvg,Cao:2023oef}.
+The EEC has been investigated as a probe of jets traveling through the quark-gluon plasma (QGP) produced in heavy-ion collisions \cite{Lokhtin:2004tx,Lokhtin:2006dp,Andres:2022ovj,Barata:2023zqg,Andres:2023xwr,Yang:2023dwc,Barata:2023vnl,Barata:2023bhh,Barata:2024nqo} and as a tool in studies of nuclear tomography \cite{Karapetyan:2019fst,Liu:2022wop,Liu:2023aqb,Kang:2023gvg,Cao:2023oef}.
 %
 The study of the EEC has also shed light on the structure of non-perturbative QCD \cite{Nason:1995np,Korchemsky:1997sy,Korchemsky:1999kt,Dokshitzer:1999sh,Chen:2020vvp,Jaarsma:2023ell,Schindler:2023cww,Lee:2024esz}
 and of quantum field theory in general \cite{Richards:1983sr,Sveshnikov:1995vi,Hofman:2008ar,Hatta:2012kn,Belitsky:2013bja,Belitsky:2013ofa,Belitsky:2013xxa,Belitsky:2014zha,Korchemsky:2015ssa,Goncalves:2014ffa,Farnsworth:2015hum,Hofman:2016awc,Kravchuk:2018htv,Kologlu:2019mfz,Chang:2020qpj,Korchemsky:2021htm,Caron-Huot:2022eqs,Chen:2023wah,Chicherin:2023gxt,Chicherin:2024ifn}.
@@ -155,9 +155,6 @@ Finally, while most jet substructure observables are dominated by contributions 
 Recent theoretical work suggests that multi-point generalizations of the EEC may be used to extract the mass of the top quark at the LHC \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz}.
 
 
-Energy correlators have also been used in studies of gluon saturation and nuclear tomography  \cite{Karapetyan:2019fst,Liu:2022wop,Liu:2023aqb,Kang:2023gvg,Cao:2023oef}.
-%
-Further, energy correlators have produced the most precise jet substructure measurement of the strong coupling constant to date~\cite{CMS:2024mlf}.
 
 
 
@@ -471,7 +468,7 @@ With these tools, we are ready to present the factorization of the EEC:
 
 
 \remark{}{
-    As discussed in , The EEC is \glslink{irc-safety}{IRC safe} (as we discuss further in \Sec{ewoc-irc} in the context of general \glspl{ewoc}) and can therefore be computed in perturbation theory.
+    The EEC is \glslink{irc-safety}{IRC safe} (as we discuss further in \Sec{ewoc-irc} in the context of general \glspl{ewoc}), and can be computed in \gls{pqcd} (see Lore~\ref{lore:irc-safety-lore}).
     %
     In particular, the use of energy weighting ensures that the EEC is unchanged under the addition of zero-energy radiation (infra-red safety), and the energy weighting together with the dependence of the delta function solely on the angles of particles ensures that it is unchanged under exactly collinear splittings of final-state particles (collinear safety).
     %
@@ -1120,7 +1117,7 @@ Third, our parametrization offers dramatic improvements in computational perform
 %
 Finally, we anticipate that these conceptual and computational improvements will yield simpler theoretical calculations.
 %
-Our implementation for computing the \glspl{penc} of \Eq{new_def} be found on GitHub as an update to \textsc{FastEEC}~\cite{Budhraja:2024xiq}, and of our \glspl{penc} and \gls{renc}s at \texttt{ResolvedEnergyCorrelators}~\cite{github:RENC}.
+Our implementation for computing the \glspl{penc} of \Eq{new_def} can be found on GitHub as an update to \textsc{FastEEC}~\cite{Budhraja:2024xiq}, and of our \glspl{penc} and \gls{renc}s at \texttt{ResolvedEnergyCorrelators}~\cite{github:RENC}.
 
 
 \begin{figure}
@@ -1195,7 +1192,7 @@ Indeed, the \glspl{penc} displayed in \Fig{ENC} show that the difference between
 \Figss{ENC}{bullseye}{density} all feature energy correlators evaluated on the CMS 2011A Jet Primary Dataset~\cite{CERNOpenDataPortal, CMS:JetPrimary2011A}, also available in MIT Open Data format~\cite{Komiske:2019jim, komiske_patrick_2019_3340205}, on jets with transverse momenta $p_{T}^{\text{jet}} \in [500, 550]$ GeV and pseudo-rapidity $\vert \eta^{\rm jet} \vert < 1.9$.
 
 \indent
-A major strength of the parametrization of \Eq{new_def} it its dramatically improved computational efficiency relative to older \gls{penc} paramterization.
+A major strength of the parametrization of \Eq{new_def} is its dramatically improved computational efficiency relative to older \gls{penc} paramterization.
 %
 The computational efficiency of our parametrization is more clear in the expression for (normalized) cumulative distribution:
 %%%

@@ -64,7 +64,7 @@ the breaking of the rocks, the clouds of rock dust, and the unveiling of the bre
 
 Rather than scattering rocks, we will be concerned with the scattering of subatomic particles.
 %
-First, what is a particle?
+But what is a particle?
 %
 To answer this, let us point out that an electron moving to your left is a different state than an electron moving to your right;
 %
@@ -74,41 +74,42 @@ But you should both agree, regardless of the direction of its motion or spin, th
 %
 an electron.
 %
-So a particle should be a \textit{set} or \textit{collection} of states which different observers agree correspond to the same particle.
+So a particle should be a \textit{set} or \textit{collection} of states which different (inertial) observers agree correspond to the same particle.
 
 \begin{definitionbox}{Particle}{particle}
-    A particle is a \textit{set} of states which is the same for every (inertial) observer.
+    A \vocab{particle} is a \textit{set} of quantum states characterized by mass, spin, and charge -- their \textit{quantum numbers} -- such that:
+    \begin{itemize}
+        \item
+            it is \vocab{invariant} under Poincar\'e transformations:
+            %
+            the overall set of states remains unchanged under translations in space/time, rotations, and boosts;
 
-    \vspace{7pt}
-    \hrule
-    \vspace{7pt}
 
-    A \vocab{particle} is a \textit{set} of quantum states characterized by mass, spin, and charge -- their \textit{quantum numbers} -- such that the overall set of states remains unchanged under Poincar\'e transformations:
-    %
-    translations in space/time, rotations, and boosts.
+        \item
+            It is \vocab{irreducible}:
+            %
+            it contains no proper invariant subsets.
+    \end{itemize}
+    In technical language, we often say that a particle is \textit{an irreducible representation} (irrep).
 \end{definitionbox}
 
-Some of the particles involved in this thesis, e.g. hadrons such as protons or neutrons, are \vocab{composite}:
-%
-they are made up of fundamental pieces, and are not fundamental themselves.
-%
-Other particles, such as the quarks or gluons which make up the hadrons, are \vocab{fundamental}:
-%
-they cannot be written as a combination of more fundamental pieces.
-
 
 \remark{}{
-    In technical language, we often say that a particle is \textit{a representation of the Poincar\'e group}, and that a fundamental particle is \textit{an irreducible representation} (irrep).
-}
-
-\remark{}{
-    The story does not end there, and there is a forest of subtleties which lie far beyond the scope of this thesis.
+    Really, this definition holds in flat spacetimes when using only massive particles.
+    %
+    The story does not end there, however, and beyond there is a forest of subtleties which lie far beyond the scope of this thesis.
     %
     One important subtlety is that in \textit{gauge theories} such as \gls{qcd} and the \gls{sm}, even the description of fundamental particles as irreducible representations of the Poincar\'e group has flaws;
     %
     in technical language, gauge invariant states of a gauge theory are associated with additional gauge fields and asymptotic charge that are not encompassed by the definition of particles as irreps of the Poincar\'e group.
     %
     See e.g. the influential early work of \Reff{Kulish:1970ut}, which states that ``the representation of the Poincar\'e group ... acting in the physical Hilbert space ... does not contain discrete irreducible terms with nonvanishing mass. In other words, one can say that the relativistic concept of a charged particle does not exist.''
+    %
+    The idea that the notion of ``particle'' must be modified in theories with massless particles manifests in several frameworks.
+    %
+    The framework closest to the ideas presented in this work (see especially \Sec{splitting-functions}) states that we must stop thinking about quantum amplitudes and begin thinking about \emph{inclusive probabilities} \cite{Yennie:1961ad}.
+    %
+    This perspective can also be connected to the framework of \emph{infraparticles} \cite{Schroer:1963gw,Schroer:2008gd} (also the Faddeev-Kulish framework \cite{Dirac:1955uv,Kulish:1970ut}).
 }
 
 Particles interact according to forces such as electromagnetism, the strong force, and the weak force.
@@ -354,14 +355,12 @@ The \(f^{abc}\) are numbers, and are called the \vocab{structure constants} of t
 %
 The generators are conventionally chosen to satisfy
 \begin{align}
-    \Tr\le(T_{(R)}^a T_{(R)}^b\ri) = \frac{1}{2} \delta^{ab}
+    \Tr\le(T_{(R)}^a T_{(R)}^b\ri) = T_R \delta^{ab}
     \,,
 \end{align}
-where the factor 1/2 is called the \textit{Dynkin index} (after mathematician Eugene Dynkin), and we have chosen it to be independent of representation.
+where the factor 1/2 is called the \textit{Dynkin index} (after mathematician Eugene Dynkin), which we will discuss more when we introduce the Feynman rules of \gls{qcd}.
 %
 These requirements on the generators can be used to show that the \(f^{abc}\) are completely antisymmetric with respect to exchange of any two indices.
-%
-When we have expressions which are representation independent, we will suppress the \((R)\) subscript, e.g. \(\Tr (T^a T^b) = \delta^{ab}/2\).
 
 
 The covariant derivative in the representation \(R\) also becomes a matrix, and takes the form
@@ -524,13 +523,24 @@ With massless Weyl fermions (guaranteed in the \gls{sm} due to the chiral repres
     \,,
 \end{align}
 \end{subequations}
-where the \(\sum'\) indicates a sum on both the scalar fields \(\phi_k\) and the complex conjugates \(\phi_k^\dagger\), the \(S\) are invariant symbols of the gauge group which project onto singlet representations and guarantee the invariance of the Lagrangian under gauge transformations, the CP-violating angle \(\Theta_\text{CP}\) -- usually multiplied by an additional factor of \(g^2\) -- is a (hermitian) central charge of the gauge group (represented in the adjoint representation), and ``h.c.'' means hermitian conjugate.
+where the \(\sum'\) indicates a sum on both the scalar fields \(\phi_k\) and the complex conjugates \(\phi_k^\dagger\), the \(S\) are invariant symbols of the gauge group which project onto singlet representations and guarantee the invariance of the Lagrangian under gauge transformations, the charge-parity symmetry violating (CP-violating) parameter \(\Theta_\text{CP}\) -- usually multiplied by an additional factor of \(g^2\) -- is a central element of the gauge Lie algebra (almost -- see below) in the adjoint representation, and ``h.c.'' means hermitian conjugate.
 
 
 \remark{}{
-    A single degree of freedom of the central charge \(\Theta_\text{CP}\) can be removed for every anomalous global symmetry of \(\mathcal{L}\), and CP-violating angles associated with Abelian (U(1) or \(\mathbb{R}\)) factors of the gauge group can be ignored in topologically trivial spaces.
+    The CP-violating terms in a gauge theory are usually denoted by a set of real parameters \(\{\theta_i\}\), one for each simple factor \(G_i\) of the gauge group \(G = \prod_i G_i\).
     %
-    See, for example, \Reff{Tong:2017oea}.
+    Each \(\theta_i\) multiplies the topological density \(\Tr(F^{(i)}_{\mu\nu} \tilde{F}^{(i)\,\mu\nu})\), associated with the field strength \(F^{(i)}\) of \(G_i\), and breaks CP symmetry when nonzero.
+    %
+    In the Lagrangian of \Eq{yang-mills-matter-lagrangian}, these terms are collectively encoded by \(\Theta_\text{CP}\), a single object in the center of the \emph{universal enveloping algebra} of the Lie algebra of the gauge group.%
+    \footnote{
+        The Lie algebra alone does not work.
+        %
+        For example, in SU(\(N\)), the adjoint representation of the algebra only contains traceless elements, while the CP-violating angle \(\theta_\text{CP}\) should be proportional to the identity to yield standard definitions.
+        %
+        Using the universal enveloping algebra in the adjoint representation allows for terms that are proportional to the identity, and thus the standard CP-violating angles \(\theta_\text{CP}\).
+    }
+    %
+    Furthermore, a single degree of freedom of \(\Theta_\text{CP}\) can be removed for every anomalous global symmetry of \(\mathcal{L}\), and CP-violating angles associated with Abelian (U(1) or \(\mathbb{R}\)) factors of the gauge group can be ignored in topologically trivial spaces (see \Reff{Tong:2017oea} for a pedagogical introduction with an emphasis on the \gls{sm}).
 }
 
 \remark{}{
@@ -673,7 +683,7 @@ where \(1\!\!1_{\,(R)}\) indicates the identity matrix in the representation \(R
 \begin{align}
     \Tr T^a_{(R)} T^b_{(R)}
     =:
-    T_R \delta^{ab}
+    T_R \, \delta^{ab}
     \,.
 \end{align}
 In an unfortunate similarity of notation, the Dynkin index of the representation \(R\) is also denoted by a capital \(T\);
@@ -684,12 +694,27 @@ For the purposes of this thesis, we will use the standard normalization of the g
 \begin{align}
     C_A = N_c
     \qquad
-    C_R = \frac{N_c^2 - 1}{2 N_c}
+    C_F = \frac{N_c^2 - 1}{2 N_c}
     \qquad
     T_F = \frac{1}{2}
     \,,
 \end{align}
 where \(A\) denotes the adjoint representation, under which gluons transform, and \(F\) denotes the fundamental representation, under which quarks transform.
+
+\begin{exercise}
+    \label{ex:group-theory-factors}
+    Show that the group theory factors for the representation \(R\) are given by
+    \begin{align}
+        T_R \, \text{dim}(A)
+        =
+        C_R \, \text{dim}(R)
+        \,,
+    \end{align}
+    where \(\text{dim}(R)\) indicates the dimension of the representation \(R\), and \(\text{dim}(A)\) -- the number of generators and the dimension of the adjoint representation -- is \(N_c^2 - 1\) for SU(\(N_c\)).
+
+    What is the Dynkin index \(T_A\) of the adjoint representation?
+\end{exercise}
+
 
 
 
@@ -1079,7 +1104,7 @@ For now, however, let us assume that partons are nearly free, and discuss what s
     \label{ex:lqcd-nonpert}
     Using the \gls{qcd} beta function, find the energy scale \(\mu = \LambdaQCD\) at which the strong coupling becomes infinite, \(\alpha_s(\LambdaQCD) := \infty\), in terms of the coupling \(\alpha_s := \alpha_s(\mu_0)\) given at a fixed initial scale \(\mu_0\).
     %
-    Prove that \(\LambdaQCD\) it cannot be expressed in terms of a power series in \(\alpha_s\), and that power corrections of the form \((\LambdaQCD/Q)^n\) are indeed non-perturbative.
+    Prove that \(\LambdaQCD\) cannot be expressed in terms of a power series in \(\alpha_s\), and that power corrections of the form \((\LambdaQCD/Q)^n\) are indeed non-perturbative.
 \end{exercise}
 
 
@@ -1781,8 +1806,8 @@ The key cancellation ensuring the validity of the KLN theorem in \gls{qcd}, and 
 %
 The KLN theorem motivates the criterion of \glslink{irc-safety}{infra-red and collinear (IRC) safe} collider \glspl{observable}, which exhibit well-behaved perturbative properties, discussed in \Sec{irc-safety}.
 
-\remark{}{
-    The Fadeev-Kulish (FK) formalism for dressed, gauge invariant scattering \cite{Kulish:1970ut}, inspired by the preliminary work of P.A.M. Dirac \cite{Dirac:1955uv} and the later work of \Reff{Chung:1965zza}, offers a complementary perspective on IR finiteness (see also \Reff{Contopanagos:1991yb} for more developments on the KLN perspective).
+\remark{faddeev-kulish}{
+    The Faddeev-Kulish (FK) formalism for dressed, gauge invariant scattering \cite{Kulish:1970ut}, inspired by the preliminary work of P.A.M. Dirac \cite{Dirac:1955uv} and the later work of \Reff{Chung:1965zza}, offers a complementary perspective on IR finiteness (see also \Reff{Contopanagos:1991yb} for more developments on the KLN perspective).
     %
     The FK formalism operates under the assumption that infra-red finiteness may be ensured by working with appropriately defined initial and final states involving \vocab{dressed} charged particles -- roughly, particles surrounded by clouds of gauge bosons.
     %
@@ -2208,18 +2233,6 @@ Due to asymptotic freedom, quarks in high-energy scattering events become nearly
 Asymptotic freedom encourages us to push forward with the theory of \emph{\gls{pqcd}}:
 %
 the approach to high-energy \gls{qcd} physics in which the properties of \gls{qcd} scattering, such as collider observables, are described as perturbative expansions in \(\alpha_s(Q)\), where \(Q \ll \LambdaQCD\) is the large energy scale associated with the scattering.
-
-
-\begin{figure}[t!]
-    \centering
-    \includegraphics[width=0.7\textwidth]{example-image-a}
-
-    % Caption
-    \caption[A visualization of \gls{preconfinement}\sam{incomplete}]{
-        A visualization of \gls{preconfinement}, a local manifestation of \glslink{phd}{parton-hadron duality} in which partons tend to form low-mass color-singlet clusters. \sam{complete}
-    }
-    \label{fig:preconfinement}
-\end{figure}
 
 
 \gls{pqcd} hinges on the principle of \gls{phd}:
@@ -3001,7 +3014,7 @@ Let us begin.
     Notably the amplitudes \(\mathcal{M}_{N-1}\) and \(\mathcal{M}_{N-1}\) are evaluated with all the same \textit{kinematic} information for \(\ell\), but may be associated with different entirely particles \(\ell\) and \(\ell'\), or particles with the same identity but different quantum numbers (i.e. quarks with different color, gluons with different spin).
 \end{proposition}
 
-\remark{}{
+\remark{ward-warning}{
     A \textbf{Warning!} is warranted at this stage:
 }
 \vspace{-20pt}
@@ -3210,7 +3223,7 @@ Therefore, we choose now to sum over outgoing polarizations, yielding \Eq{split-
 
 
 \remark{ignored-effects}{
-    While we also averaged over final state spin information, we we did not \emph{have} to do so, and we can also define analogous \textit{polarized} correlation matrices which depend also on the spin (or other quantum numbers) of the outgoing states \(i\) and \(j\).
+    While we also averaged over final state spin information, we did not \emph{have} to do so, and we can also define analogous \textit{polarized} correlation matrices which depend also on the spin (or other quantum numbers) of the outgoing states \(i\) and \(j\).
     %
     On the other hand, there are several important effects that are thrown out by the stringent assumptions of \Prop{correlation-matrix-factorization} that cannot be so easily recovered.
     %
@@ -3716,9 +3729,13 @@ This is undoubtedly a problem we must overcome to think of splitting functions a
 
 Traditionally, one states that virtual contributions must come in to save the day and regularize the splitting functions because of the KLN theorem (\Thm{kln}).
 %
-But I have never seen a proof or an argument that has fully satisfied me, and I have been hurt too many times (see \Sec{irc-safety}, especially Lore~\ref{lore:irc-safety-lore} and Remark~\ref{rem:multiple-soft-emissions-break-invariance}, and e.g. my first relationship).
+But I have never seen a proof or an argument that has fully satisfied me, and I have been hurt too many times (see \Sec{irc-safety} -- especially Lore~\ref{lore:irc-safety-lore} and Remark~\ref{rem:multiple-soft-emissions-break-invariance} -- and Remark~\ref{rem:ward-warning}).
 %
-\textbf{Within the framework I have derived above, I know of no way to systematically describe the regularization of the splitting functions we found above and thus to derive their probabilistic interpretation.}
+Therefore I warn that
+
+\remark{i-dont-know-splitting}{
+    \textbf{Within the framework I have derived above, I know of no way to regularize our splitting functions or derive their probabilistic interpretation.}
+}
 
 Nonetheless, forgive me as I continue with the standard lore.
 %
@@ -4684,15 +4701,9 @@ charge coherence phenomena in the analogous but simpler example of QED.
 \end{proof}
 
 
-\begin{figure}[]
-    \centering
-    \includegraphics[width=0.6\textwidth]{example-image-a}
-    \caption[A cartoon depicting charge coherence in QED. \sam{incomplete}]{%
-        \sam{ Cartoon depicting two-particle examples of charge coherence in QED.  }
-    }
-    \label{fig:qed-coherent-branching}
-\end{figure}
-
+\remark{}{
+    For a visualization of charge coherence in the non-Abelian, more complicated context of \gls{qcd}, see \Fig{qcd-coherent-branching}.
+}
 
 
 \vspace{7pt}
@@ -4956,17 +4967,6 @@ In particular, the arguments involving conservation of charge that led us to col
 %
 The collinear limit again comes to the rescue to facilitate factorization and dramatically simplify our physical description of the system.
 
-\begin{figure}[]
-    \centering
-    \includegraphics[width=0.8\textwidth]{example-image-a}
-    \caption[A cartoon depicting color coherence and angular ordering in QCD. \sam{incomplete}]
-    {
-        \sam{ Cartoons depicting angular ordering as a coherence effect in QCD.  %
-            Qualitative analogy, imagining gluon radiation, analogized as ripples in a pool of water, produced by charged \gls{qcd} matter, analogized as rocks dropped into the water which source the ripples.
-        }
-    }
-    \label{fig:qcd-coherent-branching}
-\end{figure}
 
 
 \begin{lemma}{Collinear Color Coherence}{collinear-color-coherence}
@@ -5263,6 +5263,26 @@ The collinear limit again comes to the rescue to facilitate factorization and dr
 
 
 
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=1.05\textwidth]{figures/misc/color_coherence.pdf}
+    \caption[A diagram illustrating color coherence and angular ordering in QCD.]
+    {
+        A diagram illustrating the first stage of color coherence and angular ordering in \gls{qcd}, whose recursive application leads to \Lem{qcd-coherent-branching}.
+        %
+        Near either individual parton \(i\in\{1,2\}\), soft gluons are emitted with a probability proportional to the \(T_i^2 = C_{R_i}\);
+        %
+        the overlap in which these probabilities add is striped red and blue.
+        %
+        However, in the region surrounding \emph{both} partons, indicated in purple, their charges add coherently and soft gluons are emitted with a probability proportional to \(C_{R_1\oplus R_2}\).
+        %
+        Beyond the collinear limit, a factorization-breaking \emph{fringe} (indicated as rainbow-colored and dotted) emerges around the coherent region, where it is less meaningful to talk about the probability of emitting a soft gluon;
+        %
+        in this region, the total differential cross section \(\dd\sigma_{N+1}\) \emph{does not factorize} into the product of an \(N\) particle differential cross section \(\dd\sigma_{N}\) and a soft gluon emission probability.
+    }
+    \label{fig:qcd-coherent-branching}
+\end{figure}
+
 \remark{}{
     Notably, \Lem{collinear-color-coherence} reproduces the factor of \(2 C_R \,\, \dd z/z \,\,\dd\theta/\theta\) that we saw emerge with our depth computations of splitting functions from \Secs{collinear-phase-space}{splitting-functions}.
     %
@@ -5291,7 +5311,7 @@ Now that you are completely absolved of blame for these approximations, I invite
     \label{ex:qcd-coherent-branching-proof}
     Don't get intimidated by the Lemma below.
     %
-    Instead, by following the fixed-order logic of \Lem{collinear-color-coherence} and \Example{charge-coherence}, and the recursive logic of \Exercise{charge-coherence-mparticle} in the limit of a hierarchy of collinear splittings, demonstrate the phenomenon of \vocab{QCD Coherent Branching}:
+    Instead, by following the fixed-order logic of \Lem{collinear-color-coherence} and \Example{charge-coherence}, and the recursive logic of \Exercise{charge-coherence-mparticle} in the limit of a hierarchy of collinear splittings, demonstrate the phenomenon of \vocab{QCD Coherent Branching} (see also \Fig{qcd-coherent-branching}):
 \end{exercise}
 
 
@@ -6512,12 +6532,6 @@ with the normalization
     \,.
 \end{align}
 
-\sam{correct group theory?}
-\begin{align}
-    T_A = \frac{1}{2}
-    \,.
-\end{align}
-
 \begin{align}
     C_F = \frac{2 N_c}{N_c^2 - 1}
     \to
@@ -6532,148 +6546,144 @@ with the normalization
     \,.
 \end{align}
 
-In fact,
+In fact, we showed in \Exercise{group-theory-factors} that
 \begin{align}
     C_R = \frac{T_A C_A}{T_R}
     \,,
 \end{align}
-\sam{correct group theory?}
-which can be quickly and amusingly shown with \vocab{bird track diagrams} \cite{Cvitanovic:2008zz,Keppeler:2017kwt}.
+which can be quickly shown with \vocab{bird track diagrams} \cite{Cvitanovic:2008zz,Keppeler:2017kwt}.
 
 \end{subequations}
 
 
-\subsection{Splitting Functions}
+%\subsection{Splitting Functions}
 
-Finally, we tabulate the properties of the exclusive and inclusive \gls{qcd} \glspl{splittingfn} in \Tabs{exclusive-splitting}{inclusive-splitting} respectively.
-%
-We use \(B(m,n)\) to denote Euler's beta function,
-\begin{align}
-    B(m,n) = \frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}
-    \,.
-\end{align}
+%Finally, we tabulate the properties of the exclusive and inclusive \gls{qcd} \glspl{splittingfn} in \Tabs{exclusive-splitting}{inclusive-splitting} respectively.
+%%
+%We use \(B(m,n)\) to denote Euler's beta function,
+%\begin{align}
+%    B(m,n) = \frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}
+%    \,.
+%\end{align}
 
-\sam{Missing delta functions/virtual contributions}
-%
-
-
-% +===================================
-\begin{table}[h!]
-\begin{center}
-\LARGE $\boldsymbol{P_{ij \leftarrow \ell}(z)}$
-\end{center}
-\vspace{-10pt}
-\centering
-\caption[Exclusive NLO QCD splitting functions and their Mellin moments.]{
-    Exclusive QCD splitting functions and their Mellin moments at NLO (\(z = E_i/E_\ell\)).
-    %
-    $B(m,n)$ denotes Euler's beta function.  \sam{check}
-    %
-    \sam{include comment about \(N_f\)}
-}
-\label{tab:exclusive-splitting}
-\vspace{5pt}
-\renewcommand{\arraystretch}{3.2}
-\rowcolors{1}{gray!20}{gray!5}
-\begin{tabular}{|>{\bfseries}m{2cm}|m{4cm}|m{7cm}|}
-\hline
-\centering \textbf{Channel} & \centering \textbf{Splitting Function} &
-\centering $\boldsymbol{\hat{P}(m,n)} := \int_0^1 \dd x
-\, x^{m-1} \le(1-x\ri)^{n-1} \, \, P(x)$
-\tabularnewline
-\hline
-\centering $gq \leftarrow q$
-                            &
-\centering $C_F \dfrac{1 + (1 - z)^2}{z}$
-                            &
-\centering
-$C_F \le(B\le(m,n-1\ri) + B\le(m+2,n-1\ri)\ri)$
-\tabularnewline
-\hline
-\centering
-$gg \leftarrow g$
-                            &
-\centering $2 C_A \dfrac{(1 - z(1 - z))^2}{z(1 - z)}$
-                            &
-\centering
-$2 C_A \big(B\le(m-1, n+1\ri) + B\le(m+1, n-1\ri)$
-\centering
-$+ B\le(m+1, n+1\ri)\big)$
-\tabularnewline
-\hline
-\centering $q\bar{q} \leftarrow g$
-                            &
-\centering $T_F \le(z^2 + (1-z)^2\ri)$
-                            &
-\centering
-$T_F \le(B\le(m+2, n\ri) + B\le(m, n+2\ri)\ri)$
-\tabularnewline
-\hline
-\end{tabular}
-\end{table}
-% +===================================
+%\sam{Missing delta functions/virtual contributions}
+%%
 
 
+%% +===================================
+%\begin{table}[h!]
+%\begin{center}
+%\LARGE $\boldsymbol{P_{ij \leftarrow \ell}(z)}$
+%\end{center}
+%\vspace{-10pt}
+%\centering
+%\caption[Exclusive NLO QCD splitting functions and their Mellin moments.]{
+%    Exclusive QCD splitting functions and their Mellin moments at NLO (\(z = E_i/E_\ell\)).
+%    %
+%    $B(m,n)$ denotes Euler's beta function.  \sam{check}
+%    %
+%    \sam{include comment about \(N_f\)}
+%}
+%\label{tab:exclusive-splitting}
+%\vspace{5pt}
+%\renewcommand{\arraystretch}{3.2}
+%\rowcolors{1}{gray!20}{gray!5}
+%\begin{tabular}{|>{\bfseries}m{2cm}|m{4cm}|m{7cm}|}
+%\hline
+%\centering \textbf{Channel} & \centering \textbf{Splitting Function} &
+%\centering $\boldsymbol{\hat{P}(m,n)} := \int_0^1 \dd x
+%\, x^{m-1} \le(1-x\ri)^{n-1} \, \, P(x)$
+%\tabularnewline
+%\hline
+%\centering $gq \leftarrow q$
+%                            &
+%\centering $C_F \dfrac{1 + (1 - z)^2}{z}$
+%                            &
+%\centering
+%$C_F \le(B\le(m,n-1\ri) + B\le(m+2,n-1\ri)\ri)$
+%\tabularnewline
+%\hline
+%\centering
+%$gg \leftarrow g$
+%                            &
+%\centering $2 C_A \dfrac{(1 - z(1 - z))^2}{z(1 - z)}$
+%                            &
+%\centering
+%$2 C_A \big(B\le(m-1, n+1\ri) + B\le(m+1, n-1\ri)$
+%\centering
+%$+ B\le(m+1, n+1\ri)\big)$
+%\tabularnewline
+%\hline
+%\centering $q\bar{q} \leftarrow g$
+%                            &
+%\centering $T_F \le(z^2 + (1-z)^2\ri)$
+%                            &
+%\centering
+%$T_F \le(B\le(m+2, n\ri) + B\le(m, n+2\ri)\ri)$
+%\tabularnewline
+%\hline
+%\end{tabular}
+%\end{table}
+%% +===================================
 
-
-\vspace{1em}
-% +===================================
-\begin{table}[h!]
-\begin{center}
-\LARGE $\boldsymbol{p_{i \leftarrow \ell}(z)}$
-\end{center}
-\vspace{-10pt}
-\centering
-\caption[Inclusive NLO QCD splitting functions and their Mellin moments.]{
-    Inclusive QCD Splitting Functions and their Mellin moments at NLO.  \sam{check}
-    %
-    \sam{comment about \(N_f\)}
-}
-\label{tab:inclusive-splitting}
-\vspace{5pt}
-\renewcommand{\arraystretch}{3.5}
-\rowcolors{1}{gray!20}{gray!5}
-\begin{tabular}{|>{\bfseries}m{1.5cm}|m{6cm}|m{6cm}|}
-\hline
-\centering \textbf{Channel} & \centering \textbf{Splitting Function} & \centering $\boldsymbol{\hat{p}(m)} := \int \dd x\, x^{m-1} \, \, p(m)$
-\tabularnewline
-\hline
-\centering $q \leftarrow q$
-                            &
-\centering $C_F \left[ \dfrac{1 + z^2}{1 - z} \right]_+$
-                            &
-\centering $C_F \left(-\dfrac{1}{2} + \dfrac{1}{m(m+1)} - 2\sum_{k=2}^{m} \dfrac{1}{k} \right)$
-\tabularnewline
-\hline
-\centering $g \leftarrow q$
-                            &
-\centering $C_F \left( \dfrac{1 + (1 - z)^2}{z} \right)$
-                            &
-\centering
-$C_F \dfrac{m^2 + m + 2}{m(m-1)(m+1)}$
-\tabularnewline
-\hline
-\centering $g \leftarrow g$
-                            &
-\centering $2C_A \left[ \dfrac{z}{(1 - z)_+} + \dfrac{1 - z}{z} + z(1 - z) \right]$
-                            &
-\centering
-$C_A\le(-\frac{1}{6} + \frac{2}{n(n+1)} + \frac{2}{(n+2)(n+3)}\ri) - 2C_A \sum_{k=2}^{m} \dfrac{1}{k} - N_f / 3$
-\tabularnewline
-\hline
-\centering
-$q \leftarrow g$
-($\overline{q} \leftarrow g$)
-                            &
-\centering $T_F \left( z^2 + (1 - z)^2 \right)$
-                            &
-\centering
-$2T_F \dfrac{m^2+3m+4}{(m+1)(m+2)(m+3)}$
-\tabularnewline
-\hline
-\end{tabular}
-\end{table}
-% +===================================
+%\vspace{1em}
+%% +===================================
+%\begin{table}[h!]
+%\begin{center}
+%\LARGE $\boldsymbol{p_{i \leftarrow \ell}(z)}$
+%\end{center}
+%\vspace{-10pt}
+%\centering
+%\caption[Inclusive NLO QCD splitting functions and their Mellin moments.]{
+%    Inclusive QCD Splitting Functions and their Mellin moments at NLO.  \sam{check}
+%    %
+%    \sam{comment about \(N_f\)}
+%}
+%\label{tab:inclusive-splitting}
+%\vspace{5pt}
+%\renewcommand{\arraystretch}{3.5}
+%\rowcolors{1}{gray!20}{gray!5}
+%\begin{tabular}{|>{\bfseries}m{1.5cm}|m{6cm}|m{6cm}|}
+%\hline
+%\centering \textbf{Channel} & \centering \textbf{Splitting Function} & \centering $\boldsymbol{\hat{p}(m)} := \int \dd x\, x^{m-1} \, \, p(m)$
+%\tabularnewline
+%\hline
+%\centering $q \leftarrow q$
+%                            &
+%\centering $C_F \left[ \dfrac{1 + z^2}{1 - z} \right]_+$
+%                            &
+%\centering $C_F \left(-\dfrac{1}{2} + \dfrac{1}{m(m+1)} - 2\sum_{k=2}^{m} \dfrac{1}{k} \right)$
+%\tabularnewline
+%\hline
+%\centering $g \leftarrow q$
+%                            &
+%\centering $C_F \left( \dfrac{1 + (1 - z)^2}{z} \right)$
+%                            &
+%\centering
+%$C_F \dfrac{m^2 + m + 2}{m(m-1)(m+1)}$
+%\tabularnewline
+%\hline
+%\centering $g \leftarrow g$
+%                            &
+%\centering $2C_A \left[ \dfrac{z}{(1 - z)_+} + \dfrac{1 - z}{z} + z(1 - z) \right]$
+%                            &
+%\centering
+%$C_A\le(-\frac{1}{6} + \frac{2}{n(n+1)} + \frac{2}{(n+2)(n+3)}\ri) - 2C_A \sum_{k=2}^{m} \dfrac{1}{k} - N_f / 3$
+%\tabularnewline
+%\hline
+%\centering
+%$q \leftarrow g$
+%($\overline{q} \leftarrow g$)
+%                            &
+%\centering $T_F \left( z^2 + (1 - z)^2 \right)$
+%                            &
+%\centering
+%$2T_F \dfrac{m^2+3m+4}{(m+1)(m+2)(m+3)}$
+%\tabularnewline
+%\hline
+%\end{tabular}
+%\end{table}
+%% +===================================
 
 
 
@@ -7485,13 +7495,9 @@ Though I find this example to be significantly harder than our previous examples
 }
 
 
-% \makeprob{Splitting Functions of the SM: QED}{massless-qed}{
-%     {Derive \(e \to e \gamma\) and compare to \(q \to q g\) from main}
-
-%     {then, derive all remaining}
-
-%     {see commented discussion above, maybe?}
-% }
+\makeprob{Splitting Functions of the SM: QED}{}{
+    Derive the splitting functions for massless quantum \textit{electrodynamics}, and compare your results to the splitting functions of QCD.
+}
 
 
 % \makeprob{Super Splitting Functions I: Super QCD}{massless-bsm}{
@@ -7574,7 +7580,7 @@ Though I find this example to be significantly harder than our previous examples
     What happens to this expression if the bounds on the \glslink{plus-fn}{plus-functions} are changed?
 
     \noindent
-    (\texttt{Note:} Schwartz' \underline{Quantum Field Theory and the Standard Model}, Chapter 32 \cite{Schwartz:2014sze})
+    (\texttt{Note:} From Schwartz' \underline{Quantum Field Theory and the Standard Model}, Chapter 32 \cite{Schwartz:2014sze})
 }
 
 \makeprob{Two Plus, One Delta}{two-plus_one-delta}{
