@@ -9,7 +9,7 @@
 {
   name=\ensuremath{\alpha_s},
   description={
-      See coupling
+      A parameter that governs the strength of QCD interactions; see coupling.
   },
 }
 
@@ -33,7 +33,7 @@
 {
     name=additive contamination,
     description={
-        A type of low-energy pollution, including PU and UE, which adds low-energy particles to an event
+        Low-energy pollution, including pileup and the underlying event, which adds low-energy particles to an event
     }
 }
 
@@ -41,13 +41,14 @@
 {
     name=angular ordering,
     description={
+        A property of radiation patterns in QCD, encoding coherence effects, in which subsequent emissions occur (approximately) at decreasing angles
     }
 }
 
 \newglossaryentry{asymptotic-freedom}
 {
     name=asymptotic freedom,
-    description={A phenomenon of quantum field theory, first observed in QCD, in which the interactions of particles at high energies become weaker and weaker, and particles at infinite energy are completely free of interactions.}
+    description={A phenomenon of certain quantum field theories, first observed in QCD, in which the interactions of particles at high energies become weaker and weaker, and particles at infinite energy are completely free of interactions.}
 }
 
 
@@ -56,7 +57,7 @@
 {
     % type=\acronymtype,
     name=jet algorithm,
-    description={an algorithm which determines which subset of final state particles are grouped into a jet},
+    description={An algorithm which determines which subset of final state particles are grouped into a jet},
     % parent=jet
 }
 
@@ -65,10 +66,8 @@
         % type=\acronymtype,
         name=anti-k\(_t\) (AKT) algorithm,
         first={anti-k\(_t\) (AKT) algorithm},
-        description={},
         text={anti-k\(_t\)},
-        % short={AKT},
-        % long={anti-k\(_t\)},
+        description={},
         parent=jet-algorithm
     }
 
@@ -77,24 +76,10 @@
         % type=\acronymtype,
         name=Cambridge/Aachen (C/A) algorithm,
         first={Cambridge/Aachen (C/A) algorithm},
-        description={
-            \sam{..}
-            %
-            See angular-ordering
-        },
         text={C/A},
         short={C/A},
         long={Cambridge/Aachen},
-        parent=jet-algorithm
-    }
-
-    \newglossaryentry{clustering-history}
-    {
-        name=clustering history,
-        description={
-            %
-            An experimentally realizable probe of the tree of partonic splittings.
-        },
+        description={},
         parent=jet-algorithm
     }
 
@@ -104,7 +89,9 @@
         name=generalized k\(_t\) algorithm,
         text={generalized k\(_t\) algorithm},
         description={
+            A family of sequential recombination algorithms parametrized by power \(p\) that includes the k\(_t\) (\(p=1\)), Cambridge/Aachen (\(p=0\)), and anti-k\(_t\) (\(p=-1\)) algorithms
         },
+        description={},
         parent=jet-algorithm
     }
 
@@ -114,8 +101,8 @@
         % type=\acronymtype,
         name=k\(_t\) (KT) algorithm,
         first={k\(_t\) (KT) algorithm},
-        description={},
         text={k\(_t\)},
+        description={},
         parent=jet-algorithm
     }
 
@@ -133,6 +120,7 @@
     {
         name=pre-confinement,
         description={
+            A property of QCD in which particles tend to cluster into low-mass color singlets
         },
         parent=confinement
     }
@@ -158,18 +146,9 @@
     \newglossaryentry{collinearsafety}
     {
         name=safety,
-        description={},
+        description={A property of observables whose outcome remains unchanged when a particle splits into two exactly collinear particles with the same total momentum},
         parent=collinear
     }
-
-    \newglossaryentry{collinearsing}
-    {
-        name=singularity,
-        description={},
-        parent=collinear
-    }
-
-
 
 \newglossaryentry{cs}
 {
@@ -179,7 +158,7 @@
     short=CS,
     long=constituent subtraction,
     description={
-        See pileup mitigation
+        A pileup mitigation technique which subtracts from the momenta of particles in an event. See pileup mitigation
     }
     % Link to pileup mitigation
 }
@@ -188,29 +167,14 @@
 \newglossaryentry{continuity}
 {
   name=continuity,
-  description={A continuous function preserves ``closeness'' of points},
+  description={A property of functions for which small changes in input produce small changes in output},
 }
-
-    \newglossaryentry{angularcontinuity}
-    {
-        name=angular continuity,
-        text=angular continuity,
-        description={},
-        parent=continuity
-    }
-
-    % \newglossaryentry{clusteringdiscont}
-    % {
-    %     name=clustering discontinuity,
-    %     description={},
-    %     parent=continuity,
-    % }
-
     \newglossaryentry{eventcontinuity}
     {
         name=continuity at an event,
         text=continuity at an event,
         description={
+            A property of collider observables which are continuous under small changes of energy flow when evaluated at a particular input event
         },
         parent=continuity
     }
@@ -220,6 +184,7 @@
         name=continuous grooming,
         text=continuous grooming,
         description={
+            Jet grooming procedures that remove soft radiation while ensuring that small changes to input jets produce small changes in groomed output
         },
         parent=continuity
     }
@@ -230,7 +195,7 @@
         name=H\"older continuity,
         text=H\"older continuity,
         description={
-            \sam{Lipschitz continuity is a special case}
+            A stronger form of continuity which bounds the rate of change of a function, of which Lipschitz continuity is a special case
         },
         parent=continuity
     }
@@ -241,6 +206,7 @@
         name=uniform continuity,
         text=uniform continuity,
         description={
+            A property of continuous functions for which the degree of continuity is consistent across the entire domain, not varying with the specific location.
         },
         parent=continuity
     }
@@ -265,7 +231,7 @@
         name=beta function (\ensuremath{\beta}),
         text=beta function,
         description={%
-            A function describing how the effective coupling with the energies of the interacting particles.
+            A function describing how the effective coupling changes with the energies of the interacting particles.
             %
             Not to be confused with the Euler beta function.
         },
@@ -288,7 +254,7 @@
     {
       name=frozen coupling,
       description={
-          A model of non-perturbative QCD effects where the effective value of \(\alpha_s\) is fixed below an appropriately chosen scale.
+          A phenomenological model of non-perturbative QCD effects in which the effective value of \(\alpha_s\) is fixed below an appropriately chosen scale.
       },
       parent=coupling
     }
@@ -300,15 +266,7 @@
 {
     name=cross section,
     description={
-    }
-}
-
-
-\newglossaryentry{deadcone}
-{
-    name=dead-cone effect,
-    description={
-        An effect observed in massive-quark-initiated jets, in which massive quarks do not radiate inside of a cone of radius \(\theta \sim m_q/E_q\).
+        A measure of the probability for a specific interaction between particles.
     }
 }
 
@@ -317,6 +275,7 @@
 {
     name=de-clustering,
     description={
+        The process of reversing a jet clustering algorithm to reveal the sequence of pairwise splittings that formed the jet
     }
 }
 
@@ -343,7 +302,7 @@
     {
       name=equation,
       text=DGLAP equation,
-      description={},
+      description={Integro-differential equations that govern the evolution of the distribution of partons within composite objects as a function of energy scale},
       first=Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) equation,
       parent=dglap
     }
@@ -352,7 +311,7 @@
     {
       name=splitting function,
       text=splitting function,
-      description={},
+      description={Functions governing the pseudo-probability distribution for a parton to split into two partons with given momentum fractions},
       first=Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) splitting function,
       parent=dglap,
     }
@@ -367,29 +326,12 @@
           parent=splittingfn
         }
 
-        \newglossaryentry{spacelikesplitting}
-        {
-          name=space-like,
-          text=space-like splitting function,
-          description={},
-          parent=splittingfn
-        }
-
-        \newglossaryentry{timelikesplitting}
-        {
-          name=time-like,
-          text=time-like splitting function,
-          description={},
-          parent=splittingfn
-        }
-
-
 
 \newglossaryentry{diffxsec}
 {
     name=differential cross section,
     description={
-        See cross section
+        The contribution of a particular kinematic region to a total cross section
     }
 }
 
@@ -398,6 +340,8 @@
 {
     name=discontinuity,
     description={
+        A point where a function undergoes a large change in output despite a small change in input.
+        %
         Also see continuity
     }
 }
@@ -406,7 +350,7 @@
         name=of jet clustering,
         text={clustering discontinuity},
         plural={clustering discontinuities},
-        description={Angular-discontinuous behavior of jet clustering algorithms due to their clustering criteria},
+        description={Angular-discontinuous behavior of jet clustering algorithms which occurs when small changes of particle momenta significant changes in which particles are grouped},
         parent=discontinuity,
     }
 
@@ -415,7 +359,7 @@
         name=soft,
         text=soft discontinuity,
         plural=soft discontinuities,
-        description={A discontinuity sensitive to the emission of small amounts of energy},
+        description={A discontinuity sensitive to the addition or removal of small amounts of energy},
         parent=discontinuity,
     }
 
@@ -424,7 +368,7 @@
         name=angular,
         text={angular discontinuity},
         plural={angular discontinuities},
-        description={A discontinuity sensitive to small angular variations in energy flow},
+        description={A discontinuity that arises from small changes in the angles of outgoing particles},
         parent=discontinuity,
     }
 
@@ -439,7 +383,7 @@
     {
       name=delta-fn,
       text=delta function,
-      description={},
+      description={A distribution which is zero everywhere except at a single point, where it is infinite to ensure that it integrates to one},
       parent=distribution
     }
 
@@ -459,6 +403,9 @@
 \newglossaryentry{emission}
 {
     name=emission,
+    description={
+        Particles radiated during the evolution of a high-energy parton. Forms the basic building block of parton showers and QCD jet formation
+    }
     description={Also see tree of partonic splittings, DGLAP}
 }
 
@@ -466,7 +413,7 @@
     {
         name=critical,
         text=critical emission,
-        description={},
+        description={In grooming, the first emission to survive a grooming procedure},
         parent=emission
     }
 
@@ -474,7 +421,7 @@
     {
         name=pre-critical,
         text=pre-critical emission,
-        description={},
+        description={Emissions which are wider in angle than a critical emission},
         parent=emission
     }
 
@@ -482,7 +429,7 @@
     {
         name=subsequent,
         text=subsequent emission,
-        description={},
+        description={Emissions which are narrower in angle than a critical emission},
         parent=emission
     }
 
@@ -492,7 +439,7 @@
 {
     % type=\acronymtype,
     name=energy-weighted correlations,
-    description={}
+    description={A class of observables which measure correlations in an event weighted by the energies of contributing particles}
 }
 
 
@@ -500,7 +447,7 @@
     {
         % type=\acronymtype,
         name=Energy-Energy Correlator (EEC),
-        description={},
+        description={An observable measuring the correlation between particles in an event separated at specific angles},
         first={Energy-Energy Correlator (EEC)},
         text={EEC},
         short={EEC},
@@ -513,7 +460,10 @@
     {
         % type=\acronymtype,
         name=Projected N-Point Energy Correlator (PENC),
-        description={},
+        description={An observable with a single argument which measures angular correlations between \(N\) particles;
+        %
+        reproduces the EEC when \(N=2\)
+        },
         % first={Projected Energy Correlator (PENC)},
         text={PENC},
         short={PENC},
@@ -524,7 +474,7 @@
     {
         % type=\acronymtype,
         name=Resolved N-Point Energy Correlator (RENC),
-        description={},
+        description={An obserable measuring angular correlations between \(N\) particles which depends on more than one argument, resolving more information than PENCs},
         % first={Resolved Energy Correlator (PENC)},
         text={RENC},
         short={RENC},
@@ -536,7 +486,7 @@
     {
         % type=\acronymtype,
         name=non-angular EWOC,
-        description={},
+        description={Energy-weighted correlations which may probe non-angular correlations such as mass},
         first={Energy-Weighted Observable Correlation (EWOC)},
         text={EWOC},
         short={EWOC},
@@ -552,7 +502,7 @@
   description={
       The outgoing distribution of energy in a particle collision experiment.
       %
-      Expressible as a quantum operator in the limit where all particles are massless.
+      In the massless limit, can be formulated in terms of quantum operators
   }
 }
 
@@ -569,31 +519,23 @@
 }
 
 
-\newglossaryentry{eventshape}
-{
-  name=event shape,
-  description={}
-}
-
-
-
 \newglossaryentry{fastjet}
 {
     name=\texttt{FastJet},
-    description={\sam{version info}}
+    description={A software package implementing jet finding algorithms and related tools}
 }
 
 
 \newglossaryentry{factorization}
 {
   name=factorization,
-  description={When a quantity (such as an amplitude or differential cross section) can be expressed as a product or sum of products}
+  description={When a quantity (such as an amplitude or differential cross section) can be expressed in terms of simpler, independent components as a product or sum of products}
 }
 
     \newglossaryentry{collinear-phase-space}{
       name=of collinear phase space,
       text=factorization of collinear phase space,
-      description={},
+      description={A decomposition of phase space distributions in the collinear limit which separates collinear singularities from regular, well-behaved pieces},
       parent=factorization
     }
 
@@ -601,8 +543,7 @@
     \newglossaryentry{eikonal}{
       name=eikonal,
       text=eikonal factorization,
-      % text=eikonal limit,
-      description={},
+      description={A factorization of amplitudes or phase space in the limit where two particles \(i\) and \(j\) are nearly collinear, and obey \(p_i \cdot p_j \ll p_\ell \cdot p_m\) for all \(\ell\) and \(m\)},
       parent=factorization
     }
 
@@ -612,36 +553,23 @@
 \newglossaryentry{fragmentation}
 {
   name=fragmentation,
-  description={}
+  description={A process describing how a single high-energy object fragments into multiple pieces in a particle collision;
+  %
+  often used to refer to the non-perturbative fragmentation of partons into hadrons}
 }
-    \newglossaryentry{fragfn}{
-      name=fragmentation function,
-      description={},
-      parent=fragmentation
-    }
-
-
     \newglossaryentry{parton-to-hadron}
     {
-      name=parton-to-hadron,
+      name=parton-to-hadron fragmentation function,
       text=parton-to-hadron fragmentation function,
-      description={
-        A heuristic for linking the predictions of the parton model to hadron-level results, in which partons are assumed to \textit{fragment into} hadrons.
-        %
-        See PHD
-    },
+      description={A function describing the probability for a parton to contain a specific hadron with a given energy fraction},
       parent=fragmentation
     }
 
     \newglossaryentry{parton-to-parton}
     {
-      name=parton-to-parton,
+      name=parton-to-parton fragmentation function,
       text=parton-to-parton fragmentation function,
-      description={
-          A prediction of the parton model in which partons at one scale (such as angular resolution or virtuality) \textit{fragment into} a number of partons at more fine-grained resolutions.
-          %
-          See parton shower
-      },
+      description={A function describing the probability for a parton to contain another parton with a given energy fraction at a different energy scale},
       parent=fragmentation
     }
 
@@ -662,13 +590,13 @@
 \newglossaryentry{hadron}
 {
   name=hadron,
-  description={}
+  description={A composite particle made of quarks and gluons bound by the strong force, including baryons formed by three quarks (like protons and neutrons) and mesons formed by quark-antiquark pairs (like pions)}
 }
 
     \newglossaryentry{hadronlevel}
     {
       name=hadron-level,
-      description={},
+      description={Observables or analyses defined in terms of final state hadrons},
       parent=hadron
     }
 
@@ -677,32 +605,23 @@
 {
   name=hadronization,
   text=hadronization,
-  description={See PHD}
+  description={A theoretical procedure for converting paron-level results into hadron-level results}
 }
 
 \newglossaryentry{hard-cutoff-groomer}
 {
   name=hard cutoff grooming algorithm,
-  description={}
+  description={A jet grooming algorithm that applies a sharp threshold criterion to remove soft radiation}
 }
 
 
 \newglossaryentry{irc-safety}
 {
-    % type=\acronymtype,
     name=Infra-Red and Collinear Safety (IRC Safety),
-    description={},
+    description={The property of a collider observable whose result is unchanged by the addition of infinitesimally soft particles or by exactly collinear splittings},
     text={IRC Safety},
     long={Infra-Red and Collinear Safety}
 }
-
-
-\newglossaryentry{integral-transform}
-{
-    name=integral transform,
-    description={},
-}
-
 
 
 \newglossaryentry{jet}
@@ -715,9 +634,7 @@
 {
   name=subjet,
   description={
-      A jet formed by applying a jet definition to an existing jet;
-      %
-      conceptually, subjets can encode the fractal-like inner structure of jets themselves.
+      A jet-like structure within an existing jet, formed by applying a jet definition with a smaller radius, which can be used to encode the fractal-like inner structure of jets
   }
 }
 
@@ -738,7 +655,7 @@
 \newglossaryentry{jet-calculus}
 {
   name=jet calculus,
-  description={}
+  description={A early theoretical framework for calculating the evolution of parton distributions within jets}
 }
 
 
@@ -746,12 +663,15 @@
 \newglossaryentry{jet-grooming}
 {
   name=jet grooming,
-  description={}
+  description={
+      Techniques for removing low-energy contamination from jets while preserving the hard structure originating from an initial parton
+  }
 }
     \newglossaryentry{constant-cutoff}
     {
         name=constant cutoff,
         description={
+            A toy grooming algorithm that removes radiation below a certain energy-fraction threshold from a tree of jet emissions
         },
         parent=jet-grooming
     }
@@ -760,6 +680,7 @@
     {
         name=constant subtraction,
         description={
+            A toy grooming algorithm which subtracts a fixed energy fraction from jet constituents within a tree of jet emissions
         },
         parent=jet-grooming
     }
@@ -767,7 +688,7 @@
     \newglossaryentry{mmdt}
     {
         % type=\acronymtype,
-        name=mMDT,
+        name=modified Mass Drop Tagger (mMDT),
         description={
             A jet groomer preceding Soft Drop, and identical to Soft Drop with \(\beta_\text{SD}=1\)
        },
@@ -783,7 +704,7 @@
     {
         % type=\acronymtype,
         name=\textsc{PIRANHA},
-        description={A paradigm for continuous jet grooming},
+        description={A paradigm for continuous jet grooming based on optimal transport and event geometry},
         first={\textbf{P}ileup and \textbf{I}nfrared \textbf{R}adiation \textbf{A}n\textbf{N}i\textbf{H}il\textbf{A}tion (\textsc{PIRANHA})},
         text={\textsc{PIRANHA}},
         short={\textsc{PIRANHA}},
@@ -797,7 +718,7 @@
         % type=\acronymtype,
         % name=P-AS,
         name=Apollonius Subtraction (P-AS),
-        description={},
+        description={A \textsc{Piranha} groomer which removes soft radiation through the geometry of Apollonius diagrams},
         first={\textbf{Apollonius Subtraction} (P-AS)},
         text={P-AS},
         short={P-AS},
@@ -809,7 +730,7 @@
     {
         % type=\acronymtype,
         name=Iterated Voronoi Subtraction (P-IVS),
-        description={},
+        description={A \textsc{Piranha} groomer which iteratively removes soft radiation through the geometry of Voronoi diagrams},
         first={\textbf{Iterated Voronoi Subtraction} (P-IVS)},
         text={P-IVS},
         short={P-IVS},
@@ -822,7 +743,7 @@
         % type=\acronymtype,
         name=Recursive Subtraction (P-RS),
         % name=P-RS,
-        description={},
+        description={A tree-based \textsc{Piranha} groomer which recursively loops through an angular-ordered tree of jet emissions},
         first={Recursive Subtraction (P-RS)},
         text={P-RS},
         short={P-RS},
@@ -835,7 +756,7 @@
         % type=\acronymtype,
         % name=P-RSF,
         name=with a Fraction \(f_\text{soft}\) (P-RSF),
-        description={},
+        description={An implementation of P-RS which subtracts a specified fraction of radiation from the softer branch of each splitting in a jet tree},
         first={\textbf{Recursive Subtraction with a Fraction \(f_\text{soft}\)} (P-RSF\(_f\))},
         text={P-RSF},
         short={P-RSF},
@@ -849,7 +770,7 @@
         % type=\acronymtype,
         name=Soft Drop (SD),
         % name=SD,
-        description={a two-parameter family of hard-cutoff jet groomers},
+        description={A two-parameter family of hard-cutoff jet groomers},
         first={the Soft Drop de-clustering algorithm (Soft Drop, or SD)},
         text={Soft Drop},
         short={SD},
@@ -868,38 +789,16 @@
     \newglossaryentry{substructure-diagram}
     {
       name=substructure diagram,
-      description={},
+      description={A diagram of the energy-fraction/angle (\(\log(z)-\log(\theta)\)) plane which can be used in analytic calculations},
       parent=jet-substructure
     }
 
 
 
-
-\newglossaryentry{laplace-transform}{
-  name=Laplace transform,
-  description={}
-}
-
 \newglossaryentry{mellin-transform}{
   name=Mellin transform,
-  description={}
+  description={An integral transform which extracts the different scaling components of a function}
 }
-
-\newglossaryentry{monte-carlo}
-{
-    name=Monte Carlo,
-    description={\sam{Include?}},
-}
-
-    \newglossaryentry{inverse-transform}
-    {
-        name=inverse transform method,
-        description={\sam{Include? Others?}},
-        parent=monte-carlo
-    }
-
-
-
 
 \newglossaryentry{mpi}
 {
@@ -915,15 +814,11 @@
     }
 }
 
-% non-global observable, non-global log
-
-% LO, LL, NLO, NLL, etc.
-% MLL
 
 \newglossaryentry{observable}
 {
     name=collider observable,
-    description={},
+    description={A map from a set of particle momenta to a specified target space, such as a real number (e.g. jet mass) or a distribution (e.g. the EEC)},
 }
 
     \newglossaryentry{additive-observable}
@@ -941,7 +836,7 @@
     {
         name=angularity,
         plural=angularities,
-        description={
+        description={An additive collider observable which is roughly the sum of contributions of the form \(z_i \theta_i^\varsigma\)
         },
         parent=observable
     }
@@ -950,8 +845,8 @@
     {
         name=generalized energy correlation function (GECF),
         description={
+            A collider observable which is roughly the sum of contributions of the form \(z_i z_j \theta_{ij}^\varsigma\) over all pairs of particles in a jet
         },
-        % first=generalized energy correlation function (GECF),
         text=GECF,
         parent=observable
     }
@@ -986,30 +881,22 @@
 \newglossaryentry{parton}
 {
   name=parton,
-  description={}
+  description={A roughly non-interacting, point-like particle}
 }
 
     \newglossaryentry{cascade}
     {
       name=partonic cascade,
-      description={See tree of jet emissions},
+      description={A tree-like structure formed by a series of recursive decays of a parent parton},
       parent=parton
     }
 
     \newglossaryentry{partonlevel}
     {
       name=parton-level,
-      description={},
+      description={Observables or analyses defined in terms of ``final-state'' partons},
       parent=parton
     }
-
-    \newglossaryentry{parton-model}
-    {
-      name=parton model,
-      description={},
-      parent=parton
-    }
-
 
 \newglossaryentry{phd}
 {
@@ -1019,7 +906,7 @@
   description={
       A principle of pQCD in which the parton-level predictions of energy-flow are assumed to be similar to the energy-flow at hadron-level.
       %
-      Not to be confused with PhD \sam{fill out}
+      Not to be confused with PhD (Doctor of Philosophy)
   },
 }
 
@@ -1028,21 +915,10 @@
       name=local parton-hadron duality (LPHD),
       first=local parton-hadron duality (LPHD),
       text=LPHD,
-      description={A refinement of the principle of PHD in which \sam{}.
-      %
+      description={A refinement of the principle of PHD in which the energy flow of partons at high energies is closely related to the energy flow of final-state hadrons,
       See preconfinement},
       parent=phd
     }
-
-
-
-
-\newglossaryentry{pdf}
-{
-  name=parton distribution function (pdf),
-  text=parton distribution function,
-  description={}
-}
 
 
 
@@ -1061,7 +937,7 @@
   text=PU,
   long=pileup,
   short=PU,
-  description={}
+  description={Contaminating radiation within a high-energy particle event (especially proton-proton collisions) due to lower-energy scatterings of nearby protons soon before or after a high-energy scattering}
 }
 
     \newglossaryentry{pu-mitigation}
@@ -1069,7 +945,7 @@
       name=mitigation,
       text=pileup mitigation,
       first=pileup mitigation,
-      description={},
+      description={Techniques for removing the contaminating radiation of pileup radiation},
       parent=pileup
     }
 
@@ -1078,7 +954,7 @@
       name=pileup-subtracted event,
       text=pileup-subtracted event,
       first=pileup subtracted event,
-      description={},
+      description={An event with pileup after a pileup mitigation technique has been used to remove pileup},
       parent=pileup
     }
 
@@ -1097,14 +973,14 @@
 \newglossaryentry{pythia}
 {
   name=\texttt{Pythia},
-  description={\sam{version info}}
+  description={A software package which includes automated event generation and hadronization toolkits to aid modern particle physics analyses}
 }
 
 \newglossaryentry{qcd}
 {
     % type=\acronymtype,
     name=Quantum Chromodynamics (QCD),
-    description={},
+    description={The theory of the strong nuclear force, written in terms of quarks and gluons},
     first={\textbf{Quantum Chromodynamics} (QCD)},
     text={QCD},
     short={QCD},
@@ -1115,7 +991,7 @@
     {
         % type=\acronymtype,
         name=perturbative QCD (pQCD),
-        description={},
+        description={QCD in the high-energy regime as approximated through perturbative calculations expressed as power series in the strong coupling},
         first={perturbative QCD (pQCD)},
         text={pQCD},
         short={pQCD},
@@ -1129,7 +1005,7 @@
 {
     % type=\acronymtype,
     name=Quantum Field Theory (QFT),
-    description={},
+    description={A rich and beautiful unifying language for modern physics which expresses the interactions of our universe in terms of quantum fields},
     first={\textbf{Quantum Field Theory} (QFT)},
     text={QFT},
     short={QFT},
@@ -1140,7 +1016,7 @@
 \newglossaryentry{radiator}
 {
   name=radiator,
-  description={}
+  description={A function which expresses the fixed-order or resummed properties of a particular observable}
 }
 
 
@@ -1169,33 +1045,28 @@
 \newglossaryentry{reclustering}
 {
     name=re-clustering,
-    description={
-    },
+    description={A scheme for expressing the constituents of an existing jet as a series of branchings (often ordered by angle)},
 }
 
 
 \newglossaryentry{regularization}
 {
   name=regularization,
-  description={}
+  description={A technique for providing physically-sensible, finite results in the presence of potentially infinite quantities in the intermediate steps of a calculation}
 }
-\newglossaryentry{dimreg}{
-    name=dimensional,
-    description={},
-    parent=regularization
-}
+
 
 \newglossaryentry{renormalization}
 {
   name=renormalization,
-  description={}
+  description={The study of how the properties of a physical system change as a function of scale/magnification}
 }
 
 
 \newglossaryentry{resummation}
 {
   name=resummation,
-  description={}
+  description={A mathematical technique for obtaining an analytic result from an infinite series}
 }
 
 
@@ -1204,6 +1075,7 @@
 {
     name=scattering,
     description={
+        A framework for studying the universe which involves slamming objects together, and often involves the study of cross sections
     }
 }
 
@@ -1212,7 +1084,7 @@
 {
     % type=\acronymtype,
     name=SCET,
-    description={},
+    description={An effective field theory of QCD which isolates soft and collinear degrees of freedom},
     first={Soft-Collinear Effective Theory (SCET)},
     text={SCET},
     short={SCET},
@@ -1253,7 +1125,7 @@
 {
   name=partonic splitting,
   text=partonic splitting,
-  description={See also parton shower}
+  description={The splitting of a parent parton into partonic children, especially in a parton shower}
 }
 
     \newglossaryentry{branch}
@@ -1305,7 +1177,7 @@
 \newglossaryentry{sum-rule}
 {
   name=sum rule,
-  description={}
+  description={A constraint on a function or quantity expressed in terms of its integral or summation properties}
 }
 
 
@@ -1325,7 +1197,7 @@
 {
     name=UE-corrected distribution,
     text=UE-corrected distribution,
-    description={},
+    description={A distribution of a collider observable evaluated on particle events in the presence of UE, after the use of techniques to correct for/mitigate UE effects},
     parent=ue
 }
 
@@ -1341,7 +1213,9 @@
     name=algorithm,
     text=veto algorithm,
     description={
-        \sam{link to sudakov factor/exponent?}
+        An algorithm for using random numbers to sample from an exponential distribution;
+        %
+        essential for parton shower algorithms
     },
     parent=veto
 }
@@ -1350,7 +1224,9 @@
     name=region,
     text=veto region,
     description={
-        \sam{link to radiator?}
+        A region in which no emission may lie if a jet is to exhibit certain properties, useful in the calculation of resummed jet substructure observables.
+        %
+        See also radiator
     },
     parent=veto
 }
@@ -1358,5 +1234,5 @@
 \newglossaryentry{zcut}
 {
   name=\ensuremath{z_{\text{cut}}},
-  description={}
+  description={A cut, constraint, or amount of grooming applied to the energy fraction of an emission within a tree of jet branchings}
 }
