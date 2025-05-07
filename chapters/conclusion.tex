@@ -47,6 +47,51 @@ Finally, in \Chap{ewocs}, we explored the techniques of \vocab{energy-weighted c
 We introduced the basic theory of the energy-energy correlator (\gls{eec}) for probing angular correlations in collision events, discussed its efficient and visually intuitive higher point generalizations, and even initiated the study of \vocab{energy-weighted observable correlations} (\glspl{ewoc}) to probe arbitrary non-angular correlations, such as the pair-wise masses of subjets.
 
 
+We've gained a precise, analytic understanding of some simple concepts in the phenomenological study of \gls{qcd} -- hopefully, at a level of detail that can accelerate your learning.
+%
+While it is \textit{always} helpful to have a solid understanding of the basics, the accuracy and utility of the results we discuss in this thesis can be improved by more detailed technical studies.
+%
+Precision calculations of \PIRANHA-groomed jet substructure, our new parametrization of energy correlators, and general \glspl{ewoc}, will enable more detailed comparisons of experimental and theoretical results, and lead to a deeper analytic understanding of the substructure observables we developed.
+%
+Additionally, the comparison of experiment and theory will need to be accompanied by more detailed modelling of uncertainties, such as the techniques of unfolding and re-weighting discussed in \App{pollution-models}.
+
+More detailed studies of the mass \gls{ewoc}, for example, may lead to complementary measurements of masses of the particles of the standard model which decay hadronically.
+%
+The most precise existing measurements of the \(W\) boson mass involve leptonic decays of the \(W\) boson, rather than hadronic decays, and require a detailed understanding of recoil and missing energy;
+%
+the use of the mass \gls{ewoc} allows us to study the mass of the \(W\) boson with hadronic decays and without sensitivity to recoil%
+\footnote{
+    I thank Christoph Paus for pointing out this feature.
+}
+%
+The study of the three-point mass \gls{ewoc} may also lead to a more precise measurement of the mass of the top quark, whose value sensitively determines the long-term fate of the standard model vacuum \cite{Alekhin:2012py}.
+
+Furthermore, the substructure observables discussed in this thesis may be refined and honed for specific phenomenological tasks with more detailed optimization.
+%
+For example, we have already presented in \App{pufrenzy} a simple optimization of the \gls{rsf} \PIRANHA{} grooming procedure for the removal of pileup;
+%
+however, optimization of more general \glslink{rs}{recursive subtraction} algorithms using machine learning and more detailed recursive algorithms may lead to more robust \PIRANHA{} grooming techniques which are nonetheless tree-based, efficient, and connected to event-space geometry.
+%
+Optimization of the weights of \glslink{penc}{projected} and \glslink{renc}{resolved} energy correlators may allow us to perform interesting studies which classify the behavior of dense, high-multiplicity nuclear environments such as the quark-gluon plasma;
+%
+the efficient, tunable behavior of PENCs and RENCs may be used to test different models of QGP formation and scattering within the QGP.
+%
+Similarly, optimization of the weights of more general \glspl{ewoc} may enable even deeper understanding of the behavior of our microscopic universe which is more robust to the presence of additive contamination.
+%
+For example, we saw in the low-multiplicity environment of proton-proton collisions that mass \glspl{ewoc} which utilize higher energy weights lead to more robust mass extraction (see \Tab{energyweights} of \Sec{ewoc-mass}).
+%
+The high-multiplicity environment of heavy ion has an even more formidable underlying event of contaminating radiation whose effects can also be mitigated by the use of \glspl{ewoc} with higher energy weights.
+%
+Even further, the use of observables other than mass%
+\footnote{
+    For example, we mentioned in \Sec{ewoc-intro} that \glspl{ewoc} based on pairwise \textit{formation times} \(\tau_{ij} = \max{\le(E_i, E_j\ri)} / m^2_{ij}\) probe the time scales associated with the production of high energy structures within jets, and may be useful in probing the evolution of jets in heavy ion collisions.
+}
+%
+may lead to additional power in classifying the behavior of the QGP and testing models of heavy ion collisions.
+%
+Optimizing the behavior of \glspl{ewoc} over both energy weights \textit{and} a wide space of pairwise observables (or even \(N\)-point observables) may lead to \glspl{ewoc} which discriminate sharply between different models of the QGP, and of particle production in high-energy scattering events in general.
+
+
 It has been a privilege to explore the universe with you.
 %
 Our goal has been to develop realistic tools for the study of the most fundamental features of our universe that humanity has been able to experimentally probe.
