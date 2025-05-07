@@ -164,7 +164,7 @@ Now, we want to find a way to leverage jets to determine the fundamental propert
 %
 In this thesis, we take the approach of studying the \textit{substructure} of jets.
 %
-The study of jet substructure has contributed to the deep connection between experimental and theoretical particle physics, with notable successes including precise determinations of the strong coupling constant \(\alpha_s\) and the on-going search for the precise value of the top quark mass \(m_t\) \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz}, whose value dictates the stability of the \glslink{sm}{Standard Model} vacuum and therefore the fate of the universe as we know it.
+The study of jet substructure has contributed to the deep connection between experimental and theoretical particle physics, with notable successes including precise determinations of the strong coupling constant \(\alphas\) and the on-going search for the precise value of the top quark mass \(m_t\) \cite{Procura:2022fid,Holguin:2022epo,Holguin:2023bjf,Pathak:2023tmy,Xiao:2024rol,Holguin:2024tkz}, whose value dictates the stability of the \glslink{sm}{Standard Model} vacuum and therefore the fate of the universe as we know it \cite{Alekhin:2012py}.
 
 \begin{definitionbox}{Jet Substructure}{jet-substructure}
     \vocab{\Gls{jet-substructure}} refers to the internal features of jets, usually captured by correlations among particles within the jet;
@@ -240,8 +240,6 @@ what happens when we zoom in on jets.
 The inner structure of jets is quite similar to the example of the snowflake -- much more than you might guess.
 %
 As in the case of snow, as we zoom out, simple fundamental building blocks (water molecules/high-energy partons) turn to fractals (snowflakes/the tree of partonic splittings) and then again to simple, but macroscopic objects (the snow bank/jets themselves).
-%
-See \Fig{renormalization}, which explores renormalization in the context of magnetism, snowflakes, and jets, and exemplifies how zooming into a system tends to reveal simple constituents, while zooming out of a system tends to reveal complex structures or disorder.
 
 
 In the later parts of this chapter, we will use some simple arguments to determine how the measured properties of jets change as we improve the angular resolution of the detectors we use to measure jet constituents.
@@ -282,7 +280,7 @@ Come to us in our hour of hope, it is exactly the mathematical framework we need
 
 Resummation is the technical segue we need to go from the conceptual developments of jets and renormalization to a quantitative study of jet substructure, and it is a necessary tool for removing the infinities and negative probabilities plaguing our the fixed order computations in \Sec{fixed-order-substructure}.
 %
-We perform simple resummed analyses in \Secs{ll-substructure-diagrams}{p2p-fragmentation} which leverage the recursive structure of the partonic cascade to obtain meaningful results at all orders in \(\alpha_s\) (unlike e.g. the analyses of \Sec{fixed-order-substructure}, which worked only to NLO).
+We perform simple resummed analyses in \Secs{ll-substructure-diagrams}{p2p-fragmentation} which leverage the recursive structure of the partonic cascade to obtain meaningful results at all orders in \(\alphas\) (unlike e.g. the analyses of \Sec{fixed-order-substructure}, which worked only to NLO).
 
 
 Soon, we show that resumming of the infinity of partonic splittings reduces the seemingly massive complexity of the tree of partonic emissions into simple, compact formulae.
@@ -345,7 +343,7 @@ For those who wish to bypass the technical introduction and quickly access pertu
     \begin{align}
         \splitxsec{\ell}{ij}
         =
-        \frac{\alpha_s}{\pi}
+        \frac{\alphas}{\pi}
         P_{ij \leftarrow \ell}(z_i)\,\frac{\dd z_i \, \dd \theta}{\theta}
         \,,
     \end{align}
@@ -907,10 +905,10 @@ We split two particles into three, then three into four, and so on, holding alwa
     \label{eq:splitting-prob-ch3}
     \dsigmatilde_{ij \leftarrow \ell^*}
     =
-    \frac{\alpha_s}{2\pi}
+    \frac{\alphas}{2\pi}
     P_{ij \leftarrow \ell}(z_i) \frac{\dd z_i \dd s}{s}
     =
-    \frac{\alpha_s}{\pi}
+    \frac{\alphas}{\pi}
     P_{ij \leftarrow \ell}(z_i) \frac{\dd z_i \, \dd \theta}{\theta}
     \,,
 \end{align}
@@ -1103,13 +1101,13 @@ It is for this reason that additive observables leverage and can illuminate the 
         \le(
         \int_0^R \frac{\dd\theta_1}{\theta_1}
         \int_0^1 \dd z_1
-        \frac{\alpha_s}{\pi}
+        \frac{\alphas}{\pi}
         p_i(z_1)
         \ri)
         \le(
         \int_0^{\theta_1} \frac{\dd\theta_2}{\theta_2}
         \int_0^1 \dd z_2
-        \frac{\alpha_s}{\pi}
+        \frac{\alphas}{\pi}
         p_i(z_2)
         \ri)
         \cdots
@@ -1159,7 +1157,7 @@ It is for this reason that additive observables leverage and can illuminate the 
         \le(
         \int_0^R \frac{\dd\theta_k}{\theta_k}
         \int_0^1 \dd z_k
-        \frac{\alpha_s}{\pi}
+        \frac{\alphas}{\pi}
         p_i(z_1)
         \ri)
         \,\,
@@ -1181,7 +1179,7 @@ It is for this reason that additive observables leverage and can illuminate the 
 
 
 \begin{proposition}{LL Distributions for Additive Observables}{ll-additive}
-    We may describe the \glslink{accuracy}{LL} cumulative probability distribution \(\Sigma^{\rm(LL)}_X(x)\) of an additive observable \(X\) as the probability that \textit{no emission} contributes a value greater than \(x\) to \(X\), up to sub-leading behavior in \(\alpha_s\) and logarithms or powers of the observable.
+    We may describe the \glslink{accuracy}{LL} cumulative probability distribution \(\Sigma^{\rm(LL)}_X(x)\) of an additive observable \(X\) as the probability that \textit{no emission} contributes a value greater than \(x\) to \(X\), up to sub-leading behavior in \(\alphas\) and logarithms or powers of the observable.
     \begin{align}
         \label{eq:ll-additive}
         \Sigma^{\text{(LL)}}_X(x) \approx \mathbb{P}(X_i < x \text{ for all } i)
@@ -1219,7 +1217,7 @@ We may therefore approximate the cumulative probability distribution for \(X\), 
     \,.
 \end{align}
 %
-This approximation holds up to corrections due to multiple emissions, which we address in \Prob{multiple-emissions}, that are sub-leading in \(\alpha_s\) and logarithms of the observable.
+This approximation holds up to corrections due to multiple emissions, which we address in \Prob{multiple-emissions}, that are sub-leading in \(\alphas\) and logarithms of the observable.
 %
 We should also note that typically, calculations applying the \glslink{accuracy}{LL} approximation will also drop terms that are suppressed by powers of \(X\) since these are sub-dominant to the leading logarithmic terms in observable distributions.
 \end{proof}
@@ -1246,7 +1244,7 @@ Using \Example{dyson-substructure} and \Prop{ll-additive}, and using the reduced
     &=
     \sum_{n = 0}^{\infty}\frac{1}{n!}
     \left(
-    \frac{\alpha_s}{\pi}
+    \frac{\alphas}{\pi}
     \int_0^R \frac{\dd\theta}{\theta}
     \int_0^{\frac{1}{2}} \dd z\,[\bar{p}_i(z)]_+^{[1/2]}
     \Theta\left(
@@ -1256,7 +1254,7 @@ Using \Example{dyson-substructure} and \Prop{ll-additive}, and using the reduced
     \\
     &=
     \exp\left[
-    -\frac{\alpha_s}{\pi}
+    -\frac{\alphas}{\pi}
     \int_0^R \frac{\dd\theta}{\theta}
     \int_0^{\frac{1}{2}} \dd z\,\bar{p}_i(z)
     \Theta\left(
@@ -1346,7 +1344,7 @@ By following the integral expressions of \Eq{LL_mass}, the LL cumulative distrib
     ~~
     \right]
     %\approx
-    %\exp\left[~-\frac{C_R\alpha_s}{2 %\pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
+    %\exp\left[~-\frac{C_R\alphas}{2 %\pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
     ,
 \end{aligned}
 \end{equation}
@@ -1359,7 +1357,7 @@ Plugging in the important piece for the splitting function at leading logarithmi
     \label{eq:mass-ll-cumulative}
     \Sigma^{\rm(LL)}_{m^2}(m^2)
     =
-    \exp\left[~-\frac{C_R\alpha_{\rm S}}{2 \pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
+    \exp\left[~-\frac{C_R\alphas}{2 \pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
     \,,
 \end{align}
 %
@@ -1367,11 +1365,11 @@ with an associated probability distribution
 \begin{align}
     \rho^{\rm(LL)}_{m^2}(m^2)
     =
-    \frac{C_R \alpha_s}{\pi}
+    \frac{C_R \alphas}{\pi}
     \frac{1}{m^2}
     \log\le(\frac{Q^2}{m^2}\ri)
     \,
-    \exp\left[~-\frac{C_R\alpha_{\rm S}}{2 \pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
+    \exp\left[~-\frac{C_R\alphas}{2 \pi}\log^2\left(\frac{m^2}{Q^2}\right)\right]
     \,.
 \end{align}
 
@@ -1392,7 +1390,7 @@ Notably, the cumulative distribution of \Eq{mass-ll-cumulative} is the exponenti
 
 
 %\begin{exercise}
-%    When expanded to \(\mathcal{O}(\alpha_s)\), there is a small discrepancy between the LL result for the cumulative mass-squared distribution above and the NLO result presented in \Sec{fixed-order-substructure}.
+%    When expanded to \(\mathcal{O}(\alphas)\), there is a small discrepancy between the LL result for the cumulative mass-squared distribution above and the NLO result presented in \Sec{fixed-order-substructure}.
 
 %    What is the source of this discrepancy?
 %    %
@@ -1401,6 +1399,7 @@ Notably, the cumulative distribution of \Eq{mass-ll-cumulative} is the exponenti
 
 
 \begin{exercise}
+    \label{ex:ll-angularity-radiator}
     The slopes of the diagonal line in the substructure diagram in the calculation of the jet mass distribution are \(-2\) since, for constant \(m^2\), \(z \sim 1/\theta^2\) and \(\log(1/z) = \text{const} - 2 \log(1/\theta)\).
     %
     What are the slopes of the diagonal lines involved in the computation of jet \glspl{angularity}?
@@ -1410,7 +1409,7 @@ Notably, the cumulative distribution of \Eq{mass-ll-cumulative} is the exponenti
         \Sigma^{(\text{LL})}(e_\varsigma)
         \approx
         \exp\le[
-            -\frac{C_R\alpha_{\rm S}}{\varsigma \pi}\log^2(e_\varsigma)
+            -\frac{C_R\alphas}{\varsigma \pi}\log^2(e_\varsigma)
         \ri]
         \,,
     \end{align}
@@ -1435,9 +1434,9 @@ Indeed, this will occur when applying certain techniques of \gls{jet-grooming} f
 
 
 \remark{}{
-    To include running coupling effects and work towards an MLL description of additive jet observables, we notice that the splittings of perturbative QCD should be governed by an \textit{effective coupling} \(\alpha_s(\kappa)\), where \(\kappa = \kappa(z,\theta)\) is a scale associated with the splitting.
+    To include running coupling effects and work towards an MLL description of additive jet observables, we notice that the splittings of perturbative QCD should be governed by an \textit{effective coupling} \(\alphas(\kappa)\), where \(\kappa = \kappa(z,\theta)\) is a scale associated with the splitting.
     %
-    The result would involve integrals containing terms of the form \(\int \dd z \, \dd \theta \, \alpha_s(\kappa) \, p(z) / \theta\).
+    The result would involve integrals containing terms of the form \(\int \dd z \, \dd \theta \, \alphas(\kappa) \, p(z) / \theta\).
     %
     The precise value we should choose for \(\kappa\) in order to account for higher-order effects is not obvious, but \Reff{Amati:1980ch} showed that \(\kappa\) should be given by the transverse momentum of the splitting in order to minimize the effects of large logarithms in perturbative calculations:
     \begin{align}
@@ -1445,20 +1444,20 @@ Indeed, this will occur when applying certain techniques of \gls{jet-grooming} f
         \,.
     \end{align}
     %
-    In particular, QCD correlations and cross sections that use \(\alpha_s\) evaluated at a scale \(\kappa\) generically include logarithms of the form \(\log(p_{\perp} / \kappa)\).
+    In particular, QCD correlations and cross sections that use \(\alphas\) evaluated at a scale \(\kappa\) generically include logarithms of the form \(\log(p_{\perp} / \kappa)\).
     %
     To make these logarithms small, one may choose \(\kappa \sim p_\perp\), which then requires that we evaluate the strong coupling at the scale \(p_\perp\) as well.
     %
-    This prescription provides a straightforward procedure for understanding higher-order effects with \glspl{substructure-diagram}, and can be extended to higher perturbative accuracy with the Catani-Marchesini-Webber (CMW) prescription \cite{Catani:1990rr}, which achieves two-loop accuracy for the running of \(\alpha_s\), and to qualitatively include non-perturbative effects by \textit{freezing} the coupling, as discussed in \App{soft-distortions}.
+    This prescription provides a straightforward procedure for understanding higher-order effects with \glspl{substructure-diagram}, and can be extended to higher perturbative accuracy with the Catani-Marchesini-Webber (CMW) prescription \cite{Catani:1990rr}, which achieves two-loop accuracy for the running of \(\alphas\), and to qualitatively include non-perturbative effects by \textit{freezing} the coupling, as discussed in \App{soft-distortions}.
     %
-    As a reminder, the one-loop running of \(\alpha_s\) is captured by
+    As a reminder, the one-loop running of \(\alphas\) is captured by
     \begin{align}
         \alpha^{\rm 1-loop}_s(\kappa)
         =
-        \frac{\alpha_s(Q)}{1 + \alpha_s(Q) \beta_0 \log(\frac{\kappa}{Q})/2\pi}
+        \frac{\alphas(Q)}{1 + \alphas(Q) \beta_0 \log(\frac{\kappa}{Q})/2\pi}
         ,
     \end{align}
-    where \(\beta_0 = \frac{11}{3}C_A - \frac{4}{3} T_f n_f\) is a coefficient appearing in the QCD beta function: \(\beta(\alpha_s) = -\beta_0 \alpha_s^2/2\pi + \mathcal{O}(\alpha_s^3)\).
+    where \(\beta_0 = \frac{11}{3}C_A - \frac{4}{3} T_f n_f\) is a coefficient appearing in the QCD beta function: \(\beta(\alphas) = -\beta_0 \alphas^2/2\pi + \mathcal{O}(\alphas^3)\).
 }
 
 
@@ -1476,7 +1475,7 @@ Concretely, this means that the effects of multiple emissions for an additive ob
         \int_0^R \frac{\dd\theta_k}{\theta_k}
         \int_0^{\frac{1}{2}} \dd z_k
         \,\,
-        \frac{\alpha_s}{\pi}
+        \frac{\alphas}{\pi}
         \,\,
         [\bar{p}_i(z_k)]_+^{[1/2]}
     \right)^n
@@ -1503,7 +1502,11 @@ In particular, the most important effects due to a more detailed analysis of mul
 \end{align}
 where \(\gamma_E=0.577\dots\) is the Euler-Mascheroni constant, \(\Gamma\) is the familiar Euler Gamma function, and \(R'_X(x) := -\dd R_X(x) / \dd \log(x)\).
 %
-The proof of this formula, at least for the simple case of angularities, is the business of \Prob{multiple-emissions}.
+The proof of this formula for the simple case of angularities, is the business of \Prob{multiple-emissions}.
+%
+In \Prob{multiple-emissions}, we also show that including the effects of multiple emissions leads to a cumulative distribution for \(X\) depending on the derivative of the radiator for general additive observables;
+%
+this feature will resurface in our discussion of continuity and jet grooming in \Chap{grooming}.
 
 
 
@@ -1529,7 +1532,7 @@ The proof of this formula, at least for the simple case of angularities, is the 
 %    \begin{aligned}
 %        % \rho(z_{\rm pre}, \thetacrit)
 %        % &=
-%        % \left(\frac{2 C_R \alpha_{\rm S}}{\pi}\right)^2
+%        % \left(\frac{2 C_R \alphas}{\pi}\right)^2
 %        % \frac{1}{\theta}
 %        % \log(\thetacrit)
 %        % [p(z_{\rm pre})]_+
@@ -1811,7 +1814,7 @@ We now show that the assumption that our parton shower is angular ordered leads 
     \\
     \label{eq:ll_fragmentation_function}
     &=
-    \le(\frac{\alpha_s\le(Q\,\rsub\ri)}{\alpha_s\le(Q\,\Rjet\ri)}\ri)
+    \le(\frac{\alphas\le(Q\,\rsub\ri)}{\alphas\le(Q\,\Rjet\ri)}\ri)
     ^
     {\frac{2 \hat{p}(m)}{\beta_0}}
     _{j\leftarrow i}
@@ -1892,7 +1895,7 @@ Recalling that the jet is formed by partonic splittings which become (at LL) suc
 \end{align}
 visualized diagrammatically in \Fig{shower:cartoon:fragmentation}.
 %
-The first term on the right-hand-side of \Eq{shower_fragmentation} represents the possibility of no splitting, where parton \(f\) is \emph{equal} to parton \(i\).
+The first term on the right-hand side of \Eq{shower_fragmentation} represents the possibility of no splitting, where parton \(f\) is \emph{equal} to parton \(i\).
 %
 The terms within the sum on \(n\) each represent the possibility of \(n\) splittings in the parton shower along the path traced from parton \(i\) to parton \(f\).
 %
@@ -1966,19 +1969,19 @@ After the dust settles, we obtain the following expression for the Mellin moment
         \frac{2\hat{p}(m)}{\beta_0}
         \log\le(
         \frac{
-            \alpha_s\le(Q\,\rsub\ri)
+            \alphas\le(Q\,\rsub\ri)
         }{
-            \alpha_s\le(Q\,\Rjet\ri)
+            \alphas\le(Q\,\Rjet\ri)
         }\ri)
     \ri]_{f \leftarrow i}
     ,
 \end{align}
 \end{subequations}
-where we have used the one-loop expression for \(\alpha_s(\mu)\) in \Eq{alphas_1loop} to make the replacement \(
+where we have used the one-loop expression for \(\alphas(\mu)\) in \Eq{alphas_1loop} to make the replacement \(
     \log\big(
-        \alpha_s\le(Q\,\rsub\ri)
+        \alphas\le(Q\,\rsub\ri)
         \,/\,
-        \alpha_s\le(Q\,\Rjet\ri)
+        \alphas\le(Q\,\Rjet\ri)
     \big)
     =
     -2 \beta_0 \, \as \,
@@ -1986,8 +1989,8 @@ where we have used the one-loop expression for \(\alpha_s(\mu)\) in \Eq{alphas_1
     \,
     +
     \,
-    \mathcal{O}(\alpha_s^2)
-\), recovering the result claimed in \Eq{ll_fragmentation_function}, up to higher order corrections in \(\alpha_s\) that we neglect at this accuracy.
+    \mathcal{O}(\alphas^2)
+\), recovering the result claimed in \Eq{ll_fragmentation_function}, up to higher order corrections in \(\alphas\) that we neglect at this accuracy.
 \end{proof}
 
 
@@ -2010,7 +2013,7 @@ In particular, we can use \Eq{ll_fragmentation_angle} to ask how the fragmentati
     \label{eq:fragmentation_dglap_upper}
     \frac{\dd}{\dd\log\le(Q\,\Rjet\ri)} \hat{F}(m;\,\rsub\leftarrow \Rjet)
     &=
-    \frac{\alpha_s(Q\,\Rjet)}{\pi}
+    \frac{\alphas(Q\,\Rjet)}{\pi}
     \,\,
     \hat{p}(m)
     \,
@@ -2019,7 +2022,7 @@ In particular, we can use \Eq{ll_fragmentation_angle} to ask how the fragmentati
     \label{eq:fragmentation_dglap_lower}
     \frac{\dd}{\dd\log\le(Q\,\rsub\ri)} \hat{F}(m;\,\rsub\leftarrow \Rjet)
     &=
-    -\frac{\alpha_s(Q\,\rsub)}{\pi}
+    -\frac{\alphas(Q\,\rsub)}{\pi}
     \,\,
     \hat{p}(m)
     \,
@@ -2036,7 +2039,7 @@ Amazingly, we have recovered the celebrated \glslink{dglapeqn}{Dokshitzer-Gribov
     \frac{\dd}{\dd\log\le(Q \Rjet\ri)}
     F_{f\leftarrow i}(z; \rsub \leftarrow \Rjet)
     =
-    \frac{\alpha_s(Q\Rjet)}{\pi}
+    \frac{\alphas(Q\Rjet)}{\pi}
     \int_0^1
     \frac{\dd y}{y}
     p_{j k}(y)
@@ -2046,7 +2049,7 @@ Amazingly, we have recovered the celebrated \glslink{dglapeqn}{Dokshitzer-Gribov
     F(z, \rsub \leftarrow \Rjet)
     =
     -
-    \frac{\alpha_s(Q\rsub)}{\pi}
+    \frac{\alphas(Q\rsub)}{\pi}
     \int_0^1
     \frac{\dd y}{y}
     p_{j k}(y)
@@ -2182,7 +2185,7 @@ Invoking the principle of \gls{lphd}, the angular-ordered binary tree produced b
 %
 Perturbative theoretical computations can be directly compared to experimentally-addressable observables which leverage \gls{reclustering}.
 %
-In particular, since each partonic emission in a jet is accompanied by a factor of the strong coupling \(\alpha_s\) in calculations of differential cross sections, observables computed on angular-ordered jet trees are particularly amenable to resummed perturbative analyses.
+In particular, since each partonic emission in a jet is accompanied by a factor of the strong coupling \(\alphas\) in calculations of differential cross sections, observables computed on angular-ordered jet trees are particularly amenable to resummed perturbative analyses.
 %
 Re-clustering is therefore an elegant and convenient tool for bridging experimental and theoretical jet physics and elucidating the secrets of jet substructure.
 
@@ -2739,7 +2742,7 @@ In particular,
     satisfies the natural convolution property of \Eq{convolution-property}.
 \end{proposition}
 %
-We see this convolution in our exploration of the scaling behavior of parton showers in \Sec{parton-shower} (and thus in the behavior of the resummed \gls{eec} in \Sec{eec}), and even in our exploration of parton-to-hadron fragmentation in \Prob{p2h-fragmentation}.
+We see this convolution in our exploration of the scaling behavior of parton showers in \Sec{parton-shower}, and again in \Sec{eec} when we explore the behavior of the resummed \gls{eec}.
 %
 The proof of this result is left to \Prob{mellinconvolution}.
 
@@ -2832,21 +2835,21 @@ One convenient, analytically tractable, independent-fragmentation-like model for
     +
     \alpha^{\rm 1-loop}_s(\mu_{\rm freeze})
     \Theta(\mu_{\rm freeze} > \kappa)
-    .
+    \,.
     \label{eq:frozen-coupling}
 \end{align}
 %
-\Eq{frozen-coupling} is a simplified analog of several motivated approaches to modeling the infra-red structure of QCD for which \(\alpha_s\) also approximately freezes below a non-perturbative scale.
+\Eq{frozen-coupling} is a simplified analog of several motivated approaches to modeling the infra-red structure of QCD for which \(\alphas\) also approximately freezes below a non-perturbative scale.
 %
 We take the approach of freezing the strong coupling below the scale \(\mu_{\rm freeze}\) = 1 GeV to estimate the effects of hadronization on jet grooming in our numerical calculations of \Sec{pira-resummed}, and we note that changing our choice of \(\mu_{\rm freeze}\) leads only to small effects in substructure distributions.
 
 
 \remark{}{
-    The freezing of the effective value of \(\alpha_s\) in the low-energy regime can be argued in several complementary contexts.
+    The freezing of the effective value of \(\alphas\) in the low-energy regime can be argued in several complementary contexts.
     %
-    The freezing of \(\alpha_s\) is discussed by \Reff{Mattingly:1992ud} in the context of optimized perturbation theory \cite{Stevenson:1981vj}, whose goal is to perform perturbative calculations that are minimally sensitive to changes in renormalization scheme, by \Reffs{Stevenson:1994jd,Caveny:1997yr} in the context of expanding perturbative results around the Caswell-Banks-Zaks fixed point \(N_f = N_f^* \lesssim 11 N_c / 2\) of the QCD beta function \cite{Caswell:1974gg,Banks:1981nn}, and by \Reff{Brodsky:2010ur} in the context of holographic QCD.
+    The freezing of \(\alphas\) is discussed by \Reff{Mattingly:1992ud} in the context of optimized perturbation theory \cite{Stevenson:1981vj}, whose goal is to perform perturbative calculations that are minimally sensitive to changes in renormalization scheme, by \Reffs{Stevenson:1994jd,Caveny:1997yr} in the context of expanding perturbative results around the Caswell-Banks-Zaks fixed point \(N_f = N_f^* \lesssim 11 N_c / 2\) of the QCD beta function \cite{Caswell:1974gg,Banks:1981nn}, and by \Reff{Brodsky:2010ur} in the context of holographic QCD.
     %
-    The freezing of \(\alpha_s\) may be also seen qualitatively by comparing experimental data to field theoretic calculations \cite{Deur:2008rf,Deur:2009tj,Binosi:2016nme}, and is a special case of the more general program of using effective couplings to describe non-perturbative infra-red effects \cite{Dokshitzer:1995qm,Dokshitzer:1995zt,Dokshitzer:1997ew,Dokshitzer:1997iz,Korchemsky:1999kt}.
+    The freezing of \(\alphas\) may be also seen qualitatively by comparing experimental data to field theoretic calculations \cite{Deur:2008rf,Deur:2009tj,Binosi:2016nme}, and is a special case of the more general program of using effective couplings to describe non-perturbative infra-red effects \cite{Dokshitzer:1995qm,Dokshitzer:1995zt,Dokshitzer:1997ew,Dokshitzer:1997iz,Korchemsky:1999kt}.
     %
     See \Reff{Deur:2016tte} for a recent review of models of the low-energy behavior of QCD with and without a frozen coupling.
 }
@@ -2977,7 +2980,7 @@ We model detector effects via
         \includegraphics[width=0.48\textwidth]{figures/misc/pu-jet}
         \label{fig:app-pu}
     }
-    \caption{Visualizations of important sources of additive contamination in particle collisions:
+    \caption[Visualizations of additive contamination in particle collisions.]{Visualizations of important sources of additive contamination in particle collisions:
     %
     \hyperref[fig:app-ue]{(a)}
     \glslink{ue}{the underlying event (UE)}, described theoretically through additional interactions from partons which are not directly involved in a hard scattering process, and
@@ -3218,21 +3221,6 @@ Therefore, we describe \gls{pu-mitigation} as a type of \gls{jet-grooming} which
 % Problems
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problems}
-% \makeprob{Regimes and Accuracy {better name}}{accuracy}{
-
-%     \begin{enumerate}
-%         \item
-%             Show that LO \(\implies\) \(Q \gg \LambdaQCD\).
-
-%         \item
-%             Argue that \(\LambdaQCD\) can be expressed as a non-perturbative scale.
-
-%         \item
-%             Show that LL \(\implies\) scale for the observable...
-
-%     \end{enumerate}
-% }
-
 
 \makeprob{The No-Emission Probability (Sudakov Form Factor)}{no-emission}{
     Let \(\Pi_i(m^2 \leftarrow Q^2)\) indicate the probability that, within a partonic cascade initiated by a parton of flavor \(i\) and virtuality \(Q\), that there is no pairwise emission of partons with a mass larger than \(m\);
@@ -3375,33 +3363,66 @@ Therefore, we describe \gls{pu-mitigation} as a type of \gls{jet-grooming} which
             Does \Eq{feynman_field_fragmentation_formula} have the correct behavior at \(\Rjet = \rsub\)?
 
         \item
-            Show that the recursive fragmentation formula obeys the DGLAP equations of \Eq{dglap-equations-parton-shower} derived through a more complete parton shower approach in \Sec{p2p-fragmentation}.
+            Show that the recursive fragmentation formula also implies the DGLAP equations of \Eq{dglap-equations-parton-shower}, which were derived through a more complete parton shower approach in \Sec{p2p-fragmentation}.
     \end{enumerate}
 }
 
 
-% TODO: multiple emissions
 \makeprob{\(\star\star\) Multiple Emissions \(\star\star\)}{multiple-emissions}{
-    By taking a Laplace transform, show that the cumulative distribution for an additive observable \(X(z, \theta)\) with radiator \(R_X\) takes the form
-    \begin{align}
-        \,,
-    \end{align}
-    when multiple emissions are included.
+    \begin{enumerate}[label=\alph*)]
+        \item
+            Write an expression, in terms of an infinite sum over products of phase space factors, for the cumulative distribution of an additive observable \(X\);
+            %
+            do \textit{not} use the approximation that the value of \(X\) is set by a single emission discussed in \Prop{ll-additive} and \Sec{ll-substructure-diagrams}.
 
-    {expand and estimate corrections to mass}
+        \item
+            By taking a Laplace transform, performing a sum, and taking an inverse Laplace transform, show that the cumulative distribution for the additive observable \(X\) can be written in the form
+            \begin{align}
+                \Sigma(x)
+                \approx
+                \frac{\exp[-H(x)]}{\Gamma\le(1 + H'(x)\ri)}
+                \,,
+            \end{align}
+            up to terms of \(\mathcal{O}(H''(x))\), where \(H'(x) := -\dd H(x) / \dd \log(x)\).
+            %
+            What is \(H(x)\)?
+
+            \texttt{(Hint:)} You may need the formula \(\int_{c-i\infty}^{c+i\infty} \frac{\dd y}{2 \pi i y} e^y y^{-A} = 1/\Gamma(1 + A)\) for the inverse Laplace transform of \(e^y y^{-1-A}\);
+            %
+            this can be found e.g. in \href{https://arxiv.org/pdf/1809.03933\#page=5}{Lemma 2.1 of} \Reff{schmidt2019shortnoteintegraltransformations}, or \href{https://univ.jeanpaulcalvi.com/Posters/ConfAuchWeb/abramovitz2.pdf\#section.5.9}{Section 5.9 of} \Reff{822801}.
+
+        \item
+            Argue that, for small \(x\), \(H(x)\) is approximately given by \(R_X(x)\), and show that this reproduces the correct leading logarithmic features derived in \Sec{ll-substructure-diagrams}.
+
+        \item
+            When \(X\) is an angularity, show that
+            \begin{align}
+                H(x) = R_X(x) + \gamma_E R'(x)
+                \,,
+            \end{align}
+            and therefore that the cumulative distributions of angularities, when multiple emissions are included, take the form
+            \begin{align}
+                \Sigma(x) \approx \frac{e^{-R(x) - \gamma_E R'(x)}}{\Gamma\le(1 + H'(x)\ri)}
+                \,.
+            \end{align}
+
+        \item
+            Justify our neglect of the terms of \(\mathcal{O}(H''(x))\).
+    \end{enumerate}
 }
 
 
 
-%\makeprob{\(\star\) Multiplicity of Subjets \(\star\)}{subjet-multiplicity}{
-%    Using the leading-logarithmic principles of the partonic cascade, find the multiplicity distribution of subjets of radius \rsub{} within a jet of radius \Rjet{}.
-%    %
-%    In other words, find the probability \(\mathbb{P}(n | \rsub)\) that there are \(n\) subjets of radius \rsub{} within a jet of radius \Rjet{}, for all \(n\).
 
-%    \texttt{(Hint:)}
-%    %
-%    Our solution involves finding a set of coupled differential equations describing how the probabilities \(\mathbb{P}(n | \rsub)\) change as \rsub{} is varied.
-%}
+\makeprob{\(\star\) Angularities at modified leading-logarithmic accuracy \(\star\)}{mll-angularities}{
+    Using the result of \Prob{multiple-emissions}, and taking into account running coupling effects, write an analytic expression for the MLL cumulative distribution for angularities in jets initiated by a parton of flavor \(i\), and show that it recovers the correct LL result in the limit \(\alphas\to0\).
+    %
+    Recall that the MLL result should include running coupling effects, multiple emissions, and non-singular pieces of the splitting functions.
+    %
+    If you are brave, you may also freeze the coupling below a non-perturbative scale.
+
+    \texttt{(Hint:)} Luckily, as discussed at the end of \Sec{ll-substructure-diagrams}, you may assume all contributions are from the primary branch of the jet, so that you will only need to use the form of a single splitting function, \(p_{i g \leftarrow i}(z)\), for each \(i\).
+}
 
 
 

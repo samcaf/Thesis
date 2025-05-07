@@ -358,7 +358,7 @@ The generators are conventionally chosen to satisfy
     \Tr\le(T_{(R)}^a T_{(R)}^b\ri) = T_R \delta^{ab}
     \,,
 \end{align}
-where the factor 1/2 is called the \textit{Dynkin index} (after mathematician Eugene Dynkin), which we will discuss more when we introduce the Feynman rules of \gls{qcd}.
+where the factor \(T_R\) is called the \textit{Dynkin index} (after mathematician Eugene Dynkin), which we will discuss more when we introduce the Feynman rules of \gls{qcd}.
 %
 These requirements on the generators can be used to show that the \(f^{abc}\) are completely antisymmetric with respect to exchange of any two indices.
 
@@ -1004,7 +1004,7 @@ For our purposes, it will be enough to note that the behavior of most effective 
 
 Particularly notable for the case of \gls{qcd} is the beta function for the Yang-Mills coupling \(g_s\), called the \textit{strong coupling constant}.
 %
-It is often parameterized in terms of perturbatively calculable coefficients as
+It is often parametrized in terms of perturbatively calculable coefficients as
 \begin{align}
     \beta_{g_s}(g_s)
     =
@@ -1021,7 +1021,7 @@ or
 \end{align}
 where \(\alpha_s = g_s^2 / 4 \pi\) and the \(\beta_k\) are coefficients that can be captured by N\(^{k+1}\)LO computations.
 %
-This parameterization is used because the combination \(\alpha_s / 4\pi\) appears frequently in loop calculations.
+This parametrization is used because the combination \(\alpha_s / 4\pi\) appears frequently in loop calculations.
 
 In 1972-73, Gerard `t Hooft \cite{tHooft:1998qmr}, Hugh Politzer \cite{Politzer:1973fx}, and David Gross and Frank Wilczek \cite{Gross:1973ju} discovered through one-loop computations that the beta function of \gls{qcd} is negative.
 %
@@ -1389,7 +1389,7 @@ The \vocab{differential rate} for the process \(\alpha \to \beta\) is then
         \Theta(k^0 > 0) \delta\le(k^2 - m^2\ri)
         \,,
     \end{align}
-    where the integral of the right-hand-side is done over \(k^0\) (and is often left out in writing).
+    where the integral of the right-hand side is done over \(k^0\) (and is often left out in writing).
 
     To simplify formal expressions, the definition
     \begin{align}
@@ -4142,7 +4142,7 @@ With a combination of physical intuition and sociological evidence we have found
     \begin{subequations}
     \begin{align}
         \label{eq:p_gtogg}
-        P_{gg \leftarrow gg}(z)
+        P_{gg \leftarrow g}(z)
         &=
         2C_A \le(
             \frac{1-z}{(z)_+}
@@ -4474,7 +4474,7 @@ This property is referred to as \textit{angular ordering}, and is \textbf{essent
         \mathcal{O}(\theta_{ij}^2)
         \,,
     \end{align}
-    where the first term of the right-hand-side emerges after integrating over the azimuthal direction of \(\vec{q}\) relative to the axis defined by the motion of particle \(i\), and the second when integrating over the azimuthal angle relative to \(j\).
+    where the first term of the right-hand side emerges after integrating over the azimuthal direction of \(\vec{q}\) relative to the axis defined by the motion of particle \(i\), and the second when integrating over the azimuthal angle relative to \(j\).
     %
     Notably, the phase space measure for \(\vec{q}\) of which vanishes when the direction of \(\vec{q}\) lies outside the cone defined by the momenta of \(i\) (in the first term) or \(j\) (in the second).
 \end{lemma}
@@ -5152,7 +5152,7 @@ The collinear limit again comes to the rescue to facilitate factorization and dr
         \Bigg)
         \,.
     \end{align}
-    In the limit that \(q\) is collinear to particle 1, is it the first term in the parentheses of the right-hand-side that matters.
+    In the limit that \(q\) is collinear to particle 1, is it the first term in the parentheses of the right-hand side that matters.
     %
     To simplify it, we can recall the non-Abelian charge conservation law of \Exercise{non-abelian-charge}, whose hermitian conjugate implies
     \begin{align}
@@ -5315,7 +5315,7 @@ Now that you are completely absolved of blame for these approximations, I invite
 \end{exercise}
 
 
-\begin{lemma}{Coherent Branching}{coherent-branching}
+\begin{lemma}{Coherent Branching}{qcd-coherent-branching}
     Consider \(M\) outgoing particles, and an additional soft gluon, in the \vocab{strongly-angular-ordered limit}:%
     \footnote{
         Using the triangle equality, we could also write
@@ -6556,137 +6556,6 @@ which can be quickly shown with \vocab{bird track diagrams} \cite{Cvitanovic:200
 \end{subequations}
 
 
-%\subsection{Splitting Functions}
-
-%Finally, we tabulate the properties of the exclusive and inclusive \gls{qcd} \glspl{splittingfn} in \Tabs{exclusive-splitting}{inclusive-splitting} respectively.
-%%
-%We use \(B(m,n)\) to denote Euler's beta function,
-%\begin{align}
-%    B(m,n) = \frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}
-%    \,.
-%\end{align}
-
-%\sam{Missing delta functions/virtual contributions}
-%%
-
-
-%% +===================================
-%\begin{table}[h!]
-%\begin{center}
-%\LARGE $\boldsymbol{P_{ij \leftarrow \ell}(z)}$
-%\end{center}
-%\vspace{-10pt}
-%\centering
-%\caption[Exclusive NLO QCD splitting functions and their Mellin moments.]{
-%    Exclusive QCD splitting functions and their Mellin moments at NLO (\(z = E_i/E_\ell\)).
-%    %
-%    $B(m,n)$ denotes Euler's beta function.  \sam{check}
-%    %
-%    \sam{include comment about \(N_f\)}
-%}
-%\label{tab:exclusive-splitting}
-%\vspace{5pt}
-%\renewcommand{\arraystretch}{3.2}
-%\rowcolors{1}{gray!20}{gray!5}
-%\begin{tabular}{|>{\bfseries}m{2cm}|m{4cm}|m{7cm}|}
-%\hline
-%\centering \textbf{Channel} & \centering \textbf{Splitting Function} &
-%\centering $\boldsymbol{\hat{P}(m,n)} := \int_0^1 \dd x
-%\, x^{m-1} \le(1-x\ri)^{n-1} \, \, P(x)$
-%\tabularnewline
-%\hline
-%\centering $gq \leftarrow q$
-%                            &
-%\centering $C_F \dfrac{1 + (1 - z)^2}{z}$
-%                            &
-%\centering
-%$C_F \le(B\le(m,n-1\ri) + B\le(m+2,n-1\ri)\ri)$
-%\tabularnewline
-%\hline
-%\centering
-%$gg \leftarrow g$
-%                            &
-%\centering $2 C_A \dfrac{(1 - z(1 - z))^2}{z(1 - z)}$
-%                            &
-%\centering
-%$2 C_A \big(B\le(m-1, n+1\ri) + B\le(m+1, n-1\ri)$
-%\centering
-%$+ B\le(m+1, n+1\ri)\big)$
-%\tabularnewline
-%\hline
-%\centering $q\bar{q} \leftarrow g$
-%                            &
-%\centering $T_F \le(z^2 + (1-z)^2\ri)$
-%                            &
-%\centering
-%$T_F \le(B\le(m+2, n\ri) + B\le(m, n+2\ri)\ri)$
-%\tabularnewline
-%\hline
-%\end{tabular}
-%\end{table}
-%% +===================================
-
-%\vspace{1em}
-%% +===================================
-%\begin{table}[h!]
-%\begin{center}
-%\LARGE $\boldsymbol{p_{i \leftarrow \ell}(z)}$
-%\end{center}
-%\vspace{-10pt}
-%\centering
-%\caption[Inclusive NLO QCD splitting functions and their Mellin moments.]{
-%    Inclusive QCD Splitting Functions and their Mellin moments at NLO.  \sam{check}
-%    %
-%    \sam{comment about \(N_f\)}
-%}
-%\label{tab:inclusive-splitting}
-%\vspace{5pt}
-%\renewcommand{\arraystretch}{3.5}
-%\rowcolors{1}{gray!20}{gray!5}
-%\begin{tabular}{|>{\bfseries}m{1.5cm}|m{6cm}|m{6cm}|}
-%\hline
-%\centering \textbf{Channel} & \centering \textbf{Splitting Function} & \centering $\boldsymbol{\hat{p}(m)} := \int \dd x\, x^{m-1} \, \, p(m)$
-%\tabularnewline
-%\hline
-%\centering $q \leftarrow q$
-%                            &
-%\centering $C_F \left[ \dfrac{1 + z^2}{1 - z} \right]_+$
-%                            &
-%\centering $C_F \left(-\dfrac{1}{2} + \dfrac{1}{m(m+1)} - 2\sum_{k=2}^{m} \dfrac{1}{k} \right)$
-%\tabularnewline
-%\hline
-%\centering $g \leftarrow q$
-%                            &
-%\centering $C_F \left( \dfrac{1 + (1 - z)^2}{z} \right)$
-%                            &
-%\centering
-%$C_F \dfrac{m^2 + m + 2}{m(m-1)(m+1)}$
-%\tabularnewline
-%\hline
-%\centering $g \leftarrow g$
-%                            &
-%\centering $2C_A \left[ \dfrac{z}{(1 - z)_+} + \dfrac{1 - z}{z} + z(1 - z) \right]$
-%                            &
-%\centering
-%$C_A\le(-\frac{1}{6} + \frac{2}{n(n+1)} + \frac{2}{(n+2)(n+3)}\ri) - 2C_A \sum_{k=2}^{m} \dfrac{1}{k} - N_f / 3$
-%\tabularnewline
-%\hline
-%\centering
-%$q \leftarrow g$
-%($\overline{q} \leftarrow g$)
-%                            &
-%\centering $T_F \left( z^2 + (1 - z)^2 \right)$
-%                            &
-%\centering
-%$2T_F \dfrac{m^2+3m+4}{(m+1)(m+2)(m+3)}$
-%\tabularnewline
-%\hline
-%\end{tabular}
-%\end{table}
-%% +===================================
-
-
-
 
 
 % ===================================================
@@ -7535,7 +7404,7 @@ Though I find this example to be significantly harder than our previous examples
         \text{PV}\le(\frac{1}{x} \ri)
         \,,
     \end{align}
-    where the right-hand-side is the \vocab{Cauchy Principle Value}, a distribution defined by
+    where the right-hand side is the \vocab{Cauchy Principle Value}, a distribution defined by
     \begin{align}
         \int_{-\infty}^{\infty} \dd x
         \,\,

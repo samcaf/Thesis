@@ -5,121 +5,6 @@
 \begingroup
 \renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}
 
-\iffalse
-% ---------------------------------------
-\Soln{Non-Perturbative Effects}{lqcd-nonpert}
-% ---------------------------------------
-
-% ---------------------------------------
-\Soln{Leading Order Results for \texorpdfstring{\(e^+\,e^-\)}{electron-positron} to hadrons}{eetohadrons_lo}
-% ---------------------------------------
-
-First, let us recall the diagram for the process in question,
-%
-\begin{align}
-    \tikzexdiagram{ee_to_qq}[0][1.3]
-\end{align}
-and recall the Feynman rules of QCD:
-\sam{include}
-
-Assuming all partons are massless and working in Feynman gauge,
-\begin{subequations}
-\begin{align}
-    i \mathcal{M}_2^{(0)}
-    &=
-    \le(
-    -i e_q
-    \gamma^\mu
-    \ri)
-    \frac{i\eta_{\mu\nu}}{\le(p_1 + p_2\ri)^2}
-    \le(
-    -i e_q
-    \gamma^\nu
-    \ri)
-    \\
-    &=
-\end{align}
-\end{subequations}
-\sam{missing spinor factors}
-\sam{missing color factors}
-
-
-
-
-
-
-% ---------------------------------------
-\Soln{Next-to-Leading Order Results for \texorpdfstring{\(e^+\,e^-\)}{electron-positron} to hadrons}{eetohadrons_nlo}
-% ---------------------------------------
-
-% https://zzxianyu.com/wp-content/uploads/2017/01/peskin_problems.pdf#page=75
-
-\begin{align}
-    \tikzexdiagram{ee_to_qqg}[0][1.0]
-\end{align}
-
-
-\begin{align}
-    \,.
-\end{align}
-
-
-
-\begin{align}
-    \tikzexdiagram{ee_to_qq_loop}[0][1.5]
-\end{align}
-
-
-
-\begin{align}
-    i \mathcal{M}_2^{(2)}
-    =
-    -i e
-    \le(-i e_q\ri)
-    \le(-i g_s\ri)^2
-    \,\,
-    \le(
-    \gamma^\mu
-    \ri)
-    \,\,
-    \frac{i \eta_{\mu\nu}}{\le(p_1 + p_2\ri)^2}
-    \,\,
-    \le(
-        (T_F^a)\indices{^i_k}
-        \,\,
-        \gamma^\rho
-        \,\,
-        \frac{i \le(\slashed{k_1} + \slashed{\ell}\ri)}
-            {\le(k_1 + \ell\ri)^2}
-        \,\,
-        \gamma^\nu
-        \,\,
-        \frac{i \le(\slashed{k_2} - \slashed{\ell}\ri)}
-            {\le(k_2 - \ell\ri)^2}
-        \,\,
-        \gamma^\sigma
-        \,\,
-        (T_F^b)\indices{^k_j}
-    \ri)
-    \,\,
-    \frac{i \delta_{ab} \eta_{\rho\sigma}}{\ell^2}
-    \,.
-\end{align}
-
-
-% ---------------------------------------
-\Soln{Kinematics for \texorpdfstring{\(e^+\,e^-\)}{electron-positron} to hadrons at NLO}{eetohadrons_kinematics}
-% ---------------------------------------
-
-% ---------------------------------------
-\Soln{A Physical Approach to Plus-Functions}{physics-plus}
-% ---------------------------------------
-
-% ---------------------------------------
-\Soln{Splitting Functions in Dimensional Regularisation}{dimreg-splitting}
-% ---------------------------------------
-\fi
-
 % ---------------------------------------
 \Soln{Massless Splitting Functions in \texorpdfstring{\(\phi^3\)}{phi-cubed} Theory}{phi-cubed-splitting}
 % ---------------------------------------
@@ -509,7 +394,7 @@ This yields\footnote{
         E_n + E_{n-1} + \mathcal{O}\le(\theta^2\ri)
         ,
     \end{align}
-    and use this to argue that, in the collinear limit, we can parameterize the energy dependence of the differential cross section into dependence on \(E'\) and on \(x\), where \(x\) is an \vocab{energy fraction} defined through
+    and use this to argue that, in the collinear limit, we can parametrize the energy dependence of the differential cross section into dependence on \(E'\) and on \(x\), where \(x\) is an \vocab{energy fraction} defined through
     \begin{align}
         E_n &= x E'
         \\
@@ -1493,7 +1378,7 @@ To obtain a parton shower valid at LL accuracy, we implement the following proce
         \notag
         &=
         \exp\left[
-            -\frac{C_R \alpha_s}{\varsigma~\pi}
+            -\frac{C_R \alphas}{\varsigma~\pi}
             \left(
                 \log^2(2 e^{(f)}_\varsigma) - \log^2(2 e^{(i)}_\varsigma)
             \right)
@@ -1511,7 +1396,7 @@ To obtain a parton shower valid at LL accuracy, we implement the following proce
         =
         \frac{1}{2}
         \exp\left[
-            -\sqrt{\log^2(2 e^{(i)}_\varsigma) - \frac{\varsigma~\pi}{C_R \alpha_s} \log(r)}
+            -\sqrt{\log^2(2 e^{(i)}_\varsigma) - \frac{\varsigma~\pi}{C_R \alphas} \log(r)}
         \right]
         ,
     \end{align}
@@ -1548,7 +1433,7 @@ We produce these higher-order effects by using veto method sampling \cite{Sjostr
 \begin{enumerate}
 	\item
 	\label{item:MLL_ps_start}
-	Generate an angularity, angle, and energy fraction with Steps \ref{item:LL_ps_start}--\ref{item:LL_ztheta_sampling} of the LL parton shower algorithm, with the coupling \(\alpha_s\) of \Eqs{alg_LLang_ratio}{alg_LLang} replaced by a large fixed value for the coupling, \(\hat\alpha = \frac{1}{2}\).
+	Generate an angularity, angle, and energy fraction with Steps \ref{item:LL_ps_start}--\ref{item:LL_ztheta_sampling} of the LL parton shower algorithm, with the coupling \(\alphas\) of \Eqs{alg_LLang_ratio}{alg_LLang} replaced by a large fixed value for the coupling, \(\hat\alpha = \frac{1}{2}\).
 
 	\item
 	As dictated by the veto method, accept the generated variables with a probability given by the ratio \(\rho^{\rm(MLL)}(z,\theta)/\hat\rho^{\rm(LL)}(z,\theta)\), where \(\rho^{\rm(MLL)}\) indicates the MLL probability distribution function and \(\hat\rho^{\rm(LL)}\) indicates the LL probability distribution function with the coupling \(\hat\alpha\).
@@ -1557,7 +1442,7 @@ We produce these higher-order effects by using veto method sampling \cite{Sjostr
 	\begin{align}
 	    r'' < \mathbb{P}_{\rm no~veto}
 	    =
-	    \frac{\bar{p}_i(z)}{p_{i,\,\rm gen}(z)}\,\frac{\alpha_s(\kappa)}{\hat\alpha}
+	    \frac{\bar{p}_i(z)}{p_{i,\,\rm gen}(z)}\,\frac{\alphas(\kappa)}{\hat\alpha}
 	    ,
 	\end{align}
 	where \(p_{i,\,\rm gen}(z) = 2 C_{R_i} / z\) is the singular piece of the splitting function, used implicitly in drawing the angularity \(e_\varsigma^{(f)}\) from an LL distribution in \Eq{alg_LLang}.
@@ -1613,286 +1498,528 @@ The agreement between these calculations provides a simple validation for the re
 \Soln{Multiple Emissions}{multiple-emissions}
 % ---------------------------------------
 
-The cumulative distribution for the additive variable \(X\), including contributions from any number of emissions, is
-\begin{align}
-    \Sigma(x)
-    &=
-    \sum_{n = 1}^\infty \prod_{m = 1}^n
-    \left[
-        \int_0^{1} \frac{d\theta'_m}{\theta'_m}
-        \int_0^1 dz_m p_i(z_m)
-        \frac{\alpha_S(\kappa_m)}{\pi}
-        \Theta(\theta_{m-1} - \theta_m)
-        \Theta(z - z_c)
-    \right]
-    \,\,\,
-    \Theta\left(x - \sum_{m=1}^n X(z_m, \theta_m)\right)
-    \,.
-\end{align}
-The Laplace transform, \(\widetilde{f}(\nu) := \int_{-\infty}^\infty \dd x\, f(x) e^{-\nu x}\), of the cumulative distribution is therefore
-\begin{align}
-    \widetilde\Sigma(\nu)
-    &:=
-    \int_{-\infty}^\infty \dd x\, \Sigma(x) e^{-\nu x}
-    \\
-    &= \sum_{n=1}^\infty \prod_{m=1}^n  \left[
-        \int_0^{1} \frac{\dd \theta'_m}{\theta'_m}
-        \int_0^1 \dd z_m p_i(z_m)
-        \frac{\alpha_S(\kappa_m)}{\pi}
-        \Theta(\theta_{i-1} - \theta_i)
-    \right]
-    \,\,
-    \int^\infty_{\sum X_m} \dd x \, e^{-v x}
-    \\
-    &=
-    -\frac{1}{\nu}
-    \,\,
-    \sum_{n=1}^\infty \prod_{m=1}^n  \left[
-        \int_0^{1} \frac{\dd \theta'_m}{\theta'_m}
-        \int_0^1 \dd z_m p_i(z_m)
-        \frac{\alpha_S(\kappa_m)}{\pi}
-        \Theta(\theta_{i-1} - \theta_i)
-        e^{-v X(z_m, \theta_m)}
-    \right]
-    \,.
-\end{align}
-Now we can take advantage of angular ordering, using Dyson's trick to replace the factors of \(\Theta(\theta_{i-1} - \theta_i)\) by a single factor of \(1 / n!\).
-%
-Using that the resulting features of the integrand have identical forms for each emission, this yields
-\begin{align}
-    \widetilde\Sigma(\nu)
-    &=
-    -\frac{1}{\nu}
-    \,\,
-    \sum_{n=1}^\infty \frac{1}{n!}
-    \left(
-        \int_0^{1} \frac{\dd \theta'}{\theta'}
-        \int_0^1 \dd z p_i(z)
-        \frac{\alpha_S(\kappa)}{\pi}
-        e^{-v X(z, \theta)}
-    \right)^n
-    \\
-    &=
-    -\frac{1}{\nu}
-    \,\,
-    \exp\le[
-        \int_0^{1} \frac{\dd \theta'}{\theta'}
-        \int_0^1 \dd z p_i(z)
-        \frac{\alpha_S(\kappa)}{\pi}
-        e^{-v X(z, \theta)}
-    \ri]
-    \\
-    &=
-    -\frac{1}{\nu}
-    \,\,
-    \exp\le[
-        \int_0^{1} \frac{\dd \theta'}{\theta'}
-        \int_0^1 \dd z p_i(z)
-        \frac{\alpha_S(\kappa)}{\pi}
-        \,
-        \le(e^{-v X(z, \theta)} - 1\ri)
-    \ri]
-    \,,
-\end{align}
-where in the final equality we have used that \(p_i(z)\) integrates to zero in the soft-collinear limit.
+\begin{enumerate}[label=\alph*)]
+    \item
+    The cumulative distribution for the additive variable \(X\), including contributions from any number of emissions, is
+    \begin{align}
+        \Sigma(x)
+        &=
+        \Theta(x)
+        +
+        \sum_{n = 1}^\infty \prod_{m = 1}^n
+        \left[
+            \int_0^{\Rjet} \frac{\dd\theta'_m}{\theta'_m}
+            \int_0^1 \dd z_m \, p_i(z_m)
+            \frac{\alphas(\kappa_m)}{\pi}
+            \Theta(\theta_{m-1} - \theta_m)
+        \right]
+        \,\,\,
+        \Theta\left(x - \sum_{m=1}^n X(z_m, \theta_m)\right)
+        \,,
+    \end{align}
+    where the factor of \(\Theta(x)\) on the right-hand side appears because of the possibility that there are no emissions;
+    %
+    since the splitting functions are plus-function regulated and integrate to zero, proper normalization of \(\Sigma(x)\) implies that the coefficient of \(\Theta(x)\) is one.
 
-Now we must invert the Laplace transform, via
-\begin{align}
-    \Sigma(x) = \int \frac{\dd \nu}{2\pi i} \, e^{\nu x} \widetilde\Sigma(\nu)
-    \,,
-\end{align}
-to obtain the cumulative distribution for \(X\).
+    \item
+    The Laplace transform, \(\widetilde{f}(\nu) := \int_{-\infty}^\infty \dd x\, f(x) e^{-\nu x}\), of the cumulative distribution is therefore
+    \begin{align}
+        \widetilde\Sigma(\nu)
+        &:=
+        \int_{-\infty}^\infty \dd x\, \Sigma(x) e^{-\nu x}
+        \\
+        &=
+        \frac{1}{\nu}
+        \,\,+\,\,
+        \sum_{n=1}^\infty \prod_{m=1}^n  \left[
+            \int_0^{\Rjet} \frac{\dd \theta'_m}{\theta'_m}
+            \int_0^1 \dd z_m p_i(z_m)
+            \frac{\alphas(\kappa_m)}{\pi}
+            \Theta(\theta_{i-1} - \theta_i)
+        \right]
+        \,\,
+        \int^\infty_{\sum X_m} \dd x \, e^{-v x}
+        \\
+        &=
+        \frac{1}{\nu}
+        \,\,+\,\,
+        \frac{1}{\nu}
+        \sum_{n=1}^\infty \prod_{m=1}^n  \left[
+            \int_0^{\Rjet} \frac{\dd \theta'_m}{\theta'_m}
+            \int_0^1 \dd z_m p_i(z_m)
+            \frac{\alphas(\kappa_m)}{\pi}
+            \Theta(\theta_{i-1} - \theta_i)
+            e^{-v X(z_m, \theta_m)}
+        \right]
+        \,.
+    \end{align}
+    Now we can take advantage of angular ordering, using Dyson's trick to replace the product of the factors of \(\Theta(\theta_{i-1} - \theta_i)\) by a single factor of \(1 / n!\).
+    %
+    Using that the resulting pieces of the integrand have identical forms for each emission (i.e. are independent of \(m\)), this yields
+    \begin{align}
+        \widetilde\Sigma(\nu)
+        &=
+        \frac{1}{\nu}
+        \,\,
+        \sum_{n=0}^\infty \frac{1}{n!}
+        \left(
+            \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+            \int_0^1 \dd z p_i(z)
+            \frac{\alphas(\kappa)}{\pi}
+            e^{-v X(z, \theta)}
+        \right)^n
+        \\
+        &=
+        \frac{1}{\nu}
+        \,\,
+        \exp\le[
+            \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+            \int_0^1 \dd z p_i(z)
+            \frac{\alphas(\kappa)}{\pi}
+            e^{-v X(z, \theta)}
+        \ri]
+        \\
+        &=
+        \frac{1}{\nu}
+        \,\,
+        \exp\le[
+            \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+            \int_0^1 \dd z p_i(z)
+            \frac{\alphas(\kappa)}{\pi}
+            \,
+            \le(e^{-v X(z, \theta)} - 1\ri)
+        \ri]
+        \,,
+    \end{align}
+    where in the final equality we have used that \(p_i(z)\) integrates to zero in the soft-collinear limit.
+
+    Now we must invert the Laplace transform, via
+    \begin{align}
+        \Sigma(x) = \int \frac{\dd \nu}{2\pi i} \, e^{\nu x} \widetilde\Sigma(\nu)
+        \,,
+    \end{align}
+    to obtain the cumulative distribution for \(X\).
+    %
+    In particular, we evaluate the inverse Laplace transform for obtaining \(\Sigma(x)\),
+    \begin{align}
+        \Sigma(x)
+        =
+        \int \frac{\dd \nu}{2\pi i\, \nu} \, e^{\nu x}
+        \,
+        \exp\le[
+            \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+            \int_0^1 \dd z p_i(z)
+            \frac{\alphas(\kappa)}{\pi}
+            \,
+            \le(e^{-v X(z, \theta)} - 1\ri)
+        \ri]
+        \,
+        :=
+        \,
+        \int \frac{\dd \nu}{2\pi i\, \nu} \, e^{\nu x}
+        \,\,
+        \exp \le[-H(1/\nu)\ri]
+        \,,
+    \end{align}
+    where
+    \begin{align}
+        \label{eq:H-radiator-def}
+        H(1/\nu)
+        :=
+        \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alphas(\kappa)}{\pi}
+        \,
+        \le(1-e^{-v X(z, \theta)}\ri)
+        \,,
+    \end{align}
+    by the method of steepest descent.
+
+    The integrand is stationary under variations in \(\nu\) when \(\nu = 1/x + \mathcal{O}(\alphas)\), and we will use the following logarithmic Taylor expansion to facilitate the later parts of the calculation:
+    \begin{align}
+        \label{eq:steepest-descent-expansion-i}
+        H(1/\nu)
+        =
+        H(x)
+        +
+        \le(\log(\nu) - \log(1/x)\ri)
+        \frac{\partial}{\partial\le(\log(\nu')\ri)} H(1/\nu') \Big|_{\nu'=1/x}
+        +
+        \mathcal{O}\le(\le(\log(\nu) - \log(1/x)\ri)^2\ri)
+        \,.
+    \end{align}
+    Using ``prime'' to denote a derivative with respect to \(\log \nu\) -- or a derivative with respect to \(-\log(x)\) -- we can write \Eq{steepest-descent-expansion-i} in the simpler form
+    \begin{align}
+        \label{eq:steepest-descent-expansion-ii}
+        H(1/\nu)
+        =
+        H(x)
+        +
+        \log(x\nu) H'(x)
+        +
+        \mathcal{O}\le(\log^2(x\nu)\ri)
+        \,.
+    \end{align}
+    Therefore, the full cumulative distribution can be written
+    \begin{align}
+        \Sigma(x)
+        \approx
+        \,
+        \exp\le[-H(x)\ri]
+        \int \frac{\dd \nu}{2\pi i\, \nu} \, e^{\nu x}
+        \,\le(x\nu\ri)^{-H'(x)}
+        \,\,
+    \end{align}
+    up to terms of \(\mathcal{O}(H''(x))\).
+    %
+    Notably, when \(H(x)\) is logarithmic or double logarithmic in \(x\) (as in most practical examples), \(H''(x)\) is zero or constant, respectively;
+    %
+    therefore, neglecting terms of \(\mathcal{O}(H''(x))\) neglects subleading terms which are not important at leading-logarithmic accuracy.
+
+
+    Finally, using the given formula for the inverse Laplace transform
+    \begin{align}
+        \label{eq:inverse-laplace-example}
+        \int_{\gamma - i \infty}^{\gamma + i\infty}
+        \frac{\dd y}{2\pi i\, y}
+        \,
+        e^{y} \,y^{-A}
+        =
+        \frac{1}{\Gamma\le(1 + A\ri)}
+        \,,
+    \end{align}
+    where the value of the integral is the same for all \(\gamma > 0\) is to the right of all singularities of the integrand, we conclude that
+    \begin{align}
+        \Sigma(x)
+        \approx
+        \frac{\exp[-H(x)]}{\Gamma\le(1 + H'(x)\ri)}
+    \end{align}
+    up to terms of \(\mathcal{O}(H''(x))\).
+
+
+    \item
+    It remains to evaluate \(H(x)\).
+    %
+    We first notice that the factor of \(1 - \exp(-\nu X(z,\theta))\) in \Eq{H-radiator-def} is, for large values of \(\nu = 1/x\), nearly a Heaviside theta function:
+    \begin{align}
+        \label{eq:exponential-approx-heaviside}
+        1 - e^{-\nu X(z,\theta)}
+        \xrightarrow[\text{descent}]{\text{steepest}}
+        1 - e^{-X(z,\theta)/x}
+        =:
+        \Theta(X(z,\theta) - x) + \phi(x)
+        \,,
+    \end{align}
+    i.e. that \(\phi(x) := 1 - e^{-X(z,\theta)/x} - \Theta(X(z,\theta) - x)\) is small for small \(x\).
+    %
+    The first term on the right-hand side of \Eq{exponential-approx-heaviside} therefore directly gives us the radiator \(R_X\) for \(X\) in the expression for \(H(x)\), since
+    \begin{align}
+        \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alphas(\kappa)}{\pi}
+        \,
+        \Theta(X(z,\theta) - x)
+        =:
+        R_X(x)
+        \,,
+    \end{align}
+    or that
+    \begin{align}
+        H(x)
+        =
+        R_X(x)
+        \, + \,
+        \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alphas(\kappa)}{\pi}
+        \phi(x)
+        =:
+        R_X(x) + \delta H(x)
+        \,,
+    \end{align}
+    justifying post-hoc our use of the approximation in \Eq{exponential-approx-heaviside}:
+    %
+    we see that the leading-logarithmic cumulative distribution for \(X\) is \(\Sigma(x) \approx \exp[-R_X(x)]\), up to sub-leading logarithmic terms dependent on \(R'_X(x)\) and higher derivatives.
+
+    Therefore, for small \(x\) and at leading logarithmic accuracy, we can write \(H(x) \approx R(x)\).
+
+    Our final result, however, must account for corrections due to the nonzero value of \(\phi(x):= 1 - e^{-X(z,\theta)/x} - \Theta(X(z,\theta) - x)\) in \Eq{exponential-approx-heaviside}:
+    %
+    \begin{subequations}
+    \begin{align}
+        \delta H(x)
+        \,
+        &:=
+        \,
+        \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alphas(\kappa)}{\pi}
+        \,
+        \phi(x)
+        \,
+        \\
+        &:=
+        \,
+        \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+        \int_0^1 \dd z p_i(z)
+        \frac{\alphas(\kappa)}{\pi}
+        \,
+        \le[
+            (1 - e^{-X(z,\theta)/x})
+            -
+            \Theta\le(X(z,\theta) - x\ri)
+        \ri]
+        \,.
+    \end{align}
+    \end{subequations}
+
+    \item
+        When \(X\) is an angularity \(e_\varsigma\) -- i.e. \(X(z,\theta) = z_\text{soft} \theta^\varsigma\), we may compute this final integral over \(\phi(x)\) more explicitly%
+        \footnote{
+            We will approximate \(z_\text{soft} \approx z\), and ignore any subtleties related to the more correct \(z_\text{soft} = \min(z, 1-z)\) which do not change the form of the results below.
+        }.
+        %
+        We begin by changing variables of integration to \(e' = z \theta^{\prime\,\varsigma}\):
+        \begin{align}
+            \int_0^{\Rjet} \frac{\dd \theta'}{\theta'}
+            \,
+            \int_0^1 \dd z \, p(z)
+            =
+            \frac{1}{\varsigma}
+            \int_0^{\Rjet^\varsigma} \frac{\dd e'}{e'}
+            \,
+            \int_{e'/\Rjet^\varsigma}^1 \dd z \, p(z)
+            \,.
+        \end{align}
+        At MLL, we will also need to remember that the resulting argument of \(\alphas(\kappa) = \alphas(z\theta')\) becomes \(z \theta' = z^{\frac{\varsigma - 1}{\varsigma}} e^{\prime \,\, \frac{1}{\varsigma}}\).
+
+        Our change of variables yields
+        \begin{align}
+            \delta H(x)
+            &=
+            \int_0^{\Rjet^\varsigma} \frac{\dd e'}{e'}
+            \,
+            \int_{e'/\Rjet^\varsigma}^1 \dd z \, p(z)
+            \,
+            \frac{\alphas(\kappa)}{\varsigma\,\pi}
+            \,
+            \le[
+                (1 - e^{-e'/x})
+                -
+                \Theta\le(e' - x\ri)
+            \ri]
+            \\
+            &=:
+            \int_0^{\Rjet^\varsigma} \frac{\dd e'}{e'}
+            \le[
+                (1 - e^{-e'/x})
+                -
+                \Theta\le(e' - x\ri)
+            \ri]
+            R'(e')
+            \\
+            &=
+            \int_0^{\Rjet^\varsigma}
+            \frac{\dd e'}{e'}
+            (1 - e^{-e'/x})
+            R'(e')
+            -
+            \int_x^{\Rjet^\varsigma}
+            \frac{\dd e'}{e'}
+            R'(e')
+            \,,
+        \end{align}
+        where we have used that the radiator for angularities takes the form \(R(e) = \int_e^{\Rjet^\sigma} \dd e' / e' \int_{e'/\Rjet^\varsigma}^1 \dd z \, p(z)\), so that
+        \begin{align}
+            R'(e_\varsigma)
+            =
+            -\frac{\dd}{\dd\log e_\varsigma} R(e_\varsigma)
+            =
+            \int_{e_\varsigma/\Rjet^\varsigma}^1 \dd z \, p(z)
+            \,
+            \frac{\alphas(\kappa)}{\varsigma\,\pi}
+            \,.
+        \end{align}
+        for angularities.
+
+        We can expand the \(R'(e')\) around \(e' = x\), up to corrections of the form \(R''(x)\), \(R'''(x)\), etc, which give only subleading corrections (similar to the corrections proportional to \(H''(x)\) that we discussed above in part (b)), so that
+        \begin{align}
+            \delta H(x)
+            &\approx
+            R'(x)
+            \le(
+                \int_0^{\Rjet^\varsigma}
+                \frac{\dd e'}{e'}
+                (1 - e^{-e'/x})
+                -
+                \int_x^{\Rjet^\varsigma}
+                \frac{\dd e'}{e'}
+            \ri)
+            \\
+            &=
+            R'(x) \le(
+                \int_0^1 \frac{\dd \xi}{\xi}
+                -
+                \int_0^{\Rjet^\varsigma/x}
+                \frac{\dd\xi}{\xi} e^{-\xi}
+            \ri)
+            \\
+            &=
+            R'(x) \le(
+                \int_0^1 \frac{\dd \xi}{\xi}
+                -
+                \int_0^{\infty}
+                \frac{\dd\xi}{\xi} e^{-\xi}
+            \ri)
+            +
+            \int_{\Rjet^\varsigma/x}^{\infty}
+            \frac{\dd\xi}{\xi} e^{-\xi}
+            \,,
+        \end{align}
+        where in the penultimate line we have defined the integration variable \(\xi = e' / x\).
+        %
+        The expression inside the parentheses of the final line may be evaluated by evaluating a converging series of regularized integrals (i.e. through dimensional regularization), which reveals that it is finite:
+        \begin{align}
+            \int_0^1 \frac{\dd \xi}{\xi} \, \xi^\epsilon
+            -
+            \int_0^{\infty}
+            \frac{\dd\xi}{\xi} e^{-\xi}\, \xi^\epsilon
+            =
+            \frac{1}{\epsilon} - \Gamma(\epsilon)
+            =
+            \gamma_E + \mathcal{O}(\epsilon)
+            \,,
+        \end{align}
+        when \(\epsilon > 0\).
+        %
+        The remaining integral can be expressed in terms of the exponential integral function
+        \begin{align}
+            \int_{\Rjet^\varsigma/x}^{\infty}
+            \frac{\dd\xi}{\xi} e^{-\xi}
+            =
+            Ei(-x) \Big|_{\Rjet^\varsigma/x}^{\infty}
+            =
+            -Ei(-\Rjet^\varsigma/x)
+            \,\,
+            =
+            \,\,
+            -e^{-\Rjet^\varsigma/x}
+            \le(
+                -\frac{\Rjet^\varsigma}{x} + \mathcal{O}(x^2)
+            \ri)
+            \,,
+        \end{align}
+        and can be seen to vanish asymptotically as \(x \to 0\);
+        %
+        it is therefore dominated by the logarithmic terms we have already computed, and we may ignore it here.
+
+        \begin{answer}
+            We are left with
+            \begin{align}
+                \delta H(x) \approx \gamma_E R'(x)
+                \,,
+            \end{align}
+            for angularities, and therefore that
+            \begin{align}
+                \label{eq:soln-multiple-emissions}
+                \Sigma(x) \approx \frac{e^{-R(x) - \gamma_E R'(x)}}{\Gamma\le(1 + H'(x)\ri)}
+                \,.
+            \end{align}
+        \end{answer}
+\end{enumerate}
+
+
+% ---------------------------------------
+\Soln{Angularities at MLL}{mll-angularities}
+% ---------------------------------------
+To compute the distribution of angularities at MLL, it is enough to compute the MLL radiator, as discussed in \Prob{multiple-emissions}.
 %
-In particular we evaluate
+Therefore, let us change integration variables from the angle \(\theta'\) to the angularity \(e' = z \theta^{\prime\,\varsigma}\), with the bounds of integration
 \begin{align}
-    \Sigma(x)
-    =
-    \int \frac{\dd \nu}{2\pi i\, \nu} \, e^{\nu x}
+    \int_0^{1/2} \dd z \int_0^{\Rjet} \frac{\dd\theta'}{\theta'}
+    \,\,
+    \Theta(z\theta^{\prime\,\varsigma} > e_\varsigma)
     \,
-    \exp\le[
-        \int_0^{1} \frac{\dd \theta'}{\theta'}
-        \int_0^1 \dd z p_i(z)
-        \frac{\alpha_S(\kappa)}{\pi}
-        \,
-        \le(e^{-v X(z, \theta)} - 1\ri)
-    \ri]
+    \to
+    \,
+    \frac{1}{\varsigma}
+    \int_{e_\varsigma/\Rjet^\varsigma}^{1/2}
+    \dd z
+    \int_{e_\varsigma}^{z\Rjet} \frac{\dd e'}{e'}
+    \,.
+\end{align}
+Without freezing the coupling, for brevity, and noting that the coupling runs as
+\begin{align}
+    \alpha^{\rm 1-loop}_s(\kappa)
+    =
+    \frac{\alphas(Q)}{1 + \alphas(Q) \beta_0 \log(\frac{z\theta}{Q})/2\pi}
+    =
+    \frac{\alphas(Q)}{1 + \alphas(Q) \beta_0 \log(\frac{z\theta}{Q})/2\pi}
     \,,
 \end{align}
-by steepest descent.
-\sam{sign?}
-
-The stationary value of the integrand is \(\nu = 1 / x + \mathcal{O}(\alpha_s)\), so for small \(x\), \(\nu\) will be very large, and we can approximate
+the radiator can be expressed as
 \begin{align}
-    1 - e^{\nu X(z,\theta)}
+    R(e_\varsigma)
+    =
+    \frac{\alphas(Q)}{\pi\varsigma}
+    \int_{e_\varsigma/\Rjet^\varsigma}^{1/2}
+    \dd z\, \bar{p}(z)
+    \int_{e_\varsigma}^{z\Rjet} \frac{\dd e'}{e'}
+    \,\,
+    \frac{1}{1 + \eta\frac{\varsigma-1}{\varsigma}\ln z + \eta\frac{1}{\varsigma} \ln e'}
+    \,,
+\end{align}
+where we have defined \(\eta := \alphas(Q)\beta_0/2\pi\).
+%
+Evaluating the integral over \(e'\) gives
+\begin{align}
+    R(e_\varsigma)
+    =
+    \frac{\alphas(Q)}{\pi\eta}
+    \int_{e_\varsigma/\Rjet^\varsigma}^{1/2}
+    \dd z\, \bar{p}(z)
+    \le(
+        \ln\le(1 + \eta\ln z + \eta\ln\Rjet\ri)
+        -
+        \ln\le(1 + \eta\frac{\varsigma-1}{\varsigma}\ln z + \eta\frac{1}{\varsigma}\ln e_\varsigma\ri)
+    \ri)
+    \,.
+\end{align}
+
+The detailed form of the radiator now depends on the non-singular pieces of the splitting functions.
+%
+For brevity, we describe these features qualitatively, leaving the detailed calculation to you.
+%
+pieces of the splitting functions which scale as \(z^n\), \(n \geq 0\), give additional power corrections and exponential integrals which do not contribute at leading-logarithmic accuracy.
+%
+For a more detailed discussion of these additional (``hard-collinear'') terms in MLL computations, see \Reff{Marzani:2019hun}.
+%
+While the pieces of the splitting functions which scale as \(1/(1-z)\) do not lead to simple analytic contributions to the radiator, their contributions are also finite/suppressed in the leading-logarithmic/soft-collinear limit.
+
+The dominant features of the radiator are captured by the \textit{singular} pieces of the splitting functions;
+%
+to present these more briefly, we will take \(p(z) \approx 2 C_{R} / z\), take \(\Rjet = 1\), and extend the upper limit of the \(z\) integration to 1 (rather than 1/2).
+%
+This gives
+\begin{align}
+    R(e_\varsigma)
     \approx
-    1 - e^{X(z,\theta)/x}
-    =:
-    \Theta(X(z,\theta) - x) + \phi(x)
-    \,
+    \frac{2 \alphas(Q) C_R}{\pi \eta^2}
+    \le(
+        \frac{1}{\varsigma-1}
+        W\le(1 + \eta \log(e_\varsigma)\ri)
+        -
+        \frac{\varsigma}{\varsigma-1}
+        W\le(1 + \frac{\eta}{\varsigma} \log(e_\varsigma)\ri)
+    \ri)
+    \,,
 \end{align}
-as roughly equal to a Heaviside theta function, i.e. that \(\phi(x) := 1 - e^{X(z,\theta)/x} - \Theta(X(z, \theta) - x)\) is small for large values of \(\nu\).
+up to terms which are small compared to \(\log(e_\varsigma)\), and we have defined \(W(x) := x\log(x)\) (echoing \Reff{Larkoski:2014wba}).
 %
-We can therefore use the radiator for \(X\) to simplify our results, noting that
-\begin{align}
-    \int_0^{1} \frac{\dd \theta'}{\theta'}
-    \int_0^1 \dd z p_i(z)
-    \frac{\alpha_S(\kappa)}{\pi}
-    \,
-    \Theta(X(z,\theta) - x)
-    =:
-    R_X(x)
-    \,.
-\end{align}
+Finally, using \(W(1 + \eta x) \approx \eta x + \eta^2 x^2/2\), we can take the limit of small \(\alphas(Q)\) to find \(R(e_\varsigma) \approx \alphas(Q) C_R \ln^2(e_\varsigma) / \pi \varsigma\), exactly as in the leading logarithmic calculation discussed in \Exercise{ll-angularity-radiator}.
+%
+The associated cumulative distribution is then given in terms of \(R(e_\varsigma)\) by \Eq{soln-multiple-emissions}.
 
-Furthermore, corrections due to \(\phi(x)\) can also be computed via
-\begin{align}
-    \int_0^{1} \frac{\dd \theta'}{\theta'}
-    \int_0^1 \dd z p_i(z)
-    \frac{\alpha_S(\kappa)}{\pi}
-    \,
-    \phi(x)
-    =
-    \int_0^{1} \frac{\dd \theta'}{\theta'}
-    \int_0^1 \dd z p_i(z)
-    \frac{\alpha_S(\kappa)}{\pi}
-    \,
-    (1 - e^{X(z,\theta)/x})
-    -
-    \sam{more}
-\end{align}
-\sam{test further...}
-
-
-
-% ---------------------------------------
-\Soln{Multiple Emissions SD}{multiple-emissions}
-% ---------------------------------------
-
-\sam{Re-evaluate relevance -- there are things here that aren't elsewhere...}
-
-For the sake of completeness, let us go through the the derivation of the Soft Drop expression for the multiple emissions Sudakov exponent. We take the explicit form of the Sudakov exponent as
-
-
-\begin{align}
-    \Sigma\left(C_1^{(\beta)}\right) &= \sum_{n = 1}^\infty \prod_{m = 1}^n \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{m-1} - \theta_m)\right]
-    \\
-    &\ \ \ \ \times\Theta\left(C_1^{(\beta)} - \sum_{m=1}^n z_m (\theta'_m)^\beta\right) \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right]
-\end{align}
-where we impose angular ordering with the \(\Theta(\theta_{i-1} - \theta_i)\). Notice that the Laplace transform of this expression is
-\begin{align}
-    \tilde\Sigma(\nu) &= \int_{-\infty}^\infty d C_1^{(\beta)} \Sigma(C_1^{(\beta)}) e^{-\nu C_1^{(\beta)}}
-    \\
-    &= \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times\int^\infty_{C_{\rm max}} dC_1^{(\beta)} e^{-v C_1^{(\beta)}}
-\end{align}
-where \(C_{\rm max} = \sum_m z_m (\theta'_m)^\beta\), and we have used the \(\Theta\) function. Performing the integral over \(C_1^{(\beta)}\), we have
-\begin{align}
-    \tilde\Sigma(\nu) &= -\frac{1}{\nu} \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alpha_S(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
-    \\
-    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \right)^n\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
-    \\
-    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \times e^{-\nu z (\theta')^\beta}\right)^n\\
-    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c)\right]
-    \\
-    &=  -\frac{1}{\nu} \exp\left[\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alpha_S(\kappa)}{\pi}\Theta(z - z_c) \left( e^{-\nu z (\theta')^\beta} - 1 \right)\right]
-\end{align}
-where we have gained an extra \(\frac{1}{n!}\) by eliminating the angular ordering in the second equality. By replacing \(\beta\) with \(\alpha\), and the theta function \(\Theta(z - z_c)\) with \(\Theta(z - z_c (\theta')^\beta)\), we recover Soft Drop Equations (3.11) and (3.12) (up to a minus sign in the inverse Laplace transform, is this fixed by our clockwise contour?).
-
-\textbf{LO Result}
-Following Soft Drop, we write then that
-\begin{align}
-    \Sigma(C_1^{(\beta)}) = \int \frac{d\nu}{2\pi i\nu} e^{\nu C_1^{(\beta)}} e^{-R(\nu^{-1})}
-    \label{eq:inverseLaplace}
-\end{align}
-with
-\begin{align}
-    R(\nu^{-1}) = \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alpha_s(\kappa)}{\pi}\Theta(z-z_c)\left(1 - e^{-\nu z (\theta')^\beta} \right)
-\end{align}
-As discussed by Soft Drop and \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} , we use the method of steepest descent to evaluate this integral, and do so at \(C_1^{(\beta)} = \nu^{-1}\). Furthermore, we approximate
-\begin{align}
-    1 - e^{-\nu \xi} \to \Theta(\xi - \nu^{-1})
-    % \label{theta_approx_1}
-\end{align}
-for large \(\nu\). We will take into account the corrections to this later. Then
-\begin{align}
-    R(\nu^{-1}) \to \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alpha_s(\kappa)}{\pi}\Theta(z-z_c) \Theta(z (\theta')^\beta - \nu^{-1})
-\end{align}
-As in Section \ref{sec:MLLNew}, we may perform the change of variables \(c = z(\theta')^{\beta}\), for which we have that
-\begin{align}
-    R(\nu^{-1}) \cong \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) = R_{LO}(\nu^{-1})
-\end{align}
-where we have defined
-\begin{align}
-    \phi(c^{-1}) = \frac{1}{\beta}\int_{\max(c, z_c)}^1 dz p_i(z) \frac{\alpha_s(\kappa)}{\pi}
-\end{align}
-such that our LO result is proportional to
-\begin{align}
-    \Sigma(C_1^{(\beta)}) \sim e^{- \int_{C_1^{(\beta)}}^1 dc \phi(c^{-1})} = e^{-R_{LO}(C_1^{(\beta)})} \approx e^{-R(C_1^{(\beta)})}
-\end{align}
-
-\textbf{Next Order Corrections}
-We may improve this by including corrections of the form
-\begin{align}
-    R(\nu^{-1}) = R_{LO}(\nu^{-1}) + \delta R(\nu^{-1})
-\end{align}
-with
-\begin{align}
-    R_{LO}(\nu^{-1}) &= \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1})
-    \\
-    \delta R(\nu^{-1}) &= -\int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) + \int_0^1 \frac{dc}{c} \phi(c^{-1}) \left( 1 - e^{-c \nu} \right)
-\end{align}
-where the second equation takes into account corrections from our earlier approximation in Equation \ref{theta_approx_1}.
-Let us define now \(x = c \nu\), so that
-\begin{align}
-    \delta R(\nu^{-1}) = \int_0^{\nu} \frac{dx}{x} \phi(\nu/x) \left( 1 - e^{-x}\right) - \int_1^\nu \frac{dx}{x} \phi(\nu/x)
-\end{align}
-Simplifying and regulating the integral with dimensional regularization, we have
-\begin{align}
-    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) x^\epsilon e^{-x}
-    \label{eq:nextorderintegrals}
-\end{align}
-Notice next that
-\begin{align}
-    \partial_\nu R_{LO}(\nu^{-1}) =  -\frac{1}{\nu^{-1}} \phi(\nu) \cdot (-\frac{1}{\nu^2})
-\end{align}
-so that
-\begin{align}
-    \frac{\partial R_{LO}(\nu^{-1})}{\partial \log(\nu)} = \phi(\nu)
-\end{align}
-%\Comment{I'm a little worried in our case that \(\phi\) may depend on \(\nu\) which might lead to additional terms. Probably fine, and so pushing ahead for now.} Nope! It's pretty clear that the only \(\nu\) dependence is where we've put it! Great!
-We may approximate the integrals in \Eq{nextorderintegrals} by replacing \(\phi(\nu/x)\) by its value at \(x = 1\). We may use further
-\begin{align}
-    \int_0^1\frac{dx x^\epsilon}{x} - \int_0^\infty\frac{dx x^\epsilon}{x}e^{-x} = \frac{1}{\epsilon} - \Gamma(\epsilon) = \gamma_E + \mathcal{O}(\epsilon)
-    \label{eq:dimregint1}
-\end{align}
-to see that, in the large \(\nu\) limit,
-\begin{align}
-    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) e^{-x} x^\epsilon \cong \gamma_E R'(\nu^{-1}) = \delta R^{(1)}(\nu^{-1})
-\end{align}
-with \(R'(\nu^{-1}) = \partial R_{LO}(\nu^{-1}) / \partial \log(\nu)\). In the region of integration for which \(\nu^{-1}\approx C_1^{(\beta)}\), we can wave our hands a bit and write that, up to subleading corrections, we may replace \(R'(\nu^{-1})\) by
-\begin{align}
-    R'(C_1^{(\beta)}) = \frac{\partial R (C_1^{(\beta)})}{\partial \log(1/C_1^{(\beta)})} = -\frac{\partial R (C_1^{(\beta)})}{\partial \log(C_1^{(\beta)})}
-\end{align}
-
-\textbf{Denominator}:
-The denominator that we see in, for example, Soft Drop, comes from the corrections to \(R_{LO}\). In particular, expanding in a Taylor series,
-\begin{align}
-    R(\nu^{-1}) = R_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu) R'_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu)^2 R''_{LO}(C_1^{(\beta)}) + \mathcal{O}(R'''_{LO}(C_1^{(\beta)}))
-\end{align}
-Then to a level of precision determined by \(R'\), we have
-\begin{align}
-    e^{-R(\nu^{-1})} \cong e^{-R(C) - \gamma_E R'(C)} (C_1^{(\beta)} \nu)^{-R'(C)}
-\end{align}
-We now notice that
-\begin{align}
-    \int \frac{d\nu}{2\pi i \nu} (C\cdot \nu)^{-\xi} e^{\nu C} = \int \frac{d\eta}{2\pi i \eta} \eta^{-\xi}e^\eta = \frac{1}{\Gamma(1 + \xi)}
-\end{align}
-as a special case of Equation (4.20) of \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} . We make this replacement in \Eq{inverseLaplace} above to find that, to \(\mathcal{O}(R')\), we have
-\begin{align}
-    \Sigma(C_1^{(\beta)}) \cong \frac{e^{-R(C) - \gamma_E R'(C)}}{\Gamma(1 + R'(C))}
-\end{align}
 
 
 
@@ -2002,19 +2129,240 @@ In the first equality, we have exchanged the two integrals and changed variables
 \section*{Chapter 4}
 % ==============================================
 
+
+\iffalse
 % ---------------------------------------
-\Soln{Constant-Cutoff Substructure at MLL}{constant-cutoff-mll}
+\Soln{Multiple Emissions in Simple Groomed Jets}{groomed-multiple-emissions}
 % ---------------------------------------
+Many pieces of this problem are nearly identical to \Prob{multiple-emissions}, and do not bear repeating.
+%
+There are, however, several points of interest in the computation of groomed multiple emissions that we will re-examine.
+% same for soft drop H(x) -- but include discussion of normalization constant (same for constant cutoff and constant subtraction)
+% angularity specific form
+% analytic expression
+
+
+For the sake of completeness, let us go through the the derivation of the Soft Drop expression for the multiple emissions Sudakov exponent. We take the explicit form of the Sudakov exponent as
+
+
+\begin{align}
+    \Sigma\left(C_1^{(\beta)}\right) &= \sum_{n = 1}^\infty \prod_{m = 1}^n \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alphas(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{m-1} - \theta_m)\right]
+    \\
+    &\ \ \ \ \times\Theta\left(C_1^{(\beta)} - \sum_{m=1}^n z_m (\theta'_m)^\beta\right) \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c)\right]
+\end{align}
+where we impose angular ordering with the \(\Theta(\theta_{i-1} - \theta_i)\). Notice that the Laplace transform of this expression is
+\begin{align}
+    \tilde\Sigma(\nu) &= \int_{-\infty}^\infty d C_1^{(\beta)} \Sigma(C_1^{(\beta)}) e^{-\nu C_1^{(\beta)}}
+    \\
+    &= \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alphas(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c)\right] \times\int^\infty_{C_{\rm max}} dC_1^{(\beta)} e^{-v C_1^{(\beta)}}
+\end{align}
+where \(C_{\rm max} = \sum_m z_m (\theta'_m)^\beta\), and we have used the \(\Theta\) function. Performing the integral over \(C_1^{(\beta)}\), we have
+\begin{align}
+    \tilde\Sigma(\nu) &= -\frac{1}{\nu} \sum_{n=1}^\infty \prod_{m=1}^n  \left[\int_0^{1} \frac{d\theta'_m}{\theta'_m}\int_0^1 dz_m p_i(z_m) \frac{\alphas(\kappa_m)}{\pi}\Theta(z_m - z_c) \Theta(\theta_{i-1} - \theta_i)\right]\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
+    \\
+    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c) \right)^n\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c)\right] \times \exp\left[ -\nu \sum_m z_m(\theta'_m)^\beta\right]
+    \\
+    &= -\frac{1}{\nu} \sum_{n=1}^\infty \frac{1}{n!}\left(\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c) \times e^{-\nu z (\theta')^\beta}\right)^n\\
+    &\ \ \ \ \ \times \exp\left[-\int_0^1\frac{d\theta}{\theta}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c)\right]
+    \\
+    &=  -\frac{1}{\nu} \exp\left[\int_0^{1} \frac{d\theta'}{\theta'}\int_0^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}\Theta(z - z_c) \left( e^{-\nu z (\theta')^\beta} - 1 \right)\right]
+\end{align}
+where we have gained an extra \(\frac{1}{n!}\) by eliminating the angular ordering in the second equality. By replacing \(\beta\) with \(\alpha\), and the theta function \(\Theta(z - z_c)\) with \(\Theta(z - z_c (\theta')^\beta)\), we recover Soft Drop Equations (3.11) and (3.12) (up to a minus sign in the inverse Laplace transform, is this fixed by our clockwise contour?).
+
+\textbf{LO Result}
+Following Soft Drop, we write then that
+\begin{align}
+    \Sigma(C_1^{(\beta)}) = \int \frac{d\nu}{2\pi i\nu} e^{\nu C_1^{(\beta)}} e^{-R(\nu^{-1})}
+    \label{eq:inverseLaplace}
+\end{align}
+with
+\begin{align}
+    R(\nu^{-1}) = \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alphas(\kappa)}{\pi}\Theta(z-z_c)\left(1 - e^{-\nu z (\theta')^\beta} \right)
+\end{align}
+As discussed by Soft Drop and \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} , we use the method of steepest descent to evaluate this integral, and do so at \(C_1^{(\beta)} = \nu^{-1}\). Furthermore, we approximate
+\begin{align}
+    1 - e^{-\nu \xi} \to \Theta(\xi - \nu^{-1})
+    % \label{theta_approx_1}
+\end{align}
+for large \(\nu\). We will take into account the corrections to this later. Then
+\begin{align}
+    R(\nu^{-1}) \to \int_0^1\frac{d\theta'}{\theta'}\int_0^1 dz p(z) \frac{\alphas(\kappa)}{\pi}\Theta(z-z_c) \Theta(z (\theta')^\beta - \nu^{-1})
+\end{align}
+As in Section \ref{sec:MLLNew}, we may perform the change of variables \(c = z(\theta')^{\beta}\), for which we have that
+\begin{align}
+    R(\nu^{-1}) \cong \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) = R_{LO}(\nu^{-1})
+\end{align}
+where we have defined
+\begin{align}
+    \phi(c^{-1}) = \frac{1}{\beta}\int_{\max(c, z_c)}^1 dz p_i(z) \frac{\alphas(\kappa)}{\pi}
+\end{align}
+such that our LO result is proportional to
+\begin{align}
+    \Sigma(C_1^{(\beta)}) \sim e^{- \int_{C_1^{(\beta)}}^1 dc \phi(c^{-1})} = e^{-R_{LO}(C_1^{(\beta)})} \approx e^{-R(C_1^{(\beta)})}
+\end{align}
+
+\textbf{Next Order Corrections}
+We may improve this by including corrections of the form
+\begin{align}
+    R(\nu^{-1}) = R_{LO}(\nu^{-1}) + \delta R(\nu^{-1})
+\end{align}
+with
+\begin{align}
+    R_{LO}(\nu^{-1}) &= \int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1})
+    \\
+    \delta R(\nu^{-1}) &= -\int_{\nu^{-1}}^1 \frac{dc}{c} \phi(c^{-1}) + \int_0^1 \frac{dc}{c} \phi(c^{-1}) \left( 1 - e^{-c \nu} \right)
+\end{align}
+where the second equation takes into account corrections from our earlier approximation in Equation \ref{theta_approx_1}.
+Let us define now \(x = c \nu\), so that
+\begin{align}
+    \delta R(\nu^{-1}) = \int_0^{\nu} \frac{dx}{x} \phi(\nu/x) \left( 1 - e^{-x}\right) - \int_1^\nu \frac{dx}{x} \phi(\nu/x)
+\end{align}
+Simplifying and regulating the integral with dimensional regularization, we have
+\begin{align}
+    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) x^\epsilon e^{-x}
+    \label{eq:nextorderintegrals}
+\end{align}
+Notice next that
+\begin{align}
+    \partial_\nu R_{LO}(\nu^{-1}) =  -\frac{1}{\nu^{-1}} \phi(\nu) \cdot (-\frac{1}{\nu^2})
+\end{align}
+so that
+\begin{align}
+    \frac{\partial R_{LO}(\nu^{-1})}{\partial \log(\nu)} = \phi(\nu)
+\end{align}
+%\Comment{I'm a little worried in our case that \(\phi\) may depend on \(\nu\) which might lead to additional terms. Probably fine, and so pushing ahead for now.} Nope! It's pretty clear that the only \(\nu\) dependence is where we've put it! Great!
+We may approximate the integrals in \Eq{nextorderintegrals} by replacing \(\phi(\nu/x)\) by its value at \(x = 1\). We may use further
+\begin{align}
+    \int_0^1\frac{dx x^\epsilon}{x} - \int_0^\infty\frac{dx x^\epsilon}{x}e^{-x} = \frac{1}{\epsilon} - \Gamma(\epsilon) = \gamma_E + \mathcal{O}(\epsilon)
+    \label{eq:dimregint1}
+\end{align}
+to see that, in the large \(\nu\) limit,
+\begin{align}
+    \delta R(\nu^{-1}) = \int_0^{1} \frac{dx}{x} \phi(\nu/x) x^\epsilon - \int_0^\nu \frac{dx}{x} \phi(\nu/x) e^{-x} x^\epsilon \cong \gamma_E R'(\nu^{-1}) = \delta R^{(1)}(\nu^{-1})
+\end{align}
+with \(R'(\nu^{-1}) = \partial R_{LO}(\nu^{-1}) / \partial \log(\nu)\). In the region of integration for which \(\nu^{-1}\approx C_1^{(\beta)}\), we can wave our hands a bit and write that, up to subleading corrections, we may replace \(R'(\nu^{-1})\) by
+\begin{align}
+    R'(C_1^{(\beta)}) = \frac{\partial R (C_1^{(\beta)})}{\partial \log(1/C_1^{(\beta)})} = -\frac{\partial R (C_1^{(\beta)})}{\partial \log(C_1^{(\beta)})}
+\end{align}
+
+\textbf{Denominator}:
+The denominator that we see in, for example, Soft Drop, comes from the corrections to \(R_{LO}\). In particular, expanding in a Taylor series,
+\begin{align}
+    R(\nu^{-1}) = R_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu) R'_{LO}(C_1^{(\beta)}) + \log(C_1^{(\beta)} \nu)^2 R''_{LO}(C_1^{(\beta)}) + \mathcal{O}(R'''_{LO}(C_1^{(\beta)}))
+\end{align}
+Then to a level of precision determined by \(R'\), we have
+\begin{align}
+    e^{-R(\nu^{-1})} \cong e^{-R(C) - \gamma_E R'(C)} (C_1^{(\beta)} \nu)^{-R'(C)}
+\end{align}
+We now notice that
+\begin{align}
+    \int \frac{d\nu}{2\pi i \nu} (C\cdot \nu)^{-\xi} e^{\nu C} = \int \frac{d\eta}{2\pi i \eta} \eta^{-\xi}e^\eta = \frac{1}{\Gamma(1 + \xi)}
+\end{align}
+as a special case of Equation (4.20) of \href{https://arxiv.org/pdf/hep-ph/9801324.pdf}{9801324} . We make this replacement in \Eq{inverseLaplace} above to find that, to \(\mathcal{O}(R')\), we have
+\begin{align}
+    \Sigma(C_1^{(\beta)}) \cong \frac{e^{-R(C) - \gamma_E R'(C)}}{\Gamma(1 + R'(C))}
+\end{align}
+
+
+\fi
+
+
+
+% ---------------------------------------
+\Soln{Substructure at MLL in Simple Groomed Jets I: Cutoff}{groomed-mll-i}
+% ---------------------------------------
+
+The majority of the work in this problem is setting up the correct integrals and tools (I recommend using a symbolic integration program such as Mathematica).
+%
+In particular, it is enough to use
+\begin{align}
+    R(e_\varsigma)
+    =
+    \frac{1}{\pi \varsigma}
+    \,
+    \int_{\max(\zcut, e_\varsigma/\Rjet^\varsigma)}^{1/2}
+    \dd z\, \bar{p}(z)
+    \int_{e_\varsigma}^{z \Rjet^\varsigma}
+    \frac{\dd e'}{e'}
+    \alphas(\kappa)
+    \,,
+\end{align}
+where \(\kappa\) takes the frozen coupling form given in \Eq{frozen-coupling}:
+\begin{align}
+    \alpha^{\rm 1-loop,\,frozen}_s(\kappa; \mu_{\rm freeze})
+    =
+    \alpha^{\rm 1-loop}_s(\kappa)
+    \Theta(\kappa > \mu_{\rm freeze})
+    +
+    \alpha^{\rm 1-loop}_s(\mu_{\rm freeze})
+    \Theta(\mu_{\rm freeze} > \kappa)
+    \,,
+    \label{eq:frozen-coupling}
+\end{align}
+and the one-loop running of \(\alphas\) is captured by
+\begin{align}
+    \alpha^{\rm 1-loop}_s(\kappa)
+    =
+    \frac{\alphas(Q)}{1 + \alphas(Q) \beta_0 \log(\frac{\kappa}{Q})/2\pi}
+    \,.
+\end{align}
+
+The remainder of the problem is simply integrating.
+%
+It is not simple, but it is \textit{almost} straightforward:
+%
+the radiator for the groomed angularities can be written in terms of elementary functions (there will be a lot of terms formally resembling \(\log(1 + \alphas\log(e_\varsigma))\)) if one drops terms in splitting functions which are non-singular as \(z\) approaches zero.
+%
+Non-singular terms in the splitting functions lead to additional power corrections and exponential integrals, which are finite and do not contribute at leading-logarithmic accuracy.
+%
+The \(1/(1-z)\) terms in the splitting functions lead to integrals within the radiator which do not have a closed form (to my knowledge), but also do not contribute at leading-logarithmic accuracy;
+%
+these additional, non-analytic terms may be addressed numerically instead.
+
+For additional detail regarding MLL calculations of hard-cutoff-groomed jet substructure, see \Reff{Marzani:2019hun} and \href{https://arxiv.org/pdf/1402.2657\#appendix.A}{Appendix A} of \Reff{Larkoski:2014wba}.
 
 
 % ---------------------------------------
-\Soln{Constant-Subtraction Substructure at MLL}{constant-subtraction-mll}
+\Soln{Substructure at MLL in Simple Groomed Jets II: Subtraction}{groomed-mll-ii}
 % ---------------------------------------
+The setup for this problem is similar to that of \Prob{groomed-mll-i}.
+%
+In particular, the MLL radiator for constant-subtraction-groomed angularities takes the form
+\begin{align}
+    R(e_\varsigma)
+    =
+    \frac{1}{\pi \varsigma}
+    \,
+    \int_{\max(\zcut, e_\varsigma/\Rjet^\varsigma)}^{1/2}
+    \dd z\, \bar{p}(z)
+    \int_{e_\varsigma}^{(z-\zcut) \Rjet^\varsigma}
+    \frac{\dd e'}{e'}
+    \alphas(\kappa)
+    \,.
+\end{align}
+Unfortunately, the small change in the upper limit of the \(\dd e'\) integration led to difficulties that I could not surmount.
+%
+Even if we do \textit{not} freeze the coupling, so that \(\alphas(\kappa) = \alphas(Q) / (1 + 2 \beta_0 \alphas(Q) \ln(z\theta) / 2\pi) =: \alphas(Q) / (1 + \eta \ln(z\theta))\), I obtain integrals which I am unable to evaluate in terms of elementary functions.
+%
+In particular, setting \(\Rjet = 1\) for simplicity, I obtain contributions of the form
+\begin{align}
+    R(e_\varsigma)
+    \supset
+    \frac{\alphas(Q)}{\eta\pi}
+    \int_{\max(\zcut, e_\varsigma/\Rjet^\varsigma)}^{1/2}
+    \dd z\, \bar{p}(z)
+    \ln\le(1 + \eta\frac{\varsigma - 1}{\varsigma} \ln z + \eta\frac{1}{\varsigma}\ln(z-\zcut)\ri)
+    \,,
+\end{align}
+in addition to other, more tractable terms which also appear when performing MLL calculations of hard-cutoff-groomed substructure as in \Prob{groomed-mll-i}.
+%
+The presence of both a \(\ln(z)\) and a \(\ln(z-\zcut)\) within an additional logarithm makes this integral very complicated -- more complicated than the integrals involved in calculating MLL distributions of hard-cutoff-groomed angularities -- and \textit{I was unable to make further progress}.
+%
+\textit{Please let me know if you find any tricks for moving forward!}
 
-
-% % ---------------------------------------
-% \Soln{Multiplicity of Groomed Subjets}{simple-groomed-multiplicity}
-% % ---------------------------------------
 
 
 % ---------------------------------------
@@ -2023,7 +2371,7 @@ In the first equality, we have exchanged the two integrals and changed variables
 
 I was unable to do this, other than through the convolution methods presented in \Eq{convolution} of \Sec{pira-resummed}.
 %
-I look forward to reading your paper!
+As we already saw in \Prob{groomed-mll-ii}, the results of subtractive grooming may be hard to predict with existing analytic methods, and I look forward to reading your paper!
 
 
 
@@ -2138,9 +2486,9 @@ In terms of the \(x_i\), we may therefore write the NLO EEC in integral form (aw
     \ri)
     ,
 \end{align}
-where we have added an overall factor of \(2\) on the right-hand-side to write the sum over non-contact contributions as \(\sum_{i \neq j} = 2 \sum_{i < j}\), and we have used that \(E_i/Q = x_i / 2\).
+where we have added an overall factor of \(2\) on the right-hand side to write the sum over non-contact contributions as \(\sum_{i \neq j} = 2 \sum_{i < j}\), and we have used that \(E_i/Q = x_i / 2\).
 
-The delta-function on the right-hand-side is activated when
+The delta-function on the right-hand side is activated when
 \begin{align}
     x_j \to x_j^* \eqexclamation \frac{1-x_i}{1-\chi\,x_i}
     \,,
@@ -2170,7 +2518,7 @@ The EEC after the integration over \(x_j\) is then
 \begin{align}
     \dv{\Sigma_\text{EEC}}{\cos\chi}{}
     &=
-    \frac{\alpha_s C_F}{2\pi}
+    \frac{\alphas C_F}{2\pi}
     \sum_{i<j}
     \int_0^1 \dd x_i\,
     x_i^2 (1 - x_i)^2
@@ -2180,7 +2528,7 @@ The EEC after the integration over \(x_j\) is then
     \\
     &
     \eqdelta
-    \frac{\alpha_s C_F}{2\pi}
+    \frac{\alphas C_F}{2\pi}
     \sum_{i<j}
     {\mathcal{J}}_{ij}(z)
     \,,
@@ -2267,7 +2615,7 @@ Furthermore, in the opposite limit -- associated with anti-collinear particle co
     \frac{1}{\sigma_0}
     \dv{\Sigma_\text{EEC}}{\cos\chi}{}
     &\xrightarrow[\chi\to 1]{}
-    \frac{\alpha_s C_F}{\pi}
+    \frac{\alphas C_F}{\pi}
     \le(
         \frac{2}{1-\chi}
         \le(
@@ -2503,7 +2851,7 @@ In particular, the factorization for our new parametrization is identical to tha
 \end{align}
 where the flavor index \(i = q,g\)  is summed over.
 %
-At a specific perturbative order, the expressions also depend on $\mu$ through $\alpha_s(\mu)$.
+At a specific perturbative order, the expressions also depend on $\mu$ through $\alphas(\mu)$.
 %
 %In particular,
 \Eq{fact} states that the resummed cross section for the PENCs %jet observables should be
@@ -2531,10 +2879,10 @@ Since the full PENC is independent of \(\mu\), and the hard function is independ
 
 Within a jet consisting of two outgoing particles, the PENC we introduce and the traditional PENC are exactly the same, since \(R_1 = R_L\).
 %
-Therefore, the \(R_1\) jet function the \(R_L\) jet function are identical at \(\mathcal{O}(\alpha_s)\),
+Therefore, the \(R_1\) jet function the \(R_L\) jet function are identical at \(\mathcal{O}(\alphas)\),
 implying that the cross section for the new and traditional PENC will be equal at NLL, as these are single-logarithmic observables.
 %
-However, \(R_1\) and \(R_L\) will differ for a jet of three particles or more, corresponding to an ${\cal O}(\alpha_s^2)$ difference between the \(R_1\) and \(R_L\) jet functions, and an NNLL effect in the resummed cross section.
+However, \(R_1\) and \(R_L\) will differ for a jet of three particles or more, corresponding to an ${\cal O}(\alphas^2)$ difference between the \(R_1\) and \(R_L\) jet functions, and an NNLL effect in the resummed cross section.
 
 
 \begin{figure}[h]
@@ -2547,7 +2895,7 @@ However, \(R_1\) and \(R_L\) will differ for a jet of three particles or more, c
     ]{
         Difference between the new parametrization ($R_1$) and the old parametrization ($R_L$) obtained from corresponding quantiles of the cumulative distributions.
         %
-        The dashed lines correspond to a fit (of the overall coefficient) of the difference \( \log(R_L/R_1) \) to $\frac{\alpha_s}{\pi} \log(1+R_L\,(N-1))$ for integer values of $N$ from 3 to 7.
+        The dashed lines correspond to a fit (of the overall coefficient) of the difference \( \log(R_L/R_1) \) to $\frac{\alphas}{\pi} \log(1+R_L\,(N-1))$ for integer values of $N$ from 3 to 7.
     }
 	\label{fig:nll_equiv}%
 \end{figure}
@@ -2557,15 +2905,15 @@ Though \(R_1\) and \(R_L\) differ in a generic jet, we note that $R_1 \leq R_L \
 %
 Therefore, we expect an approximate relationship between the two of the form $R_L \sim (1+c) R_1$ with $0<c<1$.
 %
-Furthermore, NLL equivalence of the \(R_1\) and \(R_L\) jet functions implies that  $c \sim {\cal O}(\alpha_s)$.
+Furthermore, NLL equivalence of the \(R_1\) and \(R_L\) jet functions implies that  $c \sim {\cal O}(\alphas)$.
 %
 In particular,
-writing the N\(^k\)LL contribution to the traditional PENC as $\sum_{n} d_{n,k}\alpha_s^{n+k}\log^n R_L$
+writing the N\(^k\)LL contribution to the traditional PENC as $\sum_{n} d_{n,k}\alphas^{n+k}\log^n R_L$
 and inserting $R_L = (1+c) R_1$ yields:
 \begin{align}
     \label{eq:c_is_alphas}
    \sum_{n,k}
-       d_{n,k} \alpha_s^{n+k}
+       d_{n,k} \alphas^{n+k}
        \log^n[
            R_1
            (1 +
@@ -2573,22 +2921,22 @@ and inserting $R_L = (1+c) R_1$ yields:
        ]
    &=
    \sum_{n,k}
-      d_{n,k} \alpha_s^{n+k}[\log R_1 +\log(1+c)]^n
+      d_{n,k} \alphas^{n+k}[\log R_1 +\log(1+c)]^n
   \nn \\
    &=
    \sum_{m,k,k'}
       {m+k' \choose m}
-      d_{m+k', k} \alpha_s^{m+k+k'} \log^m R_1 \log^{k'} (1+c)
+      d_{m+k', k} \alphas^{m+k+k'} \log^m R_1 \log^{k'} (1+c)
       \,,
 \end{align}
 where in the final line we have written \(n = m + k'\).
 %
 The terms with \(k' = 0\) give precisely the traditional PENC but with the argument \(R_L\) replaced by \(R_1\).
 %
-For \(k' = 1\) this would represent an NLL effect. However, the difference between our new PENC and the traditional PENC starts at NNLL, implying that $\log(1+c) \sim {\cal O}(\alpha_s)$ and thus $c \sim {\cal O}(\alpha_s)$.
+For \(k' = 1\) this would represent an NLL effect. However, the difference between our new PENC and the traditional PENC starts at NNLL, implying that $\log(1+c) \sim {\cal O}(\alphas)$ and thus $c \sim {\cal O}(\alphas)$.
 
 
-Finally, we present additional numerical evidence that \(R_L \sim \left(1+c\right)R_1\) with \(c \sim \mathcal{O}(\alpha_s)\) by using the cumulative distributions for \(R_1\) and \(R_L\) to construct a correspondence between $R_1$ and $R_L$ using quantiles~\cite{Brewer:2018dfs}.
+Finally, we present additional numerical evidence that \(R_L \sim \left(1+c\right)R_1\) with \(c \sim \mathcal{O}(\alphas)\) by using the cumulative distributions for \(R_1\) and \(R_L\) to construct a correspondence between $R_1$ and $R_L$ using quantiles~\cite{Brewer:2018dfs}.
 %
 In particular, we numerically invert the equation
 \begin{align}
@@ -2598,7 +2946,7 @@ In particular, we numerically invert the equation
    \Sigma^\text{old}_N(
        R_L
        %=
-       %(1 +\mathcal{O}(\alpha_s))
+       %(1 +\mathcal{O}(\alphas))
        (R_1)
    )
    \, ,
@@ -2609,9 +2957,9 @@ In words, \Eq{quantiles} selects a function \(R_L(R_1)\) for which our new PENC 
 %
 \Fig{nll_equiv} displays the difference between $\log(R_L(R_1))$ and $\log R_1$, as a function of $R_1$, for $N=$ 3, 4, 5, 6, and 7.
 %
-The dashed lines correspond to a fit (of the overall constant) to the form $c \sim \alpha_s/\pi\, \log[1+(N-1) R_L]$.
+The dashed lines correspond to a fit (of the overall constant) to the form $c \sim \alphas/\pi\, \log[1+(N-1) R_L]$.
 %
-This provides numerical evidence for our theoretical arguments that the \(R_1\) and \(R_L\) jet functions are equivalent at NLL, and that $R_L = [1 + {\mathcal O}(\alpha_s)] R_1$.
+This provides numerical evidence for our theoretical arguments that the \(R_1\) and \(R_L\) jet functions are equivalent at NLL, and that $R_L = [1 + {\mathcal O}(\alphas)] R_1$.
 
 \vspace{15pt}
 
@@ -2621,7 +2969,7 @@ This provides numerical evidence for our theoretical arguments that the \(R_1\) 
 % ---------------------------------------
 
 \begin{table}%[ht!]
-\hspace{-60pt}
+\hspace{-40pt}
 % \makebox[1.4 \textwidth][c]{ %to center table
 % \resizebox{1.4 \textwidth}{!}{ %to resize table
 \begin{minipage}{0.58\textwidth}
@@ -2821,10 +3169,10 @@ Therefore, it is only when \(R_2\) gets significantly closer to \(R_1\) that the
     	\label{fig:nonpert_cartoon}
     }
     \caption[Non-perturbative features of the resolved three-point energy correlator.]{
-        Depictions of the non-perturbative features of the RE3C introduced in this work \textbf{(a)} highlighted in a two-dimensional density plot, and \textbf{(b)} in a simple cartoon demonstrating the relevant non-perturbative regimes.
+        Non-perturbative features of the RE3C \textbf{(a)} highlighted in a two-dimensional density plot, and \textbf{(b)} in a simple cartoon demonstrating regions of phase space associated with non-perturbative physics.
         %
         \textbf{(a)}
-        A density plot for the RE3C evaluated on CMS Open Data and integrated over \(\phi_2\), taken from Fig.~4 of the main text, together with dashed lines indicating where non-perturbative effects are expected to become important using (geometric) phase space considerations.
+        A density plot for the RE3C evaluated on CMS Open Data and integrated over \(\phi_2\), together with dashed lines indicating where non-perturbative effects are expected to become important using (geometric) phase space considerations.
         %
         \textbf{(b)}
         The RE3C geometry, with non-perturbative regions of phase space highlighted in purple, and with the dashed lines near \(s\) and \(i_2\) indicating the values of \(R_2\) where we expect non-perturbative features to emerge in the integrated RE3C.
@@ -2832,15 +3180,13 @@ Therefore, it is only when \(R_2\) gets significantly closer to \(R_1\) that the
 	\label{fig:nonpert}
 \end{figure}
 
-We estimate the \(R_2\)-asymmetry of the integrated RE3C by noting that non-perturbative features emerge when the measure of the non-perturbative phase space for \(i_2\) near \(i_1\) is comparable to the non-perturbative phase space for \(i_2\) near \(s\).
+We estimate the \(R_2\)-asymmetry of the integrated RE3C by noting that non-perturbative features emerge when the volume of non-perturbative phase space for \(i_2\) near \(i_1\) is comparable to the non-perturbative phase-space volume for \(i_2\) near \(s\).
 %
 This is visualized in \Fig{nonpert_cartoon}:
 %
 non-perturbative features of the integrated RE3C emerge when the length of the green dashed line near \(i_1\) has a length of order \(\Lambda_\text{QCD}/p_T\).
 %
-The associated geometric constraint is a complicated solution to a cubic equation and we do not show it here.
-%
-However, we show our resulting estimate of the non-perturbative features as the green dashed line in \Fig{nonpert_density}, which aligns closely with the non-perturbative ridge of the integrated RE3C as \(R_2\) approaches \(R_1\).
+The green dashed line in \Fig{nonpert_density}, which aligns closely with the high-density ridge of the integrated RE3C for \(R_2 \sim R_1\), shows our resulting geometric estimate for the location of non-perturbative features of the RE3C.
 
 
 
@@ -2876,7 +3222,7 @@ Recalling that \(m^2_{ij} / Q^2 = x_i + x_j - 1\) from \Prob{eetohadrons_kinemat
     \ri)
     \,,
 \end{align}
-where we have added an overall factor of \(2\) on the right-hand-side to write the sum over non-contact contributions as \(\sum_{i \neq j} = 2 \sum_{i < j}\), and we have used that \(E_i/Q = x_i / 2\).
+where we have added an overall factor of \(2\) on the right-hand side to write the sum over non-contact contributions as \(\sum_{i \neq j} = 2 \sum_{i < j}\), and we have used that \(E_i/Q = x_i / 2\).
 
 
     Answer related to IRC safety only being a problem with three or more emissions
