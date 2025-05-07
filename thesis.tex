@@ -29,44 +29,6 @@
 \usepackage{cite}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%  Metadata  %%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Most of the document metadata is created automatically.
-% TODO: Adjust metadata
-
-\iffalse
-\DocumentMetadata{
-	lang		= en-US,
-	pdfversion  = 1.7,
-	pdfstandard = a-2b,
-%	 pdfversion  = 2.0,
-%    pdfstandard = a-4,
-%	 debug		= {xmp-export}, % creates and xmpi file useful for checking metadata
-}
-
-
-
-\hypersetup{%
-	pdfsubject={Template for writing MIT theses with the mitthesis class},
-	% Change this to briefly state topic of your thesis
-%
-	pdfkeywords={Massachusetts Institute of Technology, MIT},
-	% Add keywords that will help search engines and libraries to find your work.
-	% Includes the name[s] of the author[s]
-	% (If you used \DocumentMetadata at line 14, you can just put "\CopyrightAuthor," for the names.)
-%
-	pdfurl={},
-	% If you have a url for the thesis, put it here. Otherwise delete this.
-	% (MIT Libraries will put your thesis in DSPACE with a persistent url after you submit it.)
-%
-	pdfcontactemail={},
-	% You can put a [permanent] email address into the metadata, if you like.
-	% Otherwise delete this.
-%
-	pdfauthortitle={},
-	% If you have a title, you can include it here.
-}
-\fi
-
 % =====================================
 % Includes
 % =====================================
@@ -447,7 +409,7 @@
 % Chapter titles without numbers
 \titleformat{\chapter}[display]
 {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
-\titlespacing*{\chapter} {0pt}{110pt}{20pt}
+\titlespacing*{\chapter} {0pt}{-15pt}{20pt}
 
 
 \addnewlinetotoc{}
@@ -473,7 +435,7 @@
 % Chapter titles without numbers
 \titleformat{\chapter}[display]
 {\normalfont\huge\bfseries\sffamily}{}{25pt}{\chaptitlenonumber}
-\titlespacing*{\chapter} {0pt}{110pt}{20pt}
+\titlespacing*{\chapter} {0pt}{-15pt}{20pt}
 
 % New header
 \begingroup
