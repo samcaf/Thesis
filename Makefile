@@ -15,13 +15,6 @@ print_cite:
 	@fgrep -r "\\cite{}" --exclude Makefile --exclude=\*.aux --exclude-dir .git;
 	@fgrep -r "\Reff{}" --exclude Makefile --exclude=\*.aux --exclude-dir .git;
 
-print_sam:
-	# --------------------------------
-	# comment list
-	# --------------------------------
-	@fgrep -r "\sam" --exclude Makefile --exclude thesis.log --exclude=\*.aux --exclude includes/comment_utils.tex --exclude chapters/ee_to_hadrons.tex --exclude-dir .git;
-	@printf "\n"
-
 print_debug:
 	# --------------------------------
 	# DEBUG list
@@ -32,7 +25,7 @@ print_comments:
 	# --------------------------------
 	# Comment list for Sam
 	# --------------------------------
-	@grep -r \\\\sam --exclude Makefile --exclude=\*.aux --exclude-dir .git
+	@grep -r \\\\sam --exclude="Makefile" --exclude="*comment_utils.tex" --exclude-dir .git
 	@printf "\n"
 
 edit_todo:
